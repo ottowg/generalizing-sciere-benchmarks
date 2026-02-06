@@ -7,4 +7,4 @@ notebooks/*
 .env
 *.swp
 test.sh
-data/*
+*__pycache__*
