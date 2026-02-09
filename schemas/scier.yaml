@@ -1,0 +1,83 @@
+# SciERC Dataset Schema Definition
+
+dataset: scier
+description: Scientific Entity and Relation Extraction schema (SciERC corpus)
+
+entities:
+  Dataset:
+    description: A dataset used in scientific research
+    examples:
+      - "ImageNet"
+      - "SQuAD"
+      - "Penn Treebank"
+
+  Method:
+    description: A scientific method, algorithm, model, or technique
+    examples:
+      - "convolutional neural network"
+      - "word2vec"
+      - "support vector machine"
+
+  Task:
+    description: A scientific or machine learning task
+    examples:
+      - "question answering"
+      - "sentiment analysis"
+      - "image segmentation"
+
+relations:
+  Benchmark-For:
+    description: A dataset serves as a benchmark for a task
+    arguments: [Dataset, Task]
+    examples:
+      - "ImageNet Benchmark-For image classification"
+
+  Compare-With:
+    description: A method is compared with another method
+    arguments: [Method, Method]
+    examples:
+      - "BERT Compare-With ELMo"
+
+  Evaluated-With:
+    description: A method is evaluated using a dataset
+    arguments: [Method, Dataset]
+    examples:
+      - "BERT Evaluated-With GLUE"
+
+  Part-Of:
+    description: An entity is a component or part of another entity
+    arguments: [entity, entity]
+    examples:
+      - "attention mechanism Part-Of transformer"
+      - "validation set Part-Of ImageNet"
+
+  SubClass-Of:
+    description: An entity is a type or subclass of another entity
+    arguments: [entity, entity]
+    examples:
+      - "LSTM SubClass-Of recurrent neural network"
+
+  SubTask-Of:
+    description: A task is a subtask of another task
+    arguments: [Task, Task]
+    examples:
+      - "named entity recognition SubTask-Of information extraction"
+
+  Synonym-Of:
+    description: Two entities are synonyms or refer to the same concept
+    arguments: [entity, entity]
+    examples:
+      - "CNN Synonym-Of convolutional neural network"
+
+  Trained-With:
+    description: A method is trained using a dataset
+    arguments: [Method, Dataset]
+    examples:
+      - "word2vec Trained-With Google News corpus"
+
+  Used-For:
+    description: A method or dataset is used for a task
+    arguments: [Method/Dataset, Task]
+    examples:
+      - "BERT Used-For question answering"
+      - "ImageNet Used-For image classification"

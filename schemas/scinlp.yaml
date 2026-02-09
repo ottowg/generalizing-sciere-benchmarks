@@ -1,0 +1,100 @@
+# SciNLP Dataset Schema Definition
+
+dataset: scinlp
+description: Scientific NLP entity and relation extraction schema
+
+entities:
+  dataset:
+    description: A dataset used in the research
+    examples:
+      - "ImageNet"
+      - "COCO"
+      - "Penn Treebank"
+
+  method:
+    description: A scientific method, model, or approach
+    examples:
+      - "BERT"
+      - "ResNet"
+      - "attention mechanism"
+
+  metric:
+    description: An evaluation metric or measure
+    examples:
+      - "accuracy"
+      - "F1-score"
+      - "BLEU"
+
+  task:
+    description: A scientific or computational task
+    examples:
+      - "image classification"
+      - "named entity recognition"
+      - "machine translation"
+
+relations:
+  MeasuredBy:
+    description: A task or method is measured by a metric
+    arguments: [task/method, metric]
+    examples:
+      - "image classification MeasuredBy accuracy"
+
+  UsedFor:
+    description: A method or dataset is used for a task
+    arguments: [method/dataset, task]
+    examples:
+      - "BERT UsedFor named entity recognition"
+
+  compareWith:
+    description: A method is compared with another method
+    arguments: [method, method]
+    examples:
+      - "BERT compareWith GPT"
+
+  enhancedBy:
+    description: A method is enhanced by another method or technique
+    arguments: [method, method]
+    examples:
+      - "LSTM enhancedBy attention"
+
+  evaluatedBy:
+    description: A method or model is evaluated using a metric
+    arguments: [method, metric]
+    examples:
+      - "BERT evaluatedBy F1-score"
+
+  evaluatedOn:
+    description: A method is evaluated on a dataset
+    arguments: [method, dataset]
+    examples:
+      - "BERT evaluatedOn GLUE"
+
+  partOf:
+    description: An entity is part of another entity
+    arguments: [entity, entity]
+    examples:
+      - "encoder partOf transformer"
+
+  similarWith:
+    description: An entity is similar to another entity
+    arguments: [entity, entity]
+    examples:
+      - "BERT similarWith RoBERTa"
+
+  subclassOf:
+    description: An entity is a subclass of another entity
+    arguments: [entity, entity]
+    examples:
+      - "LSTM subclassOf RNN"
+
+  subtaskOf:
+    description: A task is a subtask of another task
+    arguments: [task, task]
+    examples:
+      - "NER subtaskOf information extraction"
+
+  trainedWith:
+    description: A model is trained with/on a dataset
+    arguments: [method, dataset]
+    examples:
+      - "BERT trainedWith Wikipedia"

@@ -42,7 +42,7 @@ def test_load_from_path(test_data_path: Path, sample_jsonl_file: Path) -> None:
 def test_load_docs_basic(test_data_path: Path) -> None:
     """Test that _process_docs correctly processes documents into Corpus."""
     docs = _load_docs(test_data_path, ["test_sample.jsonl"])
-    corpus = _process_docs(docs)
+    corpus = _process_docs(docs, dataset="test", annotator="gold", is_prediction=False)
 
     # Should create a Corpus object
     assert isinstance(corpus, Corpus)
@@ -60,7 +60,7 @@ def test_load_docs_basic(test_data_path: Path) -> None:
 def test_sentence_structure(test_data_path: Path) -> None:
     """Test that Sentence objects have correct structure."""
     docs = _load_docs(test_data_path, ["test_sample.jsonl"])
-    corpus = _process_docs(docs)
+    corpus = _process_docs(docs, dataset="test", annotator="gold", is_prediction=False)
 
     # Check first sentence
     first_sentence = corpus.sentences[0]
@@ -81,7 +81,7 @@ def test_sentence_structure(test_data_path: Path) -> None:
 def test_mention_structure(test_data_path: Path) -> None:
     """Test that Mention objects have correct structure."""
     docs = _load_docs(test_data_path, ["test_sample.jsonl"])
-    corpus = _process_docs(docs)
+    corpus = _process_docs(docs, dataset="test", annotator="gold", is_prediction=False)
 
     # Only test if mentions exist
     if len(corpus.mentions) > 0:
@@ -89,7 +89,7 @@ def test_mention_structure(test_data_path: Path) -> None:
         assert isinstance(first_mention, Mention)
         assert hasattr(first_mention, "id")
         assert hasattr(first_mention, "document_id")
-        assert hasattr(first_mention, "sent_id")
+        assert hasattr(first_mention, "sent_idx")
         assert hasattr(first_mention, "text")
         assert hasattr(first_mention, "label")
         assert hasattr(first_mention, "begin")
@@ -97,12 +97,18 @@ def test_mention_structure(test_data_path: Path) -> None:
         assert hasattr(first_mention, "begin_token")
         assert hasattr(first_mention, "end_token")
         assert hasattr(first_mention, "split")
+        assert hasattr(first_mention, "score")
+        assert hasattr(first_mention, "annotator")
+        assert hasattr(first_mention, "dataset")
+        assert first_mention.score == 1.0
+        assert first_mention.annotator == "gold"
+        assert first_mention.dataset == "test"
 
 
 def test_relation_structure(test_data_path: Path) -> None:
     """Test that Relation objects have correct structure."""
     docs = _load_docs(test_data_path, ["test_sample.jsonl"])
-    corpus = _process_docs(docs)
+    corpus = _process_docs(docs, dataset="test", annotator="gold", is_prediction=False)
 
     # Only test if relations exist
     if len(corpus.relation) > 0:
@@ -111,6 +117,9 @@ def test_relation_structure(test_data_path: Path) -> None:
         assert hasattr(first_relation, "subject")
         assert hasattr(first_relation, "label")
         assert hasattr(first_relation, "object")
+        assert hasattr(first_relation, "score")
+        assert hasattr(first_relation, "annotator")
+        assert hasattr(first_relation, "dataset")
 
         # Subject and object should be Mention instances
         assert isinstance(first_relation.subject, Mention)
@@ -120,6 +129,9 @@ def test_relation_structure(test_data_path: Path) -> None:
         assert first_relation.signature is not None
         assert first_relation.split == first_relation.subject.split
         assert first_relation.document_id == first_relation.subject.document_id
+        assert first_relation.score == 1.0
+        assert first_relation.annotator == "gold"
+        assert first_relation.dataset == "test"
 
 
 def test_empty_file_handling(test_data_path: Path, tmp_path: Path) -> None:
@@ -134,7 +146,7 @@ def test_empty_file_handling(test_data_path: Path, tmp_path: Path) -> None:
     assert len(docs) == 0
 
     # _process_docs should handle empty docs list
-    corpus = _process_docs(docs)
+    corpus = _process_docs(docs, dataset="test", annotator="gold", is_prediction=False)
     assert len(corpus.sentences) == 0
     assert len(corpus.mentions) == 0
     assert len(corpus.relation) == 0

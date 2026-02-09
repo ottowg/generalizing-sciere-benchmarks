@@ -6,6 +6,11 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "python-dotenv>=1.0.0",
+    "great-tables>=0.14.0",
+    "pandas>=2.0.0",
+    # TODO: Add gsap-hub once package name/version is confirmed
+    # If gsap-hub is on PyPI: "gsap-hub>=1.0.0",
+    # If from GitHub: "gsap-hub @ git+https://github.com/username/gsap-hub.git",
 ]
 
 [project.optional-dependencies]
@@ -13,3 +18,7 @@ dev = [
     "ruff>=0.15.0",
     "pytest>=8.0.0",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v"

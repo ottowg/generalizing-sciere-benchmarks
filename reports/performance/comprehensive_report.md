@@ -1,0 +1,132 @@
+# Comprehensive Model Performance Report
+
+**Generated:** 2026-02-06 15:47:13
+
+## Overview
+
+This report evaluates all models across all datasets and splits.
+
+## Test Set Performance
+
+### Entity (Mention) Extraction - Test
+
+#### Exact Match
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| SCINLP | SCINLP | 0.892 | 0.850 | 0.870 | 710 | 745 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 1249 | 745 |
+
+#### Partial Match
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| SCINLP | SCINLP | 0.918 | 0.875 | 0.896 | 710 | 745 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 1249 | 745 |
+
+### Relation Extraction - Test
+
+#### RE (Relaxed - Exact Spans)
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| SCINLP | SCINLP | 0.653 | 0.378 | 0.478 | 170 | 294 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 474 | 294 |
+
+#### RE+ (Strict - Exact Spans + Correct Labels)
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| SCINLP | SCINLP | 0.635 | 0.367 | 0.466 | 170 | 294 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 474 | 294 |
+
+#### RE Partial (Relaxed - Overlapping Spans)
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| SCINLP | SCINLP | 0.665 | 0.384 | 0.487 | 170 | 294 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 474 | 294 |
+
+#### RE+ Partial (Strict - Overlapping Spans + Correct Labels)
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| SCINLP | SCINLP | 0.647 | 0.374 | 0.474 | 170 | 294 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 474 | 294 |
+
+## Dev Set Performance
+
+### Entity (Mention) Extraction - Dev
+
+#### Exact Match
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| GSAP | SCINLP | 0.000 | 0.000 | 0.000 | 3407 | 6417 |
+| SCINLP | SCINLP | 0.869 | 0.821 | 0.844 | 634 | 671 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 1218 | 671 |
+
+#### Partial Match
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| GSAP | SCINLP | 0.000 | 0.000 | 0.000 | 3407 | 6417 |
+| SCINLP | SCINLP | 0.904 | 0.854 | 0.878 | 634 | 671 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 1218 | 671 |
+
+### Relation Extraction - Dev
+
+#### RE (Relaxed - Exact Spans)
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| GSAP | SCINLP | 0.000 | 0.000 | 0.000 | 337 | 3818 |
+| SCINLP | SCINLP | 0.624 | 0.352 | 0.450 | 101 | 179 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 333 | 179 |
+
+#### RE+ (Strict - Exact Spans + Correct Labels)
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| GSAP | SCINLP | 0.000 | 0.000 | 0.000 | 337 | 3818 |
+| SCINLP | SCINLP | 0.624 | 0.352 | 0.450 | 101 | 179 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 333 | 179 |
+
+#### RE Partial (Relaxed - Overlapping Spans)
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| GSAP | SCINLP | 0.000 | 0.000 | 0.000 | 337 | 3818 |
+| SCINLP | SCINLP | 0.673 | 0.380 | 0.486 | 101 | 179 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 333 | 179 |
+
+#### RE+ Partial (Strict - Overlapping Spans + Correct Labels)
+
+| Dataset | Model | Precision | Recall | F1 | Pred | Gold |
+|---------|-------|-----------|--------|-----|------|------|
+| GSAP | SCINLP | 0.000 | 0.000 | 0.000 | 337 | 3818 |
+| SCINLP | SCINLP | 0.673 | 0.380 | 0.486 | 101 | 179 |
+| SCINLP | GSAP | 0.000 | 0.000 | 0.000 | 333 | 179 |
+
+## Notes
+
+### General
+- **Dataset**: Target dataset (SCIER, SCINLP, or GSAP)
+- **Model**: Source dataset the model was trained on
+- **Precision**: Proportion of predictions that are correct
+- **Recall**: Proportion of gold entities/relations that are predicted
+- **F1**: Harmonic mean of precision and recall
+- **Pred/Gold**: Number of predicted vs gold standard entities/relations
+
+### Entity Extraction Metrics
+- **Exact Match**: Requires exact span boundaries (character offsets must match exactly)
+- **Partial Match**: Credits overlapping spans (uses gsaphub partial matching)
+
+### Relation Extraction Metrics
+- **RE (Relaxed)**: Requires exact spans for relation arguments, ignores entity labels
+- **RE+ (Strict)**: Requires exact spans AND correct entity labels for relation arguments
+- **RE Partial**: Allows overlapping spans for relation arguments, ignores entity labels
+- **RE+ Partial**: Allows overlapping spans AND requires correct entity labels
+
+---
+*Generated by UnifiedSciERE Analysis Module*

@@ -91,12 +91,27 @@ def load_corpus(
     # Load documents using internal function
     docs = _load_docs(data_path, [filename])
 
+    # Determine annotator name
+    annotator = "gold" if data_type == "gold" else trained_on
+
     # Process documents into corpus using internal function
-    return _process_docs(docs, ner_field=ner_field, rel_field=rel_field)
+    return _process_docs(
+        docs,
+        ner_field=ner_field,
+        rel_field=rel_field,
+        dataset=dataset,
+        annotator=annotator,
+        is_prediction=(data_type == "predictions"),
+    )
 
 
 def _process_docs(
-    docs: list[dict[str, Any]], ner_field: str = "ner", rel_field: str = "relations"
+    docs: list[dict[str, Any]],
+    ner_field: str = "ner",
+    rel_field: str = "relations",
+    dataset: str = "",
+    annotator: str = "gold",
+    is_prediction: bool = False,
 ) -> Corpus:
     """Process document dictionaries into Corpus structure (internal function).
 
@@ -104,6 +119,9 @@ def _process_docs(
         docs: List of document dictionaries
         ner_field: Field name for named entity recognition data
         rel_field: Field name for relations data
+        dataset: Dataset name (e.g., "gsap", "scier", "scinlp")
+        annotator: Annotator name ("gold" or model name)
+        is_prediction: Whether this is prediction data (loads predicted fields)
 
     Returns:
         Corpus object containing sentences, mentions, and relations
@@ -111,6 +129,8 @@ def _process_docs(
     sentences: list[Sentence] = []
     mentions: dict[str, Mention] = {}
     relations: list[Relation] = []
+    mentions_predicted: dict[str, Mention] = {}
+    relations_predicted: list[Relation] = []
 
     for doc in docs:
         pos: int = -1
@@ -123,15 +143,16 @@ def _process_docs(
                 pos += len(token)
                 ends.append(pos)
         split = doc["split"]
+        # doc_key is set by _load_docs to either the original doc_key (SCINLP) or doc_id (SCIER/GSAP)
         doc_id = doc["doc_key"]
         doc_token = list(chain(*doc["sentences"]))
         for sent_idx, sent in enumerate(doc["sentences"]):
             sent_text = " ".join(sent)
             sentence = Sentence(sent_text, doc_id, sent_idx, split)
             sentences.append(sentence)
+            # Process gold mentions
             sent_ner = doc[ner_field][sent_idx]
             sentence.n_mentions = len(sent_ner)
-            sent_rels = doc["relations"][sent_idx]
             for begin_token, end_token, label in sent_ner:
                 token = doc_token[begin_token : end_token + 1]
                 begin = begins[begin_token]
@@ -149,11 +170,16 @@ def _process_docs(
                     begin_token,
                     end_token,
                     split,
+                    score=1.0,
+                    annotator=annotator if not is_prediction else "gold",
+                    dataset=dataset,
                 )
                 if mention_id in mentions:
                     print(f"Warning: Duplicate mention ID {mention_id}, skipping")
                     continue
                 mentions[mention_id] = mention
+
+            # Process gold relations
             sent_rels = doc[rel_field][sent_idx]
             for sub_begin, sub_end, obj_begin, obj_end, label in sent_rels:
                 subj_id = f"{doc_id} {sent_idx} {sub_begin} {sub_end}"
@@ -161,11 +187,93 @@ def _process_docs(
                 try:
                     subj = mentions[subj_id]
                     obj = mentions[obj_id]
-                    rel = Relation(subj, label, obj)
+                    rel = Relation(
+                        subj,
+                        label,
+                        obj,
+                        score=1.0,
+                        annotator=annotator if not is_prediction else "gold",
+                        dataset=dataset,
+                    )
                     relations.append(rel)
                 except Exception as e:
                     print(e)
-    return Corpus(sentences, list(mentions.values()), relations)
+
+            # Process predicted mentions if available
+            if is_prediction and "predicted_ner_proba" in doc:
+                sent_ner_pred = doc["predicted_ner_proba"][sent_idx]
+                for item in sent_ner_pred:
+                    begin_token, end_token, label, score = (
+                        item[0],
+                        item[1],
+                        item[2],
+                        item[3],
+                    )
+                    token = doc_token[begin_token : end_token + 1]
+                    begin = begins[begin_token]
+                    end = ends[end_token]
+                    text = " ".join(token)
+                    mention_id = f"{doc_id} {sent_idx} {begin_token} {end_token}"
+                    mention = Mention(
+                        mention_id,
+                        doc_id,
+                        sent_idx,
+                        text,
+                        label,
+                        begin,
+                        end,
+                        begin_token,
+                        end_token,
+                        split,
+                        score=float(score),
+                        annotator=annotator,
+                        dataset=dataset,
+                    )
+                    if mention_id in mentions_predicted:
+                        print(
+                            f"Warning: Duplicate predicted mention ID {mention_id}, skipping"
+                        )
+                        continue
+                    mentions_predicted[mention_id] = mention
+
+            # Process predicted relations if available
+            if is_prediction and "predicted_rel_proba" in doc:
+                sent_rel_pred = doc["predicted_rel_proba"][sent_idx]
+                for item in sent_rel_pred:
+                    sub_begin, sub_end, obj_begin, obj_end, label, score = (
+                        item[0],
+                        item[1],
+                        item[2],
+                        item[3],
+                        item[4],
+                        item[5],
+                    )
+                    subj_id = f"{doc_id} {sent_idx} {sub_begin} {sub_end}"
+                    obj_id = f"{doc_id} {sent_idx} {obj_begin} {obj_end}"
+                    try:
+                        # Use predicted mentions if available, otherwise gold mentions
+                        subj = mentions_predicted.get(subj_id, mentions.get(subj_id))
+                        obj = mentions_predicted.get(obj_id, mentions.get(obj_id))
+                        if subj and obj:
+                            rel = Relation(
+                                subj,
+                                label,
+                                obj,
+                                score=float(score),
+                                annotator=annotator,
+                                dataset=dataset,
+                            )
+                            relations_predicted.append(rel)
+                    except Exception as e:
+                        print(e)
+
+    return Corpus(
+        sentences,
+        list(mentions.values()),
+        relations,
+        list(mentions_predicted.values()),
+        relations_predicted,
+    )
 
 
 def _load_docs(path: Path, fns: list[str]) -> list[dict[str, Any]]:
@@ -188,7 +296,11 @@ def _load_docs(path: Path, fns: list[str]) -> list[dict[str, Any]]:
         for line_idx, line in enumerate(jsonl_file):
             doc = json.loads(line)
             doc["split"] = split
+            # Ensure doc_key exists: use doc_id if available (SCIER/GSAP), otherwise generate one
             if "doc_key" not in doc:
-                doc["doc_key"] = f"{split}_{line_idx}"
+                if "doc_id" in doc:
+                    doc["doc_key"] = doc["doc_id"]
+                else:
+                    doc["doc_key"] = f"{split}_{line_idx}"
             docs.append(doc)
     return docs

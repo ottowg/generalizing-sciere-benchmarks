@@ -1,0 +1,6472 @@
+{
+  "metadata": {
+    "generated": "2026-02-08 12:28:54",
+    "split": "dev",
+    "datasets": [
+      "scier",
+      "scinlp",
+      "gsap"
+    ],
+    "total_gsap_mlmodelgeneric": 1703,
+    "total_unmatched": 571,
+    "unique_unmatched_texts": 320
+  },
+  "unmatched_by_text": {
+    "the model": {
+      "count": 80,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the model",
+          "doc_id": "198967567",
+          "begin": 2675,
+          "end": 2684,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the model",
+          "doc_id": "201646244",
+          "begin": 1700,
+          "end": 1709,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the model",
+          "doc_id": "201646244",
+          "begin": 8826,
+          "end": 8835,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the model",
+          "doc_id": "2021.acl-long.295",
+          "begin": 3280,
+          "end": 3289,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the model",
+          "doc_id": "2021.acl-long.295",
+          "begin": 4884,
+          "end": 4893,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "models": {
+      "count": 23,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "models",
+          "doc_id": "198967567",
+          "begin": 8695,
+          "end": 8701,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "models",
+          "doc_id": "198967567",
+          "begin": 8879,
+          "end": 8885,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "models",
+          "doc_id": "198967567",
+          "begin": 9703,
+          "end": 9709,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "models",
+          "doc_id": "198967567",
+          "begin": 11411,
+          "end": 11417,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "models",
+          "doc_id": "198967567",
+          "begin": 11710,
+          "end": 11716,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our model": {
+      "count": 12,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our model",
+          "doc_id": "198967567",
+          "begin": 588,
+          "end": 597,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our model",
+          "doc_id": "198967567",
+          "begin": 8646,
+          "end": 8655,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our model",
+          "doc_id": "198967567",
+          "begin": 9223,
+          "end": 9232,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our model",
+          "doc_id": "00020_1606_05250.txt",
+          "begin": 17704,
+          "end": 17713,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 18995,
+          "end": 19004,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a model": {
+      "count": 11,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a model",
+          "doc_id": "201646244",
+          "begin": 2984,
+          "end": 2991,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a model",
+          "doc_id": "199668729",
+          "begin": 4966,
+          "end": 4973,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a model",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 326,
+          "end": 333,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a model",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 23759,
+          "end": 23766,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a model",
+          "doc_id": "00015_1910_09700.txt",
+          "begin": 10271,
+          "end": 10278,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the models": {
+      "count": 10,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the models",
+          "doc_id": "201646244",
+          "begin": 9716,
+          "end": 9726,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the models",
+          "doc_id": "201646244",
+          "begin": 10511,
+          "end": 10521,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 26732,
+          "end": 26742,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the models",
+          "doc_id": "P02-1004.grobid",
+          "begin": 7197,
+          "end": 7207,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the models",
+          "doc_id": "P02-1004.grobid",
+          "begin": 22950,
+          "end": 22960,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the network": {
+      "count": 8,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the network",
+          "doc_id": "198967567",
+          "begin": 4929,
+          "end": 4940,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the network",
+          "doc_id": "121101928",
+          "begin": 7186,
+          "end": 7197,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the network",
+          "doc_id": "121101928",
+          "begin": 8029,
+          "end": 8040,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the network",
+          "doc_id": "199668729",
+          "begin": 3766,
+          "end": 3777,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the network",
+          "doc_id": "8238530",
+          "begin": 2337,
+          "end": 2348,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "classifiers": {
+      "count": 8,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "classifiers",
+          "doc_id": "8238530",
+          "begin": 6716,
+          "end": 6727,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "classifiers",
+          "doc_id": "8238530",
+          "begin": 6920,
+          "end": 6931,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "classifiers",
+          "doc_id": "8238530",
+          "begin": 10006,
+          "end": 10017,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "classifiers",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 2032,
+          "end": 2043,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "classifiers",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 2348,
+          "end": 2359,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "this model": {
+      "count": 7,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "this model",
+          "doc_id": "198967567",
+          "begin": 9651,
+          "end": 9661,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "this model",
+          "doc_id": "P05-1008.grobid",
+          "begin": 6613,
+          "end": 6623,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "this model",
+          "doc_id": "P05-1008.grobid",
+          "begin": 17180,
+          "end": 17190,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "this model",
+          "doc_id": "P05-1008.grobid",
+          "begin": 17366,
+          "end": 17376,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "this model",
+          "doc_id": "P16-1007.grobid",
+          "begin": 17309,
+          "end": 17319,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the model 's": {
+      "count": 7,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the model 's",
+          "doc_id": "2021.acl-long.295",
+          "begin": 4573,
+          "end": 4585,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the model 's",
+          "doc_id": "2021.acl-long.295",
+          "begin": 20818,
+          "end": 20830,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the model 's",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 15662,
+          "end": 15674,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the model 's",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 21289,
+          "end": 21301,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the model 's",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 6515,
+          "end": 6527,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our method": {
+      "count": 6,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our method",
+          "doc_id": "54457603",
+          "begin": 5264,
+          "end": 5274,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our method",
+          "doc_id": "54457603",
+          "begin": 5330,
+          "end": 5340,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our method",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 4184,
+          "end": 4194,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our method",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 21999,
+          "end": 22009,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our method",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 26547,
+          "end": 26557,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "language models": {
+      "count": 6,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "language models",
+          "doc_id": "202719327",
+          "begin": 1306,
+          "end": 1321,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "language models",
+          "doc_id": "201307511",
+          "begin": 4335,
+          "end": 4350,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "language models",
+          "doc_id": "2021.acl-long.295",
+          "begin": 472,
+          "end": 487,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "language models",
+          "doc_id": "2021.acl-long.295",
+          "begin": 553,
+          "end": 568,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "language models",
+          "doc_id": "2021.acl-long.295",
+          "begin": 30013,
+          "end": 30028,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our approach": {
+      "count": 6,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our approach",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 727,
+          "end": 739,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our approach",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 4052,
+          "end": 4064,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our approach",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 1593,
+          "end": 1605,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our approach",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 16311,
+          "end": 16323,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our approach",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 20309,
+          "end": 20321,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the best model": {
+      "count": 5,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the best model",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 21461,
+          "end": 21475,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the best model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 4553,
+          "end": 4567,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the best model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 4718,
+          "end": 4732,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the best model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 7510,
+          "end": 7524,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the best model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 17344,
+          "end": 17358,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a language model": {
+      "count": 4,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a language model",
+          "doc_id": "201646244",
+          "begin": 23,
+          "end": 39,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a language model",
+          "doc_id": "201646244",
+          "begin": 1285,
+          "end": 1301,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a language model",
+          "doc_id": "201646244",
+          "begin": 6613,
+          "end": 6629,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a language model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 2175,
+          "end": 2191,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the language model": {
+      "count": 4,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the language model",
+          "doc_id": "2021.acl-long.295",
+          "begin": 2369,
+          "end": 2387,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the language model",
+          "doc_id": "2021.acl-long.295",
+          "begin": 11362,
+          "end": 11380,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the language model",
+          "doc_id": "2021.acl-long.295",
+          "begin": 21915,
+          "end": 21933,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the language model",
+          "doc_id": "2021.acl-long.295",
+          "begin": 36388,
+          "end": 36406,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The model": {
+      "count": 4,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The model",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 10262,
+          "end": 10271,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "The model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 18165,
+          "end": 18174,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "The model",
+          "doc_id": "00020_1606_05250.txt",
+          "begin": 18590,
+          "end": 18599,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "The model",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 6362,
+          "end": 6371,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "these models": {
+      "count": 4,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "these models",
+          "doc_id": "00015_1910_09700.txt",
+          "begin": 1533,
+          "end": 1545,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "these models",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 400,
+          "end": 412,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "these models",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 3990,
+          "end": 4002,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "these models",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 47568,
+          "end": 47580,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our network": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our network",
+          "doc_id": "53719258",
+          "begin": 17849,
+          "end": 17860,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our network",
+          "doc_id": "198967567",
+          "begin": 9536,
+          "end": 9547,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our network",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 17943,
+          "end": 17954,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "it": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "it",
+          "doc_id": "201646244",
+          "begin": 3447,
+          "end": 3449,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "it",
+          "doc_id": "201646244",
+          "begin": 9823,
+          "end": 9825,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "it",
+          "doc_id": "201646244",
+          "begin": 9920,
+          "end": 9922,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "baselines": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "baselines",
+          "doc_id": "201646244",
+          "begin": 8354,
+          "end": 8363,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "baselines",
+          "doc_id": "202719327",
+          "begin": 9889,
+          "end": 9898,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "baselines",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 24920,
+          "end": 24929,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "two models": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "two models",
+          "doc_id": "201646244",
+          "begin": 8519,
+          "end": 8529,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "two models",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 20514,
+          "end": 20524,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "two models",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 20563,
+          "end": 20573,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "L": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "L",
+          "doc_id": "2021.acl-long.295",
+          "begin": 9098,
+          "end": 9099,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "L",
+          "doc_id": "2021.acl-long.295",
+          "begin": 11302,
+          "end": 11303,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "L",
+          "doc_id": "2021.acl-long.295",
+          "begin": 11381,
+          "end": 11382,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the generator": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the generator",
+          "doc_id": "P05-1008.grobid",
+          "begin": 363,
+          "end": 376,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the generator",
+          "doc_id": "P05-1008.grobid",
+          "begin": 19299,
+          "end": 19312,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the generator",
+          "doc_id": "P05-1008.grobid",
+          "begin": 21363,
+          "end": 21376,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "subnetworks": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "subnetworks",
+          "doc_id": "P05-1008.grobid",
+          "begin": 9069,
+          "end": 9080,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "subnetworks",
+          "doc_id": "P05-1008.grobid",
+          "begin": 11786,
+          "end": 11797,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "subnetworks",
+          "doc_id": "P05-1008.grobid",
+          "begin": 12957,
+          "end": 12968,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our models": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our models",
+          "doc_id": "P16-1007.grobid",
+          "begin": 18347,
+          "end": 18357,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our models",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 10918,
+          "end": 10928,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our models",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 706,
+          "end": 716,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "each classifier": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "each classifier",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 2265,
+          "end": 2280,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "each classifier",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 2531,
+          "end": 2546,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "each classifier",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 16275,
+          "end": 16290,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the classifier": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the classifier",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 10757,
+          "end": 10771,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the classifier",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 15727,
+          "end": 15741,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the classifier",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 30081,
+          "end": 30095,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The classifier": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The classifier",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 20460,
+          "end": 20474,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "The classifier",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 21424,
+          "end": 21438,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "The classifier",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 25260,
+          "end": 25274,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a multimodal pre - trained model": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a multimodal pre - trained model",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 274,
+          "end": 306,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a multimodal pre - trained model",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 3392,
+          "end": 3424,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a multimodal pre - trained model",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 20189,
+          "end": 20221,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "they": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "they",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 5776,
+          "end": 5780,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "they",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 32193,
+          "end": 32197,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "they",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 79043,
+          "end": 79047,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the baselines": {
+      "count": 3,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the baselines",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 55057,
+          "end": 55070,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the baselines",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 88115,
+          "end": 88128,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the baselines",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 94482,
+          "end": 94495,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "3D networks": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "3D networks",
+          "doc_id": "53719258",
+          "begin": 2704,
+          "end": 2715,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "3D networks",
+          "doc_id": "53719258",
+          "begin": 5054,
+          "end": 5065,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the base model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the base model",
+          "doc_id": "53719258",
+          "begin": 15700,
+          "end": 15714,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the base model",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 20711,
+          "end": 20725,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "( 2 + 1 )D": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "( 2 + 1 )D",
+          "doc_id": "53719258",
+          "begin": 15899,
+          "end": 15909,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "( 2 + 1 )D",
+          "doc_id": "53719258",
+          "begin": 16027,
+          "end": 16037,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "different models": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "different models",
+          "doc_id": "53719258",
+          "begin": 17350,
+          "end": 17366,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "different models",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 20069,
+          "end": 20085,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our baseline model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our baseline model",
+          "doc_id": "198967567",
+          "begin": 442,
+          "end": 460,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our baseline model",
+          "doc_id": "198967567",
+          "begin": 10251,
+          "end": 10269,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "one": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "one",
+          "doc_id": "201646244",
+          "begin": 8538,
+          "end": 8541,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "one",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 22410,
+          "end": 22413,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the other": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the other",
+          "doc_id": "201646244",
+          "begin": 8572,
+          "end": 8581,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the other",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 22441,
+          "end": 22450,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the baseline methods": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the baseline methods",
+          "doc_id": "201646244",
+          "begin": 9451,
+          "end": 9471,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the baseline methods",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 35338,
+          "end": 35358,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our system": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our system",
+          "doc_id": "54457603",
+          "begin": 1598,
+          "end": 1608,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our system",
+          "doc_id": "54457603",
+          "begin": 4754,
+          "end": 4764,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Our model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Our model",
+          "doc_id": "54457603",
+          "begin": 5667,
+          "end": 5676,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "Our model",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 1282,
+          "end": 1291,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the student model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the student model",
+          "doc_id": "202719327",
+          "begin": 6405,
+          "end": 6422,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the student model",
+          "doc_id": "202719327",
+          "begin": 11440,
+          "end": 11457,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "teacher model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "teacher model",
+          "doc_id": "202719327",
+          "begin": 6452,
+          "end": 6465,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "teacher model",
+          "doc_id": "202719327",
+          "begin": 10471,
+          "end": 10484,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the student models": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the student models",
+          "doc_id": "202719327",
+          "begin": 10639,
+          "end": 10657,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the student models",
+          "doc_id": "202719327",
+          "begin": 11188,
+          "end": 11206,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the pretrained model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the pretrained model",
+          "doc_id": "8238530",
+          "begin": 11913,
+          "end": 11933,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the pretrained model",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 3280,
+          "end": 3300,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "such models": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "such models",
+          "doc_id": "2021.acl-long.295",
+          "begin": 2425,
+          "end": 2436,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "such models",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 30614,
+          "end": 30625,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a single model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a single model",
+          "doc_id": "2021.acl-long.295",
+          "begin": 25304,
+          "end": 25318,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a single model",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 80327,
+          "end": 80341,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "All models": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "All models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 20399,
+          "end": 20409,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "All models",
+          "doc_id": "P02-1004.grobid",
+          "begin": 5917,
+          "end": 5927,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the best performing model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the best performing model",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 22664,
+          "end": 22689,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the best performing model",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 11538,
+          "end": 11563,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "These models": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "These models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 25429,
+          "end": 25441,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "These models",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 2570,
+          "end": 2582,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the proposed model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the proposed model",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 30403,
+          "end": 30421,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the proposed model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 3897,
+          "end": 3915,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "each subnetwork": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "each subnetwork",
+          "doc_id": "P05-1008.grobid",
+          "begin": 9830,
+          "end": 9845,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "each subnetwork",
+          "doc_id": "P05-1008.grobid",
+          "begin": 10010,
+          "end": 10025,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the regression model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the regression model",
+          "doc_id": "P05-1008.grobid",
+          "begin": 14861,
+          "end": 14881,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the regression model",
+          "doc_id": "P05-1008.grobid",
+          "begin": 16629,
+          "end": 16649,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our translation model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our translation model",
+          "doc_id": "P16-1007.grobid",
+          "begin": 11461,
+          "end": 11482,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "our translation model",
+          "doc_id": "P16-1007.grobid",
+          "begin": 12213,
+          "end": 12234,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the ensemble": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the ensemble",
+          "doc_id": "P16-1007.grobid",
+          "begin": 22974,
+          "end": 22986,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the ensemble",
+          "doc_id": "P16-1007.grobid",
+          "begin": 23526,
+          "end": 23538,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the classifiers": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the classifiers",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 2630,
+          "end": 2645,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the classifiers",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 22199,
+          "end": 22214,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "both models": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "both models",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 24883,
+          "end": 24894,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "both models",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 24346,
+          "end": 24357,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "any model": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "any model",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 70314,
+          "end": 70323,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "any model",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 41226,
+          "end": 41235,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the pre - trained models": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the pre - trained models",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 15282,
+          "end": 15306,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the pre - trained models",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 17218,
+          "end": 17242,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The proposed algorithm": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The proposed algorithm",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 3543,
+          "end": 3565,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "The proposed algorithm",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 22129,
+          "end": 22151,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "They": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "They",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 16799,
+          "end": 16803,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "They",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 36681,
+          "end": 36685,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a new multi - stage RL agent": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a new multi - stage RL agent",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 2580,
+          "end": 2608,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a new multi - stage RL agent",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 25857,
+          "end": 25885,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the underlying neural network": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the underlying neural network",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 15286,
+          "end": 15315,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "the underlying neural network",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 15332,
+          "end": 15361,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Our approach": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Our approach",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 26136,
+          "end": 26148,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "Our approach",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 24736,
+          "end": 24748,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "p ( x )": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "p ( x )",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 18553,
+          "end": 18560,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "p ( x )",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 20047,
+          "end": 20054,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a novel deep learning architecture": {
+      "count": 2,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a novel deep learning architecture",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 36429,
+          "end": 36463,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        },
+        {
+          "text": "a novel deep learning architecture",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 90950,
+          "end": 90984,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Hidden state models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Hidden state models",
+          "doc_id": "53719258",
+          "begin": 2321,
+          "end": 2340,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "explicit dynamical models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "explicit dynamical models",
+          "doc_id": "53719258",
+          "begin": 2645,
+          "end": 2670,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our proposed model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our proposed model",
+          "doc_id": "53719258",
+          "begin": 10972,
+          "end": 10990,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "2D models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "2D models",
+          "doc_id": "53719258",
+          "begin": 12615,
+          "end": 12624,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "existing 2D models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "existing 2D models",
+          "doc_id": "53719258",
+          "begin": 16302,
+          "end": 16320,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "new 3D models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "new 3D models",
+          "doc_id": "53719258",
+          "begin": 16375,
+          "end": 16388,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "other 3D causal networks": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "other 3D causal networks",
+          "doc_id": "53719258",
+          "begin": 16458,
+          "end": 16482,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our new model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our new model",
+          "doc_id": "53719258",
+          "begin": 16836,
+          "end": 16849,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "base models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "base models",
+          "doc_id": "53719258",
+          "begin": 16973,
+          "end": 16984,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "other 3D models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "other 3D models",
+          "doc_id": "53719258",
+          "begin": 17866,
+          "end": 17881,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our baseline implementation": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our baseline implementation",
+          "doc_id": "53719258",
+          "begin": 18631,
+          "end": 18658,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "heavy 3D models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "heavy 3D models",
+          "doc_id": "53719258",
+          "begin": 19045,
+          "end": 19060,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "3D models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "3D models",
+          "doc_id": "53719258",
+          "begin": 19473,
+          "end": 19482,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "sparse models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "sparse models",
+          "doc_id": "2032742",
+          "begin": 7034,
+          "end": 7047,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a new model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a new model",
+          "doc_id": "198967567",
+          "begin": 1763,
+          "end": 1774,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "this baseline model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "this baseline model",
+          "doc_id": "198967567",
+          "begin": 2528,
+          "end": 2547,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a deep network model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a deep network model",
+          "doc_id": "198967567",
+          "begin": 4753,
+          "end": 4773,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Each model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Each model",
+          "doc_id": "198967567",
+          "begin": 9372,
+          "end": 9382,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "I": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "I",
+          "doc_id": "198967567",
+          "begin": 9432,
+          "end": 9433,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Model III": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Model III",
+          "doc_id": "198967567",
+          "begin": 10767,
+          "end": 10776,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "two other pre - trained language models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "two other pre - trained language models",
+          "doc_id": "201646244",
+          "begin": 1517,
+          "end": 1556,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "pre - trained language models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "pre - trained language models",
+          "doc_id": "201646244",
+          "begin": 2085,
+          "end": 2114,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a pre - trained a language model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a pre - trained a language model",
+          "doc_id": "201646244",
+          "begin": 3861,
+          "end": 3893,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the whole language model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the whole language model",
+          "doc_id": "201646244",
+          "begin": 5436,
+          "end": 5460,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The underlying language model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The underlying language model",
+          "doc_id": "201646244",
+          "begin": 5520,
+          "end": 5549,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "pre - trained language model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "pre - trained language model",
+          "doc_id": "201646244",
+          "begin": 9009,
+          "end": 9037,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "state - of - the - art": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "state - of - the - art",
+          "doc_id": "201646244",
+          "begin": 9476,
+          "end": 9498,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "three models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "three models",
+          "doc_id": "201646244",
+          "begin": 10995,
+          "end": 11007,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "other pre - training language models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "other pre - training language models",
+          "doc_id": "201646244",
+          "begin": 12224,
+          "end": 12260,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "me": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "me",
+          "doc_id": "201646244",
+          "begin": 12702,
+          "end": 12704,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "proposed concurrent activity recognition system": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "proposed concurrent activity recognition system",
+          "doc_id": "54457603",
+          "begin": 1426,
+          "end": 1473,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "their model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "their model",
+          "doc_id": "54457603",
+          "begin": 5527,
+          "end": 5538,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Action VLAD": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Action VLAD",
+          "doc_id": "54457603",
+          "begin": 6028,
+          "end": 6039,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Our Model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Our Model",
+          "doc_id": "54457603",
+          "begin": 6114,
+          "end": 6123,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "It": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "It",
+          "doc_id": "121101928",
+          "begin": 2476,
+          "end": 2478,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "detectors": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "detectors",
+          "doc_id": "121101928",
+          "begin": 5728,
+          "end": 5737,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The building block": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The building block",
+          "doc_id": "121101928",
+          "begin": 8691,
+          "end": 8709,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "4 - layer state - of - the - art baselines": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "4 - layer state - of - the - art baselines",
+          "doc_id": "202719327",
+          "begin": 1071,
+          "end": 1113,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the framework": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the framework",
+          "doc_id": "202719327",
+          "begin": 1946,
+          "end": 1959,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "other state - of - the - art baselines": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "other state - of - the - art baselines",
+          "doc_id": "202719327",
+          "begin": 4532,
+          "end": 4570,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "recent pre - trained language models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "recent pre - trained language models",
+          "doc_id": "202719327",
+          "begin": 4844,
+          "end": 4880,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the teacher model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the teacher model",
+          "doc_id": "202719327",
+          "begin": 6517,
+          "end": 6534,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a pre - trained language model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a pre - trained language model",
+          "doc_id": "202719327",
+          "begin": 8243,
+          "end": 8273,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "small models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "small models",
+          "doc_id": "202719327",
+          "begin": 9632,
+          "end": 9644,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "all the distilled small models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "all the distilled small models",
+          "doc_id": "202719327",
+          "begin": 10394,
+          "end": 10424,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "their student models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "their student models",
+          "doc_id": "202719327",
+          "begin": 10536,
+          "end": 10556,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the pre - trained language models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the pre - trained language models",
+          "doc_id": "202719327",
+          "begin": 14117,
+          "end": 14150,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our proposed network": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our proposed network",
+          "doc_id": "199668729",
+          "begin": 7745,
+          "end": 7765,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the head networks": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the head networks",
+          "doc_id": "199668729",
+          "begin": 7905,
+          "end": 7922,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "modern networks": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "modern networks",
+          "doc_id": "8238530",
+          "begin": 7980,
+          "end": 7995,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "traditional segmentation model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "traditional segmentation model",
+          "doc_id": "8238530",
+          "begin": 8972,
+          "end": 9002,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our base model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our base model",
+          "doc_id": "8238530",
+          "begin": 9547,
+          "end": 9561,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "pretrained model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "pretrained model",
+          "doc_id": "8238530",
+          "begin": 13213,
+          "end": 13229,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Our best model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Our best model",
+          "doc_id": "8238530",
+          "begin": 14530,
+          "end": 14544,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a logbilinear model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a logbilinear model",
+          "doc_id": "201307511",
+          "begin": 1342,
+          "end": 1361,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Systems": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Systems",
+          "doc_id": "201307511",
+          "begin": 2010,
+          "end": 2017,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "those": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "those",
+          "doc_id": "201307511",
+          "begin": 2040,
+          "end": 2045,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "supervised vision - language models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "supervised vision - language models",
+          "doc_id": "201307511",
+          "begin": 2537,
+          "end": 2572,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Recent neural approaches": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Recent neural approaches",
+          "doc_id": "201307511",
+          "begin": 3288,
+          "end": 3312,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the visual classifier": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the visual classifier",
+          "doc_id": "201307511",
+          "begin": 8889,
+          "end": 8910,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "an answer classifier": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "an answer classifier",
+          "doc_id": "201307511",
+          "begin": 10832,
+          "end": 10852,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a moderatelysized language model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a moderatelysized language model",
+          "doc_id": "2021.acl-long.295",
+          "begin": 2155,
+          "end": 2187,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "pre-trained models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "pre-trained models",
+          "doc_id": "2021.acl-long.295",
+          "begin": 6672,
+          "end": 6690,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a smaller model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a smaller model",
+          "doc_id": "2021.acl-long.295",
+          "begin": 21009,
+          "end": 21024,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "smaller language models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "smaller language models",
+          "doc_id": "2021.acl-long.295",
+          "begin": 23994,
+          "end": 24017,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "individual models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "individual models",
+          "doc_id": "2021.acl-long.295",
+          "begin": 24983,
+          "end": 25000,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "multiple models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "multiple models",
+          "doc_id": "2021.acl-long.295",
+          "begin": 25086,
+          "end": 25101,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "longer-context language models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "longer-context language models",
+          "doc_id": "2021.acl-long.295",
+          "begin": 29660,
+          "end": 29690,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "uncased": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "uncased",
+          "doc_id": "2021.acl-long.295",
+          "begin": 34614,
+          "end": 34621,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our main model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our main model",
+          "doc_id": "2021.acl-long.295",
+          "begin": 35858,
+          "end": 35872,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Pre-trained Models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Pre-trained Models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 104,
+          "end": 122,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Machine learning models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Machine learning models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 125,
+          "end": 148,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "prompt-based methods": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "prompt-based methods",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 928,
+          "end": 948,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "their models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "their models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 1651,
+          "end": 1663,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "generative models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "generative models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 2327,
+          "end": 2344,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "prior models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "prior models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 2404,
+          "end": 2416,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "deep pre-trained models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "deep pre-trained models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 3552,
+          "end": 3575,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "large language models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "large language models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 5921,
+          "end": 5942,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a subnetwork": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a subnetwork",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 7471,
+          "end": 7483,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the full network": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the full network",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 7551,
+          "end": 7567,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "pre-trained transformer-based encoders": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "pre-trained transformer-based encoders",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 8066,
+          "end": 8104,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a predictive model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a predictive model",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 8398,
+          "end": 8416,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a suite of models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a suite of models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 15574,
+          "end": 15591,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The best-performing model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The best-performing model",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 15761,
+          "end": 15786,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the predictive model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the predictive model",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 16217,
+          "end": 16237,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "all baselines": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "all baselines",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 22022,
+          "end": 22035,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "w/o a": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "w/o a",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 25465,
+          "end": 25470,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "w/o am": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "w/o am",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 25477,
+          "end": 25483,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "encoderonly models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "encoderonly models",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 25608,
+          "end": 25626,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "model",
+          "doc_id": "2024.acl-long.144-1-9.grobid",
+          "begin": 30426,
+          "end": 30431,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "more complex models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "more complex models",
+          "doc_id": "P05-1008.grobid",
+          "begin": 13581,
+          "end": 13600,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "this second model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "this second model",
+          "doc_id": "P05-1008.grobid",
+          "begin": 17406,
+          "end": 17423,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the generator 's": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the generator 's",
+          "doc_id": "P05-1008.grobid",
+          "begin": 22815,
+          "end": 22831,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Models",
+          "doc_id": "P16-1007.grobid",
+          "begin": 0,
+          "end": 6,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The same model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The same model",
+          "doc_id": "P16-1007.grobid",
+          "begin": 12954,
+          "end": 12968,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the single neural network system": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the single neural network system",
+          "doc_id": "P16-1007.grobid",
+          "begin": 22901,
+          "end": 22933,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The neural system": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The neural system",
+          "doc_id": "P16-1007.grobid",
+          "begin": 23135,
+          "end": 23152,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "statistical models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "statistical models",
+          "doc_id": "P02-1004.grobid",
+          "begin": 1202,
+          "end": 1220,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "This tree-based model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "This tree-based model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 1989,
+          "end": 2010,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "A generative statistical language model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "A generative statistical language model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 4280,
+          "end": 4319,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "decision tree classifiers": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "decision tree classifiers",
+          "doc_id": "P02-1004.grobid",
+          "begin": 4766,
+          "end": 4791,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "all of the models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "all of the models",
+          "doc_id": "P02-1004.grobid",
+          "begin": 5166,
+          "end": 5183,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The case assignment model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The case assignment model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 9843,
+          "end": 9868,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "downstream models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "downstream models",
+          "doc_id": "P02-1004.grobid",
+          "begin": 10785,
+          "end": 10802,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a decision tree classifier": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a decision tree classifier",
+          "doc_id": "P02-1004.grobid",
+          "begin": 12814,
+          "end": 12840,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The decision tree model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The decision tree model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 14105,
+          "end": 14128,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the verb position classifier": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the verb position classifier",
+          "doc_id": "P02-1004.grobid",
+          "begin": 14271,
+          "end": 14299,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The extraposition model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The extraposition model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 17561,
+          "end": 17584,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the extraposition model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the extraposition model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 17603,
+          "end": 17626,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the aggregation model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the aggregation model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 20304,
+          "end": 20325,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the decision tree model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the decision tree model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 20884,
+          "end": 20907,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The syntactic aggregation model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The syntactic aggregation model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 21475,
+          "end": 21506,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "other classifiers": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "other classifiers",
+          "doc_id": "P02-1004.grobid",
+          "begin": 22643,
+          "end": 22660,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the various models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the various models",
+          "doc_id": "P02-1004.grobid",
+          "begin": 23303,
+          "end": 23321,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "all other models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "all other models",
+          "doc_id": "P02-1004.grobid",
+          "begin": 23831,
+          "end": 23847,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the learned models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the learned models",
+          "doc_id": "P02-1004.grobid",
+          "begin": 24316,
+          "end": 24334,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the verb position model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the verb position model",
+          "doc_id": "P02-1004.grobid",
+          "begin": 25020,
+          "end": 25043,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "DNLP parsers": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "DNLP parsers",
+          "doc_id": "P03-1014.grobid",
+          "begin": 2333,
+          "end": 2345,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "This model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "This model",
+          "doc_id": "P03-1014.grobid",
+          "begin": 6985,
+          "end": 6995,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "neural networks": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "neural networks",
+          "doc_id": "00015_1910_09700.txt",
+          "begin": 873,
+          "end": 888,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "recent state - of - the - art models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "recent state - of - the - art models",
+          "doc_id": "00015_1910_09700.txt",
+          "begin": 4479,
+          "end": 4515,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "new models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "new models",
+          "doc_id": "00015_1910_09700.txt",
+          "begin": 5540,
+          "end": 5550,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a given model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a given model",
+          "doc_id": "00015_1910_09700.txt",
+          "begin": 5781,
+          "end": 5794,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "dependency parse trees": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "dependency parse trees",
+          "doc_id": "00020_1606_05250.txt",
+          "begin": 12590,
+          "end": 12612,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "these classifiers": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "these classifiers",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 311,
+          "end": 328,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "widely used language classifiers": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "widely used language classifiers",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 4166,
+          "end": 4198,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "these systems": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "these systems",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 4794,
+          "end": 4807,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the systems": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the systems",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 4966,
+          "end": 4977,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the non - Hispanic black language model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the non - Hispanic black language model",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 13529,
+          "end": 13568,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "each classifier - class pair": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "each classifier - class pair",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 16605,
+          "end": 16633,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "this clas - sifier": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "this clas - sifier",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 26891,
+          "end": 26909,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "activists": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "activists",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 30046,
+          "end": 30055,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "domain - experts": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "domain - experts",
+          "doc_id": "00024_1905_12516.txt",
+          "begin": 30290,
+          "end": 30306,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "large scale language models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "large scale language models",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 2161,
+          "end": 2188,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a \" toxicity model \"": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a \" toxicity model \"",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 29230,
+          "end": 29250,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the same language classifier": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the same language classifier",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 29488,
+          "end": 29516,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "models with different characteristics": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "models with different characteristics",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 30700,
+          "end": 30737,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "AI": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "AI",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 44582,
+          "end": 44584,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the trained model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the trained model",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 49188,
+          "end": 49205,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The respective language model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The respective language model",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 72029,
+          "end": 72058,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The davinci model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The davinci model",
+          "doc_id": "00036_2101_00027.txt",
+          "begin": 72737,
+          "end": 72754,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the existing SOTA crosslingual pre - trained models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the existing SOTA crosslingual pre - trained models",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 832,
+          "end": 883,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the multilingual models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the multilingual models",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 3243,
+          "end": 3266,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a multilingual extension": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a multilingual extension",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 3494,
+          "end": 3518,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the masked visuallanguage model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the masked visuallanguage model",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 3852,
+          "end": 3883,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "several SOTA cross - lingual pre - trained models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "several SOTA cross - lingual pre - trained models",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 4974,
+          "end": 5023,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a multimodal pretrained model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a multimodal pretrained model",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 5264,
+          "end": 5293,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "other SOTA multilingual baseline models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "other SOTA multilingual baseline models",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 5681,
+          "end": 5720,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the deep learning models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the deep learning models",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 11027,
+          "end": 11051,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the other text - based models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the other text - based models",
+          "doc_id": "00052_2104_08836.txt",
+          "begin": 17885,
+          "end": 17914,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the previous best model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the previous best model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 978,
+          "end": 1001,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a supervised framework": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a supervised framework",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 2515,
+          "end": 2537,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the first approach": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the first approach",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 3303,
+          "end": 3321,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the semi - supervised model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the semi - supervised model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 5155,
+          "end": 5182,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the previous model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the previous model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 7530,
+          "end": 7548,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "noisier models model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "noisier models model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 10167,
+          "end": 10187,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The Mean Teacher model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The Mean Teacher model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 10548,
+          "end": 10570,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the student": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the student",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 10717,
+          "end": 10728,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the ( better ) teacher": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the ( better ) teacher",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 10759,
+          "end": 10781,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "students": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "students",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 11689,
+          "end": 11697,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "teachers": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "teachers",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 11702,
+          "end": 11710,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "all previous robust learning approaches": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "all previous robust learning approaches",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 13339,
+          "end": 13378,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "any additional generative model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "any additional generative model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 14162,
+          "end": 14193,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "their approach": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "their approach",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 14563,
+          "end": 14577,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our framework": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our framework",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 15512,
+          "end": 15525,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "previous robust learning approaches": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "previous robust learning approaches",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 15591,
+          "end": 15626,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The students and teacher networks": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The students and teacher networks",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 16704,
+          "end": 16737,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the previously best model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the previously best model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 17494,
+          "end": 17519,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our model 's": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our model 's",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 17786,
+          "end": 17798,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "other previously reported approaches": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "other previously reported approaches",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 17872,
+          "end": 17908,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The baseline model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The baseline model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 18601,
+          "end": 18619,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Our framework": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Our framework",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 19584,
+          "end": 19597,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "its shallower counterpart": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "its shallower counterpart",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 19876,
+          "end": 19901,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the network 's": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the network 's",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 20401,
+          "end": 20415,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the teacher": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the teacher",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 21005,
+          "end": 21016,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a stable model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a stable model",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 21028,
+          "end": 21042,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the temporal ensemble of models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the temporal ensemble of models",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 21328,
+          "end": 21359,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The network": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The network",
+          "doc_id": "10010_1906_00216.txt",
+          "begin": 25058,
+          "end": 25069,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the learning agent": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the learning agent",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 389,
+          "end": 407,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Our new architecture": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Our new architecture",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 1185,
+          "end": 1205,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our new deep network architecture": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our new deep network architecture",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 1369,
+          "end": 1402,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the current state - of - art models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the current state - of - art models",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 1637,
+          "end": 1672,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Most of the recent examples": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Most of the recent examples",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 1675,
+          "end": 1702,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a new deep neural network architecture": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a new deep neural network architecture",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 3389,
+          "end": 3427,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the current state - of - the art approaches": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the current state - of - the art approaches",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 5324,
+          "end": 5367,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a specific type of neural network": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a specific type of neural network",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 5602,
+          "end": 5635,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The image - based only IBVS approach": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The image - based only IBVS approach",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 8059,
+          "end": 8095,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "multiple formulations of the f att model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "multiple formulations of the f att model",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 13624,
+          "end": 13664,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the current state - of - the - art method": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the current state - of - the - art method",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 17554,
+          "end": 17595,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "First baseline": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "First baseline",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 20045,
+          "end": 20059,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Second baseline": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Second baseline",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 20137,
+          "end": 20152,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Our implementation": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Our implementation",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 20350,
+          "end": 20368,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "two baseline models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "two baseline models",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 20466,
+          "end": 20485,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "6 models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "6 models",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 20630,
+          "end": 20638,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the learn to see model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the learn to see model",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 22476,
+          "end": 22498,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the deep neural network": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the deep neural network",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 23139,
+          "end": 23162,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the shallow network": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the shallow network",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 23179,
+          "end": 23198,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the shallow one": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the shallow one",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 23318,
+          "end": 23333,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the deeper network": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the deeper network",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 23364,
+          "end": 23382,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our baseline": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our baseline",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 23520,
+          "end": 23532,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "proposed approach": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "proposed approach",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 23540,
+          "end": 23557,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "an approximate model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "an approximate model",
+          "doc_id": "10020_2001_00605.txt",
+          "begin": 27201,
+          "end": 27221,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a generative model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a generative model",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 865,
+          "end": 883,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a new baseline": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a new baseline",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 1401,
+          "end": 1415,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The proposed model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The proposed model",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 1427,
+          "end": 1445,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a Gaussian kernel Parzen density estimator": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a Gaussian kernel Parzen density estimator",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 3955,
+          "end": 3997,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a deep neural network": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a deep neural network",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 5357,
+          "end": 5378,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The previous models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The previous models",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 5556,
+          "end": 5575,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a valid density model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a valid density model",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 6773,
+          "end": 6794,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "An energy - based model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "An energy - based model",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 20333,
+          "end": 20356,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the 966 modes": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the 966 modes",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 20574,
+          "end": 20587,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "other models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "other models",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 22332,
+          "end": 22344,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a lot of models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a lot of models",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 22716,
+          "end": 22731,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "The new model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "The new model",
+          "doc_id": "10026_1910_07762.txt",
+          "begin": 24478,
+          "end": 24491,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "universal models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "universal models",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 19,
+          "end": 35,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "spin - glass systems": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "spin - glass systems",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 4898,
+          "end": 4918,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a toy model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a toy model",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 11619,
+          "end": 11630,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the trained models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the trained models",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 15462,
+          "end": 15480,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our deep generative spin - glass models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our deep generative spin - glass models",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 16683,
+          "end": 16722,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a given spin - glass instance": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a given spin - glass instance",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 26694,
+          "end": 26723,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the finite - L trained models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the finite - L trained models",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 32131,
+          "end": 32160,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "hierarchical models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "hierarchical models",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 40103,
+          "end": 40122,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "graphical models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "graphical models",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 42304,
+          "end": 42320,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "s ( ) , t ( )": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "s ( ) , t ( )",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 43055,
+          "end": 43068,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "Other recent approaches": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "Other recent approaches",
+          "doc_id": "10030_2001_00585.txt",
+          "begin": 45437,
+          "end": 45460,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "them": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "them",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 4348,
+          "end": 4352,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "two popular state - of - the - art boosting methods": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "two popular state - of - the - art boosting methods",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 25233,
+          "end": 25284,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a general purpose model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a general purpose model",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 25620,
+          "end": 25643,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "all of the baselines": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "all of the baselines",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 31739,
+          "end": 31759,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a standard parametric model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a standard parametric model",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 32272,
+          "end": 32299,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "two non - parametric models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "two non - parametric models",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 41316,
+          "end": 41343,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the non - parametric models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the non - parametric models",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 44877,
+          "end": 44904,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "All non - parametric models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "All non - parametric models",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 47014,
+          "end": 47041,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the base models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the base models",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 51903,
+          "end": 51918,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a relatively overparametrized architecture": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a relatively overparametrized architecture",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 55979,
+          "end": 56021,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the various baselines": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the various baselines",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 58600,
+          "end": 58621,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "many of the baselines": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "many of the baselines",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 59473,
+          "end": 59494,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the CPU baselines": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the CPU baselines",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 60090,
+          "end": 60107,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the non - neural baselines": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the non - neural baselines",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 60670,
+          "end": 60696,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the only other baseline": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the only other baseline",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 61424,
+          "end": 61447,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "those baselines": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "those baselines",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 62160,
+          "end": 62175,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "our other baselines": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "our other baselines",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 63334,
+          "end": 63353,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "One of the two configurations": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "One of the two configurations",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 73187,
+          "end": 73216,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "an additional model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "an additional model",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 79099,
+          "end": 79118,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "the supervised model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "the supervised model",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 79202,
+          "end": 79222,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a fully generative model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a fully generative model",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 82835,
+          "end": 82859,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a predictor": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a predictor",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 83186,
+          "end": 83197,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "each additional model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "each additional model",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 86463,
+          "end": 86484,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "previous models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "previous models",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 86507,
+          "end": 86522,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a base model": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a base model",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 88138,
+          "end": 88150,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "each baseline": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "each baseline",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 89025,
+          "end": 89038,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "some of the large architectures": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "some of the large architectures",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 93931,
+          "end": 93962,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "a single one": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "a single one",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 94241,
+          "end": 94253,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    },
+    "these 8 distinct models": {
+      "count": 1,
+      "gsap_label": "Method",
+      "gsap_label_original": "MLModelGeneric",
+      "scier_label": "NIL",
+      "scinlp_label": "NIL",
+      "examples": [
+        {
+          "text": "these 8 distinct models",
+          "doc_id": "10052_2106_02584.txt",
+          "begin": 95791,
+          "end": 95814,
+          "gsap_label": "Method",
+          "gsap_label_original": "MLModelGeneric"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+# Entity Label Mappings for UnifiedSciERE
+# This file defines how to map entity labels from different annotation schemes
+# to a unified label set
+
+# Unified label set
+unified_labels:
+    - Dataset
+    - Method
+    - Task
+
+# Mappings from each dataset's labels to unified labels
+mappings:
+    # GSAP-ERE label mappings
+    gsap:
+        Dataset: Dataset
+        DatasetGeneric: null # Not mapped to unified set
+        DataSource: Dataset
+        Method: Method
+        MLModel: Method
+        MLModelGeneric: Method
+        ModelArchitecture: Method
+        ReferenceLink: null # Not mapped to unified set
+        Task: Task
+        URL: null # Not mapped to unified set
+
+    # SciERC label mappings
+    scier:
+        Dataset: Dataset
+        Method: Method
+        Task: Task
+
+    # SciNLP label mappings
+    scinlp:
+        dataset: Dataset
+        method: Method
+        task: Task
+        metric: null # Not mapped to unified set
