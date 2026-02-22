@@ -3,6 +3,7 @@
 *.pytest_cache*
 *.ruff_cache*
 .venv/*
+data_ssds/*
 notebooks/*
 .env
 *.swp

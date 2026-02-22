@@ -3,22 +3,138 @@ name = "unifiedsciere"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
+
 requires-python = ">=3.10"
+
 dependencies = [
+
     "python-dotenv>=1.0.0",
+
     "great-tables>=0.14.0",
+
     "pandas>=2.0.0",
+
+    "arxiv>=2.4.0",
+
+    "matplotlib>=3.8.0",
+
+    "bibtexparser>=1.4.4",
+
+    "acl-anthology>=1.0.0",
+
+    "gql>=4.0.0",
+
+    "aiohttp>=3.13.3",
+
+    "flattentei>=0.1.7",
+
+    "pycaprio>=0.3.1",
+
+    "spacy>=3.8.11",
+
+    "gsaphub",
+
+    "tabulate>=0.9.0",
+
+    "httpx>=0.28.1",
+
+    "jsonschema>=4.26.0",
+
+    # vllm moved to optional deps
+
     # TODO: Add gsap-hub once package name/version is confirmed
+
     # If gsap-hub is on PyPI: "gsap-hub>=1.0.0",
+
     # If from GitHub: "gsap-hub @ git+https://github.com/username/gsap-hub.git",
+
 ]
+
+
 
 [project.optional-dependencies]
+
 dev = [
+
     "ruff>=0.15.0",
+
     "pytest>=8.0.0",
+
+    "jupyterlab>=4.0.0",
+
+    "ipykernel>=6.29.0",
+
 ]
 
+
+
+paper-map = [
+
+    "torch>=2.0.0",
+
+    "transformers>=4.30.0",
+
+    "adapters>=1.0.0",
+
+    "umap-learn>=0.5.0",
+
+    "scikit-learn>=1.3.0",
+
+    "networkx>=3.0",
+
+    "plotly>=5.0.0",
+
+    "streamlit>=1.30.0",
+
+    "pyarrow>=14.0.0",
+
+]
+
+
+
+vllm = [
+
+    "vllm>=0.6.0",
+
+    # common companion deps for vllm installs; keep them here so your base env stays clean
+
+    "torch>=2.1.0",
+
+    "transformers>=4.30.0",
+
+    "xformers",
+
+]
+
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/unifiedsciere"]
+
 [tool.pytest.ini_options]
+
 testpaths = ["tests"]
+
 addopts = "-v"
+
+
+
+[tool.uv]
+
+dev-dependencies = [
+
+    "ipykernel>=7.2.0",
+
+    "pytest>=9.0.2",
+
+]
+
+
+
+#[tool.uv.sources]
+
+#gsaphub = { path = "../gsap-hub", editable = true }

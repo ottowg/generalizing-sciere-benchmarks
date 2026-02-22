@@ -131,6 +131,61 @@ def _process_docs(
     relations: list[Relation] = []
     mentions_predicted: dict[str, Mention] = {}
     relations_predicted: list[Relation] = []
+    mentions_by_span: dict[tuple[str, int, int], list[Mention]] = {}
+    mentions_predicted_by_span: dict[tuple[str, int, int], list[Mention]] = {}
+    ambiguity_stats_gold: dict[tuple[str, str, str, str], int] = {}
+    ambiguity_stats_pred: dict[tuple[str, str, str, str], int] = {}
+    missing_relations_gold = 0
+    missing_relations_pred = 0
+    missing_relations_gold_logged = 0
+    missing_relations_pred_logged = 0
+    missing_relations_log_limit = 5
+    deprecated_relation_labels = {"versionOf", "processed"}
+
+    def _record_ambiguity(
+        stats: dict[tuple[str, str, str, str], int],
+        selected_label: str,
+        other_label: str,
+        relation_label: str,
+        role: str,
+    ) -> None:
+        key = (selected_label, other_label, relation_label, role)
+        stats[key] = stats.get(key, 0) + 1
+
+    def _select_mention(
+        candidates: list[Mention],
+        relation_label: str,
+        role: str,
+        stats: dict[tuple[str, str, str, str], int],
+    ) -> Mention | None:
+        if not candidates:
+            return None
+        preferred_order: dict[tuple[str, str], list[str]] = {
+            ("architecture", "object"): ["ModelArchitecture", "MLModelGeneric"],
+            ("architecture", "subject"): ["MLModelGeneric", "ModelArchitecture"],
+            ("usedFor", "subject"): ["Method", "MLModelGeneric"],
+            ("usedFor", "object"): ["MLModelGeneric", "Method"],
+            ("sourcedFrom", "object"): ["DataSource", "DatasetGeneric"],
+            ("sourcedFrom", "subject"): ["DatasetGeneric", "DataSource"],
+            ("trainedOn", "subject"): ["DatasetGeneric", "DataSource"],
+            ("appliedTo", "subject"): ["MLModelGeneric", "ModelArchitecture"],
+        }
+        priority = preferred_order.get((relation_label, role))
+        if priority:
+            rank = {label: idx for idx, label in enumerate(priority)}
+            ordered = sorted(
+                candidates,
+                key=lambda m: (rank.get(m.label, len(rank)), m.label),
+            )
+        else:
+            ordered = sorted(candidates, key=lambda m: m.label)
+        selected = ordered[0]
+        if len(candidates) > 1:
+            for other in ordered[1:]:
+                _record_ambiguity(
+                    stats, selected.label, other.label, relation_label, role
+                )
+        return selected
 
     for doc in docs:
         pos: int = -1
@@ -158,7 +213,7 @@ def _process_docs(
                 begin = begins[begin_token]
                 end = ends[end_token]
                 text = " ".join(token)
-                mention_id = f"{doc_id} {sent_idx} {begin_token} {end_token}"
+                mention_id = f"{doc_id} {begin_token} {end_token} {label}"
                 mention = Mention(
                     mention_id,
                     doc_id,
@@ -178,24 +233,53 @@ def _process_docs(
                     print(f"Warning: Duplicate mention ID {mention_id}, skipping")
                     continue
                 mentions[mention_id] = mention
+                span_key = (doc_id, begin_token, end_token)
+                mentions_by_span.setdefault(span_key, []).append(mention)
 
             # Process gold relations
             sent_rels = doc[rel_field][sent_idx]
             for sub_begin, sub_end, obj_begin, obj_end, label in sent_rels:
-                subj_id = f"{doc_id} {sent_idx} {sub_begin} {sub_end}"
-                obj_id = f"{doc_id} {sent_idx} {obj_begin} {obj_end}"
+                if label in deprecated_relation_labels:
+                    continue
                 try:
-                    subj = mentions[subj_id]
-                    obj = mentions[obj_id]
-                    rel = Relation(
-                        subj,
-                        label,
-                        obj,
-                        score=1.0,
-                        annotator=annotator if not is_prediction else "gold",
-                        dataset=dataset,
+                    subj_candidates = mentions_by_span.get(
+                        (doc_id, sub_begin, sub_end), []
                     )
-                    relations.append(rel)
+                    obj_candidates = mentions_by_span.get(
+                        (doc_id, obj_begin, obj_end), []
+                    )
+                    subj = _select_mention(
+                        subj_candidates,
+                        relation_label=label,
+                        role="subject",
+                        stats=ambiguity_stats_gold,
+                    )
+                    obj = _select_mention(
+                        obj_candidates,
+                        relation_label=label,
+                        role="object",
+                        stats=ambiguity_stats_gold,
+                    )
+                    if subj and obj:
+                        rel = Relation(
+                            subj,
+                            label,
+                            obj,
+                            score=1.0,
+                            annotator=annotator if not is_prediction else "gold",
+                            dataset=dataset,
+                        )
+                        relations.append(rel)
+                    else:
+                        missing_relations_gold += 1
+                        if missing_relations_gold_logged < missing_relations_log_limit:
+                            missing_relations_gold_logged += 1
+                            print(
+                                "Warning: Missing gold relation endpoints "
+                                f"(doc={doc_id} sent={sent_idx} "
+                                f"sub=({sub_begin},{sub_end}) obj=({obj_begin},{obj_end}) "
+                                f"label={label})"
+                            )
                 except Exception as e:
                     print(e)
 
@@ -213,7 +297,7 @@ def _process_docs(
                     begin = begins[begin_token]
                     end = ends[end_token]
                     text = " ".join(token)
-                    mention_id = f"{doc_id} {sent_idx} {begin_token} {end_token}"
+                    mention_id = f"{doc_id} {begin_token} {end_token} {label}"
                     mention = Mention(
                         mention_id,
                         doc_id,
@@ -235,6 +319,8 @@ def _process_docs(
                         )
                         continue
                     mentions_predicted[mention_id] = mention
+                    span_key = (doc_id, begin_token, end_token)
+                    mentions_predicted_by_span.setdefault(span_key, []).append(mention)
 
             # Process predicted relations if available
             if is_prediction and "predicted_rel_proba" in doc:
@@ -248,12 +334,35 @@ def _process_docs(
                         item[4],
                         item[5],
                     )
-                    subj_id = f"{doc_id} {sent_idx} {sub_begin} {sub_end}"
-                    obj_id = f"{doc_id} {sent_idx} {obj_begin} {obj_end}"
+                    if label in deprecated_relation_labels:
+                        continue
                     try:
-                        # Use predicted mentions if available, otherwise gold mentions
-                        subj = mentions_predicted.get(subj_id, mentions.get(subj_id))
-                        obj = mentions_predicted.get(obj_id, mentions.get(obj_id))
+                        subj_candidates = mentions_predicted_by_span.get(
+                            (doc_id, sub_begin, sub_end), []
+                        )
+                        obj_candidates = mentions_predicted_by_span.get(
+                            (doc_id, obj_begin, obj_end), []
+                        )
+                        if not subj_candidates:
+                            subj_candidates = mentions_by_span.get(
+                                (doc_id, sub_begin, sub_end), []
+                            )
+                        if not obj_candidates:
+                            obj_candidates = mentions_by_span.get(
+                                (doc_id, obj_begin, obj_end), []
+                            )
+                        subj = _select_mention(
+                            subj_candidates,
+                            relation_label=label,
+                            role="subject",
+                            stats=ambiguity_stats_pred,
+                        )
+                        obj = _select_mention(
+                            obj_candidates,
+                            relation_label=label,
+                            role="object",
+                            stats=ambiguity_stats_pred,
+                        )
                         if subj and obj:
                             rel = Relation(
                                 subj,
@@ -264,16 +373,34 @@ def _process_docs(
                                 dataset=dataset,
                             )
                             relations_predicted.append(rel)
+                        else:
+                            missing_relations_pred += 1
+                            if (
+                                missing_relations_pred_logged
+                                < missing_relations_log_limit
+                            ):
+                                missing_relations_pred_logged += 1
+                                print(
+                                    "Warning: Missing predicted relation endpoints "
+                                    f"(doc={doc_id} sent={sent_idx} "
+                                    f"sub=({sub_begin},{sub_end}) obj=({obj_begin},{obj_end}) "
+                                    f"label={label})"
+                                )
                     except Exception as e:
                         print(e)
 
-    return Corpus(
+    corpus = Corpus(
         sentences,
         list(mentions.values()),
         relations,
         list(mentions_predicted.values()),
         relations_predicted,
     )
+    corpus.ambiguity_stats_gold = ambiguity_stats_gold
+    corpus.ambiguity_stats_pred = ambiguity_stats_pred
+    corpus.missing_relations_gold = missing_relations_gold
+    corpus.missing_relations_pred = missing_relations_pred
+    return corpus
 
 
 def _load_docs(path: Path, fns: list[str]) -> list[dict[str, Any]]:
