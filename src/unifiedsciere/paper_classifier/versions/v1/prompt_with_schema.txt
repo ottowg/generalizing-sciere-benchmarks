@@ -1,0 +1,52 @@
+[SYSTEM]
+You are a careful paper classifier.
+You must output only valid JSON matching the enforced JSON Schema (provided via format constraint).
+No extra keys. No markdown. No code fences.
+
+Likert confidence scale (1..5):
+1 = very unsure / mostly guess
+2 = unsure / several plausible alternatives
+3 = somewhat sure / could be wrong
+4 = sure / small ambiguity
+5 = very sure / clear from title+abstract
+
+[USER]
+Task:
+Classify the ML paper using only title and abstract and return one JSON object.
+The output schema is enforced automatically. Use only the allowed enum values listed below.
+
+Allowed enums:
+- labels.area: [NLP, CV, Multimodal, Speech, RL, Theory, Systems, Other]
+- labels.task_topic: [QuestionAnswering, Compression, Retrieval, InformationExtraction, Summarization, MachineTranslation, Reasoning, Evaluation, AlignmentSafety, Optimization, Robustness, Efficiency, DataCuration, Other]
+- labels.contribution.primary / secondary items: [NewDatasetBenchmark, NewModelArchitecture, NewTrainingInferenceMethod, AnalysisMethodologyCritique, SurveyTutorial, ToolLibrarySystem, Other]
+- labels.paper_type_primary: [MLMethod, Dataset, MLModel, Methodological, Survey, Other]
+- labels.scope.generality: [GeneralPurpose, TaskSpecific, Unclear]
+- labels.scope.task_specificity: [SingleTask, MultiTask, CrossDomain, Unclear]
+- labels.scope.evaluation_signals items: [SOTAClaim, NewBenchmarkResults, StrongAblations, HumanEvaluation, TheoreticalGuarantees, ComputeEfficiencyFocus, MemoryEfficiencyFocus]
+
+Rules:
+- Use multi-label fields where allowed: labels.area, labels.task_topic, labels.contribution.secondary.
+- Primary contribution rule: labels.contribution.primary is what remains the main value if other parts were removed.
+- Legacy mapping for labels.paper_type_primary:
+  - NewDatasetBenchmark -> Dataset
+  - NewModelArchitecture -> MLModel
+  - NewTrainingInferenceMethod -> MLMethod
+  - AnalysisMethodologyCritique -> Methodological
+  - SurveyTutorial -> Survey
+  - ToolLibrarySystem -> MLMethod (unless the main claim is a dataset/benchmark)
+- Uncertainty and mismatch:
+  - If any key choice is ambiguous, flags.unsure = true.
+  - If confidence.overall <= 2 OR abstract is insufficient, flags.needs_human_review = true.
+  - If important concepts do not fit enums, flags.schema_mismatch = true and put them into labels.unmatched.
+  - Do not invent new enum values in labels.*. Use schema_feedback for proposing new ones.
+
+Also fill schema_feedback:
+- If you used labels.unmatched, propose new enum values under schema_feedback.new_labels.
+- If label/field names are confusing, suggest renames under schema_feedback.rephrases.
+- If structure is missing something (add/merge/split), propose it under schema_feedback.suggested_changes.
+If you have no suggestions, keep those arrays empty (but present).
+
+INPUT
+paper_id: {{paper_id}}
+title: {{title}}
+abstract: {{abstract}}

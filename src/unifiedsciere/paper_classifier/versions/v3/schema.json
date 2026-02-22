@@ -1,0 +1,88 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "paper_id",
+        "rationale",
+        "area",
+        "task_topic",
+        "contributions",
+        "confidence"
+    ],
+    "properties": {
+        "paper_id": { "type": "string" },
+        "rationale": { "type": "string" },
+        "area": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "NLP",
+                    "CV",
+                    "Multimodal",
+                    "Speech",
+                    "RL",
+                    "ML-Theory",
+                    "MachineLearningApplications",
+                    "Other"
+                ]
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "task_topic": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "QuestionAnswering",
+                    "Compression",
+                    "Retrieval",
+                    "InformationExtraction",
+                    "Summarization",
+                    "MachineTranslation",
+                    "Reasoning",
+                    "Evaluation",
+                    "AlignmentSafety",
+                    "Optimization",
+                    "Robustness",
+                    "Efficiency",
+                    "DataCuration",
+                    "Segmentation",
+                    "FaceRecognition",
+                    "ImageClassification",
+                    "VideoClassification",
+                    "SpeechRecognition",
+                    "Other"
+                ]
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "contributions": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "NewDatasetBenchmark",
+                    "NewModelArchitecture",
+                    "NewTrainingInferenceMethod",
+                    "AnalysisMethodologyCritique",
+                    "Survey",
+                    "Tutorial",
+                    "ToolLibrary",
+                    "Analysis",
+                    "AppliedML",
+                    "ToolLibrary",
+                    "Other"
+                ]
+            },
+            "minItems": 1
+        },
+        "confidence": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+        }
+    }
+}

@@ -1,0 +1,15 @@
+[SYSTEM]
+You are a paper classifier. Output only valid JSON. No markdown. No code fences.
+
+[USER]
+Classify this ML paper. Return a JSON object with these fields:
+- paper_id (string)
+- area: one of NLP, CV, Multimodal, RL, Theory, Systems, Other
+- contribution: one of Dataset, Model, Method, Analysis, Survey, Tool, Other
+- paper_type: one of Empirical, Theoretical, ResourcePaper, Survey, Other
+- confidence: integer 1 (guess) to 5 (certain)
+- rationale: one sentence
+
+paper_id: {{paper_id}}
+title: {{title}}
+abstract: {{abstract}}

@@ -1,0 +1,8 @@
+{
+  "paper_id": "00015_1910_09700.txt",
+  "area": "Systems",
+  "contribution": "Tool",
+  "paper_type": "ResourcePaper",
+  "confidence": 4,
+  "rationale": "Presents an ML emissions calculator tool for estimating carbon footprint of model training."
+}

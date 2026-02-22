@@ -1,0 +1,57 @@
+{
+    "paper_id": "00015_1910_09700.txt",
+    "labels": {
+        "area": ["Other"],
+        "task_topic": ["Efficiency", "Other"],
+        "contribution": {
+            "primary": "ToolLibrarySystem",
+            "secondary": ["AnalysisMethodologyCritique"]
+        },
+        "paper_type_primary": "MLMethod",
+        "scope": {
+            "generality": "GeneralPurpose",
+            "task_specificity": "CrossDomain",
+            "evaluation_signals": ["ComputeEfficiencyFocus"]
+        },
+        "unmatched": {
+            "area": ["GreenAI"],
+            "task_topic": ["CarbonFootprintEstimation"],
+            "contribution": [],
+            "other_notes": "Paper focuses on environmental impact of ML training, which does not map cleanly to existing area/task enums."
+        }
+    },
+    "confidence": {
+        "overall": 4,
+        "by_field": {
+            "area": 3,
+            "task_topic": 3,
+            "contribution": 5,
+            "paper_type_primary": 4
+        }
+    },
+    "flags": {
+        "unsure": false,
+        "needs_human_review": false,
+        "schema_mismatch": true
+    },
+    "rationale_short": "The paper presents a carbon emissions calculator tool for ML training. Primary contribution is a tool/system (ToolLibrarySystem). Area is 'Other' because GreenAI/sustainability is not in the enum. Task topics include Efficiency and a custom 'CarbonFootprintEstimation'. The paper is general-purpose and cross-domain.",
+    "schema_feedback": {
+        "suggested_changes": [],
+        "rephrases": [],
+        "new_labels": {
+            "area": [
+                {
+                    "value": "GreenAI",
+                    "definition": "Research focused on the environmental impact, energy efficiency, and carbon footprint of AI/ML systems."
+                }
+            ],
+            "task_topic": [
+                {
+                    "value": "CarbonFootprintEstimation",
+                    "definition": "Estimating or reducing the carbon emissions and environmental cost of training or deploying ML models."
+                }
+            ],
+            "contribution": []
+        }
+    }
+}

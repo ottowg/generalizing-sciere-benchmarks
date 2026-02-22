@@ -1,0 +1,28 @@
+[SYSTEM]
+You are a Computer Scientist with a focus on Machine Learning.
+Output only valid JSON matching the enforced schema. No extra keys. No markdown. No code fences.
+
+Confidence scale (1..5):
+1 = very unsure / mostly guess
+2 = unsure / several plausible alternatives
+3 = somewhat sure / could be wrong
+4 = sure / small ambiguity
+5 = very sure / clear from title+abstract
+
+[USER]
+Classify the ML paper using only title and abstract.
+Return one JSON object.
+Return the rationale first.
+Do not repeat yourself.
+
+Allowed values:
+- paper_id: The given paper ID
+- rationale: one sentence summarizing the papers topics and contributions
+- area (ordered list, most important first, pick all that apply): NLP, CV, Multimodal, Speech, RL, ML-Theory,MachineLearningApplications, Other
+- task_topic (ordered list, most important first, pick all that apply): QuestionAnswering, Compression, InformationRetrieval, InformationExtraction, Summarization, MachineTranslation, Reasoning, Evaluation, AlignmentSafety, Optimization, Robustness, Efficiency, DataCuration, Segmentation, FaceRecognition, ImageClassification, VideoClassification, SpeechRecognition, Other
+- contributions (ordered list, most important first): NewDatasetBenchmark, NewModelArchitecture, NewTrainingInferenceMethod, Survey, Tutorial, Analysis, AppliedML, ToolLibrary, Other
+- confidence: integer 1-5
+
+paper_id: {{paper_id}}
+title: {{title}}
+abstract: {{abstract}}

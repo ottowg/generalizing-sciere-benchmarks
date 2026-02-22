@@ -1,0 +1,8 @@
+{
+    "paper_id": "00015_1910_09700.txt",
+    "area": ["NLP", "Systems"],
+    "task_topic": ["Efficiency", "Other"],
+    "contributions": ["ToolLibrarySystem", "AnalysisMethodologyCritique"],
+    "confidence": 4,
+    "rationale": "Presents a tool for quantifying carbon emissions of ML training, combining systems engineering with NLP applications."
+}

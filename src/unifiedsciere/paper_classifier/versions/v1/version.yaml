@@ -1,0 +1,38 @@
+# Version manifest — ties together schema, prompts, and examples
+version: v1
+date: "2026-02-18"
+description: >
+    Initial version. Likert confidence scale (1..5), multi-label area/task_topic,
+    contribution primary+secondary, scope, unmatched fields, and schema_feedback
+    loop for proposing new labels.
+
+schema:
+    file: schema.json
+    id: "https://example.org/schemas/paper_classification.v2.json"
+
+prompts:
+    with_schema:
+        file: prompt_with_schema.txt
+        description: >
+            Lists allowed enums in the prompt. Schema structure is enforced via
+            Ollama's format parameter (GBNF grammar). Schema is NOT duplicated
+            in the prompt text.
+    without_schema:
+        file: prompt_without_schema.txt
+        description: >
+            Inlines allowed enums and output shape requirements in the prompt.
+            No structured output enforcement — LLM produces free-form JSON.
+
+examples:
+    - file: examples/example_01.json
+      paper_id: "00015_1910_09700.txt"
+      title: "Quantifying the Carbon Emissions of Machine Learning"
+      notes: "ToolLibrarySystem contribution, GreenAI unmatched area"
+
+changelog:
+    - date: "2026-02-18"
+      changes:
+          - "Initial version with schema v2 (Likert confidence)"
+          - "Two prompt variants: with_schema and without_schema"
+          - "One example classification"
+          - "Removed full schema from with_schema prompt (was duplicated with format param)"

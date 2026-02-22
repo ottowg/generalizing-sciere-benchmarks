@@ -1,0 +1,25 @@
+version: v3
+date: "2026-02-19"
+description: >
+  Simplified flat schema — 7 fields, no nesting. Multi-label area and task_topic,
+  single-label contribution and paper_type. Designed for fast grammar compilation
+  in constrained decoding (vLLM, Ollama). Single prompt file (schema always enforced).
+
+schema:
+  file: schema.json
+
+prompts:
+  prompt:
+    file: prompt.txt
+    description: Single prompt with enum listings. Schema enforced via format/guided_json.
+
+examples:
+  - file: examples/example_01.json
+    paper_id: "00015_1910_09700.txt"
+
+changelog:
+  - date: "2026-02-19"
+    changes:
+      - "Simplified from v1: removed scope, unmatched, schema_feedback, flags, per-field confidence"
+      - "Flattened contribution to single primary label"
+      - "Single prompt file (removed with_schema/without_schema distinction)"

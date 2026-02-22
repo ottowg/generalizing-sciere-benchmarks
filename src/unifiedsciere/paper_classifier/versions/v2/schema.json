@@ -1,0 +1,26 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["paper_id", "area", "contribution", "paper_type", "confidence", "rationale"],
+  "properties": {
+    "paper_id": { "type": "string" },
+    "area": {
+      "type": "string",
+      "enum": ["NLP", "CV", "Multimodal", "RL", "Theory", "Systems", "Other"]
+    },
+    "contribution": {
+      "type": "string",
+      "enum": ["Dataset", "Model", "Method", "Analysis", "Survey", "Tool", "Other"]
+    },
+    "paper_type": {
+      "type": "string",
+      "enum": ["Empirical", "Theoretical", "ResourcePaper", "Survey", "Other"]
+    },
+    "confidence": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "rationale": { "type": "string" }
+  }
+}

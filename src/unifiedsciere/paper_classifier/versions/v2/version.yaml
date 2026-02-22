@@ -1,0 +1,25 @@
+version: v2
+date: "2026-02-18"
+description: >
+  Minimal schema — 5 fields only. Single-label per category.
+  Designed for fast inference and low token usage.
+
+schema:
+  file: schema.json
+
+prompts:
+  with_schema:
+    file: prompt_with_schema.txt
+    description: Minimal prompt, schema enforced via Ollama format parameter.
+  without_schema:
+    file: prompt_without_schema.txt
+    description: Minimal prompt, no format enforcement.
+
+examples:
+  - file: examples/example_01.json
+    paper_id: "00015_1910_09700.txt"
+
+changelog:
+  - date: "2026-02-18"
+    changes:
+      - "Initial minimal version: area, contribution, paper_type, confidence, rationale"

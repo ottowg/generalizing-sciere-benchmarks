@@ -1,0 +1,338 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://example.org/schemas/paper_classification.v2.json",
+    "title": "ML Paper Classification Output (Likert Confidence)",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "paper_id",
+        "labels",
+        "confidence",
+        "flags",
+        "rationale_short",
+        "schema_feedback"
+    ],
+    "properties": {
+        "paper_id": { "type": "string" },
+        "labels": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "area",
+                "task_topic",
+                "contribution",
+                "paper_type_primary",
+                "unmatched"
+            ],
+            "properties": {
+                "area": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "NLP",
+                            "CV",
+                            "Multimodal",
+                            "Speech",
+                            "RL",
+                            "Theory",
+                            "Systems",
+                            "Other"
+                        ]
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                },
+                "task_topic": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "QuestionAnswering",
+                            "Compression",
+                            "Retrieval",
+                            "InformationExtraction",
+                            "Summarization",
+                            "MachineTranslation",
+                            "Reasoning",
+                            "Evaluation",
+                            "AlignmentSafety",
+                            "Optimization",
+                            "Robustness",
+                            "Efficiency",
+                            "DataCuration",
+                            "Other"
+                        ]
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                },
+                "contribution": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["primary", "secondary"],
+                    "properties": {
+                        "primary": {
+                            "type": "string",
+                            "enum": [
+                                "NewDatasetBenchmark",
+                                "NewModelArchitecture",
+                                "NewTrainingInferenceMethod",
+                                "AnalysisMethodologyCritique",
+                                "SurveyTutorial",
+                                "ToolLibrarySystem",
+                                "Other"
+                            ]
+                        },
+                        "secondary": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "NewDatasetBenchmark",
+                                    "NewModelArchitecture",
+                                    "NewTrainingInferenceMethod",
+                                    "AnalysisMethodologyCritique",
+                                    "SurveyTutorial",
+                                    "ToolLibrarySystem",
+                                    "Other"
+                                ]
+                            },
+                            "uniqueItems": true
+                        }
+                    }
+                },
+                "paper_type_primary": {
+                    "type": "string",
+                    "enum": [
+                        "MLMethod",
+                        "Dataset",
+                        "MLModel",
+                        "Methodological",
+                        "Survey",
+                        "Other"
+                    ]
+                },
+                "scope": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["generality", "task_specificity"],
+                    "properties": {
+                        "generality": {
+                            "type": "string",
+                            "enum": [
+                                "GeneralPurpose",
+                                "TaskSpecific",
+                                "Unclear"
+                            ]
+                        },
+                        "task_specificity": {
+                            "type": "string",
+                            "enum": [
+                                "SingleTask",
+                                "MultiTask",
+                                "CrossDomain",
+                                "Unclear"
+                            ]
+                        },
+                        "evaluation_signals": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "SOTAClaim",
+                                    "NewBenchmarkResults",
+                                    "StrongAblations",
+                                    "HumanEvaluation",
+                                    "TheoreticalGuarantees",
+                                    "ComputeEfficiencyFocus",
+                                    "MemoryEfficiencyFocus"
+                                ]
+                            },
+                            "uniqueItems": true
+                        }
+                    }
+                },
+                "unmatched": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "area",
+                        "task_topic",
+                        "contribution",
+                        "other_notes"
+                    ],
+                    "properties": {
+                        "area": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "uniqueItems": true
+                        },
+                        "task_topic": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "uniqueItems": true
+                        },
+                        "contribution": {
+                            "type": "array",
+                            "items": { "type": "string" },
+                            "uniqueItems": true
+                        },
+                        "other_notes": { "type": "string" }
+                    }
+                }
+            }
+        },
+        "confidence": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["overall", "by_field"],
+            "properties": {
+                "overall": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 5
+                },
+                "by_field": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "area",
+                        "task_topic",
+                        "contribution",
+                        "paper_type_primary"
+                    ],
+                    "properties": {
+                        "area": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 5
+                        },
+                        "task_topic": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 5
+                        },
+                        "contribution": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 5
+                        },
+                        "paper_type_primary": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "maximum": 5
+                        }
+                    }
+                }
+            }
+        },
+        "flags": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["unsure", "needs_human_review", "schema_mismatch"],
+            "properties": {
+                "unsure": { "type": "boolean" },
+                "needs_human_review": { "type": "boolean" },
+                "schema_mismatch": { "type": "boolean" }
+            }
+        },
+        "rationale_short": { "type": "string" },
+        "schema_feedback": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["suggested_changes", "rephrases", "new_labels"],
+            "properties": {
+                "suggested_changes": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "change_type",
+                            "target",
+                            "proposal",
+                            "reason"
+                        ],
+                        "properties": {
+                            "change_type": {
+                                "type": "string",
+                                "enum": [
+                                    "AddField",
+                                    "RemoveField",
+                                    "MergeFields",
+                                    "SplitField",
+                                    "RenameField",
+                                    "AdjustDefinitions"
+                                ]
+                            },
+                            "target": { "type": "string" },
+                            "proposal": { "type": "string" },
+                            "reason": { "type": "string" }
+                        }
+                    }
+                },
+                "rephrases": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["kind", "from", "to", "reason"],
+                        "properties": {
+                            "kind": {
+                                "type": "string",
+                                "enum": ["FieldName", "EnumValue"]
+                            },
+                            "from": { "type": "string" },
+                            "to": { "type": "string" },
+                            "reason": { "type": "string" }
+                        }
+                    }
+                },
+                "new_labels": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["area", "task_topic", "contribution"],
+                    "properties": {
+                        "area": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": ["value", "definition"],
+                                "properties": {
+                                    "value": { "type": "string" },
+                                    "definition": { "type": "string" }
+                                }
+                            }
+                        },
+                        "task_topic": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": ["value", "definition"],
+                                "properties": {
+                                    "value": { "type": "string" },
+                                    "definition": { "type": "string" }
+                                }
+                            }
+                        },
+                        "contribution": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "required": ["value", "definition"],
+                                "properties": {
+                                    "value": { "type": "string" },
+                                    "definition": { "type": "string" }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
