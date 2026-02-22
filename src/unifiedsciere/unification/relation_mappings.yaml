@@ -1,0 +1,84 @@
+# Relation label alignment (canonicalized schema oriented on GSAP-ERE)
+# Semantic groups included for reference; mappings are dataset-specific.
+
+canonical_relations:
+    - appliedTo
+    - benchmarkFor
+    - trainedEvaluatedOn
+    - coreference
+    - isHyponymOf
+    - isComparedTo
+    - usedFor
+
+semantic_groups:
+    TaskBinding:
+        - appliedTo
+        - benchmarkFor
+    DataUsage:
+        - trainedEvaluatedOn
+    PeerRelations:
+        - coreference
+        - isHyponymOf
+        - isComparedTo
+    ModelDesign:
+        - usedFor
+
+undirected_relations:
+    - coreference
+    - isComparedTo
+
+mappings:
+    scier:
+        Used-For: appliedTo
+        Benchmark-For: benchmarkFor
+        Trained-With: trainedEvaluatedOn
+        Evaluated-With: trainedEvaluatedOn
+        Synonym-Of: coreference
+        SubClass-Of: isHyponymOf
+        SubTask-Of: isHyponymOf
+        Compare-With: isComparedTo
+        Part-Of: usedFor
+
+    scinlp:
+        MeasuredBy: null
+        UsedFor: appliedTo
+        evaluatedBy: null
+        evaluatedOn:
+            canonical: benchmarkFor
+            inverted: true
+        trainedWith: trainedEvaluatedOn
+        similarWith: coreference
+        subclassOf: isHyponymOf
+        subtaskOf: isHyponymOf
+        partOf: isHyponymOf
+        compareWith: isComparedTo
+        enhancedBy:
+            canonical: usedFor
+            inverted: true
+        UsedFor_if_object_is_Method: usedFor
+
+    gsap:
+        appliedTo: appliedTo
+        benchmarkFor: benchmarkFor
+        citation: null
+        trainedOn: trainedEvaluatedOn
+        evaluatedOn: trainedEvaluatedOn
+        coreference: coreference
+        generatedBy: null
+        hasInstanceType: null
+        isHyponymOf: isHyponymOf
+        isPartOf: isHyponymOf
+        isComparedTo: isComparedTo
+        architecture:
+            canonical: usedFor
+            inverted: true
+        isBasedOn:
+            canonical: usedFor
+            inverted: true
+        processed: null
+        size: null
+        sourcedFrom: null
+        transformedFrom: null
+        url: null
+        usedFor: usedFor
+        versionOf: null
