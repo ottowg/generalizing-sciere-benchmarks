@@ -1,9 +1,9 @@
 # Cross-Model Mention Detection Report
 
-**Generated:** 2026-02-08 21:02:56
+**Generated:** 2026-02-09 16:49:58
 **Split:** dev (all three datasets combined: GSAP, SciER, SciNLP)
 **Matching:** gsaphub partial span matching
-**Unification:** apply_unification_pipeline (merge stacked, drop unmapped, map labels, normalize spans)
+**Unification:** apply_unification_pipeline (merge stacked, drop unmapped, map labels, dataset-specific corrections, normalize spans)
 
 ## Overview
 
@@ -17,14 +17,14 @@ dataset's dev set, then combined across all three datasets.
 
 | Group | Dataset (total / unique) | Method (total / unique) | Task (total / unique) | Total (total / unique) |
 | ----- | ---: | ---: | ---: | ---: |
-| GSAP only | 23 / 19 | 1,135 / 678 | 40 / 33 | 1,198 / 730 |
-| SciER only | 208 / 147 | 307 / 229 | 232 / 160 | 747 / 536 |
-| SciNLP only | 133 / 90 | 154 / 99 | 39 / 32 | 326 / 221 |
-| GSAP + SciER | 93 / 65 | 631 / 473 | 113 / 86 | 837 / 624 |
-| GSAP + SciNLP | 8 / 8 | 250 / 177 | 9 / 9 | 267 / 194 |
-| SciER + SciNLP | 199 / 143 | 118 / 98 | 172 / 137 | 489 / 378 |
-| All three | 711 / 226 | 3,336 / 1,514 | 530 / 276 | 4,577 / 2,016 |
-| **Total** | **1,375 / 592** | **5,931 / 2,853** | **1,135 / 628** | **8,441 / 4,073** |
+| GSAP only | 23 / 19 | 790 / 644 | 40 / 33 | 853 / 696 |
+| SciER only | 208 / 147 | 328 / 236 | 232 / 160 | 768 / 543 |
+| SciNLP only | 133 / 90 | 207 / 113 | 39 / 32 | 379 / 235 |
+| GSAP + SciER | 93 / 65 | 604 / 471 | 113 / 86 | 810 / 622 |
+| GSAP + SciNLP | 8 / 8 | 197 / 165 | 9 / 9 | 214 / 182 |
+| SciER + SciNLP | 199 / 143 | 144 / 109 | 172 / 137 | 515 / 389 |
+| All three | 711 / 226 | 3,312 / 1,507 | 530 / 276 | 4,553 / 2,009 |
+| **Total** | **1,375 / 592** | **5,582 / 2,844** | **1,135 / 628** | **8,092 / 4,064** |
 
 ---
 
@@ -272,241 +272,241 @@ dataset's dev set, then combined across all three datasets.
 
 ### GSAP only
 
-**1,135** mentions, **678** unique
+**790** mentions, **644** unique
 
 | Rank | Mention Text | Count |
 |-----:|:-------------|------:|
-| 1 | model | 147 |
-| 2 | models | 56 |
-| 3 | language | 14 |
-| 4 | network | 13 |
-| 5 | classifiers | 11 |
-| 6 | approach | 9 |
-| 7 | spin - glass phase | 9 |
-| 8 | flow | 9 |
-| 9 | fine - tuning | 7 |
-| 10 | spin - glass | 7 |
-| 11 | classifier | 6 |
-| 12 | base | 6 |
-| 13 | best | 6 |
-| 14 | student | 6 |
-| 15 | baselines | 6 |
-| 16 | method | 6 |
-| 17 | fine-tuning | 6 |
-| 18 | pre - training | 5 |
-| 19 | baseline | 5 |
-| 20 | new | 4 |
-| 21 | proposed | 4 |
-| 22 | unsupervised fashion | 4 |
-| 23 | teacher | 4 |
-| 24 | other | 4 |
-| 25 | reverse KL loss | 4 |
-| 26 | attention | 4 |
-| 27 | Wilcoxon signed - rank test | 4 |
-| 28 | pre - trained language | 4 |
-| 29 | generator | 4 |
-| 30 | decision tree | 4 |
+| 1 | spin - glass phase | 9 |
+| 2 | flow | 9 |
+| 3 | model | 8 |
+| 4 | fine - tuning | 7 |
+| 5 | spin - glass | 7 |
+| 6 | fine-tuning | 6 |
+| 7 | pre - training | 5 |
+| 8 | new | 4 |
+| 9 | unsupervised fashion | 4 |
+| 10 | reverse KL loss | 4 |
+| 11 | attention | 4 |
+| 12 | Wilcoxon signed - rank test | 4 |
+| 13 | base | 4 |
+| 14 | pre - trained language | 4 |
+| 15 | decision tree | 4 |
+| 16 | models | 3 |
+| 17 | crowdworkers | 3 |
+| 18 | input | 3 |
+| 19 | previous | 3 |
+| 20 | framework | 3 |
+| 21 | baseline | 3 |
+| 22 | annotation vectors | 3 |
+| 23 | sampling | 3 |
+| 24 | Boltzmann distribution | 3 |
+| 25 | forward KL divergence | 3 |
+| 26 | reverse KL divergence | 3 |
+| 27 | random initialisation | 3 |
+| 28 | finetuning | 3 |
+| 29 | training | 2 |
+| 30 | systems | 2 |
 
-*... and 648 more unique mentions.*
+*... and 614 more unique mentions.*
 
 ### SciER only
 
-**307** mentions, **229** unique
+**328** mentions, **236** unique
 
 | Rank | Mention Text | Count |
 |-----:|:-------------|------:|
-| 1 | generator | 17 |
+| 1 | generator | 24 |
 | 2 | NMT | 7 |
 | 3 | Pile | 5 |
-| 4 | models | 4 |
-| 5 | machine learning | 4 |
-| 6 | convolution | 4 |
-| 7 | R2 | 4 |
-| 8 | AAE | 3 |
-| 9 | n*gga | 3 |
-| 10 | b*tch | 3 |
-| 11 | PT | 3 |
-| 12 | RMSE | 3 |
-| 13 | DG | 3 |
-| 14 | SS2 | 3 |
-| 15 | WPA | 3 |
-| 16 | feature extraction | 3 |
-| 17 | confidence measures | 3 |
-| 18 | HPSG | 3 |
-| 19 | confidence weights | 3 |
-| 20 | RECs | 2 |
-| 21 | Stablecoins | 2 |
-| 22 | sub | 2 |
-| 23 | mean - squared - error | 2 |
-| 24 | softmax | 2 |
-| 25 | CLS | 2 |
-| 26 | MASK | 2 |
-| 27 | Auto L T ( x in ) | 2 |
-| 28 | fully-connected layer | 2 |
-| 29 | propnets | 2 |
-| 30 | Generator | 2 |
+| 4 | ( 2 + 1 )D | 5 |
+| 5 | models | 4 |
+| 6 | machine learning | 4 |
+| 7 | convolution | 4 |
+| 8 | R2 | 4 |
+| 9 | AAE | 3 |
+| 10 | n*gga | 3 |
+| 11 | b*tch | 3 |
+| 12 | the model | 3 |
+| 13 | PT | 3 |
+| 14 | RMSE | 3 |
+| 15 | DG | 3 |
+| 16 | SS2 | 3 |
+| 17 | WPA | 3 |
+| 18 | feature extraction | 3 |
+| 19 | confidence measures | 3 |
+| 20 | HPSG | 3 |
+| 21 | confidence weights | 3 |
+| 22 | RECs | 2 |
+| 23 | such models | 2 |
+| 24 | Stablecoins | 2 |
+| 25 | sub | 2 |
+| 26 | mean - squared - error | 2 |
+| 27 | softmax | 2 |
+| 28 | CLS | 2 |
+| 29 | MASK | 2 |
+| 30 | Auto L T ( x in ) | 2 |
 
-*... and 199 more unique mentions.*
+*... and 206 more unique mentions.*
 
 ### SciNLP only
 
-**154** mentions, **99** unique
-
-| Rank | Mention Text | Count |
-|-----:|:-------------|------:|
-| 1 | datapoints | 19 |
-| 2 | our | 12 |
-| 3 | these | 7 |
-| 4 | a | 6 |
-| 5 | their | 2 |
-| 6 | Efron | 2 |
-| 7 | data | 2 |
-| 8 | datasets | 2 |
-| 9 | Pile | 2 |
-| 10 | training set | 2 |
-| 11 | all samples | 2 |
-| 12 | 4 | 2 |
-| 13 | Saremi | 2 |
-| 14 | Hinton | 2 |
-| 15 | 24 | 2 |
-| 16 | test set | 2 |
-| 17 | original and duplicate datapoints | 2 |
-| 18 | missing values | 2 |
-| 19 | GloVe+ViCo(linear, | 2 |
-| 20 | 10 % | 1 |
-| 21 | all questions | 1 |
-| 22 | sets | 1 |
-| 23 | building | 1 |
-| 24 | no | 1 |
-| 25 | ounta | 1 |
-| 26 | train | 1 |
-| 27 | This | 1 |
-| 28 | bootstrap samples | 1 |
-| 29 | tweets | 1 |
-| 30 | Golbeck et al . ( 2017 ) | 1 |
-
-*... and 69 more unique mentions.*
-
-### GSAP + SciER
-
-**631** mentions, **473** unique
-
-| Rank | Mention Text | Count |
-|-----:|:-------------|------:|
-| 1 | BERT | 18 |
-| 2 | ( 2 + 1 )D | 8 |
-| 3 | generator | 8 |
-| 4 | model | 7 |
-| 5 | NMT | 7 |
-| 6 | Amalgam | 7 |
-| 7 | Pile | 6 |
-| 8 | Transformer | 6 |
-| 9 | neural network | 5 |
-| 10 | word | 5 |
-| 11 | WPA | 5 |
-| 12 | tree entropy | 5 |
-| 13 | models | 4 |
-| 14 | spin - glass | 4 |
-| 15 | SK | 4 |
-| 16 | convolution | 4 |
-| 17 | ML | 3 |
-| 18 | human performance | 3 |
-| 19 | such | 3 |
-| 20 | language | 3 |
-| 21 | CNN | 3 |
-| 22 | spin - glass phase | 3 |
-| 23 | KL divergence | 3 |
-| 24 | NPT | 3 |
-| 25 | RMSE | 3 |
-| 26 | 2D CNNs | 3 |
-| 27 | Auto T | 3 |
-| 28 | factor analysis | 3 |
-| 29 | pxBleu | 3 |
-| 30 | KSR | 3 |
-
-*... and 443 more unique mentions.*
-
-### GSAP + SciNLP
-
-**250** mentions, **177** unique
+**207** mentions, **113** unique
 
 | Rank | Mention Text | Count |
 |-----:|:-------------|------:|
 | 1 | model | 21 |
-| 2 | attention | 9 |
-| 3 | baselines | 7 |
-| 4 | models | 7 |
-| 5 | flow | 7 |
-| 6 | classifiers | 5 |
-| 7 | network | 4 |
-| 8 | fine - tuning | 3 |
-| 9 | framework | 3 |
-| 10 | annotation vectors | 3 |
-| 11 | fine-tuning | 3 |
-| 12 | all | 2 |
-| 13 | Waseem and Hovy ( 2016 ) | 2 |
-| 14 | classifier | 2 |
-| 15 | pre - training | 2 |
-| 16 | filtering step | 2 |
-| 17 | Mean Teacher | 2 |
-| 18 | approach | 2 |
-| 19 | networks | 2 |
-| 20 | proposed approach | 2 |
-| 21 | Attention | 2 |
-| 22 | baseline | 2 |
-| 23 | diffeomorphisms | 2 |
-| 24 | new | 1 |
-| 25 | training from scratch | 1 |
-| 26 | ML emissions calculator | 1 |
-| 27 | ML Emissions Calculator | 1 |
-| 28 | them | 1 |
-| 29 | simple baseline | 1 |
-| 30 | best | 1 |
+| 2 | datapoints | 19 |
+| 3 | our | 12 |
+| 4 | baselines | 8 |
+| 5 | these | 7 |
+| 6 | models | 7 |
+| 7 | a | 6 |
+| 8 | classifiers | 5 |
+| 9 | their | 2 |
+| 10 | Efron | 2 |
+| 11 | data | 2 |
+| 12 | datasets | 2 |
+| 13 | Pile | 2 |
+| 14 | training set | 2 |
+| 15 | all samples | 2 |
+| 16 | our approach | 2 |
+| 17 | 4 | 2 |
+| 18 | our network | 2 |
+| 19 | Saremi | 2 |
+| 20 | Hinton | 2 |
+| 21 | 24 | 2 |
+| 22 | test set | 2 |
+| 23 | original and duplicate datapoints | 2 |
+| 24 | missing values | 2 |
+| 25 | GloVe+ViCo(linear, | 2 |
+| 26 | 10 % | 1 |
+| 27 | all questions | 1 |
+| 28 | sets | 1 |
+| 29 | building | 1 |
+| 30 | no | 1 |
 
-*... and 147 more unique mentions.*
+*... and 83 more unique mentions.*
 
-### SciER + SciNLP
+### GSAP + SciER
 
-**118** mentions, **98** unique
+**604** mentions, **471** unique
 
 | Rank | Mention Text | Count |
 |-----:|:-------------|------:|
-| 1 | ABA | 4 |
-| 2 | I 3 D | 4 |
-| 3 | white - aligned tweets | 3 |
-| 4 | Pile | 3 |
-| 5 | GPT-3 | 3 |
-| 6 | form templates | 2 |
-| 7 | deep learning | 2 |
-| 8 | G | 2 |
-| 9 | batch size 512 | 2 |
-| 10 | 3D convolution | 2 |
-| 11 | S 3 D | 2 |
-| 12 | 2D features | 2 |
-| 13 | GloVe | 2 |
-| 14 | data | 1 |
-| 15 | span - based answers | 1 |
-| 16 | freeform answers | 1 |
-| 17 | crowdworkers | 1 |
-| 18 | Amazon Mechanical Turk | 1 |
-| 19 | Length features | 1 |
-| 20 | L 2 regularization | 1 |
-| 21 | Tatman | 1 |
-| 22 | classifiers | 1 |
-| 23 | n random samples | 1 |
-| 24 | blackaligned tweets | 1 |
-| 25 | black - aligned tweets | 1 |
-| 26 | feature sets | 1 |
-| 27 | Rosset | 1 |
-| 28 | multilingual data | 1 |
-| 29 | Terms of Service | 1 |
-| 30 | ToS | 1 |
+| 1 | BERT | 18 |
+| 2 | NMT | 7 |
+| 3 | Amalgam | 7 |
+| 4 | Pile | 6 |
+| 5 | Transformer | 6 |
+| 6 | neural network | 5 |
+| 7 | word | 5 |
+| 8 | WPA | 5 |
+| 9 | tree entropy | 5 |
+| 10 | spin - glass | 4 |
+| 11 | SK | 4 |
+| 12 | ( 2 + 1 )D | 4 |
+| 13 | convolution | 4 |
+| 14 | ML | 3 |
+| 15 | human performance | 3 |
+| 16 | CNN | 3 |
+| 17 | spin - glass phase | 3 |
+| 18 | KL divergence | 3 |
+| 19 | NPT | 3 |
+| 20 | RMSE | 3 |
+| 21 | 2D CNNs | 3 |
+| 22 | Auto T | 3 |
+| 23 | factor analysis | 3 |
+| 24 | pxBleu | 3 |
+| 25 | KSR | 3 |
+| 26 | crowdworkers | 2 |
+| 27 | machine learning | 2 |
+| 28 | AAE | 2 |
+| 29 | BPB | 2 |
+| 30 | profanity - checker | 2 |
 
-*... and 68 more unique mentions.*
+*... and 441 more unique mentions.*
+
+### GSAP + SciNLP
+
+**197** mentions, **165** unique
+
+| Rank | Mention Text | Count |
+|-----:|:-------------|------:|
+| 1 | attention | 9 |
+| 2 | flow | 7 |
+| 3 | fine - tuning | 3 |
+| 4 | framework | 3 |
+| 5 | annotation vectors | 3 |
+| 6 | fine-tuning | 3 |
+| 7 | all | 2 |
+| 8 | Waseem and Hovy ( 2016 ) | 2 |
+| 9 | pre - training | 2 |
+| 10 | filtering step | 2 |
+| 11 | Mean Teacher | 2 |
+| 12 | networks | 2 |
+| 13 | proposed approach | 2 |
+| 14 | Attention | 2 |
+| 15 | baseline | 2 |
+| 16 | diffeomorphisms | 2 |
+| 17 | new | 1 |
+| 18 | training from scratch | 1 |
+| 19 | ML emissions calculator | 1 |
+| 20 | ML Emissions Calculator | 1 |
+| 21 | them | 1 |
+| 22 | simple baseline | 1 |
+| 23 | best | 1 |
+| 24 | sliding window baseline | 1 |
+| 25 | Their pattern matching baseline | 1 |
+| 26 | Daemo | 1 |
+| 27 | Stratification by syntactic divergence | 1 |
+| 28 | constituency parse | 1 |
+| 29 | Humans | 1 |
+| 30 | systems | 1 |
+
+*... and 135 more unique mentions.*
+
+### SciER + SciNLP
+
+**144** mentions, **109** unique
+
+| Rank | Mention Text | Count |
+|-----:|:-------------|------:|
+| 1 | language models | 9 |
+| 2 | classifiers | 5 |
+| 3 | ABA | 4 |
+| 4 | I 3 D | 4 |
+| 5 | white - aligned tweets | 3 |
+| 6 | Pile | 3 |
+| 7 | GPT-3 | 3 |
+| 8 | these models | 2 |
+| 9 | such models | 2 |
+| 10 | form templates | 2 |
+| 11 | our model | 2 |
+| 12 | deep learning | 2 |
+| 13 | G | 2 |
+| 14 | batch size 512 | 2 |
+| 15 | 3D convolution | 2 |
+| 16 | S 3 D | 2 |
+| 17 | 2D features | 2 |
+| 18 | GloVe | 2 |
+| 19 | data | 1 |
+| 20 | span - based answers | 1 |
+| 21 | freeform answers | 1 |
+| 22 | crowdworkers | 1 |
+| 23 | Amazon Mechanical Turk | 1 |
+| 24 | Length features | 1 |
+| 25 | L 2 regularization | 1 |
+| 26 | Tatman | 1 |
+| 27 | n random samples | 1 |
+| 28 | blackaligned tweets | 1 |
+| 29 | black - aligned tweets | 1 |
+| 30 | feature sets | 1 |
+
+*... and 79 more unique mentions.*
 
 ### All three
 
-**3,336** mentions, **1,514** unique
+**3,312** mentions, **1,507** unique
 
 | Rank | Mention Text | Count |
 |-----:|:-------------|------:|
@@ -537,11 +537,11 @@ dataset's dev set, then combined across all three datasets.
 | 25 | fully connected | 14 |
 | 26 | sparse convolution | 14 |
 | 27 | CornerNet - Saccade | 14 |
-| 28 | language | 13 |
-| 29 | Pile | 13 |
-| 30 | Transformer | 13 |
+| 28 | Pile | 13 |
+| 29 | Transformer | 13 |
+| 30 | ResNet | 13 |
 
-*... and 1,484 more unique mentions.*
+*... and 1,477 more unique mentions.*
 
 ---
 
@@ -803,10 +803,10 @@ dataset's dev set, then combined across all three datasets.
 
 - **Matching method:** gsaphub `partial()` span matching — two mentions match if their
   character spans overlap within the same document and sentence.
-- **Unification pipeline:** Predictions are processed through the standard pipeline
-  (merge stacked mentions, drop unmapped labels, map to unified schema, normalize spans).
-  Label mapping uses the **model's** label scheme (not the dataset's), since predictions
-  carry the vocabulary of the model that produced them.
+- **Unification pipeline:** Predictions are processed through the full pipeline
+  (merge stacked mentions, drop unmapped labels, map to unified schema, dataset-specific
+  corrections, normalize spans). Label mapping uses the **model's** label scheme (not the
+  dataset's), since predictions carry the vocabulary of the model that produced them.
 - **Deduplication:** Each physical mention span is counted once. When multiple models
   detect overlapping spans, the mention is attributed to all detecting models but counted
   only once in the group totals.

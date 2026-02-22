@@ -424,13 +424,13 @@ def save_performance_table(
     Args:
         target_dataset: The dataset to evaluate all models on
         split: Data split to use for evaluation
-        output_dir: Output directory (default: reports/)
+        output_dir: Output directory (default: reports/ere_performance/)
 
     Returns:
         Dictionary with paths to generated files
     """
     if output_dir is None:
-        output_dir = Path("reports")
+        output_dir = Path("reports/ere_performance")
 
     output_dir.mkdir(parents=True, exist_ok=True)
     latex_dir = output_dir / "tables" / "latex"
@@ -465,13 +465,13 @@ def generate_markdown_report(
     Args:
         target_dataset: The dataset to evaluate all models on
         split: Data split to use for evaluation
-        output_dir: Output directory (default: reports/)
+        output_dir: Output directory (default: reports/ere_performance/)
 
     Returns:
         Path to the generated markdown file
     """
     if output_dir is None:
-        output_dir = Path("reports")
+        output_dir = Path("reports/ere_performance")
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -578,13 +578,13 @@ def generate_comprehensive_report(
     """Generate a comprehensive report across all datasets and splits.
 
     Args:
-        output_dir: Output directory (default: reports/)
+        output_dir: Output directory (default: reports/ere_performance/)
 
     Returns:
         Path to the generated markdown file
     """
     if output_dir is None:
-        output_dir = Path("reports")
+        output_dir = Path("reports/ere_performance")
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -793,7 +793,7 @@ def generate_all_reports(
     Args:
         target_dataset: The dataset to evaluate all models on
         split: Data split to use for evaluation
-        output_dir: Output directory (default: reports/)
+        output_dir: Output directory (default: reports/ere_performance/)
 
     Returns:
         Dictionary with paths to all generated files

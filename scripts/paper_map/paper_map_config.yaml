@@ -1,0 +1,24 @@
+# Paper Map configuration
+
+# Input data
+data_path: data/metadata/unified/all_papers.jsonl
+
+# SPECTER2 model
+model_name: allenai/specter2_base
+adapter_name: allenai/specter2
+batch_size: 32
+
+# Artifacts
+artifacts_dir: data/doc_embeddings
+
+# UMAP defaults
+umap:
+    n_neighbors: 15
+    min_dist: 0.1
+    metric: cosine
+    random_state: 42
+
+# kNN defaults
+knn:
+    k: 12
+    symmetrize: true

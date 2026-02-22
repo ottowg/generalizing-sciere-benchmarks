@@ -182,7 +182,7 @@ def generate_confusion_report(
         split: Data split to use
         model1: First model (rows in confusion matrix)
         model2: Second model (columns in confusion matrix)
-        output_dir: Output directory (default: reports/confusion/)
+        output_dir: Output directory (default: reports/ere_confusion_analysis/)
 
     Returns:
         Path to generated markdown file
@@ -196,7 +196,7 @@ def generate_confusion_report(
         ... )
     """
     if output_dir is None:
-        output_dir = Path("reports/confusion")
+        output_dir = Path("reports/ere_confusion_analysis")
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -350,7 +350,7 @@ def generate_simplified_confusion_report(
         split: Data split to use
         model1: First model (rows in confusion matrix)
         model2: Second model (columns in confusion matrix)
-        output_dir: Output directory (default: reports/confusion/)
+        output_dir: Output directory (default: reports/ere_confusion_analysis/)
         top_n: Number of top mentions to show per label pair
         combine_datasets: If True, combine predictions from all datasets into one report
 
@@ -366,7 +366,7 @@ def generate_simplified_confusion_report(
         ... )
     """
     if output_dir is None:
-        output_dir = Path("reports/confusion")
+        output_dir = Path("reports/ere_confusion_analysis")
 
     output_dir.mkdir(parents=True, exist_ok=True)
 

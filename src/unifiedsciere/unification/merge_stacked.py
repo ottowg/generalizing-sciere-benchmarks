@@ -270,13 +270,13 @@ def generate_merge_report(
         split: Data split to use
         models: List of models to analyze predictions from
         prefer_larger: If True, prefer larger spans; if False, prefer smaller spans
-        output_dir: Output directory (default: reports/unification/)
+        output_dir: Output directory (default: reports/ere_confusion_analysis/unification/)
 
     Returns:
         Path to generated markdown file
     """
     if output_dir is None:
-        output_dir = Path("reports/unification")
+        output_dir = Path("reports/ere_confusion_analysis/unification")
 
     output_dir.mkdir(parents=True, exist_ok=True)
 

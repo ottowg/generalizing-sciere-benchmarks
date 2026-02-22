@@ -136,8 +136,8 @@ def generate_correction_report(
         stats: Statistics dictionary from filter_gsap_mentions
         output_path: Path to save the markdown report
     """
-    from datetime import datetime
     from collections import Counter
+    from datetime import datetime
 
     # Count labels in original vs filtered
     original_labels = Counter([m.label for m in original_corpus.mentions_predicted])
@@ -229,7 +229,7 @@ if __name__ == "__main__":
 
     # Filter using analysis results
     json_file = Path(
-        "reports/unification/gsap_analysis/gsap_unmatched_mlmodelgeneric_dev_latest.json"
+        "reports/ere_confusion_analysis/unification/gsap_analysis/gsap_unmatched_mlmodelgeneric_dev_latest.json"
     )
     if json_file.exists():
         filtered_corpus, stats = filter_gsap_mentions(
@@ -242,7 +242,7 @@ if __name__ == "__main__":
 
         # Generate report
         report_path = Path(
-            "reports/unification/gsap_analysis/gsap_correction_report_dev.md"
+            "reports/ere_confusion_analysis/unification/gsap_analysis/gsap_correction_report_dev.md"
         )
         generate_correction_report(corpus, filtered_corpus, stats, report_path)
 

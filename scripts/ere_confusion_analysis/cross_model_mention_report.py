@@ -4,7 +4,8 @@ Compares mentions detected by GSAP, SciER, and SciNLP across all three
 datasets' dev sets (combined). Groups each mention into one of 7 categories
 based on which subset of models detected it, using gsaphub partial span matching.
 
-Predictions are unified via apply_unification_pipeline using the model's label
+Predictions are unified via apply_unification_pipeline (including dataset-specific
+corrections such as GSAP MLModelGeneric filtering) using the model's label
 scheme (trained_on), since predictions carry the model's label vocabulary
 regardless of which dataset they are evaluated on.
 """
@@ -29,13 +30,17 @@ MODELS = ["gsap", "scier", "scinlp"]
 DATASETS = ["gsap", "scier", "scinlp"]
 ENTITY_TYPES = ["Dataset", "Method", "Task"]
 
-# Pipeline config: merge + drop + map + span normalization, no dataset-specific corrections
+# Pipeline config: merge + drop + map + span normalization + dataset-specific corrections
 PIPELINE_CONFIG = {
     "merge_stacked": {"enabled": True, "prefer_larger": True},
     "drop_unmapped": {"enabled": True},
     "map_labels": {"enabled": True},
     "dataset_corrections": {
-        "gsap": {"enabled": False},
+        "gsap": {
+            "enabled": True,
+            "mlmodelgeneric_analysis_file": "reports/ere_confusion_analysis/unification/gsap_analysis/gsap_unmatched_mlmodelgeneric_dev_20260208_122854.json",
+            "min_count": 2,
+        },
         "scier": {"enabled": False},
         "scinlp": {"enabled": False},
     },
@@ -172,7 +177,7 @@ def generate_report(all_mentions):
 **Generated:** {timestamp}
 **Split:** dev (all three datasets combined: GSAP, SciER, SciNLP)
 **Matching:** gsaphub partial span matching
-**Unification:** apply_unification_pipeline (merge stacked, drop unmapped, map labels, normalize spans)
+**Unification:** apply_unification_pipeline (merge stacked, drop unmapped, map labels, dataset-specific corrections, normalize spans)
 
 ## Overview
 
@@ -261,10 +266,10 @@ dataset's dev set, then combined across all three datasets.
 
 - **Matching method:** gsaphub `partial()` span matching — two mentions match if their
   character spans overlap within the same document and sentence.
-- **Unification pipeline:** Predictions are processed through the standard pipeline
-  (merge stacked mentions, drop unmapped labels, map to unified schema, normalize spans).
-  Label mapping uses the **model's** label scheme (not the dataset's), since predictions
-  carry the vocabulary of the model that produced them.
+- **Unification pipeline:** Predictions are processed through the full pipeline
+  (merge stacked mentions, drop unmapped labels, map to unified schema, dataset-specific
+  corrections, normalize spans). Label mapping uses the **model's** label scheme (not the
+  dataset's), since predictions carry the vocabulary of the model that produced them.
 - **Deduplication:** Each physical mention span is counted once. When multiple models
   detect overlapping spans, the mention is attributed to all detecting models but counted
   only once in the group totals.

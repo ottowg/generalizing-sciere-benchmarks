@@ -26,7 +26,7 @@ Document IDs were normalized by stripping the model prefix (e.g., `gsap_scier_de
 
 ### 2.2 Observed Patterns
 
-The analysis (see `reports/analysis/span_differences_dev.md` for the full before/after listing) revealed three categories of systematic span differences:
+The analysis (see `reports/ere_confusion_analysis/span_differences_dev.md` for the full before/after listing) revealed three categories of systematic span differences:
 
 **GSAP model** predictions systematically include:
 

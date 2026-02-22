@@ -21,7 +21,19 @@ map_labels:
     enabled: true
     # Note: The actual label mappings are defined in label_mappings.yaml
 
-# Step 4: Dataset-specific corrections
+# Step 4: Drop unmapped relations
+# Removes relations whose labels map to null in the unified schema
+drop_unmapped_relations:
+    enabled: true
+    # Note: The actual relation mappings are defined in relation_mappings.yaml
+
+# Step 5: Map relations to unified schema
+# Transforms relation labels to unified schema and applies inversion if configured
+map_relations:
+    enabled: true
+    # Note: The actual relation mappings are defined in relation_mappings.yaml
+
+# Step 6: Dataset-specific corrections
 # Apply model/dataset-specific error corrections
 dataset_corrections:
     # GSAP-specific corrections
@@ -29,7 +41,7 @@ dataset_corrections:
         enabled: true
         # Path to the MLModelGeneric analysis JSON file
         # Can be absolute or relative to project root
-        mlmodelgeneric_analysis_file: "reports/unification/gsap_analysis/gsap_unmatched_mlmodelgeneric_dev_20260208_122854.json"
+        mlmodelgeneric_analysis_file: "reports/ere_confusion_analysis/unification/gsap_analysis/gsap_unmatched_mlmodelgeneric_dev_20260208_122854.json"
         # Minimum count threshold for filtering
         # Mentions appearing >= min_count times in the analysis will be filtered
         min_count: 2
@@ -44,7 +56,7 @@ dataset_corrections:
         enabled: false
         # Add SciNLP-specific correction parameters here
 
-# Step 5: Span normalization
+# Step 7: Span normalization
 # Strips systematic prefixes/suffixes from mention text
 # (e.g., "the BERT model" -> "BERT", "GLUE benchmark" -> "GLUE")
 span_normalization:
@@ -57,4 +69,4 @@ pipeline:
     # Generate detailed reports
     generate_reports: true
     # Output directory for reports
-    report_output_dir: "reports/unification/pipeline"
+    report_output_dir: "reports/ere_confusion_analysis/unification/pipeline"

@@ -30,13 +30,13 @@ def generate_unification_report(
         split: Data split to use
         models: List of models to process predictions from
         prefer_larger: If True, prefer larger spans when merging
-        output_dir: Output directory (default: reports/unification/)
+        output_dir: Output directory (default: reports/ere_confusion_analysis/unification/)
 
     Returns:
         Path to generated markdown file
     """
     if output_dir is None:
-        output_dir = Path("reports/unification")
+        output_dir = Path("reports/ere_confusion_analysis/unification")
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -333,13 +333,13 @@ def evaluate_unified_performance(
         split: Data split to use
         models: List of models to evaluate
         prefer_larger: If True, prefer larger spans when merging
-        output_dir: Output directory (default: reports/performance/)
+        output_dir: Output directory (default: reports/ere_performance/)
 
     Returns:
         Path to generated markdown file
     """
     if output_dir is None:
-        output_dir = Path("reports/performance")
+        output_dir = Path("reports/ere_performance")
 
     output_dir.mkdir(parents=True, exist_ok=True)
 

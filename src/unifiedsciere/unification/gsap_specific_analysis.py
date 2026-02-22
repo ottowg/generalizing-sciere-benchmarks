@@ -35,13 +35,13 @@ def analyze_gsap_unmatched_mlmodelgeneric(
         datasets: List of datasets to analyze (typically ['scier', 'scinlp', 'gsap'])
         split: Data split to use
         prefer_larger: If True, prefer larger spans when merging
-        output_dir: Output directory (default: reports/unification/gsap_analysis/)
+        output_dir: Output directory (default: reports/ere_confusion_analysis/unification/gsap_analysis/)
 
     Returns:
         Tuple of (json_path, report_path) for the generated files
     """
     if output_dir is None:
-        output_dir = Path("reports/unification/gsap_analysis")
+        output_dir = Path("reports/ere_confusion_analysis/unification/gsap_analysis")
 
     output_dir.mkdir(parents=True, exist_ok=True)
 

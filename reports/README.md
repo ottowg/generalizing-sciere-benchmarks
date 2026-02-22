@@ -71,7 +71,7 @@ Include in your LaTeX document:
 ```latex
 \begin{table}[ht]
 \centering
-\input{reports/tables/latex/scinlp_test_20260206.tex}
+\input{reports/ere_performance/tables/latex/scinlp_test_20260206.tex}
 \caption{Model Performance on SciNLP Test Set}
 \label{tab:scinlp_performance}
 \end{table}

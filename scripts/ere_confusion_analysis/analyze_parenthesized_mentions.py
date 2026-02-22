@@ -22,7 +22,7 @@ MAX_EXAMPLES = 5
 
 
 def main():
-    output_dir = Path("reports/analysis")
+    output_dir = Path("reports/ere_confusion_analysis")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

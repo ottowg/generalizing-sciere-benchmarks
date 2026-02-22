@@ -13,6 +13,7 @@ from ..types import Corpus
 from .gsap_specific_corrections import filter_gsap_mentions
 from .label_mapper import drop_unmapped_mentions, map_labels_to_unified
 from .merge_stacked import merge_stacked_mentions
+from .relation_label_mapper import drop_unmapped_relations, map_relations_to_unified
 from .span_corrections import normalize_spans
 
 
@@ -86,6 +87,8 @@ def apply_unification_pipeline(
         "merge": {},
         "drop": {},
         "map": {},
+        "drop_relations": {},
+        "map_relations": {},
         "dataset_corrections": {},
         "span_normalization": {},
     }
@@ -123,7 +126,29 @@ def apply_unification_pipeline(
         )
         stats["map"] = map_stats
 
-    # Step 4: Apply dataset-specific corrections
+    # Step 4: Drop unmapped relations
+    drop_rel_config = config.get("drop_unmapped_relations", {})
+    if drop_rel_config.get("enabled", True):
+        corpus, drop_rel_stats = drop_unmapped_relations(
+            corpus,
+            dataset,
+            drop_gold=apply_to_gold,
+            drop_predicted=apply_to_predicted,
+        )
+        stats["drop_relations"] = drop_rel_stats
+
+    # Step 5: Map relations to unified schema
+    map_rel_config = config.get("map_relations", {})
+    if map_rel_config.get("enabled", True):
+        corpus, map_rel_stats = map_relations_to_unified(
+            corpus,
+            dataset,
+            map_gold=apply_to_gold,
+            map_predicted=apply_to_predicted,
+        )
+        stats["map_relations"] = map_rel_stats
+
+    # Step 6: Apply dataset-specific corrections
     corrections_config = config.get("dataset_corrections", {})
 
     # GSAP-specific corrections
@@ -171,7 +196,7 @@ def apply_unification_pipeline(
             # Placeholder for future SciNLP corrections
             pass
 
-    # Step 5: Normalize spans (strip systematic prefixes/suffixes)
+    # Step 7: Normalize spans (strip systematic prefixes/suffixes)
     span_config = config.get("span_normalization", {})
     if span_config.get("enabled", True):
         corpus, span_stats = normalize_spans(
@@ -313,6 +338,8 @@ if __name__ == "__main__":
     print(f"Filtered: {stats['merge'].get('predicted_merged', 0)} merged")
 
     # Generate report
-    report_path = Path("reports/unification/pipeline_report_gsap_dev.md")
+    report_path = Path(
+        "reports/ere_confusion_analysis/unification/pipeline/pipeline_report_gsap_dev.md"
+    )
     generate_pipeline_report(stats, report_path)
     print(f"Report saved to: {report_path}")
