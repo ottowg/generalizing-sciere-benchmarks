@@ -9,3 +9,4 @@ notebooks/*
 *.swp
 test.sh
 *__pycache__*
+gsap-hub-as-lookup*
