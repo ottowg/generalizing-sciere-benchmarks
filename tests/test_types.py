@@ -75,3 +75,42 @@ def test_corpus_post_init_preserves_lists():
         relations_predicted=[],
     )
     assert c.mentions_predicted == [m]
+
+
+def test_corpus_format_relation_includes_sentence():
+    subj = make_mention(
+        id="s1", label="MLModel", text="BERT", document_id="doc1", sent_idx="0"
+    )
+    obj = make_mention(
+        id="o1",
+        label="Dataset",
+        text="Arxiv Corpus",
+        document_id="doc1",
+        sent_idx="0",
+    )
+    rel = make_relation(subj, obj, label="trainedOn")
+    corpus = Corpus(
+        sentences=[
+            Sentence(
+                text="BERT is trained on Arxiv Corpus.",
+                doc_id="doc1",
+                idx=0,
+                split="dev",
+            )
+        ],
+        mentions=[subj, obj],
+        relation=[rel],
+    )
+    formatted = corpus.format_relation(0)
+    assert "BERT is trained on Arxiv Corpus." in formatted
+    assert '[MLModel: "BERT"] -(trainedOn)-> [Dataset: "Arxiv Corpus"]' in formatted
+
+
+def test_corpus_format_relation_out_of_range():
+    corpus = Corpus(sentences=[], mentions=[], relation=[])
+    try:
+        corpus.format_relation(0)
+    except IndexError as exc:
+        assert "relation_id out of range" in str(exc)
+    else:
+        assert False, "Expected IndexError for out-of-range relation_id"
