@@ -1,0 +1,25 @@
+# Experiment 01: Llama 4 Scout — with_schema vs without_schema
+#
+# Compares structured-output (JSON Schema enforcement via Ollama format param)
+# against free-form JSON generation from inlined enum descriptions.
+#
+# Run:
+#   python scripts/classify_papers.py --config configs/experiments/exp01_llama4.yaml
+#   python scripts/classify_papers.py --config configs/experiments/exp01_llama4.yaml --limit 5
+
+name: exp01_llama4
+description: "Llama 4 Scout baseline — compare with_schema vs without_schema on full corpus"
+
+model: llama4
+base_url: http://localhost:11555
+version: v1
+
+methods:
+  - with_schema
+  - without_schema
+
+input: data/metadata/unified/all_papers.jsonl
+output_dir: data/classifications
+
+timeout: 600.0
+temperature: 0.0

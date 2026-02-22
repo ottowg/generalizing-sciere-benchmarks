@@ -1,0 +1,27 @@
+# Experiment 02: Schema comparison — qwen3:32b vs llama4 (with_schema only)
+#
+# Run:
+#   python scripts/classify_papers.py --config configs/experiments/exp02_schema_comparison.yaml
+
+experiments:
+  - name: exp02_qwen3_schema
+    description: "Qwen3 32B with schema enforcement"
+    model: qwen3:32b
+    base_url: http://localhost:11555
+    version: v1
+    methods: [with_schema]
+    input: data/metadata/unified/all_papers.jsonl
+    output_dir: data/classifications
+    timeout: 600.0
+    temperature: 0.0
+
+  - name: exp02_llama4_schema
+    description: "Llama 4 Scout with schema enforcement"
+    model: llama4
+    base_url: http://localhost:11555
+    version: v1
+    methods: [with_schema]
+    input: data/metadata/unified/all_papers.jsonl
+    output_dir: data/classifications
+    timeout: 600.0
+    temperature: 0.0

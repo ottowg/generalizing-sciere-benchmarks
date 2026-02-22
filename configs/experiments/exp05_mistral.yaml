@@ -1,0 +1,11 @@
+experiments:
+    - name: exp03_qwen25_32b_q4
+      description: "mistral-small3.2:24b-instruct-2506-q4_K_M"
+      model: mistral-small3.2:24b-instruct-2506-q4_K_M
+      base_url: http://localhost:11555
+      version: v3
+      methods: [with_schema]
+      input: data/metadata/unified/all_papers.jsonl
+      output_dir: data/classifications
+      timeout: 600.0
+      temperature: 0.0
