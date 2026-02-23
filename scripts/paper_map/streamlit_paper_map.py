@@ -18,8 +18,8 @@ from unifiedsciere.metadata.read_metadata import read_as_dataframe
 from unifiedsciere.paper_map.layout_knn import compute_knn_layout
 from unifiedsciere.paper_map.layout_umap import compute_umap
 
-ROOT = Path(__file__).parent.parent
-CONFIG_PATH = ROOT / "scripts" / "paper_map_config.yaml"
+ROOT = Path(__file__).parent.parent.parent
+CONFIG_PATH = ROOT / "configs" / "paper_map" / "paper_map_config.yaml"
 
 COLOR_BY_OPTIONS = [
     "dataset_detail",
@@ -57,6 +57,7 @@ def load_data():
         "article_type",
         "doi",
         "arxiv_id",
+        "outlet_name",
         "outlet_abbr",
         "outlet_type",
         "outlet_topic",
@@ -280,7 +281,7 @@ else:  # kNN
 
     x_col, y_col = "x_knn", "y_knn"
 
-tab_map, tab_papers = st.tabs(["Map", "Papers"])
+tab_map, tab_papers, tab_outlets = st.tabs(["Map", "Papers", "Outlets"])
 
 # ---------------------------------------------------------------------------
 # Map tab
@@ -355,6 +356,73 @@ with tab_papers:
                     f"- **{row['title']}** ({year_str}) "
                     f"— {outlet} · `{row['doc_id']}`"
                 )
+
+# ---------------------------------------------------------------------------
+# Outlets tab
+# ---------------------------------------------------------------------------
+with tab_outlets:
+    st.markdown("### Publications per Outlet and Dataset")
+
+    # Build a label combining long name and abbreviation
+    outlets_df = df.copy()
+    outlets_df["outlet_label"] = outlets_df.apply(
+        lambda r: (
+            f"{r['outlet_name']} ({r['outlet_abbr']})"
+            if pd.notna(r.get("outlet_name")) and r.get("outlet_name")
+            else (r.get("outlet_abbr") or "Unknown")
+        ),
+        axis=1,
+    )
+    outlets_df["outlet_label"] = outlets_df["outlet_label"].fillna("Unknown").replace("", "Unknown")
+
+    # Count papers per outlet_label × dataset
+    counts = (
+        outlets_df.groupby(["outlet_label", "dataset"])
+        .size()
+        .reset_index(name="count")
+    )
+
+    # Pivot so datasets become columns
+    pivot = counts.pivot(index="outlet_label", columns="dataset", values="count").fillna(0).astype(int)
+
+    # Sort by total descending
+    pivot["_total"] = pivot.sum(axis=1)
+    pivot = pivot.sort_values("_total", ascending=True).drop(columns="_total")
+
+    datasets = list(pivot.columns)
+    dataset_colors = {"gsap": "#636EFA", "scier": "#EF553B", "scinlp": "#00CC96"}
+
+    fig_outlets = go.Figure()
+    for ds in datasets:
+        fig_outlets.add_trace(
+            go.Bar(
+                name=ds,
+                x=pivot[ds],
+                y=pivot.index,
+                orientation="h",
+                marker_color=dataset_colors.get(ds, "#999"),
+                text=pivot[ds].where(pivot[ds] > 0),
+                textposition="inside",
+                insidetextanchor="middle",
+            )
+        )
+
+    fig_outlets.update_layout(
+        barmode="stack",
+        height=max(400, len(pivot) * 28),
+        margin=dict(l=20, r=20, t=40, b=40),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        xaxis_title="Number of papers",
+        yaxis_title=None,
+    )
+
+    st.plotly_chart(fig_outlets, use_container_width=True)
+
+    # Summary table
+    summary = pivot.copy()
+    summary["Total"] = summary.sum(axis=1)
+    summary = summary.sort_values("Total", ascending=False)
+    st.dataframe(summary, use_container_width=True)
 
 # ---------------------------------------------------------------------------
 # References (shared, below tabs)

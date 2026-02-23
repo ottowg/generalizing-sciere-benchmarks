@@ -9,6 +9,8 @@ import plotly.graph_objects as go
 import streamlit as st
 import yaml
 
+from unifiedsciere.metadata.read_metadata import read_as_dataframe
+
 from .layout_knn import compute_knn_layout
 from .layout_umap import compute_umap
 
@@ -27,6 +29,12 @@ def load_data():
     cfg = load_config()
     data_dir = ROOT / cfg["artifacts_dir"]
     df = pd.read_parquet(data_dir / "paper_map.parquet")
+
+    # Merge rich metadata (outlet names, abbr, type, dataset)
+    meta_df = read_as_dataframe()
+    extra_cols = ["dataset", "split", "outlet_name", "outlet_abbr", "outlet_type", "outlet_topic"]
+    merge_cols = [c for c in extra_cols if c in meta_df.columns]
+    df = df.merge(meta_df[["doc_id"] + merge_cols], on="doc_id", how="left")
 
     # Load normalized embeddings (doc_id-keyed JSON)
     with open(data_dir / "embeddings_norm.json") as f:
@@ -170,10 +178,65 @@ def main():
 
         x_col, y_col = "x_knn", "y_knn"
 
-    fig = make_scatter(df, x_col, y_col, show_edges=show_edges, edges=edges)
-    st.plotly_chart(fig, use_container_width=True)
+    tab_map, tab_outlets = st.tabs(["Map", "Outlets"])
 
-    st.caption(f"{len(df)} papers | Layout: {layout}")
+    with tab_map:
+        fig = make_scatter(df, x_col, y_col, show_edges=show_edges, edges=edges)
+        st.plotly_chart(fig, use_container_width=True)
+        st.caption(f"{len(df)} papers | Layout: {layout}")
+
+    with tab_outlets:
+        st.markdown("### Publications per Outlet and Dataset")
+
+        outlets_df = df.copy()
+        outlets_df["outlet_label"] = outlets_df.apply(
+            lambda r: (
+                f"{r['outlet_name']} ({r['outlet_abbr']})"
+                if pd.notna(r.get("outlet_name")) and r.get("outlet_name")
+                else (r.get("outlet_abbr") or "Unknown")
+            ),
+            axis=1,
+        )
+        outlets_df["outlet_label"] = outlets_df["outlet_label"].fillna("Unknown").replace("", "Unknown")
+
+        counts = (
+            outlets_df.groupby(["outlet_label", "dataset"])
+            .size()
+            .reset_index(name="count")
+        )
+        pivot = counts.pivot(index="outlet_label", columns="dataset", values="count").fillna(0).astype(int)
+        pivot["_total"] = pivot.sum(axis=1)
+        pivot = pivot.sort_values("_total", ascending=True).drop(columns="_total")
+
+        dataset_colors = {"gsap": "#636EFA", "scier": "#EF553B", "scinlp": "#00CC96"}
+        fig_outlets = go.Figure()
+        for ds in list(pivot.columns):
+            fig_outlets.add_trace(
+                go.Bar(
+                    name=ds,
+                    x=pivot[ds],
+                    y=pivot.index,
+                    orientation="h",
+                    marker_color=dataset_colors.get(ds, "#999"),
+                    text=pivot[ds].where(pivot[ds] > 0),
+                    textposition="inside",
+                    insidetextanchor="middle",
+                )
+            )
+        fig_outlets.update_layout(
+            barmode="stack",
+            height=max(400, len(pivot) * 28),
+            margin=dict(l=20, r=20, t=40, b=40),
+            legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+            xaxis_title="Number of papers",
+            yaxis_title=None,
+        )
+        st.plotly_chart(fig_outlets, use_container_width=True)
+
+        summary = pivot.copy()
+        summary["Total"] = summary.sum(axis=1)
+        summary = summary.sort_values("Total", ascending=False)
+        st.dataframe(summary, use_container_width=True)
 
 
 if __name__ == "__main__":
