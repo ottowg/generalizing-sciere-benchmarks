@@ -600,57 +600,6 @@ PAGES = ["ERE-Datasets", "Paper Map", "Paper List", "Outlet Map", "Outlet List",
 # ---------------------------------------------------------------------------
 page = st.sidebar.radio("Page", PAGES, label_visibility="collapsed")
 
-# ---------------------------------------------------------------------------
-# Sidebar — data export (temporary recovery tool)
-# ---------------------------------------------------------------------------
-with st.sidebar.expander("Data Tools"):
-    st.caption(
-        "Export the enriched metadata currently cached in this process "
-        "back to all_papers.jsonl (merges enriched fields from df into "
-        "the papers currently on disk)."
-    )
-    if st.button("Export cached metadata to JSONL"):
-        import json as _json
-        from unifiedsciere.metadata.read_metadata import load_papers as _load_papers, ALL_PAPERS_PATH as _ALL_PAPERS_PATH
-
-        _enrich_cols = ["doc_id", "openalex_id", "outlet_id", "cited_by_count", "openalex_topics"]
-        _enrich_cols_present = [c for c in _enrich_cols if c in df.columns]
-        _enrich_lookup = (
-            df[_enrich_cols_present]
-            .dropna(subset=["doc_id"])
-            .set_index("doc_id")
-            .to_dict("index")
-        )
-
-        _papers = _load_papers()
-        _updated = 0
-        for _p in _papers:
-            if _p.doc_id not in _enrich_lookup:
-                continue
-            _row = _enrich_lookup[_p.doc_id]
-            _changed = False
-            if _row.get("openalex_id") and not _p.openalex_id:
-                _p.openalex_id = _row["openalex_id"]
-                _changed = True
-            if _row.get("outlet_id") and not _p.outlet_id:
-                _p.outlet_id = _row["outlet_id"]
-                _changed = True
-            _cbc = _row.get("cited_by_count")
-            if _cbc is not None and _cbc == _cbc and _p.cited_by_count is None:  # NaN != NaN
-                _p.cited_by_count = int(_cbc)
-                _changed = True
-            if _row.get("openalex_topics") and not _p.openalex_topics:
-                _topics = _row["openalex_topics"]
-                if isinstance(_topics, list):
-                    _p.openalex_topics = _topics
-                    _changed = True
-            if _changed:
-                _updated += 1
-
-        with open(_ALL_PAPERS_PATH, "w") as _f:
-            for _p in _papers:
-                _f.write(_json.dumps(_p.to_dict(), ensure_ascii=False) + "\n")
-        st.success(f"Written {len(_papers)} papers ({_updated} updated) to {_ALL_PAPERS_PATH.name}")
 
 # Defaults (defined unconditionally so all code paths work)
 layout = "UMAP"
