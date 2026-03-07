@@ -33,6 +33,7 @@ Pattern Recognition.
 
 ## Environment
 
+- Node.js managed via **nvm** (current: node v24.14.0, npm v11.9.0)
 - Data paths are configured via `.env` file (loaded by `python-dotenv`)
 - `.env.example` documents available variables; copy to `.env` and adjust
 - Current variables:
@@ -48,6 +49,8 @@ Core types are defined in `src/unifiedsciere/types.py`:
 - `Relation` — a typed link between two Mentions (subject, label, object)
 - `Corpus` — container with `sentences`, `mentions`, `relation` (gold) and `mentions_predicted`, `relations_predicted`
 - `PaperMetadata` — bibliographic metadata (title, authors, year, venue, identifiers, outlet)
+  - `dblp_id` — preferred published-venue DBLP key (e.g. `conf/cvpr/LiWCTT20`, `journals/jmlr/SmithJ20`); empty for preprint-only papers
+  - `dblp_preprint_id` — DBLP corr key for the arXiv version (e.g. `journals/corr/abs-1910-09700`); derivable from `arxiv_id` as `journals/corr/abs-{arxiv_id with `.` → `-`}`
 - `Outlet` — publication venue (conference, journal, workshop, preprint)
 
 ## Data Access

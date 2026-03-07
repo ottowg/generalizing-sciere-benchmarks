@@ -94,6 +94,17 @@ class Outlet:
     dblp_outlet_id: str = ""  # e.g. "conf/cvpr" or "journals/corr"
     identification_pattern: str = ""  # regex used for matching venue strings
 
+    # ── OpenAlex enrichment ───────────────────────────────────────────────
+    openalex_id: str = ""  # e.g. "S137773608" (short form without URL prefix)
+    issn_l: str = ""  # linking ISSN (mainly for journals)
+    h_index: int | None = None  # H-index from OpenAlex summary_stats
+    i10_index: int | None = None  # i10-index from OpenAlex summary_stats
+    works_count: int | None = None  # total indexed works in OpenAlex
+    cited_by_count: int | None = None  # total citation count in OpenAlex
+    mean_citedness_2yr: float | None = None  # 2-year mean citedness (impact factor proxy)
+    openalex_type: str = ""  # source type as reported by OpenAlex (e.g. "conference")
+    openalex_topics: list[str] = field(default_factory=list)  # top topic display names
+
     def to_dict(self) -> dict:
         return {
             "id": self.id,
@@ -105,6 +116,16 @@ class Outlet:
             "canonical_url": self.canonical_url,
             "dblp_outlet_id": self.dblp_outlet_id,
             "identification_pattern": self.identification_pattern,
+            # OpenAlex fields
+            "openalex_id": self.openalex_id,
+            "issn_l": self.issn_l,
+            "h_index": self.h_index,
+            "i10_index": self.i10_index,
+            "works_count": self.works_count,
+            "cited_by_count": self.cited_by_count,
+            "mean_citedness_2yr": self.mean_citedness_2yr,
+            "openalex_type": self.openalex_type,
+            "openalex_topics": self.openalex_topics,
         }
 
 
@@ -180,14 +201,22 @@ class PaperMetadata:
     acl_id: str = ""  # e.g. "2020.acl-main.21"
     s2_corpus_id: str = ""  # Semantic Scholar corpus id
     s2_paper_id: str = ""  # Semantic Scholar paper hash
-    dblp_id: str = ""  # e.g. "conf/cvpr/LiWCTT20" (published version preferred)
-    dblp_preprint_id: str = ""  # e.g. "journals/corr/abs-1910-09700" (arXiv version)
+    dblp_id: str = ""  # preferred published-venue DBLP key, e.g. "conf/cvpr/LiWCTT20"
+                       # or "journals/jmlr/SmithJ20" for journals; empty for preprint-only papers
+    dblp_preprint_id: str = ""  # DBLP corr key for the arXiv version, e.g.
+                                # "journals/corr/abs-1910-09700" (derived from arxiv_id)
 
     # ── repository links ──────────────────────────────────────────────────
     repositories: list["RepositoryLink"] = field(default_factory=list)
 
     # ── outlet ────────────────────────────────────────────────────────────
     outlet_id: str = ""  # matched publication outlet ID (e.g. "outlet_001")
+
+    # ── OpenAlex enrichment ───────────────────────────────────────────────
+    openalex_id: str = ""  # OpenAlex work ID (e.g. "W2741809807")
+    cited_by_count: int | None = None  # citation count from OpenAlex
+    references: list[str] = field(default_factory=list)  # OpenAlex work IDs of references
+    openalex_topics: list[dict] = field(default_factory=list)  # [{"name": str, "score": float}, ...]
 
     # ── GSAP-specific ─────────────────────────────────────────────────────
     selection: str = ""  # "huggingface_selection" or "arxiv_random_selection"
