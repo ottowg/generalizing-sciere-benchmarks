@@ -2691,5 +2691,36 @@
             "Scheduling and Optimization Algorithms",
             "Energy Load and Power Forecasting"
         ]
+    },
+    {
+        "id": "outlet_075",
+        "name": "Nature Communications",
+        "abbr": "Nat. Commun.",
+        "outlet_type": "journal",
+        "outlet_topic": "Multidisciplinary / Natural Sciences",
+        "wikidata_id": "Q180686",
+        "canonical_url": "https://www.nature.com/ncomms/",
+        "dblp_outlet_id": "",
+        "identification_pattern": "(?i)\\bNature\\s+Communications\\b",
+        "openalex_id": "S64187185",
+        "issn_l": "2041-1723",
+        "h_index": 721,
+        "i10_index": null,
+        "works_count": 85490,
+        "cited_by_count": 7107282,
+        "mean_citedness_2yr": 13.967683327534887,
+        "openalex_type": "journal",
+        "openalex_topics": [
+            "RNA and protein synthesis mechanisms",
+            "RNA modifications and cancer",
+            "RNA Research and Splicing",
+            "CRISPR and Genetic Engineering",
+            "Epigenetics and DNA Methylation",
+            "Genomics and Chromatin Dynamics",
+            "Neural dynamics and brain function",
+            "Immune Cell Function and Interaction",
+            "Topological Materials and Phenomena",
+            "Graphene research and applications"
+        ]
     }
 ]
