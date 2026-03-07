@@ -30,6 +30,8 @@ dependencies = [
     "networkx>=3.4.2",
     "umap-learn>=0.5.11",
     "pyarrow>=23.0.1",
+    "streamlit>=1.54.0",
+    "plotly>=6.5.2",
 ]
 
 
