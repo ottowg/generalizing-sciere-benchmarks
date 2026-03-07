@@ -64,6 +64,15 @@ def load_outlets(path: Path = OUTLET_INFO_PATH) -> dict[str, Outlet]:
             canonical_url=item.get("canonical_url") or "",
             dblp_outlet_id=item.get("dblp_outlet_id") or "",
             identification_pattern=item.get("identification_pattern", ""),
+            openalex_id=item.get("openalex_id") or "",
+            issn_l=item.get("issn_l") or "",
+            h_index=item.get("h_index"),
+            i10_index=item.get("i10_index"),
+            works_count=item.get("works_count"),
+            cited_by_count=item.get("cited_by_count"),
+            mean_citedness_2yr=item.get("mean_citedness_2yr"),
+            openalex_type=item.get("openalex_type") or "",
+            openalex_topics=item.get("openalex_topics") or [],
         )
         outlets[outlet.id] = outlet
 
@@ -102,6 +111,7 @@ def _parse_paper_dict(d: dict[str, Any]) -> PaperMetadata:
         conference=d.get("conference", ""),
         conference_year=d.get("conference_year"),
         doi=d.get("doi", ""),
+        doi_preprint=d.get("doi_preprint", ""),
         arxiv_id=d.get("arxiv_id", ""),
         acl_id=d.get("acl_id", ""),
         s2_corpus_id=d.get("s2_corpus_id", ""),
@@ -111,6 +121,10 @@ def _parse_paper_dict(d: dict[str, Any]) -> PaperMetadata:
         repositories=repos,
         outlet_id=d.get("outlet_id", ""),
         selection=d.get("selection", ""),
+        openalex_id=d.get("openalex_id", ""),
+        cited_by_count=d.get("cited_by_count"),
+        references=d.get("references", []),
+        openalex_topics=d.get("openalex_topics", []),
     )
 
 

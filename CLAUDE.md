@@ -49,8 +49,10 @@ Core types are defined in `src/unifiedsciere/types.py`:
 - `Relation` — a typed link between two Mentions (subject, label, object)
 - `Corpus` — container with `sentences`, `mentions`, `relation` (gold) and `mentions_predicted`, `relations_predicted`
 - `PaperMetadata` — bibliographic metadata (title, authors, year, venue, identifiers, outlet)
+  - `doi` — preferred published-venue DOI (e.g. `10.18653/v1/2020.acl-main.21`); empty for preprint-only papers
+  - `doi_preprint` — arXiv preprint DOI (e.g. `10.48550/arXiv.1910.09700`); derivable from `arxiv_id` as `10.48550/arXiv.{arxiv_id}`
   - `dblp_id` — preferred published-venue DBLP key (e.g. `conf/cvpr/LiWCTT20`, `journals/jmlr/SmithJ20`); empty for preprint-only papers
-  - `dblp_preprint_id` — DBLP corr key for the arXiv version (e.g. `journals/corr/abs-1910-09700`); derivable from `arxiv_id` as `journals/corr/abs-{arxiv_id with `.` → `-`}`
+  - `dblp_preprint_id` — DBLP corr key for the arXiv version (e.g. `journals/corr/abs-1910-09700`); derivable from `arxiv_id` as `journals/corr/abs-{arxiv_id with . replaced by -}`
 - `Outlet` — publication venue (conference, journal, workshop, preprint)
 
 ## Data Access

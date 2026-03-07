@@ -196,7 +196,10 @@ class PaperMetadata:
     )
 
     # ── persistent identifiers ────────────────────────────────────────────
-    doi: str = ""  # e.g. "10.18653/v1/2020.acl-main.21"
+    doi: str = ""  # preferred published-venue DOI, e.g. "10.18653/v1/2020.acl-main.21"
+                   # empty for preprint-only papers
+    doi_preprint: str = ""  # arXiv preprint DOI, e.g. "10.48550/arXiv.1910.09700"
+                            # (derivable from arxiv_id as "10.48550/arXiv.{arxiv_id}")
     arxiv_id: str = ""  # e.g. "1910.09700" (without version suffix)
     acl_id: str = ""  # e.g. "2020.acl-main.21"
     s2_corpus_id: str = ""  # Semantic Scholar corpus id

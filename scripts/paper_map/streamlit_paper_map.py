@@ -1498,16 +1498,18 @@ if page == "ERE-Datasets":
     # ── Identifier Availability ───────────────────────────────────────────
     st.markdown("### Identifier Availability")
     st.markdown(
-        "How many papers in each dataset have a known identifier "
-        "(arXiv ID, DBLP ID, DOI, Semantic Scholar ID, OpenAlex ID) or citation count."
+        "How many papers in each dataset have a known identifier. "
+        "DOI and DBLP show published venue only; preprint variants are shown separately."
     )
     _id_fields = {
-        "arxiv_id": "arXiv",
-        "dblp": "DBLP",
-        "doi": "DOI",
+        "arxiv_id":         "arXiv ID",
+        "doi":              "DOI (published)",
+        "doi_preprint":     "DOI (preprint)",
+        "dblp_published":   "DBLP (published)",
+        "dblp_preprint_id": "DBLP (corr)",
         "semantic_scholar": "Semantic Scholar",
-        "openalex_id": "OpenAlex ID",
-        "cited_by_count": "Citation count",
+        "openalex_id":      "OpenAlex ID",
+        "cited_by_count":   "Citation count",
     }
     _avail_rows = []
     _avail_iter = [(k, l, m) for k, l, m in _sub_datasets] + [("total", "Total", pd.Series(True, index=_meta_df.index))]
@@ -1516,11 +1518,8 @@ if page == "ERE-Datasets":
         _n = len(_sub)
         _row = {"Dataset": _ds_label, "# Papers": _n}
         for _key, _label in _id_fields.items():
-            if _key == "dblp":
-                _count = (
-                    (_sub["dblp_id"].fillna("").astype(str).str.len() > 0) |
-                    (_sub["dblp_preprint_id"].fillna("").astype(str).str.len() > 0)
-                ).sum()
+            if _key == "dblp_published":
+                _count = _sub["dblp_id"].fillna("").astype(str).str.len().gt(0).sum() if "dblp_id" in _sub.columns else 0
             elif _key == "semantic_scholar":
                 _count = (
                     (_sub["s2_paper_id"].fillna("").astype(str).str.len() > 0) |
