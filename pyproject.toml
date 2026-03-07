@@ -7,47 +7,29 @@ readme = "README.md"
 requires-python = ">=3.10"
 
 dependencies = [
-
     "python-dotenv>=1.0.0",
-
     "great-tables>=0.14.0",
-
     "pandas>=2.0.0",
-
     "arxiv>=2.4.0",
-
     "matplotlib>=3.8.0",
-
     "bibtexparser>=1.4.4",
-
     "acl-anthology>=1.0.0",
-
     "gql>=4.0.0",
-
     "aiohttp>=3.13.3",
-
     "flattentei>=0.1.7",
-
     "pycaprio>=0.3.1",
-
     "spacy>=3.8.11",
-
     "gsaphub",
-
     "tabulate>=0.9.0",
-
     "httpx>=0.28.1",
-
     "jsonschema>=4.26.0",
-
     # vllm moved to optional deps
-
     # TODO: Add gsap-hub once package name/version is confirmed
-
     # If gsap-hub is on PyPI: "gsap-hub>=1.0.0",
-
     # If from GitHub: "gsap-hub @ git+https://github.com/username/gsap-hub.git",
-
+    "networkx>=3.4.2",
+    "umap-learn>=0.5.11",
+    "pyarrow>=23.0.1",
 ]
 
 
@@ -126,11 +108,8 @@ addopts = "-v"
 [tool.uv]
 
 dev-dependencies = [
-
     "ipykernel>=7.2.0",
-
     "pytest>=9.0.2",
-
 ]
 
 
