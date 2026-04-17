@@ -1,6 +1,6 @@
 # Entity Label Confusion Analysis
 
-**Generated:** 2026-02-06 16:40:35
+**Generated:** 2026-04-09 14:33:58
 
 **Split:** dev
 
@@ -8,7 +8,7 @@
 
 **Model 2:** SCIER
 
-**Datasets Combined:** SCIER, SCINLP, GSAP
+**Datasets Combined:** SCIER, SCINLP, GSAP-ERE
 
 ## Overview
 
@@ -25,308 +25,307 @@ Rows: SCINLP labels | Columns: SCIER labels
 
 |         |   dataset |   method |   metric |   task |   NIL |
 |:--------|----------:|---------:|---------:|-------:|------:|
-| Dataset |       574 |      113 |        7 |     30 |   269 |
-| Method  |        26 |     1758 |       72 |    123 |   634 |
-| Task    |        39 |      142 |       36 |    413 |   307 |
-| NIL     |       134 |      390 |      123 |     61 |     0 |
+| Dataset |       623 |      240 |        5 |     58 |   335 |
+| Method  |        48 |     2962 |      101 |    183 |  1009 |
+| Task    |        32 |      205 |       23 |    745 |   291 |
+| NIL     |        31 |      159 |      167 |     15 |     0 |
 
 ### Statistics
 
 **SCINLP Total Entities per Label:**
 
-- Dataset: 993
-- Method: 2613
-- Task: 937
-- NIL: 708
+- Dataset: 1261
+- Method: 4303
+- Task: 1296
+- NIL: 372
 
 **SCIER Total Entities per Label:**
 
-- dataset: 773
-- method: 2403
-- metric: 238
-- task: 627
-- NIL: 1210
+- dataset: 734
+- method: 3566
+- metric: 296
+- task: 1001
+- NIL: 1635
 
 ### Label Mappings (Top 15 per Label Pair)
 
 | SCINLP Label | SCIER Label | Mention Text | Count |
 |----------|----------|--------------|-------|
-| dataset | Dataset | CIFAR-10 | 35 |
-| dataset | Dataset | Pile | 29 |
-| dataset | Dataset | SQuAD | 16 |
-| dataset | Dataset | MNIST | 16 |
+| dataset | Dataset | CIFAR-10 | 32 |
+| dataset | Dataset | ImageNet | 22 |
+| dataset | Dataset | COCO | 16 |
 | dataset | Dataset | XFUND | 14 |
-| dataset | Dataset | black - aligned tweets | 12 |
-| dataset | Dataset | OpenWebText2 | 10 |
-| dataset | Dataset | Protein | 10 |
+| dataset | Dataset | MNIST | 12 |
+| dataset | Dataset | Wikipedia | 11 |
+| dataset | Dataset | Protein | 11 |
+| dataset | Dataset | SQuAD | 9 |
+| dataset | Dataset | Pile | 9 |
 | dataset | Dataset | BookCorpus | 9 |
-| dataset | Dataset | GitHub | 8 |
-| dataset | Dataset | CIFAR-100 | 8 |
-| dataset | Dataset | SNLI | 7 |
-| dataset | Dataset | Common Crawl | 7 |
-| dataset | Dataset | Project Gutenberg | 7 |
-| dataset | Dataset | Higgs | 7 |
-| dataset | Method | Critch and Krueger , 2020 | 2 |
+| dataset | Dataset | PASCAL VOC | 8 |
+| dataset | Dataset | SNLI | 8 |
+| dataset | Dataset | Boston | 8 |
+| dataset | Dataset | Kinetics | 7 |
+| dataset | Dataset | WordNet | 7 |
+| dataset | Method | CC-100 | 4 |
+| dataset | Method | AlexNet | 2 |
+| dataset | Method | ResNet 1 5 2 | 2 |
+| dataset | Method | Stack Exchange | 2 |
+| dataset | Method | PubMed Abstracts | 2 |
 | dataset | Method | Resnet101 | 2 |
-| dataset | Method | RoBERTa-large | 1 |
-| dataset | Method | Google Cloud Services | 1 |
-| dataset | Method | crowdworkers | 1 |
-| dataset | Method | Amazon Mechanical Turk | 1 |
-| dataset | Method | AAE | 1 |
-| dataset | Method | Rosset | 1 |
-| dataset | Method | Reddit submissions | 1 |
-| dataset | Method | multilingual data | 1 |
-| dataset | Method | Pile | 1 |
-| dataset | Method | Raw CC | 1 |
-| dataset | Method | Common Crawl | 1 |
-| dataset | Method | trafilatura | 1 |
-| dataset | Method | jusText | 1 |
-| dataset | Task | tweets | 6 |
-| dataset | Task | Protein regression | 3 |
-| dataset | Task | RC | 2 |
-| dataset | Task | stories | 1 |
-| dataset | Task | Wikipedia | 1 |
-| dataset | Task | naturally occurring data | 1 |
-| dataset | Task | Question - answer collection | 1 |
-| dataset | Task | person | 1 |
-| dataset | Task | all named entities | 1 |
-| dataset | Task | demographic information | 1 |
+| dataset | Method | AlexNet classification | 1 |
+| dataset | Method | Inception | 1 |
+| dataset | Method | Hourglass - 5 4 | 1 |
+| dataset | Method | BERTBASE | 1 |
+| dataset | Method | WordNet | 1 |
+| dataset | Method | GPT series | 1 |
+| dataset | Method | HPSG structures | 1 |
+| dataset | Method | Google Cloud Platform | 1 |
+| dataset | Method | Microsoft Azure | 1 |
+| dataset | Task | Hacker News | 2 |
+| dataset | Task | datasets for RC | 1 |
+| dataset | Task | question answering | 1 |
+| dataset | Task | 660 stories | 1 |
+| dataset | Task | RC | 1 |
+| dataset | Task | predict that tweets | 1 |
 | dataset | Task | tweets written | 1 |
+| dataset | Task | presence of tweets | 1 |
+| dataset | Task | unseen tweets | 1 |
+| dataset | Task | geolocated tweets | 1 |
+| dataset | Task | analysis to tweets | 1 |
 | dataset | Task | classify tweets | 1 |
-| dataset | Task | hate speech | 1 |
-| dataset | Task | natural language processing | 1 |
-| dataset | Task | traditional language modeling benchmarks | 1 |
-| dataset | NIL | this dataset | 7 |
-| dataset | NIL | the dataset | 6 |
-| dataset | NIL | datapoints | 5 |
-| dataset | NIL | constituent datasets | 4 |
-| dataset | NIL | The dataset | 3 |
-| dataset | NIL | Waseem | 3 |
-| dataset | NIL | tweets | 3 |
-| dataset | NIL | each dataset | 3 |
-| dataset | NIL | 2020 | 3 |
-| dataset | NIL | data | 2 |
-| dataset | NIL | these datasets | 2 |
-| dataset | NIL | Blodgett et al . ( 2016 ) | 2 |
+| dataset | Task | classify black - aligned tweets | 1 |
+| dataset | Task | comparing tweets | 1 |
+| dataset | Task | large text corpora | 1 |
+| dataset | NIL | tweets | 5 |
+| dataset | NIL | dataset | 3 |
 | dataset | NIL | datasets | 2 |
-| dataset | NIL | 2019 | 2 |
-| dataset | NIL | benchmarks | 2 |
-| method | Dataset | Pile | 16 |
-| method | Dataset | SNLI | 5 |
-| method | Dataset | HPSG | 4 |
-| method | Dataset | MNIST | 3 |
-| method | Dataset | NPTs | 3 |
-| method | Dataset | NPT - Base | 3 |
-| method | Dataset | Common Crawl | 2 |
-| method | Dataset | PMC | 2 |
-| method | Dataset | OpenAI API | 2 |
-| method | Dataset | C4 | 2 |
-| method | Dataset | mC4 | 2 |
-| method | Dataset | Background sections | 2 |
-| method | Dataset | XFUND | 2 |
-| method | Dataset | unsupervised samples | 2 |
-| method | Dataset | Song and Ermon ( 2019 ) | 2 |
-| method | Method | NPTs | 106 |
-| method | Method | NPT | 87 |
-| method | Method | GPT-3 | 43 |
-| method | Method | LayoutXLM | 31 |
+| dataset | NIL | GitHub | 2 |
+| dataset | NIL | MRPC-but | 1 |
+| dataset | NIL | Medical Journal | 1 |
+| dataset | NIL | stanford - qa.com | 1 |
+| dataset | NIL | tweet | 1 |
+| dataset | NIL | corpus | 1 |
+| dataset | NIL | negative classes | 1 |
+| dataset | NIL | an 825 GiB English text corpus | 1 |
+| dataset | NIL | Stack Exchange | 1 |
+| dataset | NIL | https :/ / www.courtlistener.com / | 1 |
+| dataset | NIL | English language dataset | 1 |
+| dataset | NIL | international database | 1 |
+| method | Dataset | Pile | 13 |
+| method | Dataset | ImageNet | 9 |
+| method | Dataset | Common Crawl | 8 |
+| method | Dataset | fsCOCO | 6 |
+| method | Dataset | black - aligned tweets | 6 |
+| method | Dataset | Pile - CC | 6 |
+| method | Dataset | IMO | 5 |
+| method | Dataset | white - aligned tweets | 5 |
+| method | Dataset | OpenAI API | 5 |
+| method | Dataset | fsPASCAL | 4 |
+| method | Dataset | COCO | 4 |
+| method | Dataset | sim2sim | 4 |
+| method | Dataset | MNIST | 4 |
+| method | Dataset | Kinetics | 3 |
+| method | Dataset | GLUE | 3 |
+| method | Method | NPTs | 89 |
+| method | Method | NPT | 77 |
+| method | Method | BERT | 68 |
+| method | Method | TinyBERT | 42 |
+| method | Method | GloVe | 38 |
+| method | Method | GPT-3 | 31 |
+| method | Method | LayoutXLM | 28 |
+| method | Method | RCN | 27 |
+| method | Method | CornerNet | 25 |
+| method | Method | CNN | 22 |
+| method | Method | CornerNet - Squeeze | 22 |
+| method | Method | ViCo | 21 |
+| method | Method | GCN | 20 |
 | method | Method | normalizing flows | 20 |
-| method | Method | IMO | 15 |
-| method | Method | logistic regression | 15 |
-| method | Method | Pile | 15 |
-| method | Method | SK | 14 |
-| method | Method | ABA | 14 |
-| method | Method | BERT | 13 |
-| method | Method | DACNN | 13 |
-| method | Method | language models | 12 |
-| method | Method | attention model | 12 |
-| method | Method | attention | 11 |
-| method | Task | ML | 8 |
-| method | Task | few-shot learning | 4 |
-| method | Task | NPT | 4 |
-| method | Task | target masking | 4 |
-| method | Task | language models | 3 |
-| method | Task | MLM | 3 |
-| method | Task | samples | 3 |
-| method | Task | zero - shot reinforcement learning | 3 |
-| method | Task | datapoints | 3 |
-| method | Task | masked language modeling | 2 |
-| method | Task | in-context learning | 2 |
-| method | Task | topological parse | 2 |
-| method | Task | train , validation , and testing splits | 2 |
+| method | Method | FinBERT | 18 |
+| method | Task | Re - ID | 5 |
+| method | Task | MLM | 4 |
+| method | Task | pre - training | 4 |
+| method | Task | transfer learning | 3 |
+| method | Task | classification | 3 |
+| method | Task | ML | 3 |
+| method | Task | OCR | 3 |
+| method | Task | person Re - ID | 2 |
+| method | Task | few-shot learning | 2 |
+| method | Task | span - based answers | 2 |
+| method | Task | black - aligned tweets | 2 |
+| method | Task | pre - processing | 2 |
+| method | Task | contrastive learning of parallel documents | 2 |
 | method | Task | iterative filtering | 2 |
-| method | Task | wrongly labeled samples | 2 |
-| method | NIL | datapoints | 19 |
-| method | NIL | the model | 15 |
-| method | NIL | baselines | 11 |
-| method | NIL | our model | 10 |
-| method | NIL | models | 8 |
-| method | NIL | these models | 7 |
-| method | NIL | a model | 6 |
-| method | NIL | model | 6 |
+| method | Task | filtering | 2 |
+| method | NIL | attention | 14 |
+| method | NIL | datapoints | 11 |
 | method | NIL | attention between datapoints | 6 |
-| method | NIL | flow | 5 |
-| method | NIL | Pile | 4 |
-| method | NIL | phrase-based | 3 |
-| method | NIL | The model | 3 |
-| method | NIL | the classifiers | 3 |
-| method | NIL | attention | 3 |
-| metric | Dataset | v1.0 | 2 |
-| metric | Dataset | MR | 1 |
-| metric | Dataset | CR | 1 |
-| metric | Dataset | MPQA | 1 |
-| metric | Dataset | SS2 | 1 |
-| metric | Dataset | Chi et al . , 2020 | 1 |
-| metric | Method | WPA | 7 |
-| metric | Method | tree entropy | 6 |
-| metric | Method | R2 | 4 |
-| metric | Method | pxBleu | 3 |
-| metric | Method | KSR | 3 |
+| method | NIL | Boltzmann | 5 |
+| method | NIL | classifier | 4 |
+| method | NIL | unsupervised fashion | 4 |
+| method | NIL | dataset | 3 |
+| method | NIL | datasets | 3 |
+| method | NIL | training | 3 |
+| method | NIL | baseline | 3 |
+| method | NIL | hourglass backbone | 2 |
+| method | NIL | ML model | 2 |
+| method | NIL | models | 2 |
+| method | NIL | isotropic Gaussian | 2 |
+| method | NIL | test data | 2 |
+| metric | Dataset | MOTA | 1 |
+| metric | Dataset | pxBleu | 1 |
+| metric | Dataset | average sentiment | 1 |
+| metric | Dataset | huge datasets | 1 |
+| metric | Dataset | large data | 1 |
+| metric | Method | WPA | 10 |
+| metric | Method | precision | 7 |
+| metric | Method | KSR | 5 |
+| metric | Method | tree entropy | 5 |
+| metric | Method | R2 | 3 |
+| metric | Method | Precision | 3 |
 | metric | Method | confidence measures | 3 |
+| metric | Method | confidence | 3 |
 | metric | Method | entropy | 3 |
+| metric | Method | RMSE | 3 |
 | metric | Method | macro F1 | 2 |
-| metric | Method | thresholded precision | 2 |
-| metric | Method | mean - squared - error | 2 |
-| metric | Method | KL divergence | 2 |
-| metric | Method | RMSE | 2 |
-| metric | Method | training or validation log loss | 2 |
-| metric | Method | cosine similarities | 1 |
-| metric | Method | macro-F1 | 1 |
-| metric | Task | recall | 7 |
-| metric | Task | precision | 5 |
-| metric | Task | coverage | 3 |
-| metric | Task | human | 3 |
-| metric | Task | accuracy | 2 |
-| metric | Task | Precision | 2 |
-| metric | Task | F1 | 1 |
-| metric | Task | precision calculations | 1 |
-| metric | Task | pause duration | 1 |
+| metric | Method | F test | 2 |
+| metric | Method | pxBleu | 2 |
+| metric | Method | pxB | 2 |
+| metric | Method | precision / recall numbers | 2 |
+| metric | Task | pause duration and frequency | 2 |
+| metric | Task | precision | 2 |
+| metric | Task | mode coverage | 2 |
+| metric | Task | real - time speed | 1 |
+| metric | Task | Word Prediction Accuracy | 1 |
+| metric | Task | pupil dilation | 1 |
 | metric | Task | mouse-action ratio | 1 |
-| metric | Task | Coverage | 1 |
-| metric | Task | humans | 1 |
-| metric | Task | perplexity evaluation | 1 |
-| metric | Task | GPT-2 / 3 perplexity analysis | 1 |
-| metric | Task | label noise | 1 |
-| metric | NIL | accuracy | 33 |
-| metric | NIL | precision | 14 |
-| metric | NIL | perplexity | 10 |
+| metric | Task | source difficulty | 1 |
+| metric | Task | improve recall | 1 |
+| metric | Task | Labelled precision | 1 |
+| metric | Task | recall of topological parsing | 1 |
+| metric | Task | coverage | 1 |
+| metric | Task | recall | 1 |
+| metric | Task | quantify the syntactic divergence | 1 |
+| metric | Task | cross - domain knowledge | 1 |
+| metric | NIL | accuracy | 86 |
+| metric | NIL | perplexity | 11 |
+| metric | NIL | precision | 9 |
+| metric | NIL | AP | 8 |
 | metric | NIL | recall | 7 |
-| metric | NIL | F1 | 5 |
-| metric | NIL | Waseem | 4 |
-| metric | NIL | coverage | 3 |
+| metric | NIL | F1 | 6 |
+| metric | NIL | coverage | 5 |
+| metric | NIL | mAP | 3 |
 | metric | NIL | F-measure | 3 |
-| metric | NIL | F1 score | 3 |
 | metric | NIL | Coverage | 2 |
 | metric | NIL | f-measure | 2 |
-| metric | NIL | 80 % | 2 |
-| metric | NIL | KL divergence | 2 |
-| metric | NIL | KL-divergence | 1 |
-| metric | NIL | macro-F1 | 1 |
+| metric | NIL | perplexities | 2 |
+| metric | NIL | MSE | 2 |
+| metric | NIL | speed | 1 |
+| metric | NIL | F 1 - score | 1 |
+| task | Dataset | CoLA | 7 |
+| task | Dataset | GLUE | 4 |
+| task | Dataset | MRPC | 4 |
+| task | Dataset | MNLI | 3 |
+| task | Dataset | TREC | 3 |
+| task | Dataset | SQuAD | 3 |
+| task | Dataset | QNLI | 2 |
 | task | Dataset | SNLI | 2 |
-| task | Dataset | HPSG | 2 |
-| task | Dataset | white - aligned tweets | 2 |
-| task | Dataset | black - aligned tweets | 2 |
-| task | Dataset | tabular data | 2 |
+| task | Dataset | CR | 2 |
+| task | Dataset | hate speech and abusive language detection datasets | 2 |
+| task | Dataset | FiQA Task 1 sentiment scoring | 1 |
+| task | Dataset | SST - 5 | 1 |
 | task | Dataset | SST-5 | 1 |
-| task | Dataset | CR | 1 |
+| task | Dataset | MR | 1 |
 | task | Dataset | MPQA | 1 |
-| task | Dataset | Subj | 1 |
-| task | Dataset | TREC | 1 |
-| task | Dataset | QNLI | 1 |
-| task | Dataset | MRPC | 1 |
-| task | Dataset | cloze - style queries | 1 |
-| task | Dataset | hate speech and abusive language detection datasets | 1 |
-| task | Dataset | training data | 1 |
-| task | Method | denoising score matching | 9 |
-| task | Method | domain adaptation | 6 |
+| task | Method | KD | 8 |
+| task | Method | word embeddings | 8 |
+| task | Method | deep learning | 7 |
+| task | Method | domain adaptation | 7 |
+| task | Method | task - specific distillation | 6 |
+| task | Method | data augmentation | 5 |
 | task | Method | semi - supervised learning | 5 |
-| task | Method | unsupervised learning | 4 |
-| task | Method | data augmentation | 3 |
-| task | Method | Semi - supervised learning | 3 |
-| task | Method | score matching | 3 |
+| task | Method | hyperparameter optimization | 4 |
+| task | Method | Transformer distillation | 3 |
+| task | Method | DA | 3 |
+| task | Method | machine learning | 3 |
 | task | Method | self - supervised learning | 3 |
-| task | Method | Multimodal pre - training | 2 |
-| task | Method | pre - processing | 2 |
-| task | Method | supervised learning | 2 |
-| task | Method | supervised deep learning | 2 |
-| task | Method | Fine-tuning of language models | 1 |
-| task | Method | fine-tuning language models | 1 |
-| task | Method | prompt-based fine-tuning | 1 |
-| task | Task | classification | 15 |
+| task | Method | knowledge distillation | 2 |
+| task | Method | general distillation | 2 |
+| task | Method | unsupervised clustering | 2 |
+| task | Task | classification | 47 |
+| task | Task | pose estimation | 17 |
+| task | Task | semantic segmentation | 16 |
+| task | Task | localization | 15 |
+| task | Task | natural language processing | 13 |
+| task | Task | segmentation | 11 |
+| task | Task | NLP | 11 |
+| task | Task | text classification | 11 |
+| task | Task | few - shot segmentation | 9 |
+| task | Task | sentiment analysis | 9 |
+| task | Task | question answering | 9 |
+| task | Task | pose tracking | 9 |
 | task | Task | language modeling | 9 |
-| task | Task | reading comprehension | 8 |
-| task | Task | binary classification | 7 |
-| task | Task | multi-class classification | 7 |
-| task | Task | natural language processing | 7 |
-| task | Task | regression | 6 |
-| task | Task | sentiment analysis | 6 |
-| task | Task | text classification | 6 |
-| task | Task | sentence realization | 5 |
-| task | Task | image classification | 5 |
-| task | Task | human | 4 |
-| task | Task | multilingual document understanding | 4 |
-| task | Task | form understanding | 4 |
-| task | Task | document understanding | 4 |
-| task | NIL | development set | 3 |
-| task | NIL | noisy labels | 3 |
-| task | NIL | datapoints | 3 |
-| task | NIL | the dataset | 2 |
-| task | NIL | regression | 2 |
-| task | NIL | fine-tuning | 1 |
-| task | NIL | for | 1 |
-| task | NIL | pattern matching baseline | 1 |
-| task | NIL | questions | 1 |
-| task | NIL | answers | 1 |
-| task | NIL | Stratification | 1 |
-| task | NIL | constituency parse | 1 |
-| task | NIL | named entities | 1 |
-| task | NIL | our analysis | 1 |
-| task | NIL | analysis | 1 |
-| NIL | Dataset | Pile | 17 |
-| NIL | Dataset | black - aligned corpus | 7 |
-| NIL | Dataset | datasets | 6 |
-| NIL | Dataset | dataset | 6 |
-| NIL | Dataset | German | 5 |
-| NIL | Dataset | SS1 | 4 |
-| NIL | Dataset | English-German | 4 |
-| NIL | Dataset | Waseem | 4 |
-| NIL | Dataset | white - aligned corpus | 4 |
-| NIL | Dataset | semi - synthetic | 4 |
-| NIL | Dataset | Davidson et al . ( 2017 ) | 3 |
-| NIL | Dataset | AAE | 3 |
-| NIL | Dataset | PhilPapers | 3 |
+| task | Task | computer vision | 8 |
+| task | Task | regression | 7 |
+| task | NIL | classification | 1 |
+| task | NIL | text simplification | 1 |
+| task | NIL | detection | 1 |
+| task | NIL | instance identification | 1 |
+| task | NIL | multiple documents | 1 |
+| task | NIL | Diversity in answers | 1 |
+| task | NIL | fanfiction | 1 |
+| task | NIL | an extraction benchmark | 1 |
+| task | NIL | filtering | 1 |
+| task | NIL | traditional network training | 1 |
+| task | NIL | sampling and inference | 1 |
+| task | NIL | each gradient descent update | 1 |
+| task | NIL | datapoints | 1 |
+| task | NIL | prompting | 1 |
+| task | NIL | input datapoints | 1 |
+| NIL | Dataset | FSS - 1 0 0 0 | 31 |
+| NIL | Dataset | Pile | 31 |
+| NIL | Dataset | PASCAL VOC 2 0 1 2 | 8 |
+| NIL | Dataset | training data | 6 |
+| NIL | Dataset | a dataset | 4 |
+| NIL | Dataset | dataset | 4 |
+| NIL | Dataset | ImageNet | 3 |
+| NIL | Dataset | UCF 1 0 1 | 3 |
+| NIL | Dataset | COCO | 3 |
+| NIL | Dataset | IMO | 3 |
+| NIL | Dataset | SS1 | 3 |
+| NIL | Dataset | tweets | 3 |
+| NIL | Dataset | data | 3 |
+| NIL | Dataset | datasets | 3 |
 | NIL | Dataset | NIH | 3 |
-| NIL | Dataset | SS2 | 2 |
-| NIL | Method | generator | 25 |
-| NIL | Method | NMT | 15 |
-| NIL | Method | Amalgam | 9 |
-| NIL | Method | Pile | 9 |
-| NIL | Method | machine learning | 7 |
-| NIL | Method | spin - glass | 6 |
-| NIL | Method | SK | 6 |
-| NIL | Method | neural network | 5 |
-| NIL | Method | AAE | 5 |
-| NIL | Method | deep learning | 5 |
-| NIL | Method | NPT | 5 |
-| NIL | Method | propnets | 4 |
-| NIL | Method | WPA | 4 |
-| NIL | Method | HPSG | 4 |
-| NIL | Method | PT | 4 |
-| NIL | Task | tweets | 24 |
-| NIL | Task | ML | 12 |
-| NIL | Task | classification | 6 |
-| NIL | Task | reasoning | 5 |
-| NIL | Task | NLP | 4 |
-| NIL | Task | natural language processing | 4 |
-| NIL | Task | OOD | 3 |
-| NIL | Task | translation | 3 |
-| NIL | Task | case assignment | 3 |
-| NIL | Task | questions | 3 |
-| NIL | Task | language modeling | 3 |
-| NIL | Task | EMT | 3 |
-| NIL | Task | the spin - glass phase | 3 |
-| NIL | Task | datapoints | 3 |
-| NIL | Task | targets | 3 |
+| NIL | Method | I 3 D | 36 |
+| NIL | Method | NPTs | 20 |
+| NIL | Method | generator | 15 |
+| NIL | Method | NPT | 12 |
+| NIL | Method | Song and Ermon ( 2019 ) | 10 |
+| NIL | Method | SK | 10 |
+| NIL | Method | datapoints | 9 |
+| NIL | Method | NMT | 7 |
+| NIL | Method | a model | 7 |
+| NIL | Method | S 3 D | 6 |
+| NIL | Method | RCN | 6 |
+| NIL | Method | Amalgam | 6 |
+| NIL | Method | k - NN | 6 |
+| NIL | Method | C 3 D | 5 |
+| NIL | Method | FSS - 1 0 0 0 | 5 |
+| NIL | Task | classification | 16 |
+| NIL | Task | noisy labels | 8 |
+| NIL | Task | NLP | 7 |
+| NIL | Task | human detection | 6 |
+| NIL | Task | segmentation | 5 |
+| NIL | Task | multilingual form understanding | 4 |
+| NIL | Task | form understanding | 4 |
+| NIL | Task | regression | 4 |
+| NIL | Task | feature extraction | 3 |
+| NIL | Task | localization | 3 |
+| NIL | Task | potentially noisy labels | 3 |
+| NIL | Task | single - activity recognition | 2 |
+| NIL | Task | Re - ID | 2 |
+| NIL | Task | vis - w 2 v | 2 |
+| NIL | Task | OOD | 2 |
 
 ## Notes
 

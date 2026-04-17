@@ -2,31 +2,31 @@
 
 - Metric: RE partial (relaxed partial match), F1
 - Split: test
-- Datasets: GSAP, SCIER, SCINLP
+- Datasets: GSAP-ERE, SCIER, SCINLP
 
 | Label              | Train→Test   | GSAP       | SciER      | SciNLP     |
 |:-------------------|:-------------|:-----------|:-----------|:-----------|
-| appliedTo          | GSAP         | **_60.2_** | 39.5       | 33.2       |
-| benchmarkFor       | GSAP         | **_64.5_** | 30.8       | 21.6       |
-| trainedEvaluatedOn | GSAP         | **_66.9_** | 42.1       | 34.4       |
-| coreference        | GSAP         | **_79.1_** | 51.6       | 22.4       |
-| isHyponymOf        | GSAP         | **_44.9_** | 30.7       | 4.1        |
-| isComparedTo       | GSAP         | **_63.8_** | 57.8       | 47.1       |
-| usedFor            | GSAP         | **_54.5_** | 18.2       | 2.7        |
-| micro              | GSAP         | **_60.6_** | 36.2       | 19.4       |
-| appliedTo          | SCIER        | 45.1       | **_66.4_** | 39.9       |
-| benchmarkFor       | SCIER        | 31.8       | **_81.2_** | 33.0       |
-| trainedEvaluatedOn | SCIER        | 34.1       | **_78.6_** | 34.9       |
-| coreference        | SCIER        | 64.6       | **_92.6_** | 36.4       |
-| isHyponymOf        | SCIER        | 44.9       | **_68.4_** | 20.3       |
-| isComparedTo       | SCIER        | 44.6       | **_62.0_** | 47.7       |
-| usedFor            | SCIER        | 30.6       | **_43.8_** | 3.7        |
-| micro              | SCIER        | 43.6       | **_67.7_** | 30.8       |
-| appliedTo          | SCINLP       | **65.6**   | 50.3       | _56.1_     |
-| benchmarkFor       | SCINLP       | **61.5**   | 60.6       | _53.8_     |
-| trainedEvaluatedOn | SCINLP       | 14.3       | 31.2       | **_37.5_** |
-| coreference        | SCINLP       | 43.5       | **45.9**   | _25.8_     |
-| isHyponymOf        | SCINLP       | 29.9       | **47.3**   | _43.2_     |
-| isComparedTo       | SCINLP       | **72.1**   | 58.4       | _60.2_     |
-| usedFor            | SCINLP       | **32.2**   | 26.0       | _25.5_     |
-| micro              | SCINLP       | **48.9**   | 46.9       | _47.6_     |
+| appliedTo          | GSAP-ERE     | **_59.3_** | 40.7       | 56.5       |
+| appliedTo          | SCIER        | 32.1       | **_72.3_** | 50.0       |
+| appliedTo          | SCINLP       | 35.6       | **56.7**   | _49.1_     |
+| benchmarkFor       | GSAP-ERE     | _51.4_     | 35.8       | **56.0**   |
+| benchmarkFor       | SCIER        | 29.4       | **_81.2_** | 9.5        |
+| benchmarkFor       | SCINLP       | 40.0       | 30.9       | **_53.8_** |
+| trainedEvaluatedOn | GSAP-ERE     | **_68.0_** | 30.2       | 40.0       |
+| trainedEvaluatedOn | SCIER        | 48.7       | **_76.9_** | 25.8       |
+| trainedEvaluatedOn | SCINLP       | 30.3       | 38.9       | **_50.0_** |
+| coreference        | GSAP-ERE     | **_76.7_** | 65.1       | 46.2       |
+| coreference        | SCIER        | 46.6       | **_93.0_** | 50.8       |
+| coreference        | SCINLP       | 7.7        | 5.7        | **_34.5_** |
+| isHyponymOf        | GSAP-ERE     | **_44.7_** | 34.5       | 30.2       |
+| isHyponymOf        | SCIER        | 32.7       | **_70.2_** | 43.7       |
+| isHyponymOf        | SCINLP       | 11.4       | 38.9       | **_54.4_** |
+| isComparedTo       | GSAP-ERE     | **_68.0_** | 37.7       | 13.8       |
+| isComparedTo       | SCIER        | 57.5       | **_69.4_** | 47.4       |
+| isComparedTo       | SCINLP       | 52.3       | 46.2       | **_57.7_** |
+| usedFor            | GSAP-ERE     | **_55.1_** | 28.7       | 3.5        |
+| usedFor            | SCIER        | 22.5       | **_50.0_** | 0.0        |
+| usedFor            | SCINLP       | 4.4        | 4.6        | **_31.2_** |
+| micro              | GSAP-ERE     | **_61.3_** | 40.2       | 36.0       |
+| micro              | SCIER        | 36.8       | **_71.2_** | 40.4       |
+| micro              | SCINLP       | 21.3       | 38.9       | **_49.0_** |

@@ -19,9 +19,18 @@ Anthology (SciNLP).
 | Dataset | Papers | With Abstract | Without Abstract | Coverage |
 |---------|-------:|--------------:|-----------------:|---------:|
 | GSAP | 100 | 100 | 0 | 100% |
-| SciER | 100 | 89 | 11 | 89% |
+| SciER | 100 | 100 | 0 | 100% |
 | SciER-OOD | 5 | 3 | 2 | 60% |
-| SciNLP | 60 | 26 | 34 | 43% |
+| SciNLP | 60 | 60 | 0 | 100% |
+
+### Identifier Coverage
+
+| Dataset | Papers | OpenAlex | arXiv | Semantic Scholar | DOI |
+|---------|-------:|---------:|------:|----------------:|----:|
+| GSAP | 100 | 99 (99%) | 100 (100%) | 0 (0%) | 58 (58%) |
+| SciER | 100 | 100 (100%) | 94 (94%) | 100 (100%) | 72 (72%) |
+| SciER-OOD | 5 | 5 (100%) | 4 (80%) | 0 (0%) | 5 (100%) |
+| SciNLP | 60 | 60 (100%) | 18 (30%) | 0 (0%) | 46 (76%) |
 
 ### GSAP Selection Breakdown
 
