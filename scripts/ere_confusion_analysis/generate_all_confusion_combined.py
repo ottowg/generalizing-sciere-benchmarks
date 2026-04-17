@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 """Generate combined confusion reports for all model comparisons."""
 
-from src.unifiedsciere.analysis.label_confusion import (
+from unifiedsciere.analysis.label_confusion import (
     generate_simplified_confusion_report,
 )
 
 if __name__ == "__main__":
     # All three datasets to combine
-    datasets = ["scier", "scinlp", "gsap"]
+    datasets = ["scier", "scinlp", "gsap-ere"]
     split = "dev"
 
     # Generate three comparison reports
     comparisons = [
-        ("gsap", "scinlp", "GSAP-ERE vs SCINLP"),
-        ("gsap", "scier", "GSAP-ERE vs SCIER"),
+        ("gsap-ere", "scinlp", "GSAP-ERE vs SCINLP"),
+        ("gsap-ere", "scier", "GSAP-ERE vs SCIER"),
         ("scinlp", "scier", "SCINLP vs SCIER"),
     ]
 

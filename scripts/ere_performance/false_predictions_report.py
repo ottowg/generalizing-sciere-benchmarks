@@ -8,10 +8,7 @@ Usage:
 """
 
 import random
-import sys
 from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 import gsaphub as gh
 import pandas as pd
@@ -44,7 +41,7 @@ def _relation_to_gsaphub_annotated(r, idx: int, annotator: str) -> dict[str, obj
 def main():
     print("=== False Predictions Report ===")
 
-    datasets = ["gsap", "scier", "scinlp"]
+    datasets = ["gsap-ere", "scier", "scinlp"]
     split = "test"
 
     mappings_path = (

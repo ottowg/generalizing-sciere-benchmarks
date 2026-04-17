@@ -16,7 +16,6 @@ import json
 from collections import Counter
 from pathlib import Path
 
-# sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 from unifiedsciere.metadata.enrich_metadata import enrich_with_outlets
 from unifiedsciere.metadata.read_metadata import load_papers
 

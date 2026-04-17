@@ -9,6 +9,7 @@ from collections import Counter
 from pathlib import Path
 
 import networkx as nx
+from scipy import stats
 import numpy as np
 import pandas as pd
 import plotly.colors as pc
@@ -36,7 +37,7 @@ COLOR_BY_OPTIONS = [
 ]
 
 _DS_COLORS = {
-    "gsap": "#636EFA",
+    "gsap-ere": "#636EFA",
     "gsap_hf": "#AB63FA",    # purple — HuggingFace GSAP
     "gsap_arxiv": "#19D3F3",  # cyan — arXiv GSAP
     "scier": "#EF553B",
@@ -138,7 +139,7 @@ def load_data():
     }
     df["dataset_detail"] = df.apply(
         lambda r: selection_map.get(r["selection"], r["dataset"])
-        if r["dataset"] == "gsap"
+        if r["dataset"] == "gsap-ere"
         else r["dataset"],
         axis=1,
     )
@@ -204,7 +205,7 @@ def _hover_customdata(df):
 
 
 DATASET_SYMBOLS = {
-    "gsap": "circle",
+    "gsap-ere": "circle",
     "gsap-huggingface": "circle",
     "gsap-arxiv-ml": "triangle-up",
     "scier": "square",
@@ -1058,7 +1059,7 @@ if page == "Outlet Map":
         .unstack(fill_value=0)
         .reset_index()
     )
-    ds_col_map = {"gsap": "# GSAP papers", "scier": "# SciER papers", "scinlp": "# SciNLP papers"}
+    ds_col_map = {"gsap-ere": "# GSAP papers", "scier": "# SciER papers", "scinlp": "# SciNLP papers"}
     for ds_key, col_label in ds_col_map.items():
         if ds_key in ds_counts.columns:
             outlet_map_df = outlet_map_df.merge(
@@ -1082,7 +1083,7 @@ if page == "Outlet Map":
     # -- Dominant dataset coloring (normalized by total dataset size) --
     _om_color_map = None
     if om_color == "dominant dataset":
-        _tot_gsap   = max((df["dataset"] == "gsap").sum(), 1)
+        _tot_gsap   = max((df["dataset"] == "gsap-ere").sum(), 1)
         _tot_scier  = max((df["dataset"] == "scier").sum(), 1)
         _tot_scinlp = max((df["dataset"] == "scinlp").sum(), 1)
         _norm_df = pd.DataFrame({
@@ -1094,7 +1095,7 @@ if page == "Outlet Map":
             outlet_map_df["# papers (total)"] > 0, other="none"
         )
         _om_color_map = {
-            "GSAP":   _DS_COLORS["gsap"],
+            "GSAP":   _DS_COLORS["gsap-ere"],
             "SciER":  _DS_COLORS["scier"],
             "SciNLP": _DS_COLORS["scinlp"],
             "none":   "rgba(180,180,180,0.4)",
@@ -1211,7 +1212,7 @@ if page == "Outlet List":
 
     hindex_df = pd.DataFrame(rows)
     hindex_df = hindex_df.merge(paper_counts, on="outlet_id", how="left")
-    for ds in ["gsap", "scier", "scinlp"]:
+    for ds in ["gsap-ere", "scier", "scinlp"]:
         if ds in paper_counts_by_ds.columns:
             hindex_df = hindex_df.merge(
                 paper_counts_by_ds[["outlet_id", ds]].rename(columns={ds: f"#{ds}"}),
@@ -1271,7 +1272,7 @@ if page == "Outlet List":
     pivot = pivot.sort_values("_total", ascending=True).drop(columns="_total")
 
     datasets = list(pivot.columns)
-    dataset_colors = {"gsap": "#636EFA", "scier": "#EF553B", "scinlp": "#00CC96"}
+    dataset_colors = {"gsap-ere": "#636EFA", "scier": "#EF553B", "scinlp": "#00CC96"}
 
     fig_outlets = go.Figure()
     for ds in datasets:
@@ -1310,8 +1311,8 @@ if page == "ERE-Datasets":
     # Sub-dataset definitions: (key, display label, row mask in _meta_df)
     _sel = _meta_df.get("selection", pd.Series("", index=_meta_df.index)).fillna("")
     _sub_datasets = [
-        ("gsap_hf",    "GSAP (HF)",    (_meta_df["dataset"] == "gsap") & (_sel == "huggingface_selection")),
-        ("gsap_arxiv", "GSAP (arXiv)", (_meta_df["dataset"] == "gsap") & (_sel == "arxiv_random_selection")),
+        ("gsap_hf",    "GSAP (HF)",    (_meta_df["dataset"] == "gsap-ere") & (_sel == "huggingface_selection")),
+        ("gsap_arxiv", "GSAP (arXiv)", (_meta_df["dataset"] == "gsap-ere") & (_sel == "arxiv_random_selection")),
         ("scier",      "SciER",        _meta_df["dataset"] == "scier"),
         ("scier_ood",  "SciER-OOD",    _meta_df["dataset"] == "scier_ood"),
         ("scinlp",     "SciNLP",       _meta_df["dataset"] == "scinlp"),
@@ -1325,14 +1326,14 @@ if page == "ERE-Datasets":
         "the union of the top 10 per dataset is shown."
     )
     _tm_df_ds = _load_topic_map()
-    if _tm_df_ds is None or not all(f"n_{ds}" in _tm_df_ds.columns for ds in ["gsap", "scier", "scinlp"]):
+    if _tm_df_ds is None or not all(f"n_{ds}" in _tm_df_ds.columns for ds in ["gsap-ere", "scier", "scinlp"]):
         st.info("Topic data not available. Run `compute_topic_layout.py` first.")
     else:
         _has_topic_split = all(c in _tm_df_ds.columns for c in ["n_gsap_hf", "n_gsap_arxiv"])
         _topic_sub_ds = (
             [("gsap_hf", "GSAP (HF)"), ("gsap_arxiv", "GSAP (arXiv)"), ("scier", "SciER"), ("scinlp", "SciNLP")]
             if _has_topic_split
-            else [("gsap", "GSAP"), ("scier", "SciER"), ("scinlp", "SciNLP")]
+            else [("gsap-ere", "GSAP"), ("scier", "SciER"), ("scinlp", "SciNLP")]
         )
         _top_per_ds: set[str] = set()
         for _ds, _ in _topic_sub_ds:
@@ -1358,6 +1359,16 @@ if page == "ERE-Datasets":
             margin=dict(l=40, r=20, t=20, b=160),
         )
         st.plotly_chart(_topic_fig, use_container_width=True)
+        st.info(
+            "**Note: \"Topic Modeling\" appears overclassified by OpenAlex.** "
+            "Many papers on unrelated subjects are assigned this topic, "
+            "suggesting OpenAlex uses it as a broad catch-all for text-analysis work. "
+            "Examples of clearly misclassified papers: "
+            "*BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding* (language model pre-training); "
+            "*SQuAD: 100,000+ Questions for Machine Comprehension of Text* (question answering benchmark); "
+            "*Named Entity Transliteration with Comparable Corpora* (NER / transliteration). "
+            "Topic counts for \"Topic Modeling\" should be interpreted with caution."
+        )
 
     # ── Publication Years ─────────────────────────────────────────────────
     st.markdown("### Publication Years")
@@ -1416,6 +1427,90 @@ if page == "ERE-Datasets":
         f"Median: {int(_cit_df['cited_by_count'].median())} · "
         f"Max: {int(_cit_df['cited_by_count'].max()):,}"
     )
+
+    # ── Citation Counts vs. Publication Year ──────────────────────────────
+    st.markdown("### Citation Counts vs. Publication Year")
+    _scatter_df = _meta_df[
+        _meta_df["cited_by_count"].notna() & _meta_df["year"].notna()
+    ].copy()
+    _scatter_df["cited_by_count"] = pd.to_numeric(_scatter_df["cited_by_count"], errors="coerce")
+    _scatter_df["year"] = _scatter_df["year"].astype(int)
+    _scatter_df = _scatter_df[_scatter_df["cited_by_count"].notna()]
+    rng = np.random.default_rng(42)
+    _scatter_fig = go.Figure()
+    for _ds_key, _ds_label, _mask in _sub_datasets:
+        _sub = _scatter_df[_mask[_scatter_df.index]]
+        if _sub.empty:
+            continue
+        _jitter = rng.uniform(-0.3, 0.3, size=len(_sub))
+        _hover_title = _sub["title"].fillna("").astype(str) if "title" in _sub.columns else pd.Series([""] * len(_sub))
+        _scatter_fig.add_trace(go.Scatter(
+            x=_sub["year"] + _jitter,
+            y=_sub["cited_by_count"],
+            mode="markers",
+            name=_ds_label,
+            marker=dict(color=_DS_COLORS.get(_ds_key, "#888"), size=6, opacity=0.7),
+            customdata=np.stack([_hover_title.values, _sub["cited_by_count"].values], axis=1),
+            hovertemplate="<b>%{customdata[0]}</b><br>Year: %{x:.0f}<br>Citations: %{customdata[1]:,.0f}<extra></extra>",
+        ))
+    _scatter_fig.update_layout(
+        height=420,
+        xaxis_title="Publication Year",
+        yaxis_title="Citation Count",
+        yaxis_type="log",
+        xaxis=dict(tickmode="linear", dtick=1),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        margin=dict(l=40, r=20, t=20, b=40),
+    )
+    st.plotly_chart(_scatter_fig, use_container_width=True)
+    st.caption(
+        f"{len(_scatter_df)} papers with both year and citation data shown. "
+        "Y-axis is log-scaled. X-axis jitter added to reduce overplotting."
+    )
+
+    # Statistical test: Spearman rank correlation per subcorpus + overall
+    with st.expander("Statistical test: Spearman rank correlation (year vs. citation count)"):
+        st.markdown(
+            "**Spearman's ρ** measures the monotonic relationship between publication year "
+            "and citation count (non-parametric, no normality assumed). "
+            "A negative ρ indicates that older papers have more citations (recency effect). "
+            "Significance level: α = 0.05."
+        )
+        _test_rows = []
+        # Per subcorpus
+        for _ds_key, _ds_label, _mask in _sub_datasets:
+            _sub = _scatter_df[_mask[_scatter_df.index]]
+            if len(_sub) < 4:
+                _test_rows.append({
+                    "Subcorpus": _ds_label,
+                    "n": len(_sub),
+                    "ρ": "–",
+                    "p-value": "–",
+                    "Significant (α=0.05)": "–",
+                })
+                continue
+            _r, _p = stats.spearmanr(_sub["year"], _sub["cited_by_count"])
+            _test_rows.append({
+                "Subcorpus": _ds_label,
+                "n": len(_sub),
+                "ρ": f"{_r:+.3f}",
+                "p-value": f"{_p:.3e}" if _p < 0.001 else f"{_p:.4f}",
+                "Significant (α=0.05)": "yes" if _p < 0.05 else "no",
+            })
+        # Overall
+        _r_all, _p_all = stats.spearmanr(_scatter_df["year"], _scatter_df["cited_by_count"])
+        _test_rows.append({
+            "Subcorpus": "**All datasets**",
+            "n": len(_scatter_df),
+            "ρ": f"{_r_all:+.3f}",
+            "p-value": f"{_p_all:.3e}" if _p_all < 0.001 else f"{_p_all:.4f}",
+            "Significant (α=0.05)": "yes" if _p_all < 0.05 else "no",
+        })
+        st.dataframe(pd.DataFrame(_test_rows).set_index("Subcorpus"), use_container_width=True)
+        st.markdown(
+            "_Note: Spearman's ρ is computed on raw citation counts (not log-transformed). "
+            "Small subcorpora (SciER-OOD, n=5) have very low statistical power._"
+        )
 
     # ── Outlet Types ──────────────────────────────────────────────────────
     st.markdown("### Outlet Types")
@@ -1538,7 +1633,7 @@ if page == "ERE-Datasets":
 
     # ── Top Annotated Tasks / Datasets / Methods ─────────────────────────
     _ec_data_ds = _load_entity_cocitation()
-    _ere_ds_keys = [("gsap", "GSAP"), ("scier", "SciER"), ("scinlp", "SciNLP")]
+    _ere_ds_keys = [("gsap-ere", "GSAP"), ("scier", "SciER"), ("scinlp", "SciNLP")]
     _ere_top_n = 15
 
     def _ere_entity_chart(etype: str, title: str, desc: str) -> None:
@@ -1636,7 +1731,7 @@ if page == "Entity Map":
             st.warning(f"No data for entity type '{em_etype}'.")
         else:
             # Select union of top 50 per dataset to reduce dataset-size bias
-            _em_ds_keys = ["gsap", "scier", "scinlp"]
+            _em_ds_keys = ["gsap-ere", "scier", "scinlp"]
             _em_selected_terms: set[str] = set()
             for _ds_key in _em_ds_keys:
                 _ds_sorted = sorted(
@@ -1663,7 +1758,7 @@ if page == "Entity Map":
                     "y":        _e["y"],
                     "x_spring": _e.get("x_spring", _e["x"]),
                     "y_spring": _e.get("y_spring", _e["y"]),
-                    "n_gsap":   _ds.get("gsap", 0),
+                    "n_gsap":   _ds.get("gsap-ere", 0),
                     "n_scier":  _ds.get("scier", 0),
                     "n_scinlp": _ds.get("scinlp", 0),
                 })
@@ -1883,13 +1978,35 @@ if page == "Topic Map":
                 + ", ".join(_tm_sorted.head(_tm_exclude_top)["topic"].tolist())
             )
 
-        st.caption(f"Showing {len(_tm_plot)} / {len(_tm_df)} topics")
+        # Count unique publications covered by the visible topics
+        _visible_topic_names = set(_tm_plot["topic"].tolist())
+        _tm_full_meta = _load_full_meta_df()
+        if "openalex_topics" in _tm_full_meta.columns and _visible_topic_names:
+            _n_pubs_covered = int(
+                _tm_full_meta["openalex_topics"].apply(
+                    lambda t: isinstance(t, list)
+                    and any(
+                        isinstance(e, dict) and e.get("name") in _visible_topic_names
+                        for e in t
+                    )
+                ).sum()
+            )
+        else:
+            _n_pubs_covered = 0
+        _n_pubs_total = int(_tm_full_meta["openalex_topics"].apply(
+            lambda t: isinstance(t, list) and len(t) > 0
+        ).sum()) if "openalex_topics" in _tm_full_meta.columns else len(_tm_full_meta)
+
+        st.caption(
+            f"Showing {len(_tm_plot)} / {len(_tm_df)} topics · "
+            f"{_n_pubs_covered} / {_n_pubs_total} publications represented"
+        )
 
         _tm_max = int(_tm_plot["n_papers"].max()) if not _tm_plot.empty else 1
         _tm_sizes = 6 + 14 * (_tm_plot["n_papers"] - 2) / max(_tm_max - 2, 1)
 
         # Per-dataset columns (may be absent if parquet was built without them)
-        _has_ds_cols = all(f"n_{ds}" in _tm_plot.columns for ds in ["gsap", "scier", "scinlp"])
+        _has_ds_cols = all(f"n_{ds}" in _tm_plot.columns for ds in ["gsap-ere", "scier", "scinlp"])
         _has_split_cols = _has_ds_cols and all(
             c in _tm_plot.columns
             for c in ["n_gsap_hf", "n_gsap_arxiv", "total_gsap_hf", "total_gsap_arxiv", "total_scier", "total_scinlp"]
@@ -1974,7 +2091,7 @@ if page == "Topic Map":
             else:
                 # Fallback: raw counts, original three datasets
                 _dom = _active_plot[["n_gsap", "n_scier", "n_scinlp"]].idxmax(axis=1).str.replace("n_", "").values
-                _dom_groups = [("gsap", "GSAP"), ("scier", "SciER"), ("scinlp", "SciNLP")]
+                _dom_groups = [("gsap-ere", "GSAP"), ("scier", "SciER"), ("scinlp", "SciNLP")]
 
             for _ds, _ds_label in _dom_groups:
                 _mask = _dom == _ds

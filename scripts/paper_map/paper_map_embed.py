@@ -10,6 +10,7 @@ import yaml
 
 from unifiedsciere.paper_map.embed import (
     compute_embeddings,
+    load_cached_embedding_dict,
     load_cached_embeddings,
     load_papers,
     normalize_embeddings,
@@ -23,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    config_path = Path(__file__).parent / "paper_map_config.yaml"
+    config_path = Path(__file__).resolve().parents[2] / "configs" / "paper_map" / "paper_map_config.yaml"
     with open(config_path) as f:
         cfg = yaml.safe_load(f)
 
@@ -34,15 +35,23 @@ def main():
     papers = load_papers(cfg["data_path"])
     doc_ids = [p["doc_id"] for p in papers]
 
-    # Embeddings: compute or load cache
+    # Embeddings: load cache and only embed papers that are missing
     embeddings = load_cached_embeddings(out_dir, doc_ids)
     if embeddings is None:
-        embeddings = compute_embeddings(
-            papers,
-            model_name=cfg["model_name"],
-            adapter_name=cfg["adapter_name"],
-            batch_size=cfg["batch_size"],
-        )
+        cache = load_cached_embedding_dict(out_dir)
+        missing_papers = [p for p in papers if p["doc_id"] not in cache]
+        if missing_papers:
+            logger.info("Embedding %d new papers", len(missing_papers))
+            new_embeddings = compute_embeddings(
+                missing_papers,
+                model_name=cfg["model_name"],
+                adapter_name=cfg["adapter_name"],
+                batch_size=cfg["batch_size"],
+            )
+            for p, emb in zip(missing_papers, new_embeddings):
+                cache[p["doc_id"]] = emb.tolist()
+        # Drop stale entries and reorder to match current doc_ids
+        embeddings = np.array([cache[did] for did in doc_ids])
         save_embeddings(embeddings, doc_ids, out_dir)
 
     # Normalize

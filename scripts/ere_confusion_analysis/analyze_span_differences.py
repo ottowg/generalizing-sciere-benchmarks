@@ -17,8 +17,8 @@ from unifiedsciere.data_loader import load_corpus
 from unifiedsciere.types import Mention
 from unifiedsciere.unification.pipeline import apply_unification_pipeline
 
-DATASETS: list[Literal["scier", "scinlp", "gsap"]] = ["scier", "scinlp", "gsap"]
-MODELS: list[Literal["scier", "scinlp", "gsap"]] = ["scier", "scinlp", "gsap"]
+DATASETS: list[Literal["scier", "scinlp", "gsap-ere"]] = ["scier", "scinlp", "gsap-ere"]
+MODELS: list[Literal["scier", "scinlp", "gsap-ere"]] = ["scier", "scinlp", "gsap-ere"]
 SPLIT: Literal["dev"] = "dev"
 TOP_N = 30
 
@@ -50,8 +50,8 @@ def _mentions_to_gsaphub_format(
 
 
 def load_unified_predictions(
-    dataset: Literal["scier", "scinlp", "gsap"],
-    model: Literal["scier", "scinlp", "gsap"],
+    dataset: Literal["scier", "scinlp", "gsap-ere"],
+    model: Literal["scier", "scinlp", "gsap-ere"],
 ) -> list[Mention]:
     """Load predictions and apply unification pipeline."""
     corpus = load_corpus(dataset, SPLIT, data_type="predictions", trained_on=model)

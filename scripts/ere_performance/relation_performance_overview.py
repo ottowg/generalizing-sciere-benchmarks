@@ -7,14 +7,11 @@ Usage:
     python scripts/relation_performance_overview.py
 """
 
-import sys
 from pathlib import Path
 from typing import Literal
 
 import pandas as pd
 import yaml
-
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 import gsaphub as gh
 
@@ -26,7 +23,7 @@ from unifiedsciere.evaluate import (
 )
 from unifiedsciere.unification.pipeline import apply_unification_pipeline
 
-DATASETS: list[Literal["gsap", "scier", "scinlp"]] = ["gsap", "scier", "scinlp"]
+DATASETS: list[Literal["gsap-ere", "scier", "scinlp"]] = ["gsap-ere", "scier", "scinlp"]
 
 
 def _get_f1_column(df: pd.DataFrame) -> object:
@@ -64,12 +61,13 @@ def _evaluate_pair(train_ds: str, test_ds: str, split: str) -> pd.DataFrame | No
     )
 
     rels_gold = [
-        relation_to_gsaphub(r, idx) for idx, r in enumerate(gold_corpus.relation)
+        relation_to_gsaphub(r, idx, "gold")
+        for idx, r in enumerate(gold_corpus.relation)
     ]
     ents_gold = [mention_to_gsaphub(m) for m in gold_corpus.mentions]
 
     rels_pred = [
-        relation_to_gsaphub(r, idx)
+        relation_to_gsaphub(r, idx, "pred")
         for idx, r in enumerate(pred_corpus.relations_predicted)
     ]
     ents_pred = [mention_to_gsaphub(m) for m in pred_corpus.mentions_predicted]
@@ -115,7 +113,7 @@ def main() -> None:
     split = "test"
 
     mappings_path = (
-        Path(__file__).parent.parent
+        Path(__file__).parent.parent.parent
         / "src"
         / "unifiedsciere"
         / "unification"
@@ -143,11 +141,11 @@ def main() -> None:
     ]
     rows: list[list[str]] = []
 
-    for test_ds in DATASETS:
-        for label in relation_labels:
-            row = [label, test_ds.upper()]
+    for label in relation_labels:
+        for train_ds in DATASETS:
+            row = [label, train_ds.upper()]
             values: list[float | None] = []
-            for train_ds in DATASETS:
+            for test_ds in DATASETS:
                 metrics = metrics_by_pair.get((train_ds, test_ds))
                 if metrics is None:
                     values.append(None)
@@ -161,7 +159,7 @@ def main() -> None:
                     values.append(float(match.iloc[0][f1_col]) * 100)
             max_val = max([v for v in values if v is not None], default=None)
             for idx, val in enumerate(values):
-                is_diag = DATASETS[idx] == test_ds
+                is_diag = DATASETS[idx] == train_ds
                 is_max = max_val is not None and val == max_val
                 row.append(_format_cell(val, is_diag, is_max))
             rows.append(row)

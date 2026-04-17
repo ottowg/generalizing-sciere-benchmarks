@@ -17,11 +17,8 @@ import logging
 import os
 import signal
 import subprocess
-import sys
 import time
 from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 import httpx
 import matplotlib.pyplot as plt

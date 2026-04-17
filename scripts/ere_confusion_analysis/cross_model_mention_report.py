@@ -10,13 +10,9 @@ scheme (trained_on), since predictions carry the model's label vocabulary
 regardless of which dataset they are evaluated on.
 """
 
-import sys
 from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
-
-# Add src to path
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 from gsaphub.match.entities import partial
 
@@ -26,8 +22,8 @@ from unifiedsciere.analysis.label_confusion import (
 from unifiedsciere.data_loader import load_corpus
 from unifiedsciere.unification.pipeline import apply_unification_pipeline
 
-MODELS = ["gsap", "scier", "scinlp"]
-DATASETS = ["gsap", "scier", "scinlp"]
+MODELS = ["gsap-ere", "scier", "scinlp"]
+DATASETS = ["gsap-ere", "scier", "scinlp"]
 ENTITY_TYPES = ["Dataset", "Method", "Task"]
 
 # Pipeline config: merge + drop + map + span normalization + dataset-specific corrections
@@ -36,7 +32,7 @@ PIPELINE_CONFIG = {
     "drop_unmapped": {"enabled": True},
     "map_labels": {"enabled": True},
     "dataset_corrections": {
-        "gsap": {
+        "gsap-ere": {
             "enabled": True,
             "mlmodelgeneric_analysis_file": "reports/ere_confusion_analysis/unification/gsap_analysis/gsap_unmatched_mlmodelgeneric_dev_20260208_122854.json",
             "min_count": 2,
@@ -49,23 +45,23 @@ PIPELINE_CONFIG = {
 
 # Human-readable group names, ordered: single models, pairs, all three
 GROUP_ORDER = [
-    frozenset(["gsap"]),
+    frozenset(["gsap-ere"]),
     frozenset(["scier"]),
     frozenset(["scinlp"]),
-    frozenset(["gsap", "scier"]),
-    frozenset(["gsap", "scinlp"]),
+    frozenset(["gsap-ere", "scier"]),
+    frozenset(["gsap-ere", "scinlp"]),
     frozenset(["scier", "scinlp"]),
-    frozenset(["gsap", "scier", "scinlp"]),
+    frozenset(["gsap-ere", "scier", "scinlp"]),
 ]
 
 GROUP_NAMES = {
-    frozenset(["gsap"]): "GSAP only",
+    frozenset(["gsap-ere"]): "GSAP only",
     frozenset(["scier"]): "SciER only",
     frozenset(["scinlp"]): "SciNLP only",
-    frozenset(["gsap", "scier"]): "GSAP + SciER",
-    frozenset(["gsap", "scinlp"]): "GSAP + SciNLP",
+    frozenset(["gsap-ere", "scier"]): "GSAP + SciER",
+    frozenset(["gsap-ere", "scinlp"]): "GSAP + SciNLP",
     frozenset(["scier", "scinlp"]): "SciER + SciNLP",
-    frozenset(["gsap", "scier", "scinlp"]): "All three",
+    frozenset(["gsap-ere", "scier", "scinlp"]): "All three",
 }
 
 TOP_N = 30  # Number of top mentions to show per group

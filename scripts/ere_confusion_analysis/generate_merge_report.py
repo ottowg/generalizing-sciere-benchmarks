@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 """Generate mention merging report for all datasets."""
 
-from src.unifiedsciere.unification import generate_merge_report
+from unifiedsciere.unification import generate_merge_report
 
 if __name__ == "__main__":
     print("Generating mention merge report...")
 
     report_path = generate_merge_report(
-        datasets=["scier", "scinlp", "gsap"],
+        datasets=["scier", "scinlp", "gsap-ere"],
         split="dev",
-        models=["scier", "scinlp", "gsap"],
+        models=["scier", "scinlp", "gsap-ere"],
         prefer_larger=True,
     )
 

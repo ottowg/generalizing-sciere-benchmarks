@@ -7,12 +7,9 @@ Usage:
     python scripts/relation_performance_report.py
 """
 
-import sys
 from pathlib import Path
 
 import pandas as pd
-
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
 import gsaphub as gh
 
@@ -324,9 +321,9 @@ def main():
     print("=== Relation Extraction Performance Report ===")
     print(f"Output: {output_path}")
 
-    dataset = "gsap"
+    dataset = "gsap-ere"
     split = "test"
-    trained_on = "gsap"
+    trained_on = "gsap-ere"
     config_key = f"{trained_on.upper()}→{dataset.upper()} ({split})"
 
     unified = evaluate_dataset(dataset, split, trained_on, apply_unification=True)

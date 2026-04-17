@@ -1,19 +1,19 @@
 """Publication metadata report.
 
-Loads bib files for GSAP, SciER, SciER-OOD, and SciNLP datasets,
-then generates bar charts comparing publication years across datasets
-and writes a markdown report.
+Loads all paper metadata from data/metadata/unified/all_papers.jsonl
+(the single source of truth), then generates bar charts comparing
+publication years across datasets and writes a markdown report.
 """
 
+import json
 from collections import Counter
 from pathlib import Path
 
-import bibtexparser
 import matplotlib.pyplot as plt
 import pandas as pd
 
-BIB_DIR = Path(__file__).parent.parent / "data" / "metadata" / "bib"
-OUT_DIR = Path(__file__).parent.parent / "reports" / "publications"
+ALL_PAPERS = Path(__file__).parent.parent.parent / "data" / "metadata" / "unified" / "all_papers.jsonl"
+OUT_DIR = Path(__file__).parent.parent.parent / "reports" / "paper_metadata"
 
 
 # ---------------------------------------------------------------------------
@@ -21,80 +21,41 @@ OUT_DIR = Path(__file__).parent.parent / "reports" / "publications"
 # ---------------------------------------------------------------------------
 
 
-def load_bib(path: Path) -> list[dict]:
-    """Parse a .bib file and return list of entry dicts."""
-    with open(path) as f:
-        db = bibtexparser.load(f)
-    return db.entries
-
-
-def _rows_from_entries(entries: list[dict], dataset: str) -> list[dict]:
-    """Convert bib entries to row dicts with year, group, dataset, has_abstract."""
+def load_all_papers() -> pd.DataFrame:
+    """Load all papers from the unified all_papers.jsonl."""
     rows = []
-    for e in entries:
-        rows.append(
-            {
-                "doc_id": e.get("doc_id", ""),
-                "year": int(e["year"]) if e.get("year", "").isdigit() else None,
-                "group": e.get("group", ""),
-                "dataset": dataset,
-                "has_abstract": bool(e.get("abstract", "").strip()),
-            }
-        )
-    return rows
-
-
-def load_gsap() -> pd.DataFrame:
-    """Load GSAP metadata from gsap_all.bib.
-
-    Adds a 'selection' column based on the doc_id prefix:
-      - doc_id starting with '0' -> 'huggingface_selection'
-      - doc_id starting with '1' -> 'arxiv_random_selection'
-    """
-    entries = load_bib(BIB_DIR / "gsap_all.bib")
-    rows = []
-    for e in entries:
-        doc_id = e.get("doc_id", "")
-        if doc_id.startswith("0"):
-            selection = "huggingface_selection"
-        elif doc_id.startswith("1"):
-            selection = "arxiv_random_selection"
-        else:
-            selection = "unknown"
-        rows.append(
-            {
-                "doc_id": doc_id,
-                "year": int(e["year"]) if e.get("year", "").isdigit() else None,
-                "group": e.get("group", ""),
-                "selection": selection,
-                "dataset": "gsap",
-                "has_abstract": bool(e.get("abstract", "").strip()),
-            }
-        )
+    with open(ALL_PAPERS) as f:
+        for line in f:
+            p = json.loads(line)
+            rows.append({
+                "doc_id": p.get("doc_id", ""),
+                "year": p.get("year"),
+                "split": p.get("split", ""),
+                "dataset": p.get("dataset", ""),
+                "selection": p.get("selection", ""),
+                "has_abstract": bool((p.get("abstract") or "").strip()),
+                "has_openalex": bool((p.get("openalex_id") or "").strip()),
+                "has_arxiv": bool((p.get("arxiv_id") or "").strip()),
+                "has_s2": bool((p.get("s2_paper_id") or "").strip()),
+                "has_doi": bool((p.get("doi") or "").strip()),
+            })
     return pd.DataFrame(rows)
 
 
-def load_scier() -> pd.DataFrame:
-    """Load SciER metadata by combining train/dev/test bib files."""
-    rows = []
-    for name in ["scier_train", "scier_dev", "scier_test"]:
-        rows.extend(_rows_from_entries(load_bib(BIB_DIR / f"{name}.bib"), "scier"))
-    return pd.DataFrame(rows)
+def load_gsap(df: pd.DataFrame) -> pd.DataFrame:
+    return df[df["dataset"] == "gsap-ere"].copy()
 
 
-def load_scier_ood() -> pd.DataFrame:
-    """Load SciER out-of-distribution metadata."""
-    return pd.DataFrame(
-        _rows_from_entries(load_bib(BIB_DIR / "scier_ood.bib"), "scier_ood")
-    )
+def load_scier(df: pd.DataFrame) -> pd.DataFrame:
+    return df[df["dataset"] == "scier"].copy()
 
 
-def load_scinlp() -> pd.DataFrame:
-    """Load SciNLP metadata from scinlp.bib."""
-    bib_path = BIB_DIR / "scinlp.bib"
-    if not bib_path.exists() or bib_path.stat().st_size == 0:
-        return pd.DataFrame(columns=["doc_id", "year", "group", "dataset"])
-    return pd.DataFrame(_rows_from_entries(load_bib(bib_path), "scinlp"))
+def load_scier_ood(df: pd.DataFrame) -> pd.DataFrame:
+    return df[df["dataset"] == "scier_ood"].copy()
+
+
+def load_scinlp(df: pd.DataFrame) -> pd.DataFrame:
+    return df[df["dataset"] == "scinlp"].copy()
 
 
 # ---------------------------------------------------------------------------
@@ -102,14 +63,14 @@ def load_scinlp() -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 
 DATASET_COLORS = {
-    "gsap": "#4C72B0",
+    "gsap-ere": "#4C72B0",
     "scier": "#DD8452",
     "scier_ood": "#55A868",
     "scinlp": "#C44E52",
 }
 
 DATASET_LABELS = {
-    "gsap": "GSAP",
+    "gsap-ere": "GSAP",
     "scier": "SciER",
     "scier_ood": "SciER-OOD",
     "scinlp": "SciNLP",
@@ -197,7 +158,7 @@ def write_markdown_report(
     lines.append("| Dataset | Papers | Year Range | Source |")
     lines.append("|---------|-------:|------------|--------|")
     sources = {
-        "gsap": "arXiv",
+        "gsap-ere": "arXiv",
         "scier": "Semantic Scholar",
         "scier_ood": "Semantic Scholar",
         "scinlp": "ACL Anthology",
@@ -225,6 +186,20 @@ def write_markdown_report(
         without_abs = n - with_abs
         pct = f"{100 * with_abs / n:.0f}%" if n > 0 else "n/a"
         lines.append(f"| {label} | {n} | {with_abs} | {without_abs} | {pct} |")
+    lines.append("")
+
+    # Identifier coverage
+    lines.append("### Identifier Coverage")
+    lines.append("")
+    lines.append("| Dataset | Papers | OpenAlex | arXiv | Semantic Scholar | DOI |")
+    lines.append("|---------|-------:|---------:|------:|----------------:|----:|")
+    for key, df in dfs.items():
+        label = DATASET_LABELS[key]
+        n = len(df)
+        def pct(col):
+            c = int(df[col].sum()) if col in df.columns else 0
+            return f"{c} ({100 * c // n}%)" if n > 0 else "n/a"
+        lines.append(f"| {label} | {n} | {pct('has_openalex')} | {pct('has_arxiv')} | {pct('has_s2')} | {pct('has_doi')} |")
     lines.append("")
 
     # GSAP selection breakdown
@@ -278,10 +253,11 @@ def write_markdown_report(
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    gsap_df = load_gsap()
-    scier_df = load_scier()
-    scier_ood_df = load_scier_ood()
-    scinlp_df = load_scinlp()
+    all_df = load_all_papers()
+    gsap_df = load_gsap(all_df)
+    scier_df = load_scier(all_df)
+    scier_ood_df = load_scier_ood(all_df)
+    scinlp_df = load_scinlp(all_df)
 
     # Summary
     for name, df in [
@@ -299,7 +275,7 @@ def main() -> None:
     # Collect datasets with data
     dfs: dict[str, pd.DataFrame] = {}
     for key, df in [
-        ("gsap", gsap_df),
+        ("gsap-ere", gsap_df),
         ("scier", scier_df),
         ("scier_ood", scier_ood_df),
         ("scinlp", scinlp_df),
