@@ -1,0 +1,129 @@
+# Semantic group definitions for UnifiedSciERE
+# Covers raw dataset-specific labels as well as unified labels.
+# Used for grouping entity and relation types in quality analysis.
+#
+# entity_groups   — groups of entity (mention) label strings
+# relation_groups — groups of relation label strings
+#
+# Each group entry:
+#   description: short human-readable explanation
+#   color:       hex color used in the UI for this group
+#   members:     list of label strings that belong to this group
+
+entity_groups:
+
+  Data:
+    description: Datasets and data sources
+    color: "#d97706"
+    members:
+      - Dataset          # GSAP, SciER (unified)
+      - DataSource       # GSAP raw
+      - DatasetGeneric   # GSAP raw
+      - dataset          # SciNLP raw (lowercase)
+
+  Model:
+    description: Methods, models and architectures
+    color: "#2563eb"
+    members:
+      - Method           # GSAP, SciER, SciNLP (unified)
+      - MLModel          # GSAP raw
+      - MLModelGeneric   # GSAP raw
+      - ModelArchitecture # GSAP raw
+      - method           # SciNLP raw (lowercase)
+
+  Task:
+    description: Research tasks and problems
+    color: "#b91c1c"
+    members:
+      - Task             # GSAP, SciER (unified)
+      - task             # SciNLP raw (lowercase)
+
+  Evaluation:
+    description: Metrics and evaluation measures
+    color: "#15803d"
+    members:
+      - metric           # SciNLP raw (lowercase)
+
+  Reference:
+    description: Links, URLs and bibliographic references
+    color: "#6b7280"
+    members:
+      - ReferenceLink    # GSAP raw
+      - URL              # GSAP raw
+
+
+relation_groups:
+
+  Model Design:
+    description: Structural and compositional design of models and methods
+    color: "#2563eb"
+    members:
+      - usedFor          # GSAP raw + unified canonical (method used for model construction)
+      - architecture     # GSAP raw (component is part of model; inverted usedFor)
+      - isBasedOn        # GSAP raw (model builds on prior work; inverted usedFor)
+      - enhancedBy       # SciNLP raw (method enhanced by another; inverted usedFor)
+      - UsedFor_if_object_is_Method  # SciNLP context-specific variant
+
+  Task Binding:
+    description: Applying or evaluating methods on tasks and benchmarks
+    color: "#b91c1c"
+    members:
+      - appliedTo        # unified canonical
+      - benchmarkFor     # GSAP raw + unified canonical
+      - Benchmark-For    # SciER raw
+      - evaluatedOn      # GSAP raw + SciNLP raw (inverted benchmarkFor)
+      - Evaluated-With   # SciER raw
+      - evaluatedBy      # SciNLP raw
+      - Used-For         # SciER raw (method used for task)
+      - UsedFor          # SciNLP raw (method used for task)
+
+  Data Usage:
+    description: Using data for training or measurement
+    color: "#d97706"
+    members:
+      - trainedOn        # GSAP raw
+      - Trained-With     # SciER raw
+      - trainedWith      # SciNLP raw
+      - trainedEvaluatedOn  # unified canonical
+      - MeasuredBy       # SciNLP raw (entity measured by metric)
+
+  Data Provenance:
+    description: Origin, derivation and transformation of data
+    color: "#64748b"
+    members:
+      - sourcedFrom      # GSAP raw
+      - transformedFrom  # GSAP raw
+      - generatedBy      # GSAP raw
+
+  Data Properties:
+    description: Intrinsic properties and type information of data resources
+    color: "#0891b2"
+    members:
+      - size             # GSAP raw (dataset/resource size)
+      - hasInstanceType  # GSAP raw (entity has an instance type)
+
+  Peer Relations:
+    description: Relations between entities at the same conceptual level
+    color: "#7c3aed"
+    members:
+      - coreference      # GSAP raw + unified canonical
+      - Synonym-Of       # SciER raw
+      - similarWith      # SciNLP raw
+      - isHyponymOf      # GSAP raw + unified canonical
+      - SubClass-Of      # SciER raw
+      - subclassOf       # SciNLP raw
+      - SubTask-Of       # SciER raw
+      - subtaskOf        # SciNLP raw
+      - isPartOf         # GSAP raw
+      - Part-Of          # SciER raw
+      - partOf           # SciNLP raw
+      - isComparedTo     # GSAP raw + unified canonical
+      - Compare-With     # SciER raw
+      - compareWith      # SciNLP raw
+
+  Referencing:
+    description: Citation and hyperlink references
+    color: "#94a3b8"
+    members:
+      - citation         # GSAP raw
+      - url              # GSAP raw

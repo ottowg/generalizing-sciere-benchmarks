@@ -57,7 +57,17 @@ mappings:
             inverted: true
         UsedFor_if_object_is_Method: usedFor
 
-    gsap:
+    # Unified-SciERE relation mappings (model trained on unified schema — identity mapping)
+    unified-sciere:
+        appliedTo: appliedTo
+        benchmarkFor: benchmarkFor
+        trainedEvaluatedOn: trainedEvaluatedOn
+        coreference: coreference
+        isHyponymOf: isHyponymOf
+        isComparedTo: isComparedTo
+        usedFor: usedFor
+
+    gsap-ere:
         appliedTo: appliedTo
         benchmarkFor: benchmarkFor
         citation: null

@@ -11,7 +11,7 @@ unified_labels:
 # Mappings from each dataset's labels to unified labels
 mappings:
     # GSAP-ERE label mappings
-    gsap:
+    gsap-ere:
         Dataset: Dataset
         DatasetGeneric: null # Not mapped to unified set
         DataSource: Dataset
@@ -35,3 +35,9 @@ mappings:
         method: Method
         task: Task
         metric: null # Not mapped to unified set
+
+    # Unified-SciERE label mappings (model trained on unified schema — identity mapping)
+    unified-sciere:
+        Dataset: Dataset
+        Method: Method
+        Task: Task

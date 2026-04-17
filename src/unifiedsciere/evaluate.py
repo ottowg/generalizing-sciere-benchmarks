@@ -16,7 +16,7 @@ def mention_to_gsaphub(m: Mention) -> dict[str, object]:
     }
 
 
-def relation_to_gsaphub(r: Relation, idx: int) -> dict[str, object]:
+def relation_to_gsaphub(r: Relation, idx: int, annotator: str) -> dict[str, object]:
     """Convert a Relation to the dict format expected by gsaphub.evaluate."""
     return {
         "id": idx,
@@ -25,6 +25,7 @@ def relation_to_gsaphub(r: Relation, idx: int) -> dict[str, object]:
         "subject_id": r.subject.id,
         "object_id": r.object.id,
         "relation_label": r.label,
+        "annotator": annotator,
     }
 
 

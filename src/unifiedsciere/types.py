@@ -11,10 +11,16 @@ class Sentence:
     idx: int
     split: str
     n_mentions: int = 0
+    tokens: list[str] = field(default_factory=list)
 
     @property
     def id(self):
         return f"{self.doc_id} {self.idx}"
+
+    @property
+    def n_tokens(self) -> int:
+        """Number of tokens (uses gold tokenization when available, falls back to whitespace split)."""
+        return len(self.tokens) if self.tokens else len(self.text.split())
 
 
 @dataclass
@@ -30,8 +36,8 @@ class Mention:
     end_token: int
     split: str
     score: float = 1.0  # Confidence score (1.0 for gold annotations)
-    annotator: str = "gold"  # "gold" or model name (e.g., "gsap", "scier", "scinlp")
-    dataset: str = ""  # Dataset name (e.g., "gsap", "scier", "scinlp")
+    annotator: str = "gold"  # "gold" or model name (e.g., "gsap-ere", "scier", "scinlp")
+    dataset: str = ""  # Dataset name (e.g., "gsap-ere", "scier", "scinlp")
     label_original: str = ""  # Original label before unification mapping
 
 
@@ -41,8 +47,8 @@ class Relation:
     label: str
     object: Mention
     score: float = 1.0  # Confidence score (1.0 for gold annotations)
-    annotator: str = "gold"  # "gold" or model name (e.g., "gsap", "scier", "scinlp")
-    dataset: str = ""  # Dataset name (e.g., "gsap", "scier", "scinlp")
+    annotator: str = "gold"  # "gold" or model name (e.g., "gsap-ere", "scier", "scinlp")
+    dataset: str = ""  # Dataset name (e.g., "gsap-ere", "scier", "scinlp")
 
     @property
     def signature(self):
@@ -178,7 +184,7 @@ class PaperMetadata:
 
     # ── identity ──────────────────────────────────────────────────────────
     doc_id: str  # dataset-internal document id (e.g. "00015_1910_09700.txt")
-    dataset: str  # source corpus: "gsap", "scier", "scier_ood", "scinlp"
+    dataset: str  # source corpus: "gsap-ere", "scier", "scier_ood", "scinlp"
     split: str  # data split: "train", "dev", "test"
 
     # ── core bibliographic fields ─────────────────────────────────────────
@@ -220,6 +226,12 @@ class PaperMetadata:
     cited_by_count: int | None = None  # citation count from OpenAlex
     references: list[str] = field(default_factory=list)  # OpenAlex work IDs of references
     openalex_topics: list[dict] = field(default_factory=list)  # [{"name": str, "score": float}, ...]
+
+    # ── Semantic Scholar enrichment ───────────────────────────────────────
+    s2_fields_of_study: list[dict] = field(default_factory=list)
+    # [{"category": str, "source": str}, ...]
+    # source is "s2-fos-model" (S2 classifier) or "external" (author-declared)
+    # categories e.g.: "Computer Science", "Mathematics", "Linguistics"
 
     # ── GSAP-specific ─────────────────────────────────────────────────────
     selection: str = ""  # "huggingface_selection" or "arxiv_random_selection"

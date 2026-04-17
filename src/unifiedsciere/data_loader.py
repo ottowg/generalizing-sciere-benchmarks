@@ -6,6 +6,7 @@ from typing import Any, Literal
 
 from dotenv import load_dotenv
 
+from .paths import project_root
 from .types import Corpus, Mention, Relation, Sentence
 
 # Load environment variables
@@ -13,10 +14,10 @@ load_dotenv()
 
 
 def load_corpus(
-    dataset: Literal["scier", "scinlp", "gsap"],
+    dataset: Literal["scier", "scinlp", "gsap-ere"],
     split: Literal["train", "dev", "test"],
     data_type: Literal["gold", "predictions"] = "gold",
-    trained_on: Literal["scier", "scinlp", "gsap"] | None = None,
+    trained_on: Literal["scier", "scinlp", "gsap-ere", "unified-sciere"] | None = None,
     ner_field: str = "ner",
     rel_field: str = "relations",
 ) -> Corpus:
@@ -28,10 +29,10 @@ def load_corpus(
 
     The function automatically constructs filenames based on the dataset and split:
     - For gold data: "{dataset}_{split}.jsonl" (e.g., "scinlp_dev.jsonl")
-    - For predictions: "{trained_on}_{dataset}_{split}.jsonl" (e.g., "gsap_scinlp_test.jsonl")
+    - For predictions: "{dataset}_model_{trained_on}_{split}.jsonl" (e.g., "scinlp_model_gsap-ere_test.jsonl")
 
     Args:
-        dataset: Dataset to load - "scier", "scinlp", or "gsap"
+        dataset: Dataset to load - "scier", "scinlp", or "gsap-ere"
         split: Data split to load - "train", "dev", or "test"
         data_type: Type of data to load - "gold" or "predictions"
         trained_on: For predictions, the dataset the model was trained on (required if data_type="predictions")
@@ -50,16 +51,16 @@ def load_corpus(
         >>> corpus = load_corpus("scinlp", "dev", data_type="gold")
 
         >>> # Load predictions from a model trained on gsap, evaluated on scinlp test set
-        >>> corpus = load_corpus("scinlp", "test", data_type="predictions", trained_on="gsap")
+        >>> corpus = load_corpus("scinlp", "test", data_type="predictions", trained_on="gsap-ere")
     """
     # Validate and construct filename
     if data_type == "predictions":
         if trained_on is None:
             raise ValueError(
                 "trained_on parameter is required when data_type='predictions'. "
-                "Specify which dataset the model was trained on (e.g., 'gsap', 'scinlp', 'scier')."
+                "Specify which dataset the model was trained on (e.g., 'gsap-ere', 'scinlp', 'scier')."
             )
-        filename = f"{trained_on}_{dataset}_{split}.jsonl"
+        filename = f"{dataset}_model_{trained_on}_{split}.jsonl"
     else:
         filename = f"{dataset}_{split}.jsonl"
 
@@ -83,8 +84,10 @@ def load_corpus(
             f"Invalid data_type: {data_type}. Must be 'gold' or 'predictions'"
         )
 
-    # Convert to Path and verify it exists
+    # Convert to Path and verify it exists (resolve relative paths against project root)
     data_path = Path(data_folder)
+    if not data_path.is_absolute():
+        data_path = project_root() / data_path
     if not data_path.exists():
         raise ValueError(f"Data folder does not exist: {data_path}")
 
@@ -119,7 +122,7 @@ def _process_docs(
         docs: List of document dictionaries
         ner_field: Field name for named entity recognition data
         rel_field: Field name for relations data
-        dataset: Dataset name (e.g., "gsap", "scier", "scinlp")
+        dataset: Dataset name (e.g., "gsap-ere", "scier", "scinlp")
         annotator: Annotator name ("gold" or model name)
         is_prediction: Whether this is prediction data (loads predicted fields)
 
@@ -203,7 +206,7 @@ def _process_docs(
         doc_token = list(chain(*doc["sentences"]))
         for sent_idx, sent in enumerate(doc["sentences"]):
             sent_text = " ".join(sent)
-            sentence = Sentence(sent_text, doc_id, sent_idx, split)
+            sentence = Sentence(sent_text, doc_id, sent_idx, split, tokens=list(sent))
             sentences.append(sentence)
             # Process gold mentions
             sent_ner = doc[ner_field][sent_idx]
@@ -287,12 +290,14 @@ def _process_docs(
             if is_prediction and "predicted_ner_proba" in doc:
                 sent_ner_pred = doc["predicted_ner_proba"][sent_idx]
                 for item in sent_ner_pred:
-                    begin_token, end_token, label, score = (
+                    begin_token, end_token, score, label = (
                         item[0],
                         item[1],
                         item[2],
                         item[3],
                     )
+                    if type(score) is str and type(label) is float:
+                        score, label = label, score
                     token = doc_token[begin_token : end_token + 1]
                     begin = begins[begin_token]
                     end = ends[end_token]
