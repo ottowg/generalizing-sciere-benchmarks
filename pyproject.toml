@@ -107,11 +107,11 @@ addopts = "-v"
 
 
 
-[tool.uv]
-
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "ipykernel>=7.2.0",
     "pytest>=9.0.2",
+    "ruff>=0.15.10",
 ]
 
 
