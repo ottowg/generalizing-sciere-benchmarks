@@ -37,7 +37,7 @@ map_relations:
 # Apply model/dataset-specific error corrections
 dataset_corrections:
     # GSAP-specific corrections
-    gsap:
+    gsap-ere:
         enabled: true
         # Path to the MLModelGeneric analysis JSON file
         # Can be absolute or relative to project root
@@ -45,6 +45,43 @@ dataset_corrections:
         # Minimum count threshold for filtering
         # Mentions appearing >= min_count times in the analysis will be filtered
         min_count: 2
+        # Static blacklist — always filtered regardless of analysis file
+        # Bare generic/anaphoric terms that are never valid Method entity names
+        static_blacklist:
+            - "model"
+            - "all"
+            - "baseline"
+            - "pre-trained"
+            - "generative"
+            - "best"
+            - "classifier"
+            - "previous"
+            - "state-of-the-art"
+            - "there"
+            - "some"
+            - "new"
+            - "approach"
+            - "fine-tuning"
+            - "them"
+            - "each"
+            - "other"
+            - "those"
+            - "two"
+            - "their"
+            - "sentence"
+            - "state - of - the - art"
+            - "pre - trained"
+            - "base"
+            - "word"
+            - "system"
+            - "linear"
+            - "trained"
+            - "large"
+        # Pattern blacklist — label-specific regex patterns
+        # Mentions matching these patterns (case-insensitive) will be filtered
+        pattern_blacklist:
+            Method:
+                - "\\b\\w+ing$"  # generic -ing forms (e.g. "training", "sampling")
 
     # SciER-specific corrections (placeholder for future use)
     scier:
