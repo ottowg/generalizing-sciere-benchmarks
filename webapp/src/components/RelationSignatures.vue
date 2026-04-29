@@ -49,7 +49,7 @@ v-container(fluid)
         v-col(cols="auto")
           .text-caption.text-medium-emphasis.mb-1 Label set
           v-btn-toggle(v-model="filterLabelSet" mandatory density="compact" variant="outlined" color="teal")
-            v-btn(value="original" size="small" prepend-icon="mdi-label-outline") Original
+            v-btn(value="original" size="small" prepend-icon="mdi-label-outline" :disabled="filterModel === 'unified-sciere'") Original
             v-btn(value="unified"  size="small" prepend-icon="mdi-link-variant") Unified
 
       v-row.mb-1(dense align="center")
@@ -155,12 +155,20 @@ v-container(fluid)
           hover
         )
           template(#item.dataset="{ item }")
-            v-chip(:color="dsColor(item.dataset)" size="small" variant="tonal") {{ item.dataset }}
+            v-chip(
+              :color="dsColor(item.dataset)" size="small" variant="tonal"
+              style="cursor:pointer"
+              @mouseenter="fFilterDataset = item.dataset; fFilterModel = 'gold'"
+            ) {{ item.dataset }}
           template(v-for="split in violationSplits" :key="'vslot-'+split" #[`item.${split}`]="{ item }")
-            template(v-if="item[split]")
-              span(:style="forbiddenPctStyle(item[split].pct)") {{ item[split].pct.toFixed(1) }}%
-              span.text-disabled.ml-1 ({{ item[split].forbidden }}/{{ item[split].total }})
-            span.text-disabled(v-else) —
+            span(
+              style="cursor:pointer"
+              @mouseenter="fFilterDataset = item.dataset; fFilterSplit = split; fFilterModel = 'gold'"
+            )
+              template(v-if="item[split]")
+                span(:style="forbiddenPctStyle(item[split].pct)") {{ item[split].forbidden }}/{{ item[split].total }}
+                span.text-disabled.ml-1 ({{ item[split].pct.toFixed(1) }}%)
+              span.text-disabled(v-else) —
           template(#bottom)
 
       //- ── Violation signature list ────────────────────────────────────────────
@@ -284,8 +292,12 @@ const fFilterSplit    = ref('(all)')
 const fFilterLabelSet = ref('original')
 
 // ── label selections ──────────────────────────────────────────────────────────
-const availableEntityLabels   = ref([])
-const availableRelationLabels = ref([])
+const availableEntityLabels = computed(() =>
+  [...new Set(aggregated.value.flatMap(r => [r.subject_type, r.object_type]))].sort()
+)
+const availableRelationLabels = computed(() =>
+  [...new Set(aggregated.value.map(r => r.relation_type))].sort()
+)
 const selectedEntityLabels    = ref([])
 const selectedRelationLabels  = ref([])
 
@@ -389,17 +401,17 @@ const relationCountMap = computed(() => {
 function entityCount(lbl)   { return entityCountMap.value.get(lbl)   ?? 0 }
 function relationCount(lbl) { return relationCountMap.value.get(lbl) ?? 0 }
 
-watch(aggregated, (rows) => {
-  const eLabels = [...new Set(rows.flatMap(r => [r.subject_type, r.object_type]))].sort()
-  const rLabels = [...new Set(rows.map(r => r.relation_type))].sort()
-  availableEntityLabels.value   = eLabels
-  availableRelationLabels.value = rLabels
-  for (const l of rLabels) relColorStable(l)
-  const def = defaultSelectedLabels(eLabels, rLabels)
+watch(filterModel, (model) => {
+  if (model === 'unified-sciere') filterLabelSet.value = 'unified'
+})
+
+watch(availableEntityLabels, (eLabels) => {
+  for (const l of availableRelationLabels.value) relColorStable(l)
+  const def = defaultSelectedLabels(eLabels, availableRelationLabels.value)
   selectedEntityLabels.value   = def.eLabels
   selectedRelationLabels.value = def.rLabels
   graphVizRef.value?.clearPositions()
-}, { immediate: false })
+})
 
 const visibleAggregated = computed(() => {
   const eSet = new Set(selectedEntityLabels.value)
@@ -407,8 +419,7 @@ const visibleAggregated = computed(() => {
   return aggregated.value.filter(r =>
     eSet.has(r.subject_type) && eSet.has(r.object_type) && rSet.has(r.relation_type) &&
     (!hideSelfRelations.value || r.subject_type !== r.object_type) &&
-    (!hideNotAllowed.value  || !isForbidden(r, allowedSet.value, wrongDirSet.value)) &&
-    (!hideAllowed.value     ||  isForbidden(r, allowedSet.value, wrongDirSet.value))
+    (!hideNotAllowed.value  || !isForbidden(r, allowedSet.value, wrongDirSet.value))
   )
 })
 
@@ -426,8 +437,7 @@ const visibleFilteredRows = computed(() => {
   return filteredRows.value.filter(r =>
     eSet.has(r.subject_type) && eSet.has(r.object_type) && rSet.has(r.relation_type) &&
     (!hideSelfRelations.value || r.subject_type !== r.object_type) &&
-    (!hideNotAllowed.value  || !isForbidden(r, allowedSet.value, wrongDirSet.value)) &&
-    (!hideAllowed.value     ||  isForbidden(r, allowedSet.value, wrongDirSet.value))
+    (!hideNotAllowed.value  || !isForbidden(r, allowedSet.value, wrongDirSet.value))
   )
 })
 
@@ -617,10 +627,10 @@ async function fetchData() {
     }
     if (!data.meta.models.includes(filterModel.value))
       filterModel.value = data.meta.models[0] ?? '(all)'
-    // Default dataset to scier if available
-    if (data.meta.datasets.includes('scier')) {
-      filterDataset.value  = 'scier'
-      fFilterDataset.value = 'scier'
+    // Default dataset to scinlp if available
+    if (data.meta.datasets.includes('scinlp')) {
+      filterDataset.value  = 'scinlp'
+      fFilterDataset.value = 'scinlp'
     } else if (data.meta.datasets.length) {
       filterDataset.value  = data.meta.datasets[0]
       fFilterDataset.value = data.meta.datasets[0]
@@ -648,13 +658,5 @@ async function rebuild() {
 
 onMounted(async () => {
   await fetchData()
-  const eLabels = [...new Set(aggregated.value.flatMap(r => [r.subject_type, r.object_type]))].sort()
-  const rLabels = [...new Set(aggregated.value.map(r => r.relation_type))].sort()
-  availableEntityLabels.value   = eLabels
-  availableRelationLabels.value = rLabels
-  for (const l of rLabels) relColorStable(l)
-  const def = defaultSelectedLabels(eLabels, rLabels)
-  selectedEntityLabels.value   = def.eLabels
-  selectedRelationLabels.value = def.rLabels
 })
 </script>

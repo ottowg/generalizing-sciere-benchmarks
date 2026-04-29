@@ -14,42 +14,42 @@ v-container(fluid class="pa-6")
     //- ── Entity Mappings ───────────────────────────────────────────────────────
     .text-subtitle-1.font-weight-medium.mb-1 Entity Label Mappings
     .text-caption.text-medium-emphasis.mb-3
-      | Original dataset-specific labels mapped to the unified schema
-      | (Dataset / Method / Task). Labels shown in
+      | Per-dataset labels mapped to each unified entity label (Dataset / Method / Task).
+      | Labels shown in
       span.text-error  red
       |  are dropped.
     v-table(density="compact" class="mb-8 mapping-table")
       thead
         tr
-          th.text-left Original label
+          th.text-left Unified
           th.text-left(v-for="ds in datasets" :key="ds") {{ ds }}
       tbody
-        tr(v-for="label in entityLabels" :key="label")
-          td.font-italic {{ label }}
+        tr(v-for="uLabel in entityUnifiedLabels" :key="uLabel")
+          td(:class="uLabel.startsWith('—') ? 'text-error font-italic' : 'font-weight-medium'") {{ uLabel }}
           td(v-for="ds in datasets" :key="ds")
-            template(v-if="entityMatrix[label]?.[ds] !== undefined")
-              span(:class="entityMatrix[label][ds].startsWith('—') ? 'text-error' : 'text-medium-emphasis'")
-                | {{ entityMatrix[label][ds] }}
+            template(v-if="entityReverseMatrix[uLabel]?.[ds]?.length")
+              span.text-medium-emphasis {{ entityReverseMatrix[uLabel][ds].join(', ') }}
             span.text-disabled(v-else) —
 
     //- ── Relation Mappings ─────────────────────────────────────────────────────
     .text-subtitle-1.font-weight-medium.mb-1 Relation Label Mappings
     .text-caption.text-medium-emphasis.mb-3
-      | Original relation types mapped to the seven canonical relation types.
+      | Per-dataset relation types mapped to each canonical relation.
       | ↔ indicates the subject–object direction is inverted during mapping.
     v-table(density="compact" class="mapping-table")
       thead
         tr
-          th.text-left Original label
+          th.text-left Unified
           th.text-left(v-for="ds in datasets" :key="ds") {{ ds }}
       tbody
-        tr(v-for="label in relationLabels" :key="label")
-          td.font-italic {{ label }}
+        tr(v-for="uLabel in relationUnifiedLabels" :key="uLabel")
+          td(:class="uLabel.startsWith('—') ? 'text-error font-italic' : 'font-weight-medium'") {{ uLabel }}
           td(v-for="ds in datasets" :key="ds")
-            template(v-if="relationMatrix[label]?.[ds]")
-              span(:class="relationMatrix[label][ds].unified.startsWith('—') ? 'text-error' : 'text-medium-emphasis'")
-                | {{ relationMatrix[label][ds].unified }}
-              span.text-caption.ml-1(v-if="relationMatrix[label][ds].inverted") ↔
+            template(v-if="relationReverseMatrix[uLabel]?.[ds]?.length")
+              span(v-for="(entry, i) in relationReverseMatrix[uLabel][ds]" :key="i")
+                span.text-medium-emphasis {{ entry.original }}
+                span.text-caption.ml-1(v-if="entry.inverted") ↔
+                span(v-if="i < relationReverseMatrix[uLabel][ds].length - 1") ,&nbsp;
             span.text-disabled(v-else) —
 </template>
 
@@ -66,40 +66,54 @@ const error   = ref(null)
 
 const datasets = computed(() => {
   const keys = Object.keys(report.value?.label_mappings ?? {})
-  // Preferred order
   const order = ['gsap-ere', 'scier', 'scinlp']
   return [...order.filter(k => keys.includes(k)), ...keys.filter(k => !order.includes(k))]
 })
 
-// ── Entity mapping matrix: { [originalLabel]: { [dataset]: unifiedLabel } } ──
-const entityMatrix = computed(() => {
+// ── Entity reverse matrix: { [unifiedLabel]: { [dataset]: [original, ...] } } ─
+const entityReverseMatrix = computed(() => {
   if (!report.value) return {}
   const m = {}
   for (const [ds, rows] of Object.entries(report.value.label_mappings ?? {})) {
     for (const row of rows) {
-      if (!m[row.original]) m[row.original] = {}
-      m[row.original][ds] = row.unified
+      if (!m[row.unified]) m[row.unified] = {}
+      if (!m[row.unified][ds]) m[row.unified][ds] = []
+      m[row.unified][ds].push(row.original)
     }
   }
   return m
 })
 
-const entityLabels = computed(() => Object.keys(entityMatrix.value).sort((a, b) => a.localeCompare(b)))
+// Non-dropped labels first (alphabetically), dropped last
+const entityUnifiedLabels = computed(() =>
+  Object.keys(entityReverseMatrix.value).sort((a, b) => {
+    const aD = a.startsWith('—'), bD = b.startsWith('—')
+    if (aD !== bD) return aD ? 1 : -1
+    return a.localeCompare(b)
+  })
+)
 
-// ── Relation mapping matrix: { [originalLabel]: { [dataset]: { unified, inverted } } }
-const relationMatrix = computed(() => {
+// ── Relation reverse matrix: { [unifiedLabel]: { [dataset]: [{original, inverted}] } }
+const relationReverseMatrix = computed(() => {
   if (!report.value) return {}
   const m = {}
   for (const [ds, rows] of Object.entries(report.value.relation_mappings ?? {})) {
     for (const row of rows) {
-      if (!m[row.original]) m[row.original] = {}
-      m[row.original][ds] = { unified: row.unified, inverted: row.inverted }
+      if (!m[row.unified]) m[row.unified] = {}
+      if (!m[row.unified][ds]) m[row.unified][ds] = []
+      m[row.unified][ds].push({ original: row.original, inverted: row.inverted })
     }
   }
   return m
 })
 
-const relationLabels = computed(() => Object.keys(relationMatrix.value).sort((a, b) => a.localeCompare(b)))
+const relationUnifiedLabels = computed(() =>
+  Object.keys(relationReverseMatrix.value).sort((a, b) => {
+    const aD = a.startsWith('—'), bD = b.startsWith('—')
+    if (aD !== bD) return aD ? 1 : -1
+    return a.localeCompare(b)
+  })
+)
 
 async function load() {
   loading.value = true

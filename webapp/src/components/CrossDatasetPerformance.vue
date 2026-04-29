@@ -10,6 +10,7 @@ v-container(fluid)
     v-tab(value="summary") Summary
     v-tab(value="entities") Entities
     v-tab(value="relations") Relations
+    v-tab(value="multi-sciere-generalization") MultiSciERE Generalization
 
   //- ── Summary tab ────────────────────────────────────────────────────────
   div(v-if="activeTab === 'summary'")
@@ -150,6 +151,69 @@ v-container(fluid)
           td.text-end(:style="`background:${BG_F1};`") #[span(:style="f1Style(row.f1)") {{ row.f1.toFixed(1) }}]
       template(#bottom)
 
+  //- ── MultiSciERE Generalization tab ─────────────────────────────────────
+  div(v-if="activeTab === 'multi-sciere-generalization'")
+    v-row.mb-3(dense align="center")
+      v-col(cols="6" sm="3" md="2")
+        v-select(v-model="filterGenDs" :items="DS" label="Dataset" density="compact" variant="outlined" hide-details)
+    p.text-caption.text-medium-emphasis.mb-3 Unified label set · test split · comparing {{ filterGenDs }}-trained model vs multi-sciere ({{ filterGenDs }} label space)
+    v-data-table(
+      :headers="generalizationHeaders"
+      :items="generalizationRows"
+      :sort-by="[{ key: 'train_ds', order: 'asc' }]"
+      :cell-props="summaryCellProps"
+      :items-per-page="-1"
+      density="compact" hover class="grouped-table"
+    )
+      template(#item.train_ds="{ item }")
+        v-chip(:color="dsColor(item.train_ds)" size="small" variant="tonal") {{ item.train_ds }}
+      template(#item.test_ds="{ item }")
+        v-chip(:color="dsColor(item.test_ds)" size="small" variant="tonal") {{ item.test_ds }}
+      template(#item.ner_exact_f1="{ item }")
+        span(:style="f1Style(item.ner_exact_f1)") {{ fmt(item.ner_exact_f1) }}
+      template(#item.ner_partial_f1="{ item }")
+        span(:style="f1Style(item.ner_partial_f1)") {{ fmt(item.ner_partial_f1) }}
+      template(#item.re_relaxed_f1="{ item }")
+        span(:style="f1Style(item.re_relaxed_f1)") {{ fmt(item.re_relaxed_f1) }}
+      template(#item.re_relaxed_partial_f1="{ item }")
+        span(:style="f1Style(item.re_relaxed_partial_f1)") {{ fmt(item.re_relaxed_partial_f1) }}
+      template(#item.re_strict_f1="{ item }")
+        span(:style="f1Style(item.re_strict_f1)") {{ fmt(item.re_strict_f1) }}
+      template(#item.re_strict_partial_f1="{ item }")
+        span(:style="f1Style(item.re_strict_partial_f1)") {{ fmt(item.re_strict_partial_f1) }}
+      template(#bottom)
+
+    h3.text-subtitle-1.font-weight-bold.mt-6.mb-2 MultiSciERE Label Set Comparison
+    v-row.mb-3(dense align="center")
+      v-col(cols="6" sm="3" md="2")
+        v-select(v-model="filterGenTestDs" :items="DS" label="Test dataset" density="compact" variant="outlined" hide-details)
+    p.text-caption.text-medium-emphasis.mb-3 Unified label set · test split · all three multi-sciere label spaces on {{ filterGenTestDs }}
+    v-data-table(
+      :headers="generalizationHeaders"
+      :items="labelSetComparisonRows"
+      :sort-by="[{ key: 'train_ds', order: 'asc' }]"
+      :cell-props="summaryCellProps"
+      :items-per-page="-1"
+      density="compact" hover class="grouped-table"
+    )
+      template(#item.train_ds="{ item }")
+        v-chip(:color="dsColor(item.train_ds)" size="small" variant="tonal") {{ item.train_ds }}
+      template(#item.test_ds="{ item }")
+        v-chip(:color="dsColor(item.test_ds)" size="small" variant="tonal") {{ item.test_ds }}
+      template(#item.ner_exact_f1="{ item }")
+        span(:style="f1Style(item.ner_exact_f1)") {{ fmt(item.ner_exact_f1) }}
+      template(#item.ner_partial_f1="{ item }")
+        span(:style="f1Style(item.ner_partial_f1)") {{ fmt(item.ner_partial_f1) }}
+      template(#item.re_relaxed_f1="{ item }")
+        span(:style="f1Style(item.re_relaxed_f1)") {{ fmt(item.re_relaxed_f1) }}
+      template(#item.re_relaxed_partial_f1="{ item }")
+        span(:style="f1Style(item.re_relaxed_partial_f1)") {{ fmt(item.re_relaxed_partial_f1) }}
+      template(#item.re_strict_f1="{ item }")
+        span(:style="f1Style(item.re_strict_f1)") {{ fmt(item.re_strict_f1) }}
+      template(#item.re_strict_partial_f1="{ item }")
+        span(:style="f1Style(item.re_strict_partial_f1)") {{ fmt(item.re_strict_partial_f1) }}
+      template(#bottom)
+
   v-snackbar(v-model="snack.show" :color="snack.color" timeout="4000") {{ snack.message }}
 </template>
 
@@ -159,18 +223,21 @@ import { useDockerMode } from '../composables/useDockerMode.js'
 
 const DS = ['gsap-ere', 'scier', 'scinlp']
 const TRAIN_DS = [...DS, 'unified-sciere']
-const DS_COLORS = { 'gsap-ere': 'blue', 'scier': 'green', 'scinlp': 'orange', 'unified-sciere': 'purple' }
+const DS_COLORS = { 'gsap-ere': 'blue', 'scier': 'green', 'scinlp': 'orange', 'unified-sciere': 'purple', 'multi-sciere-gsap': 'deep-orange', 'multi-sciere-scier': 'deep-orange', 'multi-sciere-scinlp': 'deep-orange' }
+const DATASET_TO_PRED_LS = { 'gsap-ere': 'gsap', 'scier': 'scier', 'scinlp': 'scinlp' }
 function dsColor(ds) { return DS_COLORS[ds] ?? 'grey' }
 
 const { dockerMode } = useDockerMode()
-const building    = ref(false)
-const generatedAt = ref(null)
-const allSummary  = ref([])
-const allEntities = ref([])
-const allRelations = ref([])
-const snack       = ref({ show: false, message: '', color: 'success' })
-const activeTab   = ref('summary')
+const building         = ref(false)
+const generatedAt      = ref(null)
+const allSummary       = ref([])
+const allEntities      = ref([])
+const allRelations     = ref([])
+const multiSciereSummary = ref([])
+const snack            = ref({ show: false, message: '', color: 'success' })
+const activeTab        = ref('summary')
 
+const filterGenDs      = ref('scinlp')
 const filterSplit      = ref('test')
 const filterSplitLabel = ref('test')
 const filterTrainDs    = ref('(all)')
@@ -229,6 +296,59 @@ const summaryRows = computed(() =>
   allSummary.value.filter(r => filterSplit.value === '(both)' || r.split === filterSplit.value)
 )
 
+// ── MultiSciERE Generalization tab ────────────────────────────────────────────
+const generalizationHeaders = [
+  { key: 'train_ds',             title: 'Train',  sortable: true },
+  { key: 'test_ds',              title: 'Test',   sortable: true },
+  { key: 'ner_exact_f1',         title: 'NER',    sortable: true, align: 'end' },
+  { key: 'ner_partial_f1',       title: 'NER≈',   sortable: true, align: 'end' },
+  { key: 're_relaxed_f1',        title: 'RE',     sortable: true, align: 'end' },
+  { key: 're_relaxed_partial_f1',title: 'RE≈',    sortable: true, align: 'end' },
+  { key: 're_strict_f1',         title: 'RE+',    sortable: true, align: 'end' },
+  { key: 're_strict_partial_f1', title: 'RE+≈',   sortable: true, align: 'end' },
+]
+
+const generalizationRows = computed(() => {
+  const ds        = filterGenDs.value
+  const predLs    = DATASET_TO_PRED_LS[ds]
+  const multiName = `multi-sciere-${predLs}`
+
+  const baseRows = allSummary.value
+    .filter(r => r.train_ds === ds && r.split === 'test')
+
+  const multiRows = multiSciereSummary.value
+    .filter(r => r.label_set === 'unified' && r.trained_on === multiName)
+    .map(r => ({
+      train_ds:              multiName,
+      test_ds:               r.dataset,
+      ner_exact_f1:          r.ner_exact_f1,
+      ner_partial_f1:        r.ner_partial_f1,
+      re_relaxed_f1:         r.re_relaxed_f1,
+      re_relaxed_partial_f1: r.re_relaxed_partial_f1,
+      re_strict_f1:          r.re_strict_f1,
+      re_strict_partial_f1:  r.re_strict_partial_f1,
+    }))
+
+  return [...baseRows, ...multiRows]
+})
+
+const filterGenTestDs = ref('gsap-ere')
+
+const labelSetComparisonRows = computed(() =>
+  multiSciereSummary.value
+    .filter(r => r.label_set === 'unified' && r.dataset === filterGenTestDs.value)
+    .map(r => ({
+      train_ds:              r.trained_on,
+      test_ds:               r.dataset,
+      ner_exact_f1:          r.ner_exact_f1,
+      ner_partial_f1:        r.ner_partial_f1,
+      re_relaxed_f1:         r.re_relaxed_f1,
+      re_relaxed_partial_f1: r.re_relaxed_partial_f1,
+      re_strict_f1:          r.re_strict_f1,
+      re_strict_partial_f1:  r.re_strict_partial_f1,
+    }))
+)
+
 // ── label tables ──────────────────────────────────────────────────────────────
 const labelHeaders = [
   { title: 'Train',  key: 'train_ds', sortable: true },
@@ -273,13 +393,20 @@ const relationAggRows   = computed(() => allRelations.value.filter(r => filterRe
 // ── fetch / rebuild ───────────────────────────────────────────────────────────
 async function fetchData() {
   try {
-    const res  = await fetch('/api/cross-dataset')
-    if (!res.ok) { snack.value = { show: true, message: 'No data yet — click Rebuild.', color: 'warning' }; return }
-    const data = await res.json()
+    const [cdRes, msRes] = await Promise.all([
+      fetch('/api/cross-dataset'),
+      fetch('/api/multi-sciere'),
+    ])
+    if (!cdRes.ok) { snack.value = { show: true, message: 'No cross-dataset data yet — click Rebuild.', color: 'warning' }; return }
+    const data = await cdRes.json()
     generatedAt.value  = data.generated_at ? new Date(data.generated_at).toLocaleString() : null
     allSummary.value   = data.summary         ?? []
     allEntities.value  = data.entity_labels   ?? []
     allRelations.value = data.relation_labels ?? []
+    if (msRes.ok) {
+      const msData = await msRes.json()
+      multiSciereSummary.value = msData.summary ?? []
+    }
   } catch (e) {
     snack.value = { show: true, message: `Failed to load: ${e.message}`, color: 'error' }
   }

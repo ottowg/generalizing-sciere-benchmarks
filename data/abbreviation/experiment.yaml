@@ -1,0 +1,121 @@
+title: "Abbreviation Relations"
+subtitle: "Detecting and normalizing merged-span and relation-label inconsistencies across datasets"
+
+description: >
+  Scientific texts frequently introduce abbreviations by juxtaposing a full form
+  with its abbreviated counterpart — e.g., "Convolutional Neural Network (CNN)".
+  This pattern is annotated inconsistently across GSAP-ERE, SciER, and SciNLP:
+  different relation labels (coreference, Synonym-Of, SimilarWith), different
+  span granularities (two spans vs. one merged span), and inconsistent relation
+  direction all inflate apparent cross-dataset divergence.
+  This experiment detects abbreviation pairs via rule-based signals and a
+  weak-label–trained classifier, then normalizes them to a canonical
+  Abbreviates relation with a fixed direction (short-form → long-form).
+
+motivation: >
+  SciNLP's training split contains 3.9% parenthesized mentions — roughly four
+  times the rate of GSAP-ERE (1.0%) and SciER (0.7%). The SciNLP-trained model
+  transfers this style to other datasets: on SciER test it predicts 4.9%
+  parenthesized spans vs. 0.1% (GSAP-ERE model) and 0.2% (SciER model).
+  These merged-span predictions are false positives under GSAP-ERE and SciER
+  guidelines and a key driver of cross-dataset RE errors.
+
+research_questions:
+  - id: RQ1
+    short: "Coverage"
+    text: >
+      What fraction of coreference, Synonym-Of, and SimilarWith relations —
+      and what fraction of parenthetical spans — are abbreviation pairs?
+  - id: RQ2
+    short: "Cross-dataset consistency"
+    text: >
+      Do the rule-based detector's hits share the same distributional properties
+      (entity type, length ratio, acronym regularity) across all three datasets,
+      or do dataset-specific quirks emerge?
+  - id: RQ3
+    short: "Rules vs. classifier"
+    text: >
+      Does a weak-label–trained classifier (RF/SVM) outperform the rule-based
+      detector in precision, recall, or F1? Which features are most discriminative?
+      How many human-annotated borderline cases are needed before the classifier plateaus?
+  - id: RQ4
+    short: "RE performance impact"
+    text: >
+      After normalization (relabelling, direction canonicalization, span splitting),
+      does cross-dataset RE F1 improve? Does the gain differ in-domain vs. out-of-domain?
+  - id: RQ5
+    short: "Direction canonicalization"
+    text: >
+      How often is the short form subject vs. object before normalization, and does
+      this distribution differ across datasets? Does fixing direction reduce
+      cross-dataset variance on Abbreviates F1?
+  - id: RQ6
+    short: "Pivot form"
+    text: >
+      Is the long form or short form more commonly used as an argument pivot in
+      downstream relations? Does standardizing the pivot improve RE recall?
+
+subtasks:
+  A:
+    name: "Mention-pair detection"
+    description: >
+      Targets existing binary relations labelled coreference, Synonym-Of, or SimilarWith
+      and determines whether the linked mention pair is an abbreviation using six signals.
+    signals:
+      - id: A1
+        name: "Relation-label membership"
+        description: "Label ∈ {coreference, Synonym-Of, SimilarWith}"
+      - id: A2
+        name: "Matching entity type"
+        description: "Both mentions share the same entity type label"
+      - id: A3
+        name: "Length and whitespace asymmetry"
+        description: "One span ≥3× longer than the other; shorter span contains no space"
+      - id: A4
+        name: "Case ratio of short form"
+        description: "Short span has >50% uppercase ASCII letters"
+      - id: A5
+        name: "Span proximity"
+        description: "Character distance between spans ≤ 60 characters"
+      - id: A6
+        name: "Acronym check"
+        description: "Content-word initials of long form match short form (≤1 substitution)"
+  B:
+    name: "Single-span detection"
+    description: >
+      Targets single entity mentions whose text encodes both forms as '<long> (<short>)'.
+      Primarily a SciNLP Rep. A phenomenon.
+    signals:
+      - id: B1
+        name: "Parenthetical suffix"
+        description: "Span text matches '^<Long…> (<Short>)$' regex"
+      - id: B2
+        name: "Case ratio of parenthesised token"
+        description: "Parenthesised token has >50% uppercase ASCII letters"
+      - id: B3
+        name: "Acronym check"
+        description: "Parenthesised token aligns with content-word initials of the long part"
+
+normalization:
+  steps:
+    - name: "Relabel"
+      description: "Replace original label with canonical 'Abbreviates'"
+    - name: "Canonicalize direction"
+      description: "Short form → subject, long form → object"
+    - name: "Split merged spans"
+      description: "Replace single merged-span mention with two mentions + Abbreviates relation (Subtask B only)"
+
+classification:
+  description: >
+    A Random Forest and a linear SVM are trained on weak labels derived from the
+    rule-based detector (all signals fire = positive; none fire = negative;
+    partial = borderline). Borderline candidates are queued for active learning,
+    ranked by model uncertainty (P closest to 0.5 surfaced first). After each
+    annotation batch the model is retrained and the queue is re-ranked.
+  models:
+    - id: rf
+      name: "Random Forest"
+      params: "100 trees, max_features=sqrt, class_weight=balanced"
+    - id: svm
+      name: "Linear SVM"
+      params: "C=1, class_weight=balanced, probability calibration via isotonic regression"

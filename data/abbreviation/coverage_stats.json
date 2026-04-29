@@ -1,0 +1,442 @@
+{
+  "generated": "2026-04-11T13:21:45.491142+00:00",
+  "parenthesized_gold": [
+    {
+      "dataset": "gsap-ere",
+      "split": "train",
+      "count": 244,
+      "total": 25190,
+      "pct": 1.0
+    },
+    {
+      "dataset": "scier",
+      "split": "train",
+      "count": 121,
+      "total": 18041,
+      "pct": 0.7
+    },
+    {
+      "dataset": "scinlp",
+      "split": "train",
+      "count": 163,
+      "total": 4232,
+      "pct": 3.9
+    },
+    {
+      "dataset": "gsap-ere",
+      "split": "dev",
+      "count": 36,
+      "total": 3110,
+      "pct": 1.2
+    },
+    {
+      "dataset": "scier",
+      "split": "dev",
+      "count": 29,
+      "total": 2234,
+      "pct": 1.3
+    },
+    {
+      "dataset": "scinlp",
+      "split": "dev",
+      "count": 5,
+      "total": 504,
+      "pct": 1.0
+    },
+    {
+      "dataset": "gsap-ere",
+      "split": "test",
+      "count": 19,
+      "total": 3195,
+      "pct": 0.6
+    },
+    {
+      "dataset": "scier",
+      "split": "test",
+      "count": 7,
+      "total": 2948,
+      "pct": 0.2
+    },
+    {
+      "dataset": "scinlp",
+      "split": "test",
+      "count": 11,
+      "total": 696,
+      "pct": 1.6
+    }
+  ],
+  "parenthesized_pred": [
+    {
+      "dataset": "gsap-ere",
+      "model": "gsap-ere",
+      "split": "train",
+      "count": 223,
+      "total": 25219,
+      "pct": 0.9
+    },
+    {
+      "dataset": "gsap-ere",
+      "model": "scier",
+      "split": "train",
+      "count": 232,
+      "total": 30642,
+      "pct": 0.8
+    },
+    {
+      "dataset": "gsap-ere",
+      "model": "scinlp",
+      "split": "train",
+      "count": 447,
+      "total": 23730,
+      "pct": 1.9
+    },
+    {
+      "dataset": "scier",
+      "model": "gsap-ere",
+      "split": "train",
+      "count": 42,
+      "total": 17001,
+      "pct": 0.2
+    },
+    {
+      "dataset": "scier",
+      "model": "scier",
+      "split": "train",
+      "count": 114,
+      "total": 17988,
+      "pct": 0.6
+    },
+    {
+      "dataset": "scier",
+      "model": "scinlp",
+      "split": "train",
+      "count": 598,
+      "total": 14639,
+      "pct": 4.1
+    },
+    {
+      "dataset": "scinlp",
+      "model": "gsap-ere",
+      "split": "train",
+      "count": 31,
+      "total": 6156,
+      "pct": 0.5
+    },
+    {
+      "dataset": "scinlp",
+      "model": "scier",
+      "split": "train",
+      "count": 37,
+      "total": 6678,
+      "pct": 0.6
+    },
+    {
+      "dataset": "scinlp",
+      "model": "scinlp",
+      "split": "train",
+      "count": 161,
+      "total": 4233,
+      "pct": 3.8
+    },
+    {
+      "dataset": "gsap-ere",
+      "model": "gsap-ere",
+      "split": "dev",
+      "count": 33,
+      "total": 3059,
+      "pct": 1.1
+    },
+    {
+      "dataset": "gsap-ere",
+      "model": "scier",
+      "split": "dev",
+      "count": 49,
+      "total": 3884,
+      "pct": 1.3
+    },
+    {
+      "dataset": "gsap-ere",
+      "model": "scinlp",
+      "split": "dev",
+      "count": 49,
+      "total": 2719,
+      "pct": 1.8
+    },
+    {
+      "dataset": "scier",
+      "model": "gsap-ere",
+      "split": "dev",
+      "count": 17,
+      "total": 2164,
+      "pct": 0.8
+    },
+    {
+      "dataset": "scier",
+      "model": "scier",
+      "split": "dev",
+      "count": 11,
+      "total": 2212,
+      "pct": 0.5
+    },
+    {
+      "dataset": "scier",
+      "model": "scinlp",
+      "split": "dev",
+      "count": 42,
+      "total": 1812,
+      "pct": 2.3
+    },
+    {
+      "dataset": "scinlp",
+      "model": "gsap-ere",
+      "split": "dev",
+      "count": 5,
+      "total": 682,
+      "pct": 0.7
+    },
+    {
+      "dataset": "scinlp",
+      "model": "scier",
+      "split": "dev",
+      "count": 1,
+      "total": 739,
+      "pct": 0.1
+    },
+    {
+      "dataset": "scinlp",
+      "model": "scinlp",
+      "split": "dev",
+      "count": 7,
+      "total": 466,
+      "pct": 1.5
+    },
+    {
+      "dataset": "gsap-ere",
+      "model": "gsap-ere",
+      "split": "test",
+      "count": 21,
+      "total": 3204,
+      "pct": 0.7
+    },
+    {
+      "dataset": "gsap-ere",
+      "model": "scier",
+      "split": "test",
+      "count": 20,
+      "total": 3832,
+      "pct": 0.5
+    },
+    {
+      "dataset": "gsap-ere",
+      "model": "scinlp",
+      "split": "test",
+      "count": 68,
+      "total": 2774,
+      "pct": 2.5
+    },
+    {
+      "dataset": "scier",
+      "model": "gsap-ere",
+      "split": "test",
+      "count": 3,
+      "total": 2695,
+      "pct": 0.1
+    },
+    {
+      "dataset": "scier",
+      "model": "scier",
+      "split": "test",
+      "count": 5,
+      "total": 2882,
+      "pct": 0.2
+    },
+    {
+      "dataset": "scier",
+      "model": "scinlp",
+      "split": "test",
+      "count": 107,
+      "total": 2398,
+      "pct": 4.5
+    },
+    {
+      "dataset": "scinlp",
+      "model": "gsap-ere",
+      "split": "test",
+      "count": 5,
+      "total": 663,
+      "pct": 0.8
+    },
+    {
+      "dataset": "scinlp",
+      "model": "scier",
+      "split": "test",
+      "count": 4,
+      "total": 812,
+      "pct": 0.5
+    },
+    {
+      "dataset": "scinlp",
+      "model": "scinlp",
+      "split": "test",
+      "count": 19,
+      "total": 626,
+      "pct": 3.0
+    }
+  ],
+  "detection": [
+    {
+      "dataset": "gsap-ere",
+      "split": "train",
+      "annotator": "gold",
+      "subtask_a": {
+        "candidates": 1488,
+        "positives": 353,
+        "borderline": 1135,
+        "negatives": 0
+      },
+      "subtask_b": {
+        "candidates": 244,
+        "positives": 14,
+        "borderline": 10,
+        "negatives": 220
+      }
+    },
+    {
+      "dataset": "scier",
+      "split": "train",
+      "annotator": "gold",
+      "subtask_a": {
+        "candidates": 880,
+        "positives": 568,
+        "borderline": 312,
+        "negatives": 0
+      },
+      "subtask_b": {
+        "candidates": 136,
+        "positives": 0,
+        "borderline": 13,
+        "negatives": 123
+      }
+    },
+    {
+      "dataset": "scinlp",
+      "split": "train",
+      "annotator": "gold",
+      "subtask_a": {
+        "candidates": 79,
+        "positives": 48,
+        "borderline": 31,
+        "negatives": 0
+      },
+      "subtask_b": {
+        "candidates": 163,
+        "positives": 94,
+        "borderline": 42,
+        "negatives": 27
+      }
+    },
+    {
+      "dataset": "gsap-ere",
+      "split": "dev",
+      "annotator": "gold",
+      "subtask_a": {
+        "candidates": 116,
+        "positives": 30,
+        "borderline": 86,
+        "negatives": 0
+      },
+      "subtask_b": {
+        "candidates": 36,
+        "positives": 4,
+        "borderline": 0,
+        "negatives": 32
+      }
+    },
+    {
+      "dataset": "scier",
+      "split": "dev",
+      "annotator": "gold",
+      "subtask_a": {
+        "candidates": 76,
+        "positives": 50,
+        "borderline": 26,
+        "negatives": 0
+      },
+      "subtask_b": {
+        "candidates": 33,
+        "positives": 0,
+        "borderline": 0,
+        "negatives": 33
+      }
+    },
+    {
+      "dataset": "scinlp",
+      "split": "dev",
+      "annotator": "gold",
+      "subtask_a": {
+        "candidates": 8,
+        "positives": 2,
+        "borderline": 6,
+        "negatives": 0
+      },
+      "subtask_b": {
+        "candidates": 6,
+        "positives": 4,
+        "borderline": 0,
+        "negatives": 2
+      }
+    },
+    {
+      "dataset": "gsap-ere",
+      "split": "test",
+      "annotator": "gold",
+      "subtask_a": {
+        "candidates": 224,
+        "positives": 50,
+        "borderline": 174,
+        "negatives": 0
+      },
+      "subtask_b": {
+        "candidates": 19,
+        "positives": 0,
+        "borderline": 3,
+        "negatives": 16
+      }
+    },
+    {
+      "dataset": "scier",
+      "split": "test",
+      "annotator": "gold",
+      "subtask_a": {
+        "candidates": 170,
+        "positives": 112,
+        "borderline": 58,
+        "negatives": 0
+      },
+      "subtask_b": {
+        "candidates": 7,
+        "positives": 0,
+        "borderline": 0,
+        "negatives": 7
+      }
+    },
+    {
+      "dataset": "scinlp",
+      "split": "test",
+      "annotator": "gold",
+      "subtask_a": {
+        "candidates": 18,
+        "positives": 9,
+        "borderline": 9,
+        "negatives": 0
+      },
+      "subtask_b": {
+        "candidates": 11,
+        "positives": 5,
+        "borderline": 1,
+        "negatives": 5
+      }
+    }
+  ],
+  "errors": []
+}

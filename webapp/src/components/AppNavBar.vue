@@ -114,6 +114,20 @@ v-app-bar(color="deep-purple-darken-2" elevation="2")
         active-color="primary"
         @click="emit('set-view', 'performance-cross-dataset')"
       )
+      v-list-item(
+        prepend-icon="mdi-layers-triple-outline"
+        title="MultiSciERE"
+        :active="currentView === 'performance-multi-sciere'"
+        active-color="primary"
+        @click="emit('set-view', 'performance-multi-sciere')"
+      )
+      v-list-item(
+        prepend-icon="mdi-table-pivot"
+        title="Confusion Matrices"
+        :active="currentView === 'performance-coreference'"
+        active-color="primary"
+        @click="emit('set-view', 'performance-coreference')"
+      )
 
   v-btn(
     :variant="currentView === 'quality-example-paper' ? 'tonal' : 'text'"
@@ -194,7 +208,7 @@ const emit = defineEmits(['toggle-theme', 'set-view'])
 const isMetadataView    = computed(() => props.currentView?.startsWith('metadata-'))
 const isDataModelsView  = computed(() => ['quality-signatures', 'data-models-schema'].includes(props.currentView))
 const isUnificationView = computed(() => ['unification-pipeline', 'unification-retention', 'unification-label-stats', 'unification-label-mapping'].includes(props.currentView))
-const isResultsView     = computed(() => ['performance-reproduce', 'performance-cross-dataset'].includes(props.currentView))
+const isResultsView     = computed(() => ['performance-reproduce', 'performance-cross-dataset', 'performance-multi-sciere', 'performance-coreference'].includes(props.currentView))
 const isMoreView        = computed(() => ['quality-relations', 'quality-mentions', 'quality-abbreviation'].includes(props.currentView))
 
 const { dockerMode } = useDockerMode()

@@ -1,0 +1,3057 @@
+{
+  "created": "2026-04-11T14:04:44.985057+00:00",
+  "updated": "2026-04-14T09:51:28.585734+00:00",
+  "every_n": 10,
+  "A": [
+    {
+      "id": "A_91ec942012056142",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5829eba52ee5a853",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f0c1c27633408435",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_08afebe3251e1530",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ba9e4c793d04a80d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d77d073fff38a96b",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6a9e28315d09ebd4",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9cf3e0596afaa8e1",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_69d670f497b5dad7",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e0ce640959b7258c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_4956e784ce13e2cf",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_cb645b5761ce5e12",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9865af148e78f659",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ec8ea502dedba212",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b48e1d555aa3ddbd",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f7ec60f6ec4065bc",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_1b325ca99f0ea300",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_27cfdfd8bdcd6a49",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_3d73a44fb64399d0",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_fc978890e7908ad6",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_63cb3f322f4c24d8",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8e817f08ada19c83",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_0cb9edf3e6baa71c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f31addac6575e335",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9c479eadb7510abc",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b20a987a7cb93684",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_3288f3d7925a7779",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_c51dcc0416fc7e33",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_66ae706eff39f048",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9d96cffe8686a348",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_31248b2a0f5ecc36",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_0c727b518623f5cb",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f55a9e514f888ba9",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_feea2473e6607527",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f574d5d3f3ee57b3",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_df6050928fc3fbfc",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8bd71532a92c6680",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_cc8793ade2768e27",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_a38e4ed5bd2411fa",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8be87cb51382b0f2",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8e7e17b73f3ccbbd",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8969de8d50741529",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_3999aaa12d9c2537",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9331e8600e5e86f1",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_2802736f12ac2d9d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_2c4914b278ff9981",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ba8811b72a2e6012",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e4ad55a1e1fd8708",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ca4ab36493121cd7",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_7489acb4024b6053",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_00f41bd2c4afb723",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f3776780748aff5c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_2c31c84c96b397b2",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_1ca85ac797d893e4",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6e010a6cb9136e4c",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b237978e525cfb3c",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_065dd98f5f1d9085",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_cbd21c71fd093bd6",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e7097d7819304deb",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b4798ca7c5ed87d5",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_02ed3ccf55a5c207",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_066aafcbfbb6c1c3",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b72f80f4562ed782",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ed36b85964e0e030",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_234bc07f8357ce3c",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9e2de322bacc53c1",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_252911d83577a80a",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_3c8d13fe0740c8c9",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_94dcc8fe0df750e8",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_0bf665651272fb9c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f26a6827fe770371",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_11655821fd1fa339",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d1cc681dcfa0e43c",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8f5038fae4440cef",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_fcb3147b2ff7de7f",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_99a1c793a802845f",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_a39cfd1dd9b735f7",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d78f1501934351e4",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8b6630643b981acc",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b1bac7d55deef4d3",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f4654023691b9ea7",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_410b23916b4712dc",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_133f5afb8c56d306",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_1037aaf556467e8d",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f8c3f57b838050d0",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_066afa3ef5f4898d",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_01456a42cc7bba81",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_de3af476b0b14328",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_39865ad11360da14",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6908f5dc0e046d10",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e7efafd8efb197cd",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_97ec9e1811685537",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_22b189660faee245",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_665fed1ebe3cbd44",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e0c337b4eb3ffede",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_fb9b64aff1d892ce",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_a20957c1b2d6c9d3",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e2c0ba68fa1e8fe6",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_125dcf47e4770c2e",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d41f8a08bb7ccd24",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b0c653b18e3b3f3b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_3e3826f4de8542b0",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9a8bfbffff6787bb",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_087ad3f1b3afcda9",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_88c5a668fdcfcb39",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ae55855da772518d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ea1380939e638fb5",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9bf51af61920ec3a",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_303162d075c1c3e7",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ef1c2d42b8fa11c2",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_772fec97017ecebc",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_472c398fadd42885",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_faef2e8ae00773cd",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_3fa2d7936882d5a8",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5f048df68b1f8f2f",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e7cf8dffaa83f7e6",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b2fcd5d7fcbbc92b",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_72eb10eaf322faf8",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_21858e3509c62abe",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_44a4f50b286c68d8",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_99746aab398ae05b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_3b132bf59b781f1b",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ab1419a71cd9b541",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_61055af004dfe7f8",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5167daef4238d18f",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f95ecdc09f8e9be9",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_fb18fccc4933460f",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_4377aa5e2888e293",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ec88bf185ffdb953",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_35cac7b535ba44c2",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_80a031bbe69593ab",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b690fb380725cc6c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_1289af99c97d4d24",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_1200fc529a90101c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_90e3284da2f78dac",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_952eaa7f092bf992",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5bd45242a7aaff07",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e9e73135b1bf13d8",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_67a6800d3c103397",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_7078a813b6697bdd",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_3de5d466d45b8519",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b224dc074dc522dc",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_4da62a06b0ef8759",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ca8ac9dfac0b2408",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_309561968d59ac45",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_99038cc71782cf1d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_4dd6a0453b602b34",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_a5217c493c2f49d6",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8a3a62e4100ef8f0",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d23f93de29a2e101",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_775844d438ec15da",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_18e5ce2ad8482283",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ff8350970e74b8fb",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_930b7f59567117c2",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_399ff1dc1cb46405",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b4fb3572a9e3d6ff",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_80c40e503337d855",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ba9608b8398c7794",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ec048f49d09c4784",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_28747d30dc6bb5d4",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d91b39e68644f4ef",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_95b3ea72c503434d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_7ab1ac3c4e11cd07",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_482db707c106b596",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6978fa99d9a695bb",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_2fa83fefba5f9730",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_19b02a948d9bfbe5",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b4471ffd52259e38",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8bab444a1414d1c5",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_7f9ff39b7599a34b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5eda196009483d3a",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_cc559e3709f77603",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b684175728bc36bd",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b42323078e514699",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9084bc1576a7a563",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_25ee51f7eebb2f41",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_003370bf411c07a0",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ff6b8e5bdf068500",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d6f3bd3dc5bd2386",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d9141a06f5f62372",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ab10e90a165a16e5",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_cb7dde818dbdf433",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b54e1a43d4bff94d",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d605d4cb49a023eb",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8c33b51c74647002",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_60f3a4342256cbbe",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d553f36d2ad4f6c9",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_48877074c81e9c1e",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f045f67bfc771e72",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f69a5544491ce146",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_92570bd01bb33abc",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_82e0647aca60c7c2",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_303bf74880401a74",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_187ff8a63b13feab",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_c84ab7a51fe7e29d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_c01686c5c31f3f20",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d9b70ea5062ab79a",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_32ba8f8e44797559",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f6ce8bcc8dabb6da",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e5ff86433c4a3c34",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_beef488becbc86a4",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_06fbf54410fba1d3",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_c8e1ce22a24af028",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_161ffb3832bf82e1",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b37f900b66eb8752",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b4f776297b097a76",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_7b463d3624661732",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e092bfd6b73b12a4",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6c8db57ca4b308d3",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_b66b09f7d55e17e2",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_807fd98a8b9aa1c2",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ddc06750749ef140",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_68ff6358471eb2cd",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6029feb88f1d8857",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_0109356cf7514402",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_29c3fd6d7e64abe3",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_7603bfc676fdea39",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f802b95d7f8907fb",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_20596f72e321396a",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_a39d2ab9155882c7",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_4051b6f08f93436e",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_80f3286414d3c4e0",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e117b3382c54e692",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_35d34638a4e14829",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_98f4bc8ef4772b07",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_23833eaed0890147",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_0db6ec329f2f6d5d",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8e9b1b015046987d",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9fe38ece628843cb",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9ae74ebf08985a62",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f62f48f8984c9b45",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d90a87ac7443ff24",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_ccc68373e04d7da7",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d1f9b3fa87304bb2",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5bbc3568bf51fd04",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e99aedce28aa8cc0",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6e295ac0ab44090a",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_2d449ce4791543d2",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f4d4c42aabc35c2d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_0b8dab2c50c09d1a",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6622d242bc83081f",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_dae847ffd68ae940",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8ee49d15a7fca02c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_2e6f421d1dabe458",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_0ed680e5e68ee768",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_2524e5580142d686",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_c703ef19e7432e25",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_7d0402ad95e6f52d",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_1fe121316b08b8fa",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8e066ad4109f7978",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_316994836cef710c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_2bff083eb91a6dfa",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_1eb6f0625d7f153c",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_eceb8c5689602f1c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_7a70d559072bfd50",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e5e145a38a39f280",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_fd6b17b82fc9144c",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_310ef60b765f2776",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_23a7b25937acf77e",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_86b05c28995d1fab",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_40cee00b508316bf",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_887954a658426ccc",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_a6fded6df61eee36",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_def227093dd71a9b",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_438d08fcafae6bc5",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5a52fde245059b2b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e2b8720a752c0b82",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_0a1a815d06392707",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d19fb39493839046",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6f3a0657ce4cbf57",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_e0b30e616a385cd3",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_84e9833758aa5a18",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_1beb6e5382c1b0cb",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_01f02716cf75eed9",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_eec215a39035413e",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9fe995cecfdd0e90",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_a2caaa9a3f7158d6",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_7dca54a12fe4621d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_80a6cdda0f2cf544",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_2644858e85b26cde",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_c4ba65a59f1c47c7",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_92bd81b29c4c17f3",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_c811f4e416514517",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_02554ff9b04bfd8d",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d6c0602d7b8b30a0",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d92cd46cbe4860f5",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_fcc1f30a9cbf5c3e",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f4005fdcf92328c0",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_845edddfe4134ea3",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5ef0be4a2018dac3",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_51302d86a5c69618",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_de7094010c2b92af",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_3c9f176ab36d1668",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_cbe7cd3d437f09cc",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_60d1a6f1f2838ad0",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_0e81681c381d7f07",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5f806f955788afb5",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_1d55dcfb0fc3e92a",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_231a22caeed6f60d",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_94df8df2ec05f36a",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_3951969b8892e7e3",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_455f341229653ead",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_54d5291b8634feab",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f7f19893e907f0b3",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_58e6f9886d4607cf",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6c2342b683d31471",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f2e3c55b7bebce94",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d4c4183232ccdc96",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_10cc4831ba63e0c8",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9e691386632e9817",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_490beb38a7d1e1da",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f2adbc2fa78fad5f",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_9bbf1904fc13dd32",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_918665d9355c58c3",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_80260eabbd1d6d02",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_f5bc4a527e085827",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5dd034630bb65fe9",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_7c3bdce8529ac9b4",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6957cfa510a6d38e",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_81f6916ad83f3e7a",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_d189ec14690e2da4",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_095f7291d1a88c3b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_069ac1a79101714b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_c522e9ac0f12068a",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_4db42c811d788a59",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_43079a63073a0f52",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_dc7bdeef2b468280",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_524c6f4a7f1ed54a",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_18c005fa5973152b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_633e21ad27006f4b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_8b97f05aba482d04",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_53b79b1943402741",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_282f18d703af8453",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_79e1d6393847c682",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_cad04f75cdab5009",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5eabbc86c26c24a6",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_c58aecba4f6c4c57",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_cd0e5291b0fc0162",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_3571a17b94a03ca3",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_466f8bcea7e36feb",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6764bbbcd91b4d9b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_44d92e4d6153ba52",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_90dd6a6ae278edf0",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_94e9268e7fa49073",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_022438112ede18bc",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_1fd5fde63094590e",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_981c51f456e91bb3",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_47991ceb0c912902",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5165b5e17a3570d8",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_6d387199fe7a18ff",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_5d0afb85f1f6a10a",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_405af46cccb3bbbf",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "A_1772dec00ffae5aa",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    }
+  ],
+  "B": [
+    {
+      "id": "B_0330c7e59c4f0af9",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_5f2b90d5cb12b986",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_71f770cc2b59ab6c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_af379626b4984dc4",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_4b793218a26992b7",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_a91e560d30882aae",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_d95833cfd6018726",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_22228a94f7fd832c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_dc9198491533d28c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_f2f6938a45c08385",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_7084b7f311ede217",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_3dc646518223f6b7",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_61bd943e6999b7bc",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_755c6b62f5f72118",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_2c3c6de629e07c32",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_fbb823ff759f07cb",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_23b2091c724af34d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_a38b9f2be1c30539",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_a60a92669637a3aa",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_cc019b2be27ff90b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_2d200bb97d9d74fa",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_ce514466e67a2c4e",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_ae11bb2e70359f07",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_335930b4415be593",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_abce70600ce724fd",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_1eef40b477444b98",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_6a1a9be8b7ac43b6",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_52b5a91e5df10bb1",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_2bfb56908a0a4549",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_4a44c9a4fe0c49b2",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_bcb19cb15e0a0f3c",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_6b1423fb5dbfa326",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_7fd5f72540b87436",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_6412b5c5df863857",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_d2b7558939cc7be7",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_82fcef601d31b6df",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_7b81920e6041d288",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_cbeff9e6266e8970",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_c836f571ec761e07",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_07bd82839c7a4b62",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_ed1a5273eebc7f56",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_16871980ead09b5f",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_b951e403defdf14f",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_5d891411f75b8c54",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_9bffd1a4c8f6def9",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_2c3f9fceaea475ee",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_2acb9dbdb6b6ab4f",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_dc538b4b9df34111",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_023336fc713b9d17",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_66d90abb99b47898",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_d9cb0574fbb55b17",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_b759f27aec0685a5",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_753510571d7d2c54",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_83eaaa35fc929ec1",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_923840a94f81b53c",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_552a949480d48ba1",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_e81e8d0e183efebb",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_6d5bac50336d94ed",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_995e2cb1c2106701",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_7c30f64d95583db1",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_48cdbe60f9e1ef41",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_5b30a029ba4923e8",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_5bcb05a1879bc621",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_71db980b55674912",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_85780c1b6541e1a5",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_4b7f7600ddb3bdca",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_ca4041f952f48780",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_a2767ab0a836292d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_7e6a7e8d82848c04",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_63b00eb16c001198",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_d16b617190ac5ce0",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_b661ebcfe300a08e",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_c651f0a96bedc816",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_27f5fef7605cf26a",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_e82247860b641407",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_4f4cba4aeb71040e",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_2096c619806d7425",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_8f1b16277d5aeb4b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_32f770fc2b9f4f6b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_3d43f49235253c73",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_47cb90b5d7fa99d9",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_a2ec2be4ec5870a9",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_08ce5a59c182ca69",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_bd62512b6a05d63a",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_80e62d5894fed021",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_33670fba6f1f0f81",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_2ddbae1d6b084f55",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_30179ca165c328f6",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_72979e7951f5dab7",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_e87af09ae54f480e",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_0defac9178a08e9d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_9ba0840c01db3beb",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_c3e2a1608ec17da7",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_c069296dd86d6334",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_8cd70fb915372703",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_5a85a1a17ad5f035",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_37799cde570b5615",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_bc0011e5fae8ff8a",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_87c5784721766e9d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_2e60c9f1db970faa",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_e5112984c60dd69f",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_0fca267c01cc630f",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_fd67fa824421d75a",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_f895ea7ac2bf56a1",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_50a9107e154b81b4",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_7b9338a2cc53e93e",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_d40a46f5700b568f",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_696e07653e12d2b5",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_d431ea4a3d650cf3",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_ad3851093352f72f",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_ef22c2730877c747",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_2e59237c5d248662",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_42ba83e15207c06d",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_f3c06eddaddbe0e0",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_61b0b4fab67c25a0",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_f91292eda62c658b",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_006a2af6ecedcd56",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_fb8bcd61801d1b81",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_0ea0d020b5a17853",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_b8d9ce2ca77a289e",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_7aae46e0705acefa",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_0884f20f44b42964",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_0bbaa8d7afc967b4",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_01d9416c168ce8a5",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_8763754fbf1ab405",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_1ecf658c08c82578",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_d5ad88ae4cb58e1a",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_fedf763f9dc75efa",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_61f2d4e1175679ac",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_d8efa7f765ecac4a",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_1f1c6d79a149ae37",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_29058ddcf556a238",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_1a8f47eb80f335e5",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_25ff7ba049f9990a",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_6c2021facf4b7520",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_5a79391af9d1e65a",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_eafa3a852d35c065",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_ed8acdbd0afc2682",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_5e0fb2675d084301",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_7ccfdb9f6bed8943",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_e56cae554f5dda3b",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_a8443568d16d2ec6",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_08eefa7a9c25d820",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_53f081ac7deb1283",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_19ecdf5a5f71a508",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_dfbce1e99d446aec",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_09461e107165458b",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_6ee166e0de8d8bf2",
+      "label": 1,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_e0b552ca3c820ae8",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_1256595fef8383e9",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_335dd136d3b30da8",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_b7cdca4df623bb2c",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_27e15b47f105ad9a",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_9b29695ea520c80e",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    },
+    {
+      "id": "B_216c9e0a1571ccf7",
+      "label": 0,
+      "source": "manual",
+      "annotator": "Wolf"
+    }
+  ]
+}
