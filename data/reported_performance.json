@@ -1,0 +1,32 @@
+{
+    "_description": "Performance as reported in the original papers (micro-averaged F1, test split).",
+    "_metrics": {
+        "NER": "exact span match",
+        "RE": "relaxed match",
+        "RE+": "strict match"
+    },
+    "gsap-ere": {
+        "model": "gsap-ere",
+        "NER": 80.6,
+        "RE": 54.0,
+        "RE+": 46.9
+    },
+    "scier": {
+        "model": "scier",
+        "NER": 86.85,
+        "RE": 62.32,
+        "RE+": 61.1
+    },
+    "scinlp": {
+        "model": "scinlp",
+        "NER": 79.53,
+        "RE": 49.28,
+        "RE+": 47.64
+    },
+    "scinlp_acl": {
+        "model": "scinlp",
+        "NER": 94.15,
+        "RE": 61.74,
+        "RE+": 60.76
+    }
+}
