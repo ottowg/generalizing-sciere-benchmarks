@@ -3,6 +3,9 @@
 Evaluates all train→test dataset pairs (unified label space) and emits
 data/cross_dataset_performance.json for the webapp.
 
+If seeded prediction files exist for a (train_ds, test_ds, split) combination,
+mean and standard deviation are computed across seeds and stored as *_std fields.
+
 JSON structure:
   {
     "generated_at": "ISO8601",
@@ -10,7 +13,9 @@ JSON structure:
       { "train_ds", "test_ds", "split",
         "ner_exact_f1", "ner_partial_f1",
         "re_relaxed_f1", "re_relaxed_partial_f1",
-        "re_strict_f1", "re_strict_partial_f1" }
+        "re_strict_f1", "re_strict_partial_f1",
+        // optional when seeds available:
+        "ner_exact_f1_std", "ner_partial_f1_std", ... }
     ],
     "entity_labels": [
       { "train_ds", "test_ds", "split", "match", "label",
@@ -27,6 +32,7 @@ Usage:
 """
 
 import json
+import statistics
 from datetime import datetime, timezone
 from typing import Literal
 
@@ -34,7 +40,7 @@ import gsaphub as gh
 import pandas as pd
 from gsaphub.evaluate.relations import RelationExtractionMetric, ScoreType
 
-from unifiedsciere.data_loader import load_corpus
+from unifiedsciere.data_loader import discover_seeds, load_corpus
 from unifiedsciere.evaluate import (
     filter_relations_with_valid_entities,
     mention_to_gsaphub,
@@ -48,6 +54,12 @@ TRAIN_DATASETS = [*DATASETS, "unified-sciere"]
 SPLITS = ["dev", "test"]
 AGGREGATE_LABELS = {"micro", "macro", "weighted"}
 
+F1_KEYS = [
+    "ner_exact_f1", "ner_partial_f1",
+    "re_relaxed_f1", "re_relaxed_partial_f1",
+    "re_strict_f1", "re_strict_partial_f1",
+]
+
 SYMMETRIC_RELATIONS = [
     "coreference", "Synonym-Of", "similarWith", "isComparedTo",
     "compareWith", "Compare-With",
@@ -56,9 +68,9 @@ SYMMETRIC_RELATIONS = [
 
 # ── data loading ──────────────────────────────────────────────────────────────
 
-def _load_unified_pair(train_ds: str, test_ds: str, split: str):
+def _load_unified_pair(train_ds: str, test_ds: str, split: str, seed=None):
     gold = load_corpus(test_ds, split, data_type="gold")
-    pred = load_corpus(test_ds, split, data_type="predictions", trained_on=train_ds)
+    pred = load_corpus(test_ds, split, data_type="predictions", trained_on=train_ds, seed=seed)
     gold, _ = apply_unification_pipeline(gold, test_ds,  apply_to_gold=True,  apply_to_predicted=False)
     pred, _ = apply_unification_pipeline(pred, train_ds, apply_to_gold=False, apply_to_predicted=True)
     return gold, pred
@@ -94,25 +106,25 @@ def _evaluate_re(gold, pred) -> pd.DataFrame:
     )
 
 
-def evaluate_pair(train_ds: str, test_ds: str, split: str):
+def evaluate_pair(train_ds: str, test_ds: str, split: str, seed=None):
     """Returns (ner_exact_df, ner_partial_df, re_df) — any may be None on failure."""
     try:
-        gold, pred = _load_unified_pair(train_ds, test_ds, split)
+        gold, pred = _load_unified_pair(train_ds, test_ds, split, seed=seed)
     except Exception as e:
-        print(f"  SKIP load {train_ds}→{test_ds} [{split}]: {e}")
+        print(f"  SKIP load {train_ds}→{test_ds} [{split}] seed={seed}: {e}")
         return None, None, None
 
     try:
         ner_exact   = _evaluate_ner(gold, pred, partial=False)
         ner_partial = _evaluate_ner(gold, pred, partial=True)
     except Exception as e:
-        print(f"  SKIP NER {train_ds}→{test_ds} [{split}]: {e}")
+        print(f"  SKIP NER {train_ds}→{test_ds} [{split}] seed={seed}: {e}")
         ner_exact = ner_partial = None
 
     try:
         re_results = _evaluate_re(gold, pred)
     except Exception as e:
-        print(f"  SKIP RE {train_ds}→{test_ds} [{split}]: {e}")
+        print(f"  SKIP RE {train_ds}→{test_ds} [{split}] seed={seed}: {e}")
         re_results = None
 
     return ner_exact, ner_partial, re_results
@@ -133,8 +145,18 @@ def _re_micro_f1(df: pd.DataFrame, metric: str) -> float | None:
         return None
     label_col = ("relation", "label")
     micro = df[df[label_col] == "micro"]
-    # Column orientation: (score_type, metric) when len(re_metrics) > len(score_types)
     return round(float(micro.iloc[0][("f1_score", metric)]) * 100, 1) if not micro.empty else None
+
+
+def _f1_dict(ner_exact, ner_partial, re_results) -> dict:
+    return {
+        "ner_exact_f1":          _ner_micro_f1(ner_exact),
+        "ner_partial_f1":        _ner_micro_f1(ner_partial),
+        "re_relaxed_f1":         _re_micro_f1(re_results, "RE"),
+        "re_relaxed_partial_f1": _re_micro_f1(re_results, "RE partial"),
+        "re_strict_f1":          _re_micro_f1(re_results, "RE+"),
+        "re_strict_partial_f1":  _re_micro_f1(re_results, "RE+ partial"),
+    }
 
 
 def _ner_label_rows(df: pd.DataFrame, train_ds, test_ds, split, match) -> list[dict]:
@@ -156,7 +178,6 @@ def _ner_label_rows(df: pd.DataFrame, train_ds, test_ds, split, match) -> list[d
 
 def _re_label_rows(df: pd.DataFrame, train_ds, test_ds, split, match, metric) -> list[dict]:
     label_col = ("relation", "label")
-    # Column orientation: (score_type, metric) when len(re_metrics) > len(score_types)
     return [
         {
             "train_ds": train_ds, "test_ds": test_ds, "split": split, "match": match,
@@ -183,29 +204,49 @@ def main() -> None:
         for train_ds in TRAIN_DATASETS:
             for test_ds in DATASETS:
                 print(f"  {train_ds} → {test_ds}  [{split}]")
-                ner_exact, ner_partial, re_results = evaluate_pair(train_ds, test_ds, split)
+                seeds = discover_seeds(test_ds, train_ds)
 
-                summary_rows.append({
-                    "train_ds":               train_ds,
-                    "test_ds":                test_ds,
-                    "split":                  split,
-                    "ner_exact_f1":           _ner_micro_f1(ner_exact),
-                    "ner_partial_f1":         _ner_micro_f1(ner_partial),
-                    "re_relaxed_f1":          _re_micro_f1(re_results, "RE"),
-                    "re_relaxed_partial_f1":  _re_micro_f1(re_results, "RE partial"),
-                    "re_strict_f1":           _re_micro_f1(re_results, "RE+"),
-                    "re_strict_partial_f1":   _re_micro_f1(re_results, "RE+ partial"),
-                })
+                if seeds:
+                    seed_results = []
+                    for seed in seeds:
+                        print(f"    seed {seed} …", end=" ", flush=True)
+                        ner_e, ner_p, re = evaluate_pair(train_ds, test_ds, split, seed=seed)
+                        if ner_e is not None or re is not None:
+                            f1s = _f1_dict(ner_e, ner_p, re)
+                            seed_results.append((ner_e, ner_p, re, f1s))
+                            print(f"NER={f1s['ner_exact_f1']}  RE={f1s['re_relaxed_f1']}  RE+={f1s['re_strict_f1']}")
+                        else:
+                            print("failed")
+
+                    if seed_results:
+                        row = {"train_ds": train_ds, "test_ds": test_ds, "split": split}
+                        for key in F1_KEYS:
+                            vals = [sr[3][key] for sr in seed_results if sr[3][key] is not None]
+                            row[key] = round(statistics.mean(vals), 1) if vals else None
+                            if len(vals) > 1:
+                                row[f"{key}_std"] = round(statistics.stdev(vals), 2)
+                        summary_rows.append(row)
+                        ner_exact, ner_partial, re_results = seed_results[-1][:3]
+                    else:
+                        summary_rows.append({"train_ds": train_ds, "test_ds": test_ds, "split": split,
+                                             **{k: None for k in F1_KEYS}})
+                        ner_exact = ner_partial = re_results = None
+                else:
+                    ner_exact, ner_partial, re_results = evaluate_pair(train_ds, test_ds, split)
+                    summary_rows.append({
+                        "train_ds": train_ds, "test_ds": test_ds, "split": split,
+                        **_f1_dict(ner_exact, ner_partial, re_results),
+                    })
 
                 if ner_exact is not None:
                     entity_rows.extend(_ner_label_rows(ner_exact,   train_ds, test_ds, split, "exact"))
                 if ner_partial is not None:
                     entity_rows.extend(_ner_label_rows(ner_partial, train_ds, test_ds, split, "partial"))
                 if re_results is not None:
-                    relation_rows.extend(_re_label_rows(re_results, train_ds, test_ds, split, "relaxed",         "RE"))
-                    relation_rows.extend(_re_label_rows(re_results, train_ds, test_ds, split, "relaxed_partial",  "RE partial"))
-                    relation_rows.extend(_re_label_rows(re_results, train_ds, test_ds, split, "strict",           "RE+"))
-                    relation_rows.extend(_re_label_rows(re_results, train_ds, test_ds, split, "strict_partial",   "RE+ partial"))
+                    relation_rows.extend(_re_label_rows(re_results, train_ds, test_ds, split, "relaxed",          "RE"))
+                    relation_rows.extend(_re_label_rows(re_results, train_ds, test_ds, split, "relaxed_partial",   "RE partial"))
+                    relation_rows.extend(_re_label_rows(re_results, train_ds, test_ds, split, "strict",            "RE+"))
+                    relation_rows.extend(_re_label_rows(re_results, train_ds, test_ds, split, "strict_partial",    "RE+ partial"))
 
     output = {
         "generated_at":    datetime.now(timezone.utc).isoformat(),
@@ -214,7 +255,7 @@ def main() -> None:
         "relation_labels": relation_rows,
     }
 
-    out_path = ensure_output("data/cross_dataset_performance.json")
+    out_path = ensure_output("data/webapp/cross_dataset_performance.json")
     out_path.write_text(json.dumps(output, indent=2))
     print(f"\n✓ Written to {out_path}")
 

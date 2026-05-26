@@ -17,7 +17,6 @@ Usage:
 
 import json
 import os
-import re
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -32,7 +31,7 @@ load_dotenv()
 DATASETS = {"gsap-ere", "scier", "scinlp"}
 SPLITS = {"train", "dev", "test"}
 
-OUTPUT_DIR = project_root() / "data" / "annotation_lookup"
+OUTPUT_DIR = project_root() / "data" / "webapp" / "annotation_lookup"
 
 
 # ── helpers ───────────────────────────────────────────────────────────────────
@@ -178,21 +177,31 @@ def build_unified_lookup(trained_on: str, dataset: str, split: str) -> dict:
 # ── main ──────────────────────────────────────────────────────────────────────
 
 def discover_combinations() -> list[tuple[str, str, str]]:
-    """Parse prediction filenames to discover valid trained_on × dataset × split combos."""
-    pred_folder = os.getenv("DATA_PREDICTIONS_FOLDER")
-    if not pred_folder:
-        raise ValueError("DATA_PREDICTIONS_FOLDER not set in .env")
-    pred_path = Path(pred_folder)
-    if not pred_path.is_absolute():
-        pred_path = project_root() / pred_path
-    pattern = re.compile(r"^([^_]+)_model_([^_]+)_(train|dev|test)\.jsonl$")
+    """Scan datasets directory structure to discover valid trained_on × dataset × split combos."""
+    from unifiedsciere.data_loader import TRAINED_ON_ALIASES
+
+    datasets_folder = os.getenv("DATA_DATASETS_FOLDER")
+    if not datasets_folder:
+        raise ValueError("DATA_DATASETS_FOLDER not set in .env")
+    datasets_root = Path(datasets_folder)
+    if not datasets_root.is_absolute():
+        datasets_root = project_root() / datasets_root
+
     combos = []
-    for f in sorted(pred_path.glob("*.jsonl")):
-        m = pattern.match(f.name)
-        if m:
-            dataset, trained_on, split = m.group(1), m.group(2), m.group(3)
-            if trained_on in DATASETS and dataset in DATASETS:
-                combos.append((trained_on, dataset, split))
+    for dataset_dir in sorted(datasets_root.iterdir()):
+        if not dataset_dir.is_dir() or dataset_dir.name not in DATASETS:
+            continue
+        dataset = dataset_dir.name
+        for pred_dir in sorted(dataset_dir.iterdir()):
+            if not pred_dir.is_dir() or not pred_dir.name.startswith("pred_"):
+                continue
+            raw_trained_on = pred_dir.name[len("pred_"):]
+            trained_on = TRAINED_ON_ALIASES.get(raw_trained_on, raw_trained_on)
+            if trained_on not in DATASETS:
+                continue
+            for split_file in sorted(pred_dir.glob("*.jsonl")):
+                if split_file.stem in SPLITS:
+                    combos.append((trained_on, dataset, split_file.stem))
     return combos
 
 

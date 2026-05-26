@@ -328,6 +328,57 @@ def get_work_by_title(
     return extracted
 
 
+def get_works_batch(
+    openalex_ids: list[str],
+    email: str | None = None,
+    delay: float = _DEFAULT_DELAY,
+) -> dict[str, dict]:
+    """Fetch multiple works by OpenAlex ID in a single filter request (up to 100).
+
+    Uses ``filter=ids.openalex:W1|W2|...`` which is far more efficient than
+    individual lookups.  Returns ``{short_openalex_id: metadata_dict}`` where
+    each dict contains ``openalex_id``, ``title``, ``year``, ``cited_by_count``.
+
+    Args:
+        openalex_ids: List of short OpenAlex work IDs (e.g. ``["W1234", "W5678"]``).
+        email: Polite-pool e-mail address (falls back to OPENALEX_EMAIL env var).
+        delay: Seconds to sleep after the request.
+
+    Returns:
+        Dict mapping short OpenAlex ID → metadata dict.  IDs not found are absent.
+    """
+    if not openalex_ids:
+        return {}
+    ids = [wid if wid.startswith("W") else f"W{wid}" for wid in openalex_ids]
+    select = "id,title,publication_year,cited_by_count"
+    resp = _get(
+        WORKS_URL,
+        _params(
+            {
+                "filter": f"ids.openalex:{'|'.join(ids)}",
+                "select": select,
+                "per_page": str(min(len(ids), 100)),
+            },
+            email=email,
+        ),
+    )
+    time.sleep(delay)
+    if resp is None:
+        return {}
+    out: dict[str, dict] = {}
+    for r in resp.json().get("results") or []:
+        raw_id = r.get("id", "")
+        short_id = raw_id.rsplit("/", 1)[-1] if raw_id else ""
+        if short_id:
+            out[short_id] = {
+                "openalex_id": short_id,
+                "title": r.get("title") or r.get("display_name") or "",
+                "year": r.get("publication_year"),
+                "cited_by_count": r.get("cited_by_count"),
+            }
+    return out
+
+
 def get_work_by_arxiv_id(
     arxiv_id: str,
     email: str | None = None,

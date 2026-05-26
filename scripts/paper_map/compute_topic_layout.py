@@ -44,7 +44,7 @@ import umap
 from unifiedsciere.metadata.read_metadata import load_papers
 
 ROOT = Path(__file__).resolve().parents[2]
-ARTIFACTS_DIR = ROOT / "data" / "doc_embeddings"
+ARTIFACTS_DIR = ROOT / "data" / "webapp" / "publication_map"
 
 
 def build_matrix(

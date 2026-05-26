@@ -40,9 +40,9 @@ import yaml
 from unifiedsciere.paths import project_root
 
 DATASETS   = ["gsap-ere", "scier", "scinlp"]
-SIG_FILE   = "data/relation_signatures.json"
-OUT_FILE   = "data/allowed_signatures.yaml"
-OLD_JSON   = "data/allowed_signatures.json"
+SIG_FILE   = "data/webapp/relation_signatures.json"
+OUT_FILE   = "data/webapp/allowed_signatures.yaml"
+OLD_JSON   = "data/webapp/allowed_signatures.json"
 
 
 # ── YAML helpers ──────────────────────────────────────────────────────────────
@@ -107,6 +107,13 @@ def main() -> None:
         elif r["label_set"] == "unified":
             raw_allowed["unified"].add(triple)
 
+    out_path = root / OUT_FILE
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    if out_path.exists():
+        print(f"{OUT_FILE} already exists — skipping (delete it manually to regenerate).")
+        return
+
     # Build output document
     doc: dict = {}
     keys = DATASETS + ["unified"]
@@ -118,8 +125,6 @@ def main() -> None:
             "not_allowed":     None,
         }
 
-    out_path = root / OUT_FILE
-    out_path.parent.mkdir(parents=True, exist_ok=True)
     header = (
         "# Allowed relation signatures derived from gold annotations.\n"
         "# allowed:         confirmed valid (subj, rel, obj) triples from gold\n"

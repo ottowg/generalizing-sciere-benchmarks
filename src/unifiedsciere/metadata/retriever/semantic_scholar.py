@@ -36,10 +36,11 @@ FIELDS = ",".join(
     ]
 )
 
-# Lighter field set for enrichment lookups (we only need IDs & links)
+# Lighter field set for enrichment lookups (IDs, links, and S2 topic classification)
 ENRICH_FIELDS = ",".join(
     [
         "paperId",
+        "corpusId",
         "title",
         "year",
         "venue",
@@ -50,6 +51,7 @@ ENRICH_FIELDS = ",".join(
         "citationCount",
         "openAccessPdf",
         "publicationTypes",
+        "s2FieldsOfStudy",
     ]
 )
 
@@ -276,7 +278,7 @@ def enrich_paper(
 def enrich_papers_batch(
     papers: list[dict],
     max_per_minute: int = 80,
-    max_retries: int = 3,
+    max_retries: int = 5,
 ) -> list[dict | None]:
     """Enrich a batch of papers with Semantic Scholar metadata.
 
@@ -285,6 +287,9 @@ def enrich_papers_batch(
         ``s2_paper_id``, ``title``.
 
     Uses a sliding-window rate limiter and retry logic for 429 errors.
+    On a 429 the request is retried after a random 35–60 s pause (matching
+    the behaviour of ``get_metadata_batch``); the failed attempt does NOT
+    consume a slot in the rate-limit window.
 
     Returns:
         List of S2 paper dicts (None when not found), same order.
@@ -294,7 +299,7 @@ def enrich_papers_batch(
     results: list[dict | None] = []
 
     for i, p in enumerate(papers):
-        # Rate limiting
+        # Rate limiting: wait until there is a free slot in the window
         now = time.time()
         request_times = [t for t in request_times if now - t < window]
         if len(request_times) >= max_per_minute:
@@ -309,14 +314,24 @@ def enrich_papers_batch(
                 result = enrich_paper(**p)
                 break
             except urllib.error.HTTPError as exc:
-                if exc.code == 429 and attempt < max_retries - 1:
-                    backoff = 2 ** (attempt + 2)  # 4s, 8s, 16s
-                    print(
-                        f"  S2 429, retrying in {backoff}s... ({p.get('title', '')[:50]})"
-                    )
-                    time.sleep(backoff)
-                    continue
-                print(f"  WARNING: S2 lookup failed: {exc}")
+                if exc.code == 429:
+                    if attempt < max_retries - 1:
+                        # Remove the failed request from the window counter and
+                        # wait a long time before retrying (S2 needs 35-60 s).
+                        if request_times:
+                            request_times.pop()
+                        wait = random.uniform(35, 60)
+                        print(
+                            f"  S2 429 — waiting {wait:.0f}s then retrying "
+                            f"(attempt {attempt + 1}/{max_retries}): "
+                            f"{p.get('title', '')[:50]}"
+                        )
+                        time.sleep(wait)
+                        continue
+                    else:
+                        print(f"  WARNING: S2 429 after {max_retries} attempts, giving up.")
+                else:
+                    print(f"  WARNING: S2 lookup failed: {exc}")
                 break
             except Exception as exc:
                 print(f"  WARNING: S2 lookup failed: {exc}")

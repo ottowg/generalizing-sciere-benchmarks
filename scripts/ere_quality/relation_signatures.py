@@ -31,6 +31,7 @@ from unifiedsciere.types import Relation
 from unifiedsciere.unification.pipeline import apply_unification_pipeline
 
 DATASETS: list[str] = ["gsap-ere", "scier", "scinlp"]
+TRAIN_DATASETS: list[str] = [*DATASETS, "unified-sciere"]
 SPLITS: list[str] = ["train", "dev", "test"]
 
 _GROUPS_YAML = (
@@ -127,7 +128,7 @@ def collect_gold(rows: list[dict], entity_map: dict, relation_map: dict) -> None
 
 
 def collect_predictions(rows: list[dict], entity_map: dict, relation_map: dict) -> None:
-    for trained_on in DATASETS:
+    for trained_on in TRAIN_DATASETS:
         for dataset in DATASETS:
             for split in SPLITS:
                 print(f"  pred  {trained_on:12s} → {dataset:12s} {split}")
@@ -177,13 +178,13 @@ def main() -> None:
     root = project_root()
 
     # Write signature rows
-    sig_path = root / "data" / "relation_signatures.json"
+    sig_path = root / "data" / "webapp" / "relation_signatures.json"
     sig_path.parent.mkdir(parents=True, exist_ok=True)
     sig_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2))
     print(f"\nWrote {len(rows):,} rows → {sig_path}")
 
     # Write semantic groups (frontend-ready, stripped of YAML comments)
-    grp_path = root / "data" / "semantic_groups.json"
+    grp_path = root / "data" / "webapp" / "semantic_groups.json"
     grp_path.write_text(json.dumps(groups, ensure_ascii=False, indent=2))
     print(f"Wrote groups  → {grp_path}")
 

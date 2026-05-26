@@ -35,7 +35,7 @@ from unifiedsciere.data_loader import load_corpus
 from unifiedsciere.unification.pipeline import apply_unification_pipeline
 
 ROOT = Path(__file__).resolve().parents[2]
-ARTIFACTS_DIR = ROOT / "data" / "doc_embeddings"
+ARTIFACTS_DIR = ROOT / "data" / "webapp" / "publication_map"
 
 DATASETS = ["gsap-ere", "scier", "scinlp"]
 SPLITS = ["train", "dev", "test"]

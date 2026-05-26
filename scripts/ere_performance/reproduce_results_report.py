@@ -4,6 +4,9 @@ Replicates the baseline results from the original papers for GSAP, SciER, and Sc
 Each model is evaluated on the test split of the dataset it was trained on.
 Evaluations are run for both raw and unified label sets, with exact and partial NER matching.
 
+If seeded prediction files exist (integer-named subdirectories inside the prediction
+directory), mean and standard deviation are computed across seeds.
+
 Metrics:
     NER  — exact and partial span match
     RE   — relaxed match (entity spans exact, relation label must match)
@@ -18,6 +21,7 @@ Usage:
 """
 
 import json
+import statistics
 from datetime import datetime, timezone
 from typing import Literal
 
@@ -25,7 +29,7 @@ import gsaphub as gh
 import pandas as pd
 from gsaphub.evaluate.relations import RelationExtractionMetric, ScoreType
 
-from unifiedsciere.data_loader import load_corpus
+from unifiedsciere.data_loader import discover_seeds, load_corpus
 from unifiedsciere.evaluate import (
     filter_relations_with_valid_entities,
     mention_to_gsaphub,
@@ -37,8 +41,14 @@ from unifiedsciere.unification.pipeline import apply_unification_pipeline
 
 DATASETS: list[Literal["gsap-ere", "scier", "scinlp"]] = ["gsap-ere", "scier", "scinlp"]
 SPLIT = "test"
-REPORTED_PERFORMANCE_PATH = project_root() / "data" / "reported_performance.json"
-JSON_OUTPUT_PATH = project_root() / "data" / "reproduce_results.json"
+REPORTED_PERFORMANCE_PATH = project_root() / "data" / "webapp" / "static" / "reported_performance.json"
+JSON_OUTPUT_PATH = project_root() / "data" / "webapp" / "reproduce_results.json"
+
+F1_KEYS = [
+    "ner_exact_f1", "ner_partial_f1",
+    "re_relaxed_f1", "re_relaxed_partial_f1",
+    "re_strict_f1", "re_strict_partial_f1",
+]
 
 SYMMETRIC_RELATIONS = [
     "coreference", "Synonym-Of", "similarWith", "isComparedTo",
@@ -83,6 +93,15 @@ def evaluate_relations(gold_corpus, pred_corpus) -> pd.DataFrame:
     )
 
 
+def _run_eval(dataset: str, label_set: str, seed=None):
+    gold = load_corpus(dataset, SPLIT, data_type="gold")
+    pred = load_corpus(dataset, SPLIT, data_type="predictions", trained_on=dataset, seed=seed)
+    if label_set == "unified":
+        gold, _ = apply_unification_pipeline(gold, dataset, apply_to_gold=True,  apply_to_predicted=False)
+        pred, _ = apply_unification_pipeline(pred, dataset, apply_to_gold=False, apply_to_predicted=True)
+    return evaluate_ner(gold, pred, False), evaluate_ner(gold, pred, True), evaluate_relations(gold, pred)
+
+
 # ── extraction helpers ────────────────────────────────────────────────────────
 
 def _extract_ner_micro(ner_results: pd.DataFrame) -> dict[str, float]:
@@ -98,11 +117,40 @@ def _extract_rel_micro(rel_results: pd.DataFrame, metric_name: str) -> dict[str,
     label_col = ("relation", "label")
     micro = rel_results[rel_results[label_col] == "micro"]
     row   = micro.iloc[0]
-    # Column orientation: (score_type, metric) when len(re_metrics) > len(score_types)
     return {
         "precision": float(row[("precision", metric_name)]),
         "recall":    float(row[("recall",    metric_name)]),
         "f1":        float(row[("f1_score",  metric_name)]),
+    }
+
+
+def _extract_all_metrics(ner_exact, ner_partial, rel_results) -> dict[str, float]:
+    """All micro-averaged metrics, values ×100 rounded to 1 dp."""
+    ne   = _extract_ner_micro(ner_exact)
+    np_  = _extract_ner_micro(ner_partial)
+    re   = _extract_rel_micro(rel_results, "RE")
+    rep_ = _extract_rel_micro(rel_results, "RE partial")
+    res  = _extract_rel_micro(rel_results, "RE+")
+    reps = _extract_rel_micro(rel_results, "RE+ partial")
+    return {
+        "ner_exact_precision":          round(ne["precision"]   * 100, 1),
+        "ner_exact_recall":             round(ne["recall"]      * 100, 1),
+        "ner_exact_f1":                 round(ne["f1"]          * 100, 1),
+        "ner_partial_precision":        round(np_["precision"]  * 100, 1),
+        "ner_partial_recall":           round(np_["recall"]     * 100, 1),
+        "ner_partial_f1":               round(np_["f1"]         * 100, 1),
+        "re_relaxed_precision":         round(re["precision"]   * 100, 1),
+        "re_relaxed_recall":            round(re["recall"]      * 100, 1),
+        "re_relaxed_f1":                round(re["f1"]          * 100, 1),
+        "re_relaxed_partial_precision": round(rep_["precision"] * 100, 1),
+        "re_relaxed_partial_recall":    round(rep_["recall"]    * 100, 1),
+        "re_relaxed_partial_f1":        round(rep_["f1"]        * 100, 1),
+        "re_strict_precision":          round(res["precision"]  * 100, 1),
+        "re_strict_recall":             round(res["recall"]     * 100, 1),
+        "re_strict_f1":                 round(res["f1"]         * 100, 1),
+        "re_strict_partial_precision":  round(reps["precision"] * 100, 1),
+        "re_strict_partial_recall":     round(reps["recall"]    * 100, 1),
+        "re_strict_partial_f1":         round(reps["f1"]        * 100, 1),
     }
 
 
@@ -121,7 +169,6 @@ def _format_ner_per_label(ner_results: pd.DataFrame) -> pd.DataFrame:
 
 def _format_rel_per_label(rel_results: pd.DataFrame, metric_name: str) -> pd.DataFrame:
     label_col = ("relation", "label")
-    # Column orientation: (score_type, metric) when len(re_metrics) > len(score_types)
     return pd.DataFrame([
         {"Label": row[label_col],
          "P":  f"{float(row[('precision', metric_name)]) * 100:.1f}",
@@ -171,7 +218,6 @@ def _ner_label_rows(ner_results, dataset, label_set, match) -> list[dict]:
 
 def _re_label_rows(rel_results, dataset, label_set, metric_name, match) -> list[dict]:
     label_col = ("relation", "label")
-    # Column orientation: (score_type, metric) when len(re_metrics) > len(score_types)
     return [
         {"dataset": dataset, "label_set": label_set, "task": "re", "match": match,
          "label": row[label_col],
@@ -196,65 +242,64 @@ def main() -> None:
     for label_set in ("original", "unified"):
         for dataset in DATASETS:
             print(f"\n--- {dataset.upper()} [{label_set}] ---")
-            gold = load_corpus(dataset, SPLIT, data_type="gold")
-            pred = load_corpus(dataset, SPLIT, data_type="predictions", trained_on=dataset)
+            seeds = discover_seeds(dataset, dataset)
 
-            if label_set == "unified":
-                gold, _ = apply_unification_pipeline(gold, dataset, apply_to_gold=True,  apply_to_predicted=False)
-                pred, _ = apply_unification_pipeline(pred, dataset, apply_to_gold=False, apply_to_predicted=True)
+            if seeds:
+                print(f"  seeds: {seeds}")
+                seed_results = []
+                for seed in seeds:
+                    print(f"  seed {seed} ...", end=" ", flush=True)
+                    try:
+                        ner_e, ner_p, rel = _run_eval(dataset, label_set, seed=seed)
+                        m = _extract_all_metrics(ner_e, ner_p, rel)
+                        seed_results.append((ner_e, ner_p, rel, m))
+                        print(f"NER={m['ner_exact_f1']}  RE={m['re_relaxed_f1']}  RE+={m['re_strict_f1']}")
+                    except FileNotFoundError as exc:
+                        print(f"not found ({exc})")
 
-            ner_exact   = evaluate_ner(gold, pred, partial=False)
-            ner_partial = evaluate_ner(gold, pred, partial=True)
-            rel_results = evaluate_relations(gold, pred)
+                if seed_results:
+                    all_keys = list(seed_results[0][3].keys())
+                    metrics = {k: round(statistics.mean(sr[3][k] for sr in seed_results), 1)
+                               for k in all_keys}
+                    if len(seed_results) > 1:
+                        for fk in F1_KEYS:
+                            vals = [sr[3][fk] for sr in seed_results]
+                            metrics[f"{fk}_std"] = round(statistics.stdev(vals), 2)
+                    ner_exact, ner_partial, rel_results = seed_results[-1][:3]
+                    print(f"  mean NER exact F1:  {metrics['ner_exact_f1']}  (n={len(seed_results)} seeds)")
+                    print(f"  mean RE  F1:        {metrics['re_relaxed_f1']}")
+                    print(f"  mean RE+ F1:        {metrics['re_strict_f1']}")
+                else:
+                    seeds = []  # all seeds failed — fall through to single run
 
-            ne   = _extract_ner_micro(ner_exact)
-            np_  = _extract_ner_micro(ner_partial)
-            re   = _extract_rel_micro(rel_results, "RE")
-            rep_ = _extract_rel_micro(rel_results, "RE partial")
-            res  = _extract_rel_micro(rel_results, "RE+")
-            reps = _extract_rel_micro(rel_results, "RE+ partial")
+            if not seeds:
+                ner_exact, ner_partial, rel_results = _run_eval(dataset, label_set)
+                metrics = _extract_all_metrics(ner_exact, ner_partial, rel_results)
+                print(f"  NER exact F1:   {metrics['ner_exact_f1']}")
+                print(f"  NER partial F1: {metrics['ner_partial_f1']}")
+                print(f"  RE  F1:         {metrics['re_relaxed_f1']}")
+                print(f"  RE+ F1:         {metrics['re_strict_f1']}")
 
-            json_summary.append({
-                "dataset": dataset, "label_set": label_set,
-                "ner_exact_precision":          round(ne["precision"]   * 100, 1),
-                "ner_exact_recall":             round(ne["recall"]      * 100, 1),
-                "ner_exact_f1":                 round(ne["f1"]          * 100, 1),
-                "ner_partial_precision":        round(np_["precision"]  * 100, 1),
-                "ner_partial_recall":           round(np_["recall"]     * 100, 1),
-                "ner_partial_f1":               round(np_["f1"]         * 100, 1),
-                "re_relaxed_precision":         round(re["precision"]   * 100, 1),
-                "re_relaxed_recall":            round(re["recall"]      * 100, 1),
-                "re_relaxed_f1":                round(re["f1"]          * 100, 1),
-                "re_relaxed_partial_precision": round(rep_["precision"] * 100, 1),
-                "re_relaxed_partial_recall":    round(rep_["recall"]    * 100, 1),
-                "re_relaxed_partial_f1":        round(rep_["f1"]        * 100, 1),
-                "re_strict_precision":          round(res["precision"]  * 100, 1),
-                "re_strict_recall":             round(res["recall"]     * 100, 1),
-                "re_strict_f1":                 round(res["f1"]         * 100, 1),
-                "re_strict_partial_precision":  round(reps["precision"] * 100, 1),
-                "re_strict_partial_recall":     round(reps["recall"]    * 100, 1),
-                "re_strict_partial_f1":         round(reps["f1"]        * 100, 1),
-            })
+            json_summary.append({"dataset": dataset, "label_set": label_set, **metrics})
             json_labels.extend(_ner_label_rows(ner_exact,   dataset, label_set, "exact"))
             json_labels.extend(_ner_label_rows(ner_partial, dataset, label_set, "partial"))
-            json_labels.extend(_re_label_rows(rel_results,  dataset, label_set, "RE",         "relaxed"))
+            json_labels.extend(_re_label_rows(rel_results,  dataset, label_set, "RE",          "relaxed"))
             json_labels.extend(_re_label_rows(rel_results,  dataset, label_set, "RE partial",  "relaxed_partial"))
             json_labels.extend(_re_label_rows(rel_results,  dataset, label_set, "RE+",         "strict"))
             json_labels.extend(_re_label_rows(rel_results,  dataset, label_set, "RE+ partial", "strict_partial"))
 
-            print(f"  NER exact F1:          {ne['f1']   * 100:.1f}")
-            print(f"  NER partial F1:        {np_['f1']  * 100:.1f}")
-            print(f"  RE  F1:                {re['f1']   * 100:.1f}")
-            print(f"  RE≈ F1:                {rep_['f1'] * 100:.1f}")
-            print(f"  RE+ F1:                {res['f1']  * 100:.1f}")
-            print(f"  RE+≈ F1:               {reps['f1'] * 100:.1f}")
-
             if label_set == "original":
                 md_summary_rows.append({
                     "Dataset": dataset.upper(),
-                    "NER P": f"{ne['precision'] * 100:.1f}",  "NER R": f"{ne['recall'] * 100:.1f}",  "NER F1": f"{ne['f1'] * 100:.1f}",
-                    "RE P":  f"{re['precision'] * 100:.1f}",  "RE R":  f"{re['recall'] * 100:.1f}",  "RE F1":  f"{re['f1'] * 100:.1f}",
-                    "RE+ P": f"{res['precision'] * 100:.1f}", "RE+ R": f"{res['recall'] * 100:.1f}", "RE+ F1": f"{res['f1'] * 100:.1f}",
+                    "NER P":  f"{metrics['ner_exact_precision']:.1f}",
+                    "NER R":  f"{metrics['ner_exact_recall']:.1f}",
+                    "NER F1": f"{metrics['ner_exact_f1']:.1f}",
+                    "RE P":   f"{metrics['re_relaxed_precision']:.1f}",
+                    "RE R":   f"{metrics['re_relaxed_recall']:.1f}",
+                    "RE F1":  f"{metrics['re_relaxed_f1']:.1f}",
+                    "RE+ P":  f"{metrics['re_strict_precision']:.1f}",
+                    "RE+ R":  f"{metrics['re_strict_recall']:.1f}",
+                    "RE+ F1": f"{metrics['re_strict_f1']:.1f}",
                 })
                 md_detail_data.append((
                     dataset,

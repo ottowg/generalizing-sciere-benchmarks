@@ -59,7 +59,7 @@ def _load_outlets_cached():
 
 @st.cache_data
 def _load_topic_map() -> "pd.DataFrame | None":
-    path = ROOT / "data" / "doc_embeddings" / "topic_map.parquet"
+    path = ROOT / "data" / "webapp" / "publication_map" / "topic_map.parquet"
     if not path.exists():
         return None
     return pd.read_parquet(path)
@@ -73,7 +73,7 @@ def _load_full_meta_df() -> "pd.DataFrame":
 
 @st.cache_data
 def _load_entity_cocitation() -> dict:
-    path = ROOT / "data" / "doc_embeddings" / "entity_cocitation.json"
+    path = ROOT / "data" / "webapp" / "publication_map" / "entity_cocitation.json"
     if not path.exists():
         return {}
     with open(path) as f:

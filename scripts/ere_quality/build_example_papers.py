@@ -162,7 +162,7 @@ def main() -> None:
     for dataset in DATASETS:
         result["papers"][dataset] = process_dataset(dataset, args.n, rng, paper_meta)
 
-    out_path = ensure_output("data/example_papers.json")
+    out_path = ensure_output("data/webapp/example_papers.json")
     out_path.write_text(json.dumps(result, ensure_ascii=False, indent=2))
     print(f"\nWritten {sum(len(v) for v in result['papers'].values())} papers → {out_path}")
 

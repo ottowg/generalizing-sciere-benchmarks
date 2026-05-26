@@ -238,7 +238,7 @@ def build() -> dict:
 
     # ── Topics (OpenAlex) ─────────────────────────────────────────────────────
     print("  Topics …")
-    topic_path = ROOT / "data" / "doc_embeddings" / "topic_map.parquet"
+    topic_path = ROOT / "data" / "webapp" / "publication_map" / "topic_map.parquet"
     if topic_path.exists():
         tm = pd.read_parquet(topic_path)
         has_split = all(c in tm.columns for c in ["n_gsap_hf", "n_gsap_arxiv"])
@@ -265,7 +265,7 @@ def build() -> dict:
 
     # ── Entity co-citation (Tasks / Datasets / Methods) ───────────────────────
     print("  Entity co-citation …")
-    ec_path = ROOT / "data" / "doc_embeddings" / "entity_cocitation.json"
+    ec_path = ROOT / "data" / "webapp" / "publication_map" / "entity_cocitation.json"
     if ec_path.exists():
         with open(ec_path) as f:
             ec_data = json.load(f)
@@ -351,7 +351,7 @@ def build() -> dict:
 
     # ── Publication map ───────────────────────────────────────────────────────
     print("  Publication map …")
-    pm_path = ROOT / "data" / "doc_embeddings" / "paper_map.parquet"
+    pm_path = ROOT / "data" / "webapp" / "publication_map" / "paper_map.parquet"
     if pm_path.exists():
         pm = pd.read_parquet(pm_path)
         extra_cols = ["dataset", "split", "year", "outlet_abbr", "outlet_type", "outlet_topic", "selection", "cited_by_count"]
@@ -376,13 +376,13 @@ def build() -> dict:
         for _, row in pm.iterrows():
             pm_records.append({k: _clean(v) for k, v in row.items()})
 
-        knn_edges_path = ROOT / "data" / "doc_embeddings" / "knn_edges.json"
+        knn_edges_path = ROOT / "data" / "webapp" / "publication_map" / "knn_edges.json"
         knn_edges = []
         if knn_edges_path.exists():
             with open(knn_edges_path) as f:
                 knn_edges = json.load(f)
 
-        entity_sets_path = ROOT / "data" / "doc_embeddings" / "entity_sets.json"
+        entity_sets_path = ROOT / "data" / "webapp" / "publication_map" / "entity_sets.json"
         entity_sets_data: dict = {}
         if entity_sets_path.exists():
             with open(entity_sets_path) as f:
@@ -391,11 +391,44 @@ def build() -> dict:
         print("  Entity frequencies …")
         entity_freq_data = _build_entity_freq()
 
+        cluster_data_path = ROOT / "data" / "webapp" / "publication_map" / "cluster_data.json"
+        cluster_data: dict = {}
+        if cluster_data_path.exists():
+            with open(cluster_data_path) as f:
+                cluster_data = json.load(f)
+            print("  Cluster data loaded.")
+
+        # Load reference lists and titles for the References tab
+        ref_lists: dict[str, list[str]] = {}
+        openalex_titles: dict[str, str] = {}
+        metadata_jsonl = ROOT / "data" / "metadata" / "unified" / "all_papers.jsonl"
+        if metadata_jsonl.exists():
+            with open(metadata_jsonl) as f:
+                for line in f:
+                    rec = json.loads(line)
+                    if rec.get("references"):
+                        ref_lists[rec["doc_id"]] = rec["references"]
+                    if rec.get("openalex_id") and rec.get("title"):
+                        openalex_titles[rec["openalex_id"]] = rec["title"]
+        # Enrich with reference metadata collected via collect_reference_metadata.py
+        ref_meta_path = ROOT / "data" / "metadata" / "references" / "reference_metadata.json"
+        if ref_meta_path.exists():
+            with open(ref_meta_path) as f:
+                ref_meta = json.load(f)
+            for oid, entry in ref_meta.items():
+                if entry.get("title") and oid not in openalex_titles:
+                    openalex_titles[oid] = entry["title"]
+            print(f"  Reference metadata loaded: {len(ref_meta)} entries, "
+                  f"{len(openalex_titles)} titles total.")
+
         result["paper_map"] = {
-            "points":      pm_records,
-            "knn_edges":   knn_edges,
-            "entity_sets": entity_sets_data,
-            "entity_freq": entity_freq_data,
+            "points":          pm_records,
+            "knn_edges":       knn_edges,
+            "entity_sets":     entity_sets_data,
+            "entity_freq":     entity_freq_data,
+            "clusters":        cluster_data,
+            "ref_lists":       ref_lists,
+            "openalex_titles": openalex_titles,
         }
     else:
         result["paper_map"] = None
@@ -452,7 +485,7 @@ def build() -> dict:
 
 def main():
     data = build()
-    out = ensure_output("data/webapp_metadata.json")
+    out = ensure_output("data/webapp/static/webapp_metadata.json")
     out.write_text(json.dumps(data, ensure_ascii=False))
     print(f"\nWritten → {out}")
 

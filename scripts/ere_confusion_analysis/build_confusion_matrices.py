@@ -15,7 +15,7 @@ SPLITS = ["dev"]  # extend to ["train", "dev", "test"] if needed
 # Reversed cross-pairs are derived by transposing in the API — no need to build both.
 ANNOT_PAIRS = [(a, a) for a in VALID_ANNOTATIONS] + list(itertools.combinations(VALID_ANNOTATIONS, 2))
 
-OUT_DIR = Path("data/confusion_matrices")
+OUT_DIR = Path("data/webapp/confusion_matrices")
 
 
 def cache_path(dataset, split, annot1, annot2, labelset) -> Path:

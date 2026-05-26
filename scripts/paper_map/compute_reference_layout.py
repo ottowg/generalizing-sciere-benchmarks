@@ -30,7 +30,7 @@ import pandas as pd
 from unifiedsciere.metadata.read_metadata import load_papers
 
 ROOT = Path(__file__).resolve().parents[2]
-ARTIFACTS_DIR = ROOT / "data" / "doc_embeddings"
+ARTIFACTS_DIR = ROOT / "data" / "webapp" / "publication_map"
 
 
 def main(min_refs: int = 1, min_sim: float = 0.0, power: float = 1.0, random_state: int = 42) -> None:
