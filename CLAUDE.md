@@ -19,6 +19,53 @@ Pattern Recognition.
    gsap-hub) and confusion analyses to understand where models and annotation
    guidelines agree or diverge.
 
+## Experiment Structure
+
+There are four analysis tracks, each corresponding to a view in the webapp:
+
+### 1. Reproduction (`results/Reproduction`)
+One model is trained per dataset (in-distribution). Results are compared against
+numbers reported in the original papers to verify reproducibility. These individual
+models also serve as the **baselines in the MultiSciERE comparison**.
+
+Prediction directory per dataset: `pred_{dataset}/` (e.g. `pred_gsap-ere/`,
+`pred_scier/`, `pred_scinlp/`). Evaluated in each dataset's **original label space**.
+
+### 2. Cross-Dataset (`results/Cross-Dataset`)
+All single-dataset models (+ a `unified-sciere` model trained on the full unified
+corpus) are evaluated on every dataset using the **unified label space**. Covers all
+train→test combinations.
+
+### 3. MultiSciERE (`results/MultiSciERE`)
+A **multi-head model** trained on 2 or 3 datasets simultaneously, using the original
+label sets with one output head per dataset.
+
+**Comparison**: 3 individual baselines (from Reproduction) vs. 4 multi-head variants:
+- 3 × two-dataset combinations: GSAP-ERE+SciER, GSAP-ERE+SciNLP, SciER+SciNLP
+- 1 × three-dataset model (all three)
+
+**Tabs in the webapp:**
+- *Summary* — in-distribution comparison on original labels (baselines vs. multi-head)
+- *Seeded Models* — mean ± std across multiple training seeds for each multi-head variant
+- *Generalization* (planned, moved from Cross-Dataset) — multi-head models evaluated
+  across all datasets in unified label space; filterable by which datasets the model
+  was trained on
+
+### Multi-head prediction directory layout
+
+```
+$DATA_DATASETS_FOLDER/{test_dataset}/
+  pred_multi-sciere/{label_set}/{split}.jsonl          # 3-dataset model (old convention)
+  pred_multi-sciere-{ds1}-{ds2}/{label_set}/{split}.jsonl        # 2-dataset model
+  pred_multi-sciere-{ds1}-{ds2}/{label_set}/{seed}/{split}.jsonl # seeded runs
+```
+
+- `{label_set}` matches the test dataset's native label space (e.g. `gsap` for gsap-ere)
+- `{seed}` is an integer directory name (e.g. `41`, `42`, …); seeds are discovered
+  automatically by scanning for integer-named subdirectories — do **not** hard-code them
+- The model trained on datasets {ds1}+{ds2} is only evaluated on those datasets
+  (in-distribution); cross-dataset generalization uses the unified label space
+
 # Project Conventions
 
 - Use `uv` as the package manager and script runner (e.g. `uv run`, `uv add`, `uv sync`)
@@ -31,14 +78,41 @@ Pattern Recognition.
   - `ere_performance/` — entity/relation performance, false predictions, reproduction
   - `ere_confusion_analysis/` — cross-model confusion, span analysis, unification reports
 
+## Webapp UI Conventions
+
+### Filter controls
+All filter/selector controls in the webapp use `v-btn-toggle`, never `v-select` dropdowns.
+Structure: a wrapping `div` with a `.text-caption.text-medium-emphasis.mb-1` label above,
+then `v-btn-toggle(mandatory density="compact" variant="outlined" color="primary")`.
+Multiple filter groups sit in a `.d-flex.flex-wrap.ga-4.mb-3` (or `mb-4`) row.
+
+```pug
+.d-flex.flex-wrap.ga-4.mb-3
+  div
+    .text-caption.text-medium-emphasis.mb-1 Dataset
+    v-btn-toggle(v-model="ds" mandatory density="compact" variant="outlined" color="primary")
+      v-btn(value="(all)" size="small") All
+      v-btn(value="gsap-ere" size="small") GSAP-ERE
+      v-btn(value="scier" size="small") SciER
+      v-btn(value="scinlp" size="small") SciNLP
+  div
+    .text-caption.text-medium-emphasis.mb-1 Split
+    v-btn-toggle(v-model="split" mandatory density="compact" variant="outlined" color="primary")
+      v-btn(value="(both)" size="small") Both
+      v-btn(value="dev" size="small") Dev
+      v-btn(value="test" size="small") Test
+```
+
+`v-select` is only acceptable for free-text search, document pickers, or dropdowns with
+more than ~6 dynamic options. Never use it for a known fixed set of filter values.
+
 ## Environment
 
 - Node.js managed via **nvm** (current: node v24.14.0, npm v11.9.0)
 - Data paths are configured via `.env` file (loaded by `python-dotenv`)
 - `.env.example` documents available variables; copy to `.env` and adjust
 - Current variables:
-  - `DATA_GOLD_FOLDER` — path to gold standard data (default: `data/gold`)
-  - `DATA_PREDICTIONS_FOLDER` — path to model predictions (default: `data/predictions`)
+  - `DATA_DATASETS_FOLDER` — absolute path to the datasets root (the HGERE datasets folder)
 - The `.env` file is gitignored; never commit secrets or machine-specific paths
 
 ## Data Model
@@ -57,8 +131,9 @@ Core types are defined in `src/unifiedsciere/types.py`:
 
 ## Data Access
 
-Three datasets: **GSAP**, **SciER**, **SciNLP**. Each has train/dev/test splits.
-Three models (one per dataset), each with predictions on all three datasets.
+Three datasets: **GSAP-ERE**, **SciER**, **SciNLP**. Each has train/dev/test splits.
+Models: one per dataset (individual/reproduction), plus multi-head models trained on
+2 or 3 datasets. See *Experiment Structure* above for the full model taxonomy.
 
 ### Loading gold and predictions
 
@@ -74,8 +149,9 @@ pred = load_corpus("gsap", "dev", data_type="predictions", trained_on="scier")
 
 - `dataset` = the test data (what is being evaluated on)
 - `trained_on` = the model / training source (who made the predictions)
-- Gold data lives in `$DATA_GOLD_FOLDER/{dataset}_{split}.jsonl`
-- Predictions live in `$DATA_PREDICTIONS_FOLDER/{trained_on}_{dataset}_{split}.jsonl`
+- Gold data lives in `$DATA_DATASETS_FOLDER/{dataset}/{split}.jsonl`
+- Predictions live in `$DATA_DATASETS_FOLDER/{dataset}/pred_{trained_on}/{split}.jsonl`
+- Multi-label models: `$DATA_DATASETS_FOLDER/{dataset}/pred_multi-sciere/{label_set}/{split}.jsonl` — use `trained_on="multi-sciere-{label_set}"`
 
 ### Unification
 

@@ -9,7 +9,7 @@ adapter_name: allenai/specter2
 batch_size: 32
 
 # Artifacts
-artifacts_dir: data/doc_embeddings
+artifacts_dir: data/webapp/publication_map
 
 # UMAP defaults
 umap:

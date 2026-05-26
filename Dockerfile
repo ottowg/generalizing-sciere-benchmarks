@@ -11,17 +11,22 @@ COPY webapp/dist    ./webapp/dist
 COPY webapp/server  ./webapp/server
 COPY webapp/server.js ./webapp/server.js
 
-# Data — pre-generated JSON + gold/predictions for Samples and Lookup tabs
-COPY data/cross_dataset_performance.json ./data/cross_dataset_performance.json
-COPY data/label_statistics.json          ./data/label_statistics.json
-COPY data/relation_signatures.json       ./data/relation_signatures.json
-COPY data/reproduce_results.json         ./data/reproduce_results.json
-COPY data/reported_performance.json      ./data/reported_performance.json
-COPY data/example_papers.json            ./data/example_papers.json
-COPY data/webapp_metadata.json           ./data/webapp_metadata.json
-COPY data/allowed_signatures.yaml        ./data/allowed_signatures.yaml
+# Data — pre-generated JSON/YAML served by API handlers
+COPY data/webapp/cross_dataset_performance.json ./data/webapp/cross_dataset_performance.json
+COPY data/webapp/label_statistics.json          ./data/webapp/label_statistics.json
+COPY data/webapp/relation_signatures.json       ./data/webapp/relation_signatures.json
+COPY data/webapp/reproduce_results.json         ./data/webapp/reproduce_results.json
+COPY data/webapp/multi_sciere_results.json      ./data/webapp/multi_sciere_results.json
+COPY data/webapp/example_papers.json            ./data/webapp/example_papers.json
+COPY data/webapp/domain_shift_results.json      ./data/webapp/domain_shift_results.json
+COPY data/webapp/semantic_groups.json           ./data/webapp/semantic_groups.json
+COPY data/webapp/allowed_signatures.yaml        ./data/webapp/allowed_signatures.yaml
+COPY data/webapp/static                         ./data/webapp/static
+COPY data/webapp/confusion_matrices             ./data/webapp/confusion_matrices
+COPY data/webapp/publication_map                ./data/webapp/publication_map
+
+# Gold + annotation_lookup for Samples/Lookup tabs
 COPY data/gold                           ./data/gold
-COPY data/predictions_v6                 ./data/predictions_v6
 COPY data/annotation_lookup             ./data/annotation_lookup
 
 # Reports (sidebar markdown) and schema configs
