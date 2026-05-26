@@ -32,6 +32,9 @@ dependencies = [
     "pyarrow>=23.0.1",
     "streamlit>=1.54.0",
     "plotly>=6.5.2",
+    "tiktoken",
+    "openai>=1.90.0",
+    "hdbscan>=0.8.42",
 ]
 
 
@@ -112,6 +115,7 @@ dev = [
     "ipykernel>=7.2.0",
     "pytest>=9.0.2",
     "ruff>=0.15.10",
+    "tiktoken>=0.12.0",
 ]
 
 
