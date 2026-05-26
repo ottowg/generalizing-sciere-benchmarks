@@ -1,29 +1,30 @@
 <template lang="pug">
 div
-  Line(:data="chartData" :options="chartOptions" style="max-height:380px")
+  Bar(:data="chartData" :options="chartOptions" style="max-height:400px")
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { Line } from 'vue-chartjs'
+import { ref, computed } from 'vue'
+import { Bar } from 'vue-chartjs'
 import {
   Chart as ChartJS,
-  CategoryScale, LinearScale, PointElement, LineElement,
-  Title, Tooltip, Legend, Filler,
+  CategoryScale, LinearScale, BarElement,
+  Title, Tooltip, Legend,
 } from 'chart.js'
 import { entityColor } from '../utils/entityColors.js'
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, Filler)
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const props = defineProps({
   // { year_str: { n_papers, total_mean, by_label: { label: mean } } }
-  byYear: { type: Object, required: true },
-  showTotal: { type: Boolean, default: true },
+  byYear:   { type: Object,   required: true },
+  colorFn:  { type: Function, default: entityColor },
+  yLabel:   { type: String,   default: 'Mean count per paper' },
 })
 
-const TOTAL_COLOR = '#374151'
+const hoveredIndex = ref(null)
 
-const labels = computed(() => Object.keys(props.byYear).sort())
+const years = computed(() => Object.keys(props.byYear).sort())
 
 const allLabels = computed(() => {
   const s = new Set()
@@ -33,47 +34,44 @@ const allLabels = computed(() => {
 })
 
 const xLabels = computed(() =>
-  labels.value.map(y => {
+  years.value.map(y => {
     const n = props.byYear[y]?.n_papers ?? 0
     return `${y} (n=${n})`
   })
 )
 
-const chartData = computed(() => {
-  const datasets = allLabels.value.map(lbl => ({
-    label: lbl,
-    data: labels.value.map(y => props.byYear[y]?.by_label?.[lbl] ?? null),
-    borderColor: entityColor(lbl),
-    backgroundColor: entityColor(lbl) + '22',
-    tension: 0.3,
-    pointRadius: 4,
-    pointHoverRadius: 6,
-    spanGaps: true,
-  }))
-
-  if (props.showTotal) {
-    datasets.unshift({
-      label: 'Total',
-      data: labels.value.map(y => props.byYear[y]?.total_mean ?? null),
-      borderColor: TOTAL_COLOR,
-      backgroundColor: TOTAL_COLOR + '18',
-      borderWidth: 2,
-      tension: 0.3,
-      pointRadius: 4,
-      pointHoverRadius: 6,
-      spanGaps: true,
-    })
-  }
-
-  return { labels: xLabels.value, datasets }
-})
+const chartData = computed(() => ({
+  labels: xLabels.value,
+  datasets: allLabels.value.map((lbl, i) => {
+    const dimmed = hoveredIndex.value !== null && hoveredIndex.value !== i
+    return {
+      label: lbl,
+      data: years.value.map(y => props.byYear[y]?.by_label?.[lbl] ?? 0),
+      backgroundColor: props.colorFn(lbl) + (dimmed ? '28' : 'bb'),
+      borderColor:     props.colorFn(lbl) + (dimmed ? '44' : 'ff'),
+      borderWidth: 1,
+      borderRadius: 2,
+    }
+  }),
+}))
 
 const chartOptions = computed(() => ({
   responsive: true,
   maintainAspectRatio: true,
   interaction: { mode: 'index', intersect: false },
   plugins: {
-    legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11 } } },
+    legend: {
+      position: 'top',
+      labels: { boxWidth: 12, font: { size: 11 } },
+      onHover(event, legendItem) {
+        hoveredIndex.value = legendItem.datasetIndex
+        if (event.native?.target) event.native.target.style.cursor = 'pointer'
+      },
+      onLeave(event) {
+        hoveredIndex.value = null
+        if (event.native?.target) event.native.target.style.cursor = 'default'
+      },
+    },
     tooltip: {
       callbacks: {
         title: (items) => items[0]?.label ?? '',
@@ -82,11 +80,9 @@ const chartOptions = computed(() => ({
     },
   },
   scales: {
-    x: {
-      ticks: { font: { size: 10 }, maxRotation: 45 },
-    },
+    x: { ticks: { font: { size: 10 }, maxRotation: 45 } },
     y: {
-      title: { display: true, text: 'Mean entities per paper', font: { size: 11 } },
+      title: { display: true, text: props.yLabel, font: { size: 11 } },
       beginAtZero: true,
     },
   },

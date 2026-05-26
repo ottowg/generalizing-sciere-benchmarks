@@ -5,14 +5,14 @@ v-list(nav density="compact")
     prepend-icon="mdi-tag-outline"
     title="Mentions"
     :active="currentView === 'quality-mentions'"
-    active-color="primary"
+    color="primary"
     @click="emit('set-view', 'quality-mentions')"
   )
   v-list-item(
     prepend-icon="mdi-relation-many-to-many"
     title="Relations"
     :active="currentView === 'quality-relations'"
-    active-color="primary"
+    color="primary"
     @click="emit('set-view', 'quality-relations')"
   )
 
@@ -23,7 +23,7 @@ v-list(nav density="compact")
     prepend-icon="mdi-text-short"
     title="Abbreviation Relations"
     :active="currentView === 'quality-abbreviation'"
-    active-color="primary"
+    color="primary"
     @click="emit('set-view', 'quality-abbreviation')"
   )
 
@@ -34,14 +34,14 @@ v-list(nav density="compact")
     prepend-icon="mdi-pipe"
     title="Pipeline"
     :active="currentView === 'unification-pipeline'"
-    active-color="primary"
+    color="primary"
     @click="emit('set-view', 'unification-pipeline')"
   )
   v-list-item(
     prepend-icon="mdi-chart-bar"
     title="Retention Stats"
     :active="currentView === 'unification-retention'"
-    active-color="primary"
+    color="primary"
     @click="emit('set-view', 'unification-retention')"
   )
 </template>

@@ -21,7 +21,11 @@ v-app(:theme="theme")
     SchemaPreview(v-else-if="currentView === 'data-models-schema'")
     ReproduceResults(v-else-if="currentView === 'performance-reproduce'")
     CrossDatasetPerformance(v-else-if="currentView === 'performance-cross-dataset'")
+    MultiSciERE(v-else-if="currentView === 'performance-multi-sciere'")
+    CoreferenceMatrices(v-else-if="currentView === 'performance-coreference'")
     MetadataDownload(v-else-if="currentView === 'metadata-download'")
+    AuxiliaryTransferDocs(v-else-if="currentView === 'more-aux-transfer'")
+    PageMap(v-else-if="currentView === 'more-page-map'" @set-view="setView")
     PaperMetadata(v-else-if="currentView?.startsWith('metadata-')" :view="currentView")
     v-sheet(v-else class="d-flex align-center justify-center" style="height:60vh;")
       span.text-disabled Select a view from the menu above.
@@ -43,8 +47,12 @@ import ExamplePaper from './components/ExamplePaper.vue'
 import SchemaPreview from './components/SchemaPreview.vue'
 import ReproduceResults from './components/ReproduceResults.vue'
 import CrossDatasetPerformance from './components/CrossDatasetPerformance.vue'
+import MultiSciERE from './components/MultiSciERE.vue'
+import CoreferenceMatrices from './components/CoreferenceMatrices.vue'
 import PaperMetadata from './components/PaperMetadata.vue'
 import MetadataDownload from './components/MetadataDownload.vue'
+import AuxiliaryTransferDocs from './components/AuxiliaryTransferDocs.vue'
+import PageMap from './components/PageMap.vue'
 
 const theme = ref('light')
 const isDark = computed(() => theme.value === 'dark')

@@ -11,36 +11,43 @@ v-app-bar(color="deep-purple-darken-2" elevation="2")
         prepend-icon="mdi-map-marker-path"
         title="Publication Map"
         :active="currentView === 'metadata-pub-map'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'metadata-pub-map')"
       )
       v-list-item(
         prepend-icon="mdi-chart-bar"
         title="Publication Statistics"
         :active="currentView === 'metadata-stats'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'metadata-stats')"
-      )
-      v-list-item(
-        prepend-icon="mdi-format-list-bulleted"
-        title="Overview"
-        :active="currentView === 'metadata-overview'"
-        active-color="primary"
-        @click="emit('set-view', 'metadata-overview')"
       )
       v-list-item(
         prepend-icon="mdi-graph-outline"
         title="Outlet Map"
         :active="currentView === 'metadata-outlet-map'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'metadata-outlet-map')"
+      )
+      v-list-item(
+        prepend-icon="mdi-format-list-bulleted"
+        title="Outlet Statistics"
+        :active="currentView === 'metadata-overview'"
+        color="primary"
+        @click="emit('set-view', 'metadata-overview')"
+      )
+      v-list-item(
+        prepend-icon="mdi-chart-bubble"
+        title="Topic Coverage"
+        :active="currentView === 'metadata-topic-distr'"
+        color="primary"
+        @click="emit('set-view', 'metadata-topic-distr')"
       )
       v-divider
       v-list-item(
         prepend-icon="mdi-download-outline"
         title="Download"
         :active="currentView === 'metadata-download'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'metadata-download')"
       )
 
@@ -52,15 +59,22 @@ v-app-bar(color="deep-purple-darken-2" elevation="2")
         prepend-icon="mdi-graph-outline"
         title="Relation Signatures"
         :active="currentView === 'quality-signatures'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'quality-signatures')"
       )
       v-list-item(
         prepend-icon="mdi-book-open-variant-outline"
         title="Schema Preview"
         :active="currentView === 'data-models-schema'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'data-models-schema')"
+      )
+      v-list-item(
+        prepend-icon="mdi-label"
+        title="Label Statistics"
+        :active="currentView === 'unification-label-stats'"
+        color="primary"
+        @click="emit('set-view', 'unification-label-stats')"
       )
 
   v-menu
@@ -71,28 +85,21 @@ v-app-bar(color="deep-purple-darken-2" elevation="2")
         prepend-icon="mdi-pipe"
         title="Pipeline"
         :active="currentView === 'unification-pipeline'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'unification-pipeline')"
       )
       v-list-item(
         prepend-icon="mdi-chart-bar"
         title="Retention Stats"
         :active="currentView === 'unification-retention'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'unification-retention')"
-      )
-      v-list-item(
-        prepend-icon="mdi-chart-violin"
-        title="Label Statistics"
-        :active="currentView === 'unification-label-stats'"
-        active-color="primary"
-        @click="emit('set-view', 'unification-label-stats')"
       )
       v-list-item(
         prepend-icon="mdi-table-arrow-right"
         title="Label Mapping"
         :active="currentView === 'unification-label-mapping'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'unification-label-mapping')"
       )
 
@@ -104,28 +111,28 @@ v-app-bar(color="deep-purple-darken-2" elevation="2")
         prepend-icon="mdi-replay"
         title="Reproduce Results"
         :active="currentView === 'performance-reproduce'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'performance-reproduce')"
       )
       v-list-item(
         prepend-icon="mdi-table-arrow-right"
         title="Cross-Dataset"
         :active="currentView === 'performance-cross-dataset'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'performance-cross-dataset')"
       )
       v-list-item(
         prepend-icon="mdi-layers-triple-outline"
         title="MultiSciERE"
         :active="currentView === 'performance-multi-sciere'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'performance-multi-sciere')"
       )
       v-list-item(
         prepend-icon="mdi-table-pivot"
         title="Confusion Matrices"
         :active="currentView === 'performance-coreference'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'performance-coreference')"
       )
 
@@ -133,7 +140,7 @@ v-app-bar(color="deep-purple-darken-2" elevation="2")
     :variant="currentView === 'quality-example-paper' ? 'tonal' : 'text'"
     prepend-icon="mdi-file-document-outline"
     @click="emit('set-view', 'quality-example-paper')"
-  ) Examples
+  ) Test Set Samples
 
   v-menu(v-if="!dockerMode")
     template(#activator="{ props }")
@@ -144,14 +151,14 @@ v-app-bar(color="deep-purple-darken-2" elevation="2")
         prepend-icon="mdi-relation-many-to-many"
         title="Relation Review"
         :active="currentView === 'quality-relations'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'quality-relations')"
       )
       v-list-item(
         prepend-icon="mdi-tag-outline"
         title="Entity Review"
         :active="currentView === 'quality-mentions'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'quality-mentions')"
       )
       v-divider
@@ -159,8 +166,26 @@ v-app-bar(color="deep-purple-darken-2" elevation="2")
         prepend-icon="mdi-text-short"
         title="Abbreviation Relations"
         :active="currentView === 'quality-abbreviation'"
-        active-color="primary"
+        color="primary"
         @click="emit('set-view', 'quality-abbreviation')"
+      )
+      v-divider
+      v-list-subheader Experiments
+      v-list-item(
+        prepend-icon="mdi-transfer"
+        title="Auxiliary Transfer Documents"
+        :active="currentView === 'more-aux-transfer'"
+        color="primary"
+        @click="emit('set-view', 'more-aux-transfer')"
+      )
+      v-divider
+      v-list-subheader Navigation
+      v-list-item(
+        prepend-icon="mdi-map-outline"
+        title="Page Map"
+        :active="currentView === 'more-page-map'"
+        color="primary"
+        @click="emit('set-view', 'more-page-map')"
       )
 
   v-divider(v-if="!dockerMode" vertical class="mx-2")
@@ -206,10 +231,10 @@ const props = defineProps({
 const emit = defineEmits(['toggle-theme', 'set-view'])
 
 const isMetadataView    = computed(() => props.currentView?.startsWith('metadata-'))
-const isDataModelsView  = computed(() => ['quality-signatures', 'data-models-schema'].includes(props.currentView))
-const isUnificationView = computed(() => ['unification-pipeline', 'unification-retention', 'unification-label-stats', 'unification-label-mapping'].includes(props.currentView))
+const isDataModelsView  = computed(() => ['quality-signatures', 'data-models-schema', 'unification-label-stats'].includes(props.currentView))
+const isUnificationView = computed(() => ['unification-pipeline', 'unification-retention', 'unification-label-mapping'].includes(props.currentView))
 const isResultsView     = computed(() => ['performance-reproduce', 'performance-cross-dataset', 'performance-multi-sciere', 'performance-coreference'].includes(props.currentView))
-const isMoreView        = computed(() => ['quality-relations', 'quality-mentions', 'quality-abbreviation'].includes(props.currentView))
+const isMoreView        = computed(() => ['quality-relations', 'quality-mentions', 'quality-abbreviation', 'more-aux-transfer', 'more-page-map'].includes(props.currentView))
 
 const { dockerMode } = useDockerMode()
 const { annotator } = useAnnotator()

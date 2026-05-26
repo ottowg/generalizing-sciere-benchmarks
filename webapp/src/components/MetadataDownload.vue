@@ -114,6 +114,7 @@ const PAPER_CSV_KEYS = [
   'doc_id', 'dataset', 'dataset_detail', 'split',
   'title', 'year', 'outlet_abbr', 'outlet_type', 'outlet_topic',
   'cited_by_count', 'arxiv_id', 'doi',
+  'cluster_hdbscan', 'cluster_meta_2', 'cluster_meta_3',
 ]
 
 function downloadPapersJSON() {

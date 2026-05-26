@@ -30,7 +30,7 @@ v-list(nav density="compact" open-strategy="multiple" :opened="openedGroups")
         :title="basename(file.name)"
         prepend-icon="mdi-file-document-outline"
         :active="selected === file.path"
-        active-color="primary"
+        color="primary"
         @click="emit('select', file.path)"
       )
 
@@ -50,7 +50,7 @@ v-list(nav density="compact" open-strategy="multiple" :opened="openedGroups")
         :title="basename(file.name)"
         prepend-icon="mdi-file-chart-outline"
         :active="selected === file.path"
-        active-color="primary"
+        color="primary"
         @click="emit('select', file.path)"
       )
 </template>

@@ -4,19 +4,62 @@ v-container(fluid)
     h2.text-h5 Cross-Dataset Performance
     v-chip.ml-3(v-if="generatedAt" size="small" variant="tonal" color="grey") {{ generatedAt }}
     v-spacer
+    v-switch(v-model="showStd" label="Show ± std" density="compact" hide-details color="primary")
     v-btn(v-if="!dockerMode" variant="text" prepend-icon="mdi-refresh" size="small" :loading="building" @click="rebuild") Rebuild
 
   v-tabs(v-model="activeTab" density="compact" color="primary" class="mb-4")
+    v-tab(value="radar") Radar Charts
     v-tab(value="summary") Summary
     v-tab(value="entities") Entities
     v-tab(value="relations") Relations
     v-tab(value="multi-sciere-generalization") MultiSciERE Generalization
 
+  //- ── Radar Charts tab ────────────────────────────────────────────────────
+  div(v-if="activeTab === 'radar'")
+    .d-flex.flex-wrap.ga-4.mb-3
+      div
+        .text-caption.text-medium-emphasis.mb-1 Metrics
+        v-btn-toggle(v-model="cdRadarMetrics" multiple density="compact" variant="outlined" color="primary")
+          v-btn(value="ner" size="small") NER
+          v-btn(value="ner_p" size="small") NER≈
+          v-btn(value="re" size="small") RE
+          v-btn(value="rep_p" size="small") RE+≈
+          v-btn(value="rep" size="small") RE+
+      div
+        .text-caption.text-medium-emphasis.mb-1 Group by
+        v-btn-toggle(v-model="cdRadarGroupBy" mandatory density="compact" variant="outlined" color="secondary")
+          v-btn(value="metric" size="small") Metric
+          v-btn(value="dataset" size="small") Dataset
+      div
+        .text-caption.text-medium-emphasis.mb-1 Split
+        v-btn-toggle(v-model="cdRadarSplit" mandatory density="compact" variant="outlined" color="teal")
+          v-btn(value="test" size="small") Test
+          v-btn(value="dev" size="small") Dev
+    div(v-if="!cdRadarHasData" class="text-medium-emphasis text-body-2 pa-4") No data yet — click Rebuild.
+    template(v-else-if="cdRadarGroupBy === 'metric'")
+      v-row(dense)
+        v-col(v-for="metric in cdRadarActiveMetrics" :key="metric.id" cols="12" sm="6")
+          v-card(variant="outlined")
+            v-card-title.text-subtitle-2.text-center.pt-3.pb-0 {{ metric.title }}
+            v-card-text(style="height:300px;position:relative;")
+              Radar(:data="cdRadarChartData(metric)" :options="cdRadarOpts")
+    template(v-else)
+      v-row(dense)
+        v-col(v-for="ds in CD_RADAR_AXIS_ORDER" :key="ds" cols="12" md="4")
+          v-card(variant="outlined")
+            v-card-title.text-subtitle-2.text-center.pt-3.pb-0 {{ CD_RADAR_AXIS_LABELS[ds] }}
+            v-card-text(style="height:320px;position:relative;")
+              Radar(:data="cdRadarChartDataByDataset(ds)" :options="cdRadarOptsByDataset")
+
   //- ── Summary tab ────────────────────────────────────────────────────────
   div(v-if="activeTab === 'summary'")
-    v-row.mb-3(dense align="center")
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterSplit" :items="['(both)', 'dev', 'test']" label="Split" density="compact" variant="outlined" hide-details)
+    .d-flex.flex-wrap.ga-4.mb-3
+      div
+        .text-caption.text-medium-emphasis.mb-1 Split
+        v-btn-toggle(v-model="filterSplit" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="(both)" size="small") Both
+          v-btn(value="dev" size="small") Dev
+          v-btn(value="test" size="small") Test
     v-data-table(
       :headers="summaryHeaders"
       :items="summaryRows"
@@ -33,29 +76,49 @@ v-container(fluid)
         v-chip(size="x-small" variant="tonal") {{ item.split }}
       template(#item.ner_exact_f1="{ item }")
         span(:style="f1Style(item.ner_exact_f1)") {{ fmt(item.ner_exact_f1) }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.ner_exact_f1_std != null") &nbsp;±{{ item.ner_exact_f1_std }}
       template(#item.ner_partial_f1="{ item }")
         span(:style="f1Style(item.ner_partial_f1)") {{ fmt(item.ner_partial_f1) }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.ner_partial_f1_std != null") &nbsp;±{{ item.ner_partial_f1_std }}
       template(#item.re_relaxed_f1="{ item }")
         span(:style="f1Style(item.re_relaxed_f1)") {{ fmt(item.re_relaxed_f1) }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.re_relaxed_f1_std != null") &nbsp;±{{ item.re_relaxed_f1_std }}
       template(#item.re_relaxed_partial_f1="{ item }")
         span(:style="f1Style(item.re_relaxed_partial_f1)") {{ fmt(item.re_relaxed_partial_f1) }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.re_relaxed_partial_f1_std != null") &nbsp;±{{ item.re_relaxed_partial_f1_std }}
       template(#item.re_strict_f1="{ item }")
         span(:style="f1Style(item.re_strict_f1)") {{ fmt(item.re_strict_f1) }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.re_strict_f1_std != null") &nbsp;±{{ item.re_strict_f1_std }}
       template(#item.re_strict_partial_f1="{ item }")
         span(:style="f1Style(item.re_strict_partial_f1)") {{ fmt(item.re_strict_partial_f1) }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.re_strict_partial_f1_std != null") &nbsp;±{{ item.re_strict_partial_f1_std }}
       template(#bottom)
 
   //- ── Entity label-wise tab ───────────────────────────────────────────────
   div(v-if="activeTab === 'entities'")
-    v-row.mb-3(dense align="center")
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterTrainDs" :items="['(all)', ...TRAIN_DS]" label="Train" density="compact" variant="outlined" hide-details)
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterTestDs" :items="['(all)', ...DS]" label="Test" density="compact" variant="outlined" hide-details)
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterSplitLabel" :items="['(both)', 'dev', 'test']" label="Split" density="compact" variant="outlined" hide-details)
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterNerMatch" :items="['exact', 'partial', '(both)']" label="Match" density="compact" variant="outlined" hide-details)
+    .d-flex.flex-wrap.ga-4.mb-3
+      div
+        .text-caption.text-medium-emphasis.mb-1 Train
+        v-btn-toggle(v-model="filterTrainDs" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="(all)" size="small") All
+          v-btn(v-for="ds in TRAIN_DS" :key="ds" :value="ds" size="small") {{ ds }}
+      div
+        .text-caption.text-medium-emphasis.mb-1 Test
+        v-btn-toggle(v-model="filterTestDs" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="(all)" size="small") All
+          v-btn(v-for="ds in DS" :key="ds" :value="ds" size="small") {{ ds }}
+      div
+        .text-caption.text-medium-emphasis.mb-1 Split
+        v-btn-toggle(v-model="filterSplitLabel" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="(both)" size="small") Both
+          v-btn(value="dev" size="small") Dev
+          v-btn(value="test" size="small") Test
+      div
+        .text-caption.text-medium-emphasis.mb-1 Match
+        v-btn-toggle(v-model="filterNerMatch" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="exact" size="small") Exact
+          v-btn(value="partial" size="small") Partial
+          v-btn(value="(both)" size="small") Both
     v-data-table(
       :headers="labelHeaders"
       :items="entityLabelRows"
@@ -100,15 +163,31 @@ v-container(fluid)
 
   //- ── Relation label-wise tab ─────────────────────────────────────────────
   div(v-if="activeTab === 'relations'")
-    v-row.mb-3(dense align="center")
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterTrainDs" :items="['(all)', ...TRAIN_DS]" label="Train" density="compact" variant="outlined" hide-details)
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterTestDs" :items="['(all)', ...DS]" label="Test" density="compact" variant="outlined" hide-details)
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterSplitLabel" :items="['(both)', 'dev', 'test']" label="Split" density="compact" variant="outlined" hide-details)
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterReMatch" :items="['relaxed', 'relaxed_partial', 'strict', 'strict_partial', '(both)']" label="RE metric" density="compact" variant="outlined" hide-details)
+    .d-flex.flex-wrap.ga-4.mb-3
+      div
+        .text-caption.text-medium-emphasis.mb-1 Train
+        v-btn-toggle(v-model="filterTrainDs" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="(all)" size="small") All
+          v-btn(v-for="ds in TRAIN_DS" :key="ds" :value="ds" size="small") {{ ds }}
+      div
+        .text-caption.text-medium-emphasis.mb-1 Test
+        v-btn-toggle(v-model="filterTestDs" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="(all)" size="small") All
+          v-btn(v-for="ds in DS" :key="ds" :value="ds" size="small") {{ ds }}
+      div
+        .text-caption.text-medium-emphasis.mb-1 Split
+        v-btn-toggle(v-model="filterSplitLabel" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="(both)" size="small") Both
+          v-btn(value="dev" size="small") Dev
+          v-btn(value="test" size="small") Test
+      div
+        .text-caption.text-medium-emphasis.mb-1 RE metric
+        v-btn-toggle(v-model="filterReMatch" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="relaxed" size="small") RE
+          v-btn(value="relaxed_partial" size="small") RE≈
+          v-btn(value="strict" size="small") RE+
+          v-btn(value="strict_partial" size="small") RE+≈
+          v-btn(value="(both)" size="small") All
     v-data-table(
       :headers="labelHeaders"
       :items="relationLabelRows"
@@ -153,9 +232,11 @@ v-container(fluid)
 
   //- ── MultiSciERE Generalization tab ─────────────────────────────────────
   div(v-if="activeTab === 'multi-sciere-generalization'")
-    v-row.mb-3(dense align="center")
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterGenDs" :items="DS" label="Dataset" density="compact" variant="outlined" hide-details)
+    .d-flex.flex-wrap.ga-4.mb-3
+      div
+        .text-caption.text-medium-emphasis.mb-1 Dataset
+        v-btn-toggle(v-model="filterGenDs" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(v-for="ds in DS" :key="ds" :value="ds" size="small") {{ ds }}
     p.text-caption.text-medium-emphasis.mb-3 Unified label set · test split · comparing {{ filterGenDs }}-trained model vs multi-sciere ({{ filterGenDs }} label space)
     v-data-table(
       :headers="generalizationHeaders"
@@ -184,9 +265,11 @@ v-container(fluid)
       template(#bottom)
 
     h3.text-subtitle-1.font-weight-bold.mt-6.mb-2 MultiSciERE Label Set Comparison
-    v-row.mb-3(dense align="center")
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterGenTestDs" :items="DS" label="Test dataset" density="compact" variant="outlined" hide-details)
+    .d-flex.flex-wrap.ga-4.mb-3
+      div
+        .text-caption.text-medium-emphasis.mb-1 Test dataset
+        v-btn-toggle(v-model="filterGenTestDs" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(v-for="ds in DS" :key="ds" :value="ds" size="small") {{ ds }}
     p.text-caption.text-medium-emphasis.mb-3 Unified label set · test split · all three multi-sciere label spaces on {{ filterGenTestDs }}
     v-data-table(
       :headers="generalizationHeaders"
@@ -220,6 +303,15 @@ v-container(fluid)
 <script setup>
 import { ref, computed } from 'vue'
 import { useDockerMode } from '../composables/useDockerMode.js'
+import {
+    Chart as ChartJS,
+    RadarController, RadialLinearScale,
+    PointElement, LineElement, Filler,
+    Tooltip as ChartTooltip, Legend as ChartLegend,
+} from 'chart.js'
+import { Radar } from 'vue-chartjs'
+
+ChartJS.register(RadarController, RadialLinearScale, PointElement, LineElement, Filler, ChartTooltip, ChartLegend)
 
 const DS = ['gsap-ere', 'scier', 'scinlp']
 const TRAIN_DS = [...DS, 'unified-sciere']
@@ -227,15 +319,177 @@ const DS_COLORS = { 'gsap-ere': 'blue', 'scier': 'green', 'scinlp': 'orange', 'u
 const DATASET_TO_PRED_LS = { 'gsap-ere': 'gsap', 'scier': 'scier', 'scinlp': 'scinlp' }
 function dsColor(ds) { return DS_COLORS[ds] ?? 'grey' }
 
+// ── Radar constants ───────────────────────────────────────────────────────────
+const CD_RADAR_AXIS_ORDER  = ['scier', 'scinlp', 'gsap-ere']
+const CD_RADAR_AXIS_LABELS = { 'gsap-ere': 'GSAP-ERE', scier: 'SciER', scinlp: 'SciNLP' }
+const CD_RADAR_METRICS = [
+    { id: 'ner',   key: 'ner_exact_f1',          title: 'NER'   },
+    { id: 'ner_p', key: 'ner_partial_f1',         title: 'NER≈'  },
+    { id: 're',    key: 're_relaxed_f1',          title: 'RE'    },
+    { id: 'rep_p', key: 're_strict_partial_f1',   title: 'RE+≈'  },
+    { id: 'rep',   key: 're_strict_f1',           title: 'RE+'   },
+]
+const CD_RADAR_BY_DATASET_ORDER      = ['ner', 'ner_p', 'rep_p', 're', 'rep']
+const CD_RADAR_BY_DATASET_START_ANGLE = -126 * Math.PI / 180
+const CD_TRAIN_DEFS = [
+    { id: 'gsap-ere',       label: 'GSAP-ERE',      rgb: '25,118,210'  },
+    { id: 'scier',          label: 'SciER',          rgb: '56,142,60'   },
+    { id: 'scinlp',         label: 'SciNLP',         rgb: '245,124,0'   },
+    { id: 'unified-sciere', label: 'UnifiedSciERE',  rgb: '123,31,162'  },
+]
+
+const cdRadarGroupBy = ref('dataset')
+const cdRadarMetrics = ref(['ner', 'ner_p', 're', 'rep_p', 'rep'])
+const cdRadarSplit   = ref('test')
+
+const cdRadarActiveMetrics = computed(() =>
+    CD_RADAR_METRICS.filter(m => cdRadarMetrics.value.includes(m.id))
+)
+const cdRadarHasData = computed(() => allSummary.value.length > 0)
+
+function getCdEntry(trainDs, testDs) {
+    return allSummary.value.find(
+        r => r.train_ds === trainDs && r.test_ds === testDs && r.split === cdRadarSplit.value
+    ) ?? null
+}
+
+function cdRadarChartData(metric) {
+    const labels = CD_RADAR_AXIS_ORDER.map(ds => CD_RADAR_AXIS_LABELS[ds])
+    const refDataset = {
+        label: 'Baseline',
+        data: [0, 0, 0],
+        borderColor: 'rgba(0,0,0,0.3)',
+        backgroundColor: 'transparent',
+        borderWidth: 1.5,
+        borderDash: [4, 4],
+        pointRadius: 2,
+        pointBackgroundColor: 'rgba(0,0,0,0.3)',
+        spanGaps: true,
+    }
+    const seriesDatasets = CD_TRAIN_DEFS.flatMap(train => {
+        const data = CD_RADAR_AXIS_ORDER.map(testDs => {
+            if (train.id === testDs) return null
+            const ce = getCdEntry(train.id, testDs)
+            const be = getCdEntry(testDs, testDs)
+            if (!ce || !be) return null
+            const cf = ce[metric.key], bf = be[metric.key]
+            if (cf == null || bf == null) return null
+            return +(cf - bf).toFixed(2)
+        })
+        if (data.every(d => d === null)) return []
+        return [{
+            label: train.label,
+            data,
+            borderColor: `rgb(${train.rgb})`,
+            backgroundColor: `rgba(${train.rgb},0.12)`,
+            pointBackgroundColor: `rgb(${train.rgb})`,
+            pointBorderColor: '#fff',
+            pointRadius: 4,
+            borderWidth: 2,
+            spanGaps: false,
+        }]
+    })
+    return { labels, datasets: [refDataset, ...seriesDatasets] }
+}
+
+function cdRadarChartDataByDataset(testDs) {
+    const activeIds = new Set(cdRadarMetrics.value)
+    const axisMetrics = CD_RADAR_METRICS
+        .filter(m => activeIds.has(m.id))
+        .sort((a, b) => CD_RADAR_BY_DATASET_ORDER.indexOf(a.id) - CD_RADAR_BY_DATASET_ORDER.indexOf(b.id))
+
+    const baseEntry = getCdEntry(testDs, testDs)
+    const labels = axisMetrics.map(m => {
+        if (!baseEntry) return m.title
+        const bf = baseEntry[m.key]
+        return bf != null ? [m.title, `(F1 ${bf.toFixed(1)})`] : m.title
+    })
+
+    const refDataset = {
+        label: 'Baseline',
+        data: axisMetrics.map(() => 0),
+        borderColor: 'rgba(0,0,0,0.3)',
+        backgroundColor: 'transparent',
+        borderWidth: 1.5,
+        borderDash: [4, 4],
+        pointRadius: 2,
+        pointBackgroundColor: 'rgba(0,0,0,0.3)',
+        spanGaps: true,
+    }
+    const seriesDatasets = CD_TRAIN_DEFS.flatMap(train => {
+        if (train.id === testDs) return []
+        const ce = getCdEntry(train.id, testDs)
+        if (!ce) return []
+        const data = axisMetrics.map(m => {
+            if (!baseEntry) return null
+            const cf = ce[m.key], bf = baseEntry[m.key]
+            if (cf == null || bf == null) return null
+            return +(cf - bf).toFixed(2)
+        })
+        return [{
+            label: train.label,
+            data,
+            borderColor: `rgb(${train.rgb})`,
+            backgroundColor: `rgba(${train.rgb},0.12)`,
+            pointBackgroundColor: `rgb(${train.rgb})`,
+            pointBorderColor: '#fff',
+            pointRadius: 4,
+            borderWidth: 2,
+            spanGaps: false,
+        }]
+    })
+    return { labels, datasets: [refDataset, ...seriesDatasets] }
+}
+
+const cdRadarOpts = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+        r: {
+            suggestedMin: -20,
+            suggestedMax: 10,
+            ticks: { stepSize: 5, font: { size: 9 }, callback: v => (v > 0 ? '+' : '') + v },
+            grid: { color: 'rgba(0,0,0,0.1)' },
+            angleLines: { color: 'rgba(0,0,0,0.18)' },
+            pointLabels: { font: { size: 12, weight: '500' } },
+        },
+    },
+    plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, padding: 8, font: { size: 11 } } },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw != null ? (ctx.raw >= 0 ? '+' : '') + ctx.raw.toFixed(1) : 'n/a'}` } },
+    },
+}
+
+const cdRadarOptsByDataset = {
+    responsive: true,
+    maintainAspectRatio: false,
+    startAngle: CD_RADAR_BY_DATASET_START_ANGLE,
+    scales: {
+        r: {
+            suggestedMin: -20,
+            suggestedMax: 10,
+            ticks: { stepSize: 5, font: { size: 9 }, callback: v => (v > 0 ? '+' : '') + v },
+            grid: { color: 'rgba(0,0,0,0.1)' },
+            angleLines: { color: 'rgba(0,0,0,0.18)' },
+            pointLabels: { font: { size: 11, weight: '500' } },
+        },
+    },
+    plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, padding: 8, font: { size: 11 } } },
+        tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw != null ? (ctx.raw >= 0 ? '+' : '') + ctx.raw.toFixed(1) : 'n/a'}` } },
+    },
+}
+
 const { dockerMode } = useDockerMode()
 const building         = ref(false)
 const generatedAt      = ref(null)
+const showStd          = ref(true)
 const allSummary       = ref([])
 const allEntities      = ref([])
 const allRelations     = ref([])
 const multiSciereSummary = ref([])
 const snack            = ref({ show: false, message: '', color: 'success' })
-const activeTab        = ref('summary')
+const activeTab        = ref('radar')
 
 const filterGenDs      = ref('scinlp')
 const filterSplit      = ref('test')

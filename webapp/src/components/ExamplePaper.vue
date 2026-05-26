@@ -2,10 +2,11 @@
 v-container(fluid)
   //- ── Header ──────────────────────────────────────────────────────────────
   .d-flex.align-center.mb-3
-    h2.text-h5 Example Paper
+    h2.text-h5 Test Set Samples
     v-chip.ml-3(size="small" color="teal-darken-1" variant="tonal") {{ labelMode }} labels
     v-spacer
     v-btn(
+      v-if="activeView === 'graph'"
       size="small"
       :variant="semanticLayout ? 'flat' : 'outlined'"
       :color="semanticLayout ? 'primary' : 'default'"
@@ -21,52 +22,31 @@ v-container(fluid)
       @click="buildData"
     ) Rebuild
 
-  //- ── Controls row 1: dataset · view mode · label mode ────────────────────
-  v-row.mb-1(dense align="center")
-    v-col(cols="auto")
+  //- ── Shared controls: dataset · annotations · label set ──────────────────
+  .d-flex.flex-wrap.ga-4.mb-3
+    div
       .text-caption.text-medium-emphasis.mb-1 Test Dataset
       v-btn-toggle(v-model="activeDs" mandatory density="compact" variant="outlined" color="primary")
         v-btn(value="gsap-ere" size="small") GSAP-ERE
         v-btn(value="scier"   size="small") SciER
         v-btn(value="scinlp"  size="small") SciNLP
-    v-col(cols="auto")
+    div
       .text-caption.text-medium-emphasis.mb-1 Annotations
       v-btn-toggle(v-model="viewMode" mandatory density="compact" variant="outlined" color="secondary")
         v-btn(value="gold"     size="small" prepend-icon="mdi-check-circle-outline") Gold
         v-btn(value="gsap-ere" size="small") GSAP-ERE
         v-btn(value="scier"    size="small") SciER
         v-btn(value="scinlp"   size="small") SciNLP
-    v-col(cols="auto")
+    div
       .text-caption.text-medium-emphasis.mb-1 Label set
       v-btn-toggle(v-model="labelMode" mandatory density="compact" variant="outlined" color="teal")
         v-btn(value="unified"  size="small" prepend-icon="mdi-link-variant") Unified
         v-btn(value="original" size="small" prepend-icon="mdi-label-outline") Original
 
-  //- ── Controls row 2: paper select · degree ───────────────────────────────
-  v-row.mb-2(dense align="center")
-    v-col(cols="auto")
-      v-select(
-        v-model="selectedDocId"
-        :items="docOptions"
-        label="Paper"
-        density="compact"
-        variant="outlined"
-        hide-details
-        style="min-width:300px;"
-      )
-    v-col(cols="auto" style="min-width:200px;")
-      .d-flex.align-center(style="gap:8px;")
-        span.text-caption(style="white-space:nowrap;color:rgba(0,0,0,0.55);") Min degree
-        v-slider(
-          v-model="minDegree"
-          :min="0" :max="3" step="1"
-          density="compact"
-          hide-details
-          color="primary"
-          style="flex:1;"
-          thumb-label
-        )
-        span.text-caption(style="width:16px;text-align:right;color:rgba(0,0,0,0.55);") {{ minDegree }}
+  //- ── View subnav ─────────────────────────────────────────────────────────
+  v-tabs(v-model="activeView" density="compact" color="primary" class="mb-4")
+    v-tab(value="graph" prepend-icon="mdi-graph-outline") Graph View
+    v-tab(value="entity" prepend-icon="mdi-tag-multiple-outline") Entity View
 
   //- ── Not built yet ───────────────────────────────────────────────────────
   v-alert(
@@ -77,64 +57,180 @@ v-container(fluid)
     strong  Rebuild
     |  to build example papers from the test sets (runs the unification pipeline, takes ~60 s).
 
-  //- ── Paper metadata ──────────────────────────────────────────────────────
-  .mb-2(v-if="currentPaper && currentPaper.metadata?.title")
-    span.text-subtitle-2.font-weight-bold {{ currentPaper.metadata.title }}
-    span.text-caption.text-disabled.ml-2(v-if="currentPaper.metadata.year") {{ currentPaper.metadata.year }}
-    span.text-caption.ml-2(v-if="metaVenue") · {{ metaVenue }}
-    .text-caption.text-disabled(v-if="currentPaper.metadata.authors?.length")
-      | {{ currentPaper.metadata.authors.slice(0, 4).join(', ') }}{{ currentPaper.metadata.authors.length > 4 ? ' et al.' : '' }}
-
-  //- ── Graph + Filter ──────────────────────────────────────────────────────
-  v-row(v-if="currentPaper")
-    v-col(cols="12" md="8")
-      GraphViz(
-        ref="graphRef"
-        :nodes="graphNodes"
-        :edges="graphEdges"
-        height="560px"
-        mark-id="expaper"
-        :loading="loading"
-      )
-      //- Legend bar
-      .d-flex.align-center.justify-space-between.px-3.py-2.mt-1(
-        style="border:1px solid rgba(0,0,0,0.1);border-radius:8px;flex-wrap:wrap;gap:8px;"
-      )
-        .d-flex.flex-wrap.align-center(style="gap:10px;")
-          .d-flex.align-center(v-for="t in legendEntityTypes" :key="t" style="gap:4px;")
-            span.rounded(style="width:11px;height:11px;display:inline-block;flex-shrink:0;" :style="{ background: entityColor(t) }")
-            span.text-caption {{ t }}
-        .d-flex.flex-wrap.align-center(style="gap:4px;")
-          span.px-2.py-0.rounded.text-white(
-            v-for="r in legendRelTypes" :key="r"
-            style="font-size:10px;line-height:17px;display:inline-block;"
-            :style="{ background: relColorStable(r) }"
-          ) {{ r }}
-    v-col(cols="12" md="4")
-      LabelFilterPanel(
-        :available-entity-labels="availableEntityLabels"
-        :available-relation-labels="availableRelationLabels"
-        :selected-entity-labels="selectedEntityLabels"
-        :selected-relation-labels="selectedRelationLabels"
-        :entity-count-fn="entityCountFn"
-        :rel-count-fn="relCountFn"
-        max-height="560px"
-        @update:selected-entity-labels="selectedEntityLabels = $event"
-        @update:selected-relation-labels="selectedRelationLabels = $event"
-      )
-
-  //- ── Sentences ───────────────────────────────────────────────────────────
-  v-expansion-panels.mt-3(v-if="currentPaper" variant="accordion")
-    v-expansion-panel
-      v-expansion-panel-title
-        span.text-subtitle-2 Sentences ({{ currentPaper.sentences.length }})
-      v-expansion-panel-text
-        .py-1(
-          v-for="(s, i) in currentPaper.sentences" :key="i"
-          style="font-size:13px;line-height:1.6;border-bottom:1px solid rgba(0,0,0,0.06);padding:4px 0;"
+  //- ═══════════════════════════════════════════════════════════════════════
+  //- GRAPH VIEW
+  //- ═══════════════════════════════════════════════════════════════════════
+  div(v-if="activeView === 'graph'")
+    //- Paper select + min degree
+    .d-flex.flex-wrap.ga-4.mb-3(style="align-items:flex-end;")
+      div(style="min-width:300px;")
+        .text-caption.text-medium-emphasis.mb-1 Paper
+        v-select(
+          v-model="selectedDocId"
+          :items="docOptions"
+          density="compact"
+          variant="outlined"
+          hide-details
         )
-          span.text-disabled.mr-2(style="font-size:11px;") {{ i + 1 }}
-          | {{ s }}
+      div(style="min-width:200px;")
+        .text-caption.text-medium-emphasis.mb-1 Min degree
+        .d-flex.align-center(style="gap:8px;")
+          v-slider(
+            v-model="minDegree"
+            :min="0" :max="3" step="1"
+            density="compact"
+            hide-details
+            color="primary"
+            style="flex:1;"
+            thumb-label
+          )
+          span.text-caption(style="width:16px;text-align:right;color:rgba(0,0,0,0.55);") {{ minDegree }}
+
+    //- Paper metadata
+    .mb-2(v-if="currentPaper && currentPaper.metadata?.title")
+      span.text-subtitle-2.font-weight-bold {{ currentPaper.metadata.title }}
+      span.text-caption.text-disabled.ml-2(v-if="currentPaper.metadata.year") {{ currentPaper.metadata.year }}
+      span.text-caption.ml-2(v-if="metaVenue") · {{ metaVenue }}
+      .text-caption.text-disabled(v-if="currentPaper.metadata.authors?.length")
+        | {{ currentPaper.metadata.authors.slice(0, 4).join(', ') }}{{ currentPaper.metadata.authors.length > 4 ? ' et al.' : '' }}
+
+    //- Graph + Filter
+    v-row(v-if="currentPaper")
+      v-col(cols="12" md="8")
+        GraphViz(
+          ref="graphRef"
+          :nodes="graphNodes"
+          :edges="graphEdges"
+          height="560px"
+          mark-id="expaper"
+          :loading="loading"
+        )
+        //- Legend bar
+        .d-flex.align-center.justify-space-between.px-3.py-2.mt-1(
+          style="border:1px solid rgba(0,0,0,0.1);border-radius:8px;flex-wrap:wrap;gap:8px;"
+        )
+          .d-flex.flex-wrap.align-center(style="gap:10px;")
+            .d-flex.align-center(v-for="t in legendEntityTypes" :key="t" style="gap:4px;")
+              span.rounded(style="width:11px;height:11px;display:inline-block;flex-shrink:0;" :style="{ background: entityColor(t) }")
+              span.text-caption {{ t }}
+          .d-flex.flex-wrap.align-center(style="gap:4px;")
+            span.px-2.py-0.rounded.text-white(
+              v-for="r in legendRelTypes" :key="r"
+              style="font-size:10px;line-height:17px;display:inline-block;"
+              :style="{ background: relColorStable(r) }"
+            ) {{ r }}
+      v-col(cols="12" md="4")
+        LabelFilterPanel(
+          :available-entity-labels="availableEntityLabels"
+          :available-relation-labels="availableRelationLabels"
+          :selected-entity-labels="selectedEntityLabels"
+          :selected-relation-labels="selectedRelationLabels"
+          :entity-count-fn="entityCountFn"
+          :rel-count-fn="relCountFn"
+          max-height="560px"
+          @update:selected-entity-labels="selectedEntityLabels = $event"
+          @update:selected-relation-labels="selectedRelationLabels = $event"
+        )
+
+    //- Sentences
+    v-expansion-panels.mt-3(v-if="currentPaper" variant="accordion")
+      v-expansion-panel
+        v-expansion-panel-title
+          span.text-subtitle-2 Sentences ({{ currentPaper.sentences.length }})
+        v-expansion-panel-text
+          .py-1(
+            v-for="(s, i) in currentPaper.sentences" :key="i"
+            style="font-size:13px;line-height:1.6;border-bottom:1px solid rgba(0,0,0,0.06);padding:4px 0;"
+          )
+            span.text-disabled.mr-2(style="font-size:11px;") {{ i + 1 }}
+            | {{ s }}
+
+  //- ═══════════════════════════════════════════════════════════════════════
+  //- ENTITY VIEW
+  //- ═══════════════════════════════════════════════════════════════════════
+  div(v-if="activeView === 'entity'")
+    //- Paper select + entity type filter
+    .d-flex.flex-wrap.ga-4.mb-3(style="align-items:flex-end;")
+      div(style="min-width:300px;")
+        .text-caption.text-medium-emphasis.mb-1 Paper
+        v-select(
+          v-model="selectedDocId"
+          :items="docOptions"
+          density="compact"
+          variant="outlined"
+          hide-details
+        )
+      div(v-if="entityViewLabels.length")
+        .text-caption.text-medium-emphasis.mb-1 Entity type
+        v-btn-toggle(v-model="entityViewLabel" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(v-for="lbl in entityViewLabels" :key="lbl" :value="lbl" size="small") {{ lbl }}
+
+    //- Paper metadata line
+    .mb-3(v-if="currentPaper && currentPaper.metadata?.title")
+      span.text-subtitle-2.font-weight-bold {{ currentPaper.metadata.title }}
+      span.text-caption.text-disabled.ml-2(v-if="currentPaper.metadata.year") {{ currentPaper.metadata.year }}
+      span.text-caption.ml-2(v-if="metaVenue") · {{ metaVenue }}
+      .text-caption.text-disabled(v-if="currentPaper.metadata.authors?.length")
+        | {{ currentPaper.metadata.authors.slice(0, 4).join(', ') }}{{ currentPaper.metadata.authors.length > 4 ? ' et al.' : '' }}
+
+    p.text-body-2.text-medium-emphasis.mb-3(v-if="currentPaper && entityViewCards.length")
+      | {{ entityViewCards.length }} {{ entityViewLabel }} entities in this paper · sorted by mention count
+
+    //- Entity cards grid
+    v-row(v-if="currentPaper && entityViewCards.length" dense)
+      v-col(
+        v-for="card in entityViewCards" :key="card.id"
+        cols="12" sm="6" md="4"
+      )
+        v-card(
+          variant="outlined" height="100%"
+          :class="hoveredEntityCard === card.id ? 'ep-card-hovered' : ''"
+          @mouseenter="hoveredEntityCard = card.id"
+          @mouseleave="hoveredEntityCard = null"
+        )
+          v-card-text.pa-3
+            //- Entity header
+            .d-flex.align-center.mb-1(style="gap:6px;flex-wrap:wrap;")
+              span.text-subtitle-2.font-weight-bold(style="word-break:break-word;") {{ card.text }}
+              v-spacer
+              v-chip(size="x-small" :color="entityColor(card.label)" variant="tonal") {{ card.label }}
+              v-chip(size="x-small" variant="tonal" color="grey") ×{{ card.count }}
+            //- Aliases
+            .mb-2(v-if="card.aliases.length")
+              span.text-caption.text-medium-emphasis(style="font-style:italic;")
+                | also: {{ card.aliases.join(' · ') }}
+
+            //- Relations grouped by type, oriented from this entity
+            div(v-if="card.relGroups.length")
+              div(v-for="grp in card.relGroups" :key="grp.relLabel" class="mb-2")
+                //- Relation label badge
+                .d-flex.align-center.mb-1(style="gap:4px;")
+                  span.ep-rel-label(:style="{ background: relColorStable(grp.relLabel) }") {{ grp.relLabel }}
+                //- Outgoing: entity → rel → target
+                .ep-rel-item(v-for="e in grp.outgoing" :key="e.key" :class="e.sentence ? 'ep-rel-hoverable' : ''")
+                  v-tooltip(v-if="e.sentence" activator="parent" location="bottom" max-width="420")
+                    | {{ e.sentence }}
+                  span.ep-dir-out →
+                  span.ep-rel-target {{ e.text }}
+                  v-chip.ml-1(size="x-small" :color="entityColor(e.label)" variant="tonal") {{ e.label }}
+                //- Incoming (inverse): source → rel → entity, shown as ← from entity
+                .ep-rel-item(v-for="e in grp.incoming" :key="e.key" :class="e.sentence ? 'ep-rel-hoverable' : ''")
+                  v-tooltip(v-if="e.sentence" activator="parent" location="bottom" max-width="420")
+                    | {{ e.sentence }}
+                  span.ep-dir-in ←
+                  span.ep-rel-target {{ e.text }}
+                  v-chip.ml-1(size="x-small" :color="entityColor(e.label)" variant="tonal") {{ e.label }}
+
+            .ep-no-rels(v-else)
+              span.text-caption.text-disabled No relations in current view
+
+            //- Hover: sample sentence
+            div(v-if="hoveredEntityCard === card.id && card.sampleSentence")
+              v-divider.my-2
+              .ep-sentence "{{ card.sampleSentence }}"
+
+    div(v-else-if="currentPaper && entityViewLabels.length" class="text-center text-disabled py-8")
+      | No {{ entityViewLabel }} entities found.
 
   v-snackbar(v-model="snack.show" :color="snack.color" timeout="6000")
     | {{ snack.message }}
@@ -157,17 +253,20 @@ const H_PAD      = 10    // total horizontal padding (5px each side)
 const MAX_CHARS  = Math.floor((MAX_NODE_W - H_PAD) / CHAR_W)   // ≈ 23 chars
 
 // ── state ─────────────────────────────────────────────────────────────────────
-const activeDs       = ref('gsap-ere')
-const viewMode       = ref('gold')       // 'gold' | 'gsap-ere' | 'scier' | 'scinlp'
-const labelMode      = ref('unified')    // 'unified' | 'original'
-const selectedDocId  = ref(null)
-const loading        = ref(false)
-const building       = ref(false)
-const notBuilt       = ref(false)
-const graphRef       = ref(null)
-const snack          = ref({ show: false, message: '', color: 'success' })
-const semanticLayout = ref(false)
-const minDegree      = ref(1)
+const activeDs          = ref('gsap-ere')
+const viewMode          = ref('gold')       // 'gold' | 'gsap-ere' | 'scier' | 'scinlp'
+const labelMode         = ref('unified')    // 'unified' | 'original'
+const selectedDocId     = ref(null)
+const loading           = ref(false)
+const building          = ref(false)
+const notBuilt          = ref(false)
+const graphRef          = ref(null)
+const snack             = ref({ show: false, message: '', color: 'success' })
+const semanticLayout    = ref(false)
+const minDegree         = ref(1)
+const activeView        = ref('graph')      // 'graph' | 'entity'
+const entityViewLabel   = ref(null)
+const hoveredEntityCard = ref(null)
 
 const outlets = ref({})
 
@@ -236,6 +335,104 @@ const relCountMap = computed(() => {
 })
 function entityCountFn(lbl) { return entityCountMap.value.get(lbl) ?? null }
 function relCountFn(lbl)    { return relCountMap.value.get(lbl)    ?? null }
+
+// ── Entity View ───────────────────────────────────────────────────────────────
+
+const entityViewLabels = computed(() => {
+  const labels = new Set(currentData.value.entities.map(e => e.label))
+  return [...labels].sort()
+})
+
+watch(entityViewLabels, (labels) => {
+  if (!entityViewLabel.value || !labels.includes(entityViewLabel.value)) {
+    entityViewLabel.value = labels[0] ?? null
+  }
+}, { immediate: true })
+
+function parseEntityId(id) {
+  const i = id.lastIndexOf('|')
+  return { text: id.slice(0, i), label: id.slice(i + 1) }
+}
+
+const COREF_RELS = new Set(['Coreference', 'Synonym-Of', 'Similar-To'])
+
+const entityViewCards = computed(() => {
+  if (!entityViewLabel.value || !currentPaper.value) return []
+  const lbl = entityViewLabel.value
+  const { entities, relations } = currentData.value
+  const sentences = currentPaper.value.sentences ?? []
+
+  const filtered = entities.filter(e => e.label === lbl)
+  if (!filtered.length) return []
+
+  // Union-Find to group coreferent entities
+  const parent = new Map(filtered.map(e => [e.id, e.id]))
+  function find(id) {
+    if (parent.get(id) !== id) parent.set(id, find(parent.get(id)))
+    return parent.get(id)
+  }
+  const entityIds = new Set(filtered.map(e => e.id))
+  for (const r of relations) {
+    if (!COREF_RELS.has(r.label)) continue
+    if (entityIds.has(r.subject_id) && entityIds.has(r.object_id)) {
+      const pa = find(r.subject_id), pb = find(r.object_id)
+      if (pa !== pb) parent.set(pa, pb)
+    }
+  }
+
+  // Group by root
+  const groups = new Map()
+  for (const e of filtered) {
+    const root = find(e.id)
+    if (!groups.has(root)) groups.set(root, [])
+    groups.get(root).push(e)
+  }
+
+  return [...groups.values()]
+    .map(group => {
+      group.sort((a, b) => b.count - a.count)
+      const canonical = group[0]
+      const totalCount = group.reduce((s, e) => s + e.count, 0)
+      const aliases = group.length > 1 ? group.slice(1).map(e => e.text) : []
+      const groupIds = new Set(group.map(e => e.id))
+
+      // Collect all external relations, grouped by relation label
+      const relMap = new Map()
+      // Helper: find best sentence for a relation (both entities present; fallback to just related)
+      const relSentence = (relatedText) => {
+        const r1 = new RegExp(canonical.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i')
+        const r2 = new RegExp(relatedText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i')
+        const s = sentences.find(s => r1.test(s) && r2.test(s)) ?? sentences.find(s => r2.test(s)) ?? null
+        return s && s.length > 220 ? s.slice(0, 219) + '…' : s
+      }
+
+      for (const r of relations) {
+        if (COREF_RELS.has(r.label)) continue
+        const isSubj = groupIds.has(r.subject_id) && !groupIds.has(r.object_id)
+        const isObj  = groupIds.has(r.object_id)  && !groupIds.has(r.subject_id)
+        if (!isSubj && !isObj) continue
+        if (!relMap.has(r.label)) relMap.set(r.label, { outgoing: [], incoming: [] })
+        const bucket = relMap.get(r.label)
+        if (isSubj) {
+          const { text, label } = parseEntityId(r.object_id)
+          bucket.outgoing.push({ key: r.subject_id + r.label + r.object_id, text, label, sentence: relSentence(text) })
+        } else {
+          const { text, label } = parseEntityId(r.subject_id)
+          bucket.incoming.push({ key: r.subject_id + r.label + r.object_id, text, label, sentence: relSentence(text) })
+        }
+      }
+      const relGroups = [...relMap.entries()]
+        .map(([relLabel, { outgoing, incoming }]) => ({ relLabel, outgoing, incoming }))
+        .sort((a, b) => (b.outgoing.length + b.incoming.length) - (a.outgoing.length + a.incoming.length))
+
+      const re = new RegExp(canonical.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i')
+      const found = sentences.find(s => re.test(s)) ?? null
+      const sampleSentence = found && found.length > 180 ? found.slice(0, 179) + '…' : found
+
+      return { id: canonical.id, text: canonical.text, label: canonical.label, count: totalCount, aliases, relGroups, sampleSentence }
+    })
+    .sort((a, b) => b.count - a.count)
+})
 
 // ── abbreviation ──────────────────────────────────────────────────────────────
 function abbrev(text) {
@@ -391,3 +588,56 @@ onMounted(() => {
   fetchPapers('scinlp')
 })
 </script>
+
+<style scoped>
+.ep-card-hovered {
+  border-color: rgba(99, 110, 250, 0.5) !important;
+  box-shadow: 0 0 0 1px rgba(99, 110, 250, 0.25);
+}
+.ep-sentence {
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.65);
+  font-style: italic;
+}
+.ep-rel-item {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px;
+  font-size: 12px;
+  margin-bottom: 3px;
+  line-height: 1.4;
+  padding-left: 6px;
+}
+.ep-dir-out {
+  color: #636EFA;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.ep-dir-in {
+  color: #EF553B;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.ep-rel-label {
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: white;
+  font-size: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.ep-rel-target {
+  font-weight: 500;
+  word-break: break-word;
+}
+.ep-rel-hoverable {
+  cursor: help;
+}
+.ep-no-rels {
+  margin-top: 4px;
+}
+</style>

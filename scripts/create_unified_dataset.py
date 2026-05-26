@@ -43,14 +43,16 @@ SEED = 42
 
 def _load_raw_docs(dataset: str, split: str) -> list[dict]:
     """Load raw JSONL documents, normalising the document key."""
-    data_folder = os.getenv("DATA_GOLD_FOLDER", "data/gold")
-    data_path = Path(data_folder)
-    if not data_path.is_absolute():
-        data_path = project_root() / data_path
+    datasets_folder = os.getenv("DATA_DATASETS_FOLDER")
+    if not datasets_folder:
+        raise ValueError("DATA_DATASETS_FOLDER not set in .env")
+    datasets_root = Path(datasets_folder)
+    if not datasets_root.is_absolute():
+        datasets_root = project_root() / datasets_root
 
-    filename = f"{dataset}_{split}.jsonl"
+    filename = f"{split}.jsonl"
     docs = []
-    with open(data_path / filename) as fh:
+    with open(datasets_root / dataset / filename) as fh:
         for line in fh:
             doc = json.loads(line)
             # Normalise: every doc gets a "_key" used for lookup

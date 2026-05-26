@@ -4,6 +4,7 @@ v-container(fluid)
     h2.text-h5 Reproduce Results
     v-chip.ml-3(v-if="generatedAt" size="small" variant="tonal" color="grey") {{ generatedAt }}
     v-spacer
+    v-switch(v-model="showStd" label="Show ± std" density="compact" hide-details color="primary")
     v-btn(v-if="!dockerMode" variant="text" prepend-icon="mdi-refresh" size="small" :loading="building" @click="rebuild") Rebuild
 
   v-tabs(v-model="activeTab" density="compact" color="primary" class="mb-4")
@@ -44,10 +45,13 @@ v-container(fluid)
         v-chip(:color="datasetColor(item.dataset)" size="small" variant="tonal") {{ item.dataset }}
       template(#item.ner_exact_f1="{ item }")
         span(:style="f1Style(item.ner_exact_f1)") {{ item.ner_exact_f1 }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.ner_exact_f1_std != null") &nbsp;±{{ item.ner_exact_f1_std }}
       template(#item.re_relaxed_f1="{ item }")
         span(:style="f1Style(item.re_relaxed_f1)") {{ item.re_relaxed_f1 }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.re_relaxed_f1_std != null") &nbsp;±{{ item.re_relaxed_f1_std }}
       template(#item.re_strict_f1="{ item }")
         span(:style="f1Style(item.re_strict_f1)") {{ item.re_strict_f1 }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.re_strict_f1_std != null") &nbsp;±{{ item.re_strict_f1_std }}
       template(#item.ner_reported="{ item }")
         span(:class="item.ner_reported == null ? 'text-disabled' : 'text-medium-emphasis'") {{ item.ner_reported ?? '–' }}
       template(#item.re_reported="{ item }")
@@ -107,46 +111,65 @@ v-container(fluid)
         span(:style="rStyle(item.ner_exact_recall)") {{ item.ner_exact_recall }}
       template(#item.ner_exact_f1="{ item }")
         span(:style="f1Style(item.ner_exact_f1)") {{ item.ner_exact_f1 }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.ner_exact_f1_std != null") &nbsp;±{{ item.ner_exact_f1_std }}
       template(#item.ner_partial_precision="{ item }")
         span(:style="pStyle(item.ner_partial_precision)") {{ item.ner_partial_precision }}
       template(#item.ner_partial_recall="{ item }")
         span(:style="rStyle(item.ner_partial_recall)") {{ item.ner_partial_recall }}
       template(#item.ner_partial_f1="{ item }")
         span(:style="f1Style(item.ner_partial_f1)") {{ item.ner_partial_f1 }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.ner_partial_f1_std != null") &nbsp;±{{ item.ner_partial_f1_std }}
       template(#item.re_relaxed_precision="{ item }")
         span(:style="pStyle(item.re_relaxed_precision)") {{ item.re_relaxed_precision }}
       template(#item.re_relaxed_recall="{ item }")
         span(:style="rStyle(item.re_relaxed_recall)") {{ item.re_relaxed_recall }}
       template(#item.re_relaxed_f1="{ item }")
         span(:style="f1Style(item.re_relaxed_f1)") {{ item.re_relaxed_f1 }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.re_relaxed_f1_std != null") &nbsp;±{{ item.re_relaxed_f1_std }}
       template(#item.re_relaxed_partial_precision="{ item }")
         span(:style="pStyle(item.re_relaxed_partial_precision)") {{ item.re_relaxed_partial_precision }}
       template(#item.re_relaxed_partial_recall="{ item }")
         span(:style="rStyle(item.re_relaxed_partial_recall)") {{ item.re_relaxed_partial_recall }}
       template(#item.re_relaxed_partial_f1="{ item }")
         span(:style="f1Style(item.re_relaxed_partial_f1)") {{ item.re_relaxed_partial_f1 }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.re_relaxed_partial_f1_std != null") &nbsp;±{{ item.re_relaxed_partial_f1_std }}
       template(#item.re_strict_precision="{ item }")
         span(:style="pStyle(item.re_strict_precision)") {{ item.re_strict_precision }}
       template(#item.re_strict_recall="{ item }")
         span(:style="rStyle(item.re_strict_recall)") {{ item.re_strict_recall }}
       template(#item.re_strict_f1="{ item }")
         span(:style="f1Style(item.re_strict_f1)") {{ item.re_strict_f1 }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.re_strict_f1_std != null") &nbsp;±{{ item.re_strict_f1_std }}
       template(#item.re_strict_partial_precision="{ item }")
         span(:style="pStyle(item.re_strict_partial_precision)") {{ item.re_strict_partial_precision }}
       template(#item.re_strict_partial_recall="{ item }")
         span(:style="rStyle(item.re_strict_partial_recall)") {{ item.re_strict_partial_recall }}
       template(#item.re_strict_partial_f1="{ item }")
         span(:style="f1Style(item.re_strict_partial_f1)") {{ item.re_strict_partial_f1 }}
+        span.text-caption.text-medium-emphasis(v-if="showStd && item.re_strict_partial_f1_std != null") &nbsp;±{{ item.re_strict_partial_f1_std }}
 
   //- ── Entity label-wise tab ───────────────────────────────────────────────
   div(v-if="activeTab === 'entities'")
-    v-row.mb-3(dense align="center")
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterDataset" :items="['(all)', 'gsap-ere', 'scier', 'scinlp']" label="Dataset" density="compact" variant="outlined" hide-details)
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterLabelSet" :items="['original', 'unified', '(both)']" label="Label set" density="compact" variant="outlined" hide-details)
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterNerMatch" :items="['exact', 'partial', '(both)']" label="Match" density="compact" variant="outlined" hide-details)
+    .d-flex.flex-wrap.ga-4.mb-3
+      div
+        .text-caption.text-medium-emphasis.mb-1 Dataset
+        v-btn-toggle(v-model="filterDataset" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="(all)" size="small") All
+          v-btn(value="gsap-ere" size="small") GSAP-ERE
+          v-btn(value="scier" size="small") SciER
+          v-btn(value="scinlp" size="small") SciNLP
+      div
+        .text-caption.text-medium-emphasis.mb-1 Label space
+        v-btn-toggle(v-model="filterLabelSet" mandatory density="compact" variant="outlined" color="secondary")
+          v-btn(value="original" size="small") Original
+          v-btn(value="unified" size="small") Unified
+          v-btn(value="(both)" size="small") Both
+      div
+        .text-caption.text-medium-emphasis.mb-1 Match
+        v-btn-toggle(v-model="filterNerMatch" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="exact" size="small") Exact
+          v-btn(value="partial" size="small") Partial
+          v-btn(value="(both)" size="small") Both
     v-data-table(
       :headers="labelHeaders"
       :items="entityLabelRows"
@@ -186,13 +209,28 @@ v-container(fluid)
 
   //- ── Relation label-wise tab ─────────────────────────────────────────────
   div(v-if="activeTab === 'relations'")
-    v-row.mb-3(dense align="center")
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterDataset" :items="['(all)', 'gsap-ere', 'scier', 'scinlp']" label="Dataset" density="compact" variant="outlined" hide-details)
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterLabelSet" :items="['original', 'unified', '(both)']" label="Label set" density="compact" variant="outlined" hide-details)
-      v-col(cols="6" sm="3" md="2")
-        v-select(v-model="filterReMatch" :items="['relaxed', 'relaxed_partial', 'strict', 'strict_partial', '(both)']" label="RE metric" density="compact" variant="outlined" hide-details)
+    .d-flex.flex-wrap.ga-4.mb-3
+      div
+        .text-caption.text-medium-emphasis.mb-1 Dataset
+        v-btn-toggle(v-model="filterDataset" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="(all)" size="small") All
+          v-btn(value="gsap-ere" size="small") GSAP-ERE
+          v-btn(value="scier" size="small") SciER
+          v-btn(value="scinlp" size="small") SciNLP
+      div
+        .text-caption.text-medium-emphasis.mb-1 Label space
+        v-btn-toggle(v-model="filterLabelSet" mandatory density="compact" variant="outlined" color="secondary")
+          v-btn(value="original" size="small") Original
+          v-btn(value="unified" size="small") Unified
+          v-btn(value="(both)" size="small") Both
+      div
+        .text-caption.text-medium-emphasis.mb-1 RE metric
+        v-btn-toggle(v-model="filterReMatch" mandatory density="compact" variant="outlined" color="primary")
+          v-btn(value="relaxed" size="small") RE
+          v-btn(value="relaxed_partial" size="small") RE≈
+          v-btn(value="strict" size="small") RE+
+          v-btn(value="strict_partial" size="small") RE+≈
+          v-btn(value="(both)" size="small") All
     v-data-table(
       :headers="labelHeaders"
       :items="relationLabelRows"
@@ -245,6 +283,7 @@ const allLabels   = ref([])
 const reported    = ref({})
 const snack       = ref({ show: false, message: '', color: 'success' })
 const activeTab   = ref('summary')
+const showStd     = ref(true)
 
 const filterDataset  = ref('(all)')
 const filterLabelSet = ref('original')
