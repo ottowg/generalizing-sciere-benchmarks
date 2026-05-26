@@ -62,6 +62,18 @@ def data_dir(subfolder: str = "") -> Path:
     return path
 
 
+def webapp_data_dir(subfolder: str = "") -> Path:
+    """Return data/webapp/, the directory for all webapp-generated data files.
+
+    Creates the directory (and parents) if it does not exist.
+    """
+    path = project_root() / "data" / "webapp"
+    if subfolder:
+        path = path / subfolder
+    path.mkdir(parents=True, exist_ok=True)
+    return path
+
+
 def configs_dir(subfolder: str = "") -> Path:
     """Return the configs directory, optionally with a *subfolder*."""
     path = project_root() / "configs"

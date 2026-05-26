@@ -12,30 +12,107 @@ from .types import Corpus, Mention, Relation, Sentence
 # Load environment variables
 load_dotenv()
 
+# Normalize typo/alias directory names (pred_<folder>) to canonical trained_on identifiers.
+TRAINED_ON_ALIASES: dict[str, str] = {
+    "unfied-sciere": "unified-sciere",
+    "scnlp": "scinlp",
+    "gsap": "gsap-ere",
+}
+
+
+def _resolve_pred_dir(dataset_dir: Path, trained_on: str) -> Path:
+    """Locate the pred_* directory for trained_on, handling aliases and multi-label models.
+
+    Multi-label models use nested layouts:
+      pred_multi-sciere/<label_set>/
+        → trained_on = "multi-sciere-<label_set>"
+      pred_multi-sciere-<train_ids>/<label_set>/
+        → trained_on = "multi-sciere-<train_ids>-<label_set>"
+          e.g. "multi-sciere-scinlp-gsap-ere-gsap"
+    """
+    if trained_on.startswith("multi-sciere-"):
+        rest = trained_on[len("multi-sciere-"):]
+        # Old convention: pred_multi-sciere/<label_set>/
+        old = dataset_dir / "pred_multi-sciere" / rest
+        if old.is_dir():
+            return old
+        # New convention: pred_multi-sciere-<train_ids>/<label_set>/
+        # rest = "<train_ids>-<label_set>", e.g. "scinlp-gsap-ere-gsap"
+        for pred_dir in sorted(dataset_dir.iterdir()):
+            if not pred_dir.is_dir() or not pred_dir.name.startswith("pred_multi-sciere-"):
+                continue
+            train_suffix = pred_dir.name[len("pred_multi-sciere-"):]
+            if rest.startswith(train_suffix + "-"):
+                label_set = rest[len(train_suffix) + 1:]
+                ls_dir = pred_dir / label_set
+                if ls_dir.is_dir():
+                    return ls_dir
+        raise FileNotFoundError(
+            f"No multi-sciere prediction directory for trained_on={trained_on!r} in {dataset_dir}."
+        )
+
+    direct = dataset_dir / f"pred_{trained_on}"
+    if direct.is_dir():
+        return direct
+
+    for folder_suffix, canonical in TRAINED_ON_ALIASES.items():
+        if canonical == trained_on:
+            aliased = dataset_dir / f"pred_{folder_suffix}"
+            if aliased.is_dir():
+                return aliased
+
+    raise FileNotFoundError(
+        f"No prediction directory for trained_on={trained_on!r} in {dataset_dir}. "
+        f"Expected pred_{trained_on} or a known alias."
+    )
+
+
+def discover_seeds(dataset: str, trained_on: str) -> list[int]:
+    """Return a sorted list of integer seed IDs available for a prediction directory.
+
+    Scans for integer-named subdirectories inside the resolved pred_* directory.
+    Returns an empty list if the directory does not exist or has no seed subdirs.
+    """
+    datasets_folder = os.environ.get("DATA_DATASETS_FOLDER", "")
+    if not datasets_folder:
+        return []
+    dataset_dir = Path(datasets_folder) / dataset
+    try:
+        pred_dir = _resolve_pred_dir(dataset_dir, trained_on)
+    except FileNotFoundError:
+        return []
+    return sorted(
+        int(d.name) for d in pred_dir.iterdir() if d.is_dir() and d.name.isdigit()
+    )
+
 
 def load_corpus(
     dataset: Literal["scier", "scinlp", "gsap-ere"],
-    split: Literal["train", "dev", "test"],
+    split: Literal["train", "dev", "test", "test_ood"],
     data_type: Literal["gold", "predictions"] = "gold",
     trained_on: Literal["scier", "scinlp", "gsap-ere", "unified-sciere"] | None = None,
+    seed: int | str | None = None,
     ner_field: str = "ner",
     rel_field: str = "relations",
 ) -> Corpus:
-    """Load and process corpus data from configured data folders.
+    """Load and process corpus data from the datasets folder.
 
-    This function reads data folder paths from environment variables:
-    - DATA_GOLD_FOLDER: Path to gold standard data
-    - DATA_PREDICTIONS_FOLDER: Path to prediction data
+    Reads the datasets root from the DATA_DATASETS_FOLDER environment variable.
 
-    The function automatically constructs filenames based on the dataset and split:
-    - For gold data: "{dataset}_{split}.jsonl" (e.g., "scinlp_dev.jsonl")
-    - For predictions: "{dataset}_model_{trained_on}_{split}.jsonl" (e.g., "scinlp_model_gsap-ere_test.jsonl")
+    Native directory layout:
+      <datasets_root>/<dataset>/<split>.jsonl                              (gold)
+      <datasets_root>/<dataset>/pred_<trained_on>/<split>.jsonl           (predictions)
+      <datasets_root>/<dataset>/pred_multi-sciere/<label_set>/<split>.jsonl  (multi-label)
 
     Args:
         dataset: Dataset to load - "scier", "scinlp", or "gsap-ere"
         split: Data split to load - "train", "dev", or "test"
         data_type: Type of data to load - "gold" or "predictions"
-        trained_on: For predictions, the dataset the model was trained on (required if data_type="predictions")
+        trained_on: For predictions, the dataset the model was trained on.
+            Use "multi-sciere-<label_set>" for multi-label models.
+            Use "multi-sciere-<train_ids>-<label_set>" for seeded multi-label models.
+        seed: Optional seed number. When set, appends /<seed>/ to the prediction directory.
+            Used for seeded models: pred_multi-sciere-<train_ids>/<label_set>/<seed>/.
         ner_field: Field name for named entity recognition data
         rel_field: Field name for relations data
 
@@ -43,61 +120,54 @@ def load_corpus(
         Corpus object containing sentences, mentions, and relations
 
     Raises:
-        ValueError: If environment variables are not set, data folder doesn't exist,
+        ValueError: If DATA_DATASETS_FOLDER is not set or the directory doesn't exist,
                    or trained_on is not provided for predictions
+        FileNotFoundError: If the requested data file does not exist
 
     Examples:
-        >>> # Load gold standard data
         >>> corpus = load_corpus("scinlp", "dev", data_type="gold")
-
-        >>> # Load predictions from a model trained on gsap, evaluated on scinlp test set
         >>> corpus = load_corpus("scinlp", "test", data_type="predictions", trained_on="gsap-ere")
+        >>> corpus = load_corpus("gsap-ere", "dev", data_type="predictions", trained_on="multi-sciere-gsap")
     """
-    # Validate and construct filename
-    if data_type == "predictions":
+    datasets_folder = os.getenv("DATA_DATASETS_FOLDER")
+    if not datasets_folder:
+        raise ValueError(
+            "DATA_DATASETS_FOLDER environment variable not set. "
+            "Please create a .env file with DATA_DATASETS_FOLDER pointing to the datasets root "
+            "(e.g. DATA_DATASETS_FOLDER=datasets/v9)."
+        )
+
+    datasets_root = Path(datasets_folder)
+    if not datasets_root.is_absolute():
+        datasets_root = project_root() / datasets_root
+    if not datasets_root.exists():
+        raise ValueError(f"Datasets folder does not exist: {datasets_root}")
+
+    dataset_dir = datasets_root / dataset
+    if not dataset_dir.exists():
+        raise ValueError(f"Dataset directory not found: {dataset_dir}")
+
+    if data_type == "gold":
+        file_path = dataset_dir / f"{split}.jsonl"
+        annotator = "gold"
+    elif data_type == "predictions":
         if trained_on is None:
             raise ValueError(
                 "trained_on parameter is required when data_type='predictions'. "
                 "Specify which dataset the model was trained on (e.g., 'gsap-ere', 'scinlp', 'scier')."
             )
-        filename = f"{dataset}_model_{trained_on}_{split}.jsonl"
+        pred_dir = _resolve_pred_dir(dataset_dir, trained_on)
+        if seed is not None:
+            pred_dir = pred_dir / str(seed)
+        file_path = pred_dir / f"{split}.jsonl"
+        annotator = trained_on
     else:
-        filename = f"{dataset}_{split}.jsonl"
+        raise ValueError(f"Invalid data_type: {data_type}. Must be 'gold' or 'predictions'")
 
-    # Get data folder from environment
-    if data_type == "gold":
-        data_folder = os.getenv("DATA_GOLD_FOLDER")
-        if not data_folder:
-            raise ValueError(
-                "DATA_GOLD_FOLDER environment variable not set. "
-                "Please create a .env file with DATA_GOLD_FOLDER defined."
-            )
-    elif data_type == "predictions":
-        data_folder = os.getenv("DATA_PREDICTIONS_FOLDER")
-        if not data_folder:
-            raise ValueError(
-                "DATA_PREDICTIONS_FOLDER environment variable not set. "
-                "Please create a .env file with DATA_PREDICTIONS_FOLDER defined."
-            )
-    else:
-        raise ValueError(
-            f"Invalid data_type: {data_type}. Must be 'gold' or 'predictions'"
-        )
+    if not file_path.exists():
+        raise FileNotFoundError(f"Data file not found: {file_path}")
 
-    # Convert to Path and verify it exists (resolve relative paths against project root)
-    data_path = Path(data_folder)
-    if not data_path.is_absolute():
-        data_path = project_root() / data_path
-    if not data_path.exists():
-        raise ValueError(f"Data folder does not exist: {data_path}")
-
-    # Load documents using internal function
-    docs = _load_docs(data_path, [filename])
-
-    # Determine annotator name
-    annotator = "gold" if data_type == "gold" else trained_on
-
-    # Process documents into corpus using internal function
+    docs = _load_docs(file_path.parent, [file_path.name])
     return _process_docs(
         docs,
         ner_field=ner_field,
@@ -423,7 +493,6 @@ def _load_docs(path: Path, fns: list[str]) -> list[dict[str, Any]]:
     for fn in fns:
         path_split = path / fn
         split = path_split.stem
-        print(split)
         jsonl_file = path_split.open()
         for line_idx, line in enumerate(jsonl_file):
             doc = json.loads(line)
