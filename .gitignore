@@ -8,6 +8,7 @@ data_ssds/*
 notebooks/*
 .env
 data/predictions_v*/
+data/webapp/
 *.swp
 test.sh
 *__pycache__*
