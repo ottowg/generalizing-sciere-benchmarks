@@ -1,0 +1,16 @@
+version: v1
+date: "2026-05-07"
+description: >
+  Initial version. Sentence-level ERE with binary entity types (concept=0, artifact=1)
+  and three relation types (direct=0, indirect=1, coreference=2). Outputs Python-style
+  data structures parsed with ast.literal_eval.
+
+prompts:
+  prompt:
+    file: prompt.txt
+    description: Single prompt with [SYSTEM]/[USER] sections and {{context}}/{{sentence}} placeholders.
+
+changelog:
+  - date: "2026-05-07"
+    changes:
+      - "Initial version"

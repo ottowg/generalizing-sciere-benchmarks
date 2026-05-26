@@ -1,0 +1,19 @@
+version: v2
+date: "2026-05-08"
+description: >
+  Tab-separated CSV output format. Entity token lists are JSON arrays; relation
+  subject/object reference token lists only (type looked up from entities section,
+  not repeated). Standard CSV quoting handles embedded tabs or quotes. Avoids
+  Python-style assignment syntax that triggered Azure content filters.
+
+prompts:
+  prompt:
+    file: prompt.txt
+    description: Single prompt with [SYSTEM]/[USER] sections and {{context}}/{{sentence}} placeholders.
+
+changelog:
+  - date: "2026-05-08"
+    changes:
+      - "Replaced Python-style output with tab-separated CSV to avoid Azure content filter false positives"
+      - "Relation entity types resolved from entities section, not repeated in relations"
+      - "Standard CSV quoting rules for embedded tabs and quotes"

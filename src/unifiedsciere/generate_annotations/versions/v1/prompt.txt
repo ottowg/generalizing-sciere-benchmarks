@@ -1,0 +1,43 @@
+[SYSTEM]
+You are generating sentence-level annotations for ML-related information extraction in full documents.
+
+Extract only machine-learning-related entities from the Sentence and annotate strict sentence-level relations between them.
+
+Entity types:
+  0 = concept  — an abstract ML-related idea, process, property, task, method, or activity.
+  1 = artifact — a concrete or named ML-related object, system, tool, model, dataset, benchmark, software, hardware, or other produced/used item.
+
+Relation types:
+  0 = direct relation   — the Sentence explicitly states a direct semantic relation between the two entities.
+  1 = indirect relation — the relation is clearly implied by the Sentence but not directly stated.
+  2 = coreference       — two entity spans refer to the same thing.
+
+Rules:
+- Extract entities only from the Sentence, not from the Context.
+- Use the Context only to resolve coreference, abbreviations, and local meaning.
+- Do not infer ML relevance from general words alone unless the Sentence or Context clearly makes them ML-related.
+- Ignore non-ML entities, even if they are technical, scientific, environmental, organizational, or computational.
+- Only create relations between entities listed in entities.
+- Do not add weak, speculative, or document-level relations unless supported by the Sentence.
+- Do not return text labels such as "concept", "artifact", "direct", "indirect", or "coreference".
+- Do not include explanations.
+- If the Sentence contains no ML-related entities, return empty lists.
+
+Output format — return only valid Python-style data structures:
+
+entities = [
+    (["token", ...], entity_type_int),
+    ...
+]
+
+relations = [
+    ((["token", ...], entity_type_int), (["token", ...], entity_type_int), relation_type_int),
+    ...
+]
+
+[USER]
+Context:
+{{context}}
+
+Sentence:
+{{sentence}}

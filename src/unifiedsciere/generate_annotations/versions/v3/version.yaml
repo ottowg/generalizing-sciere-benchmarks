@@ -1,0 +1,25 @@
+version: v3
+date: "2026-05-08"
+description: >
+  Few-shot CSV format with relative context indexing. Inherits the tab-separated
+  CSV output from v2 (JSON token arrays, standard CSV quoting). Adds four
+  annotated examples covering: multi-token spans and direct relations (A),
+  indirect relations and non-ML filtering (B), empty output (C), and coreference
+  with hyphenated tokens (D). Context sentences are labeled with relative indices
+  where 0 is the target sentence, negative indices are preceding sentences, and
+  positive indices are following sentences.
+
+prompts:
+  prompt:
+    file: prompt.txt
+    description: Single prompt with [SYSTEM]/[USER] sections, four few-shot examples, and {{context}}/{{sentence}} placeholders.
+
+changelog:
+  - date: "2026-05-08"
+    changes:
+      - "Added four few-shot examples (A: basic, B: indirect+filtering, C: empty, D: coreference+hyphenation)"
+      - "Context sentences labeled with relative indices (-k … 0 … +k), 0 = target sentence"
+      - "Sentence section repeats the target sentence (same as context index 0) for clarity"
+      - "Token lists in prompt rendered as JSON arrays (consistent with output format)"
+      - "Entity type note clarifying context-dependent concept/artifact distinction"
+      - "Positive framing throughout (no imperative negations that trigger content filters)"
