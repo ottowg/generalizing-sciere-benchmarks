@@ -143,7 +143,7 @@ def sample_corpus() -> Corpus:
         end=14,
         begin_token=0,
         end_token=3,
-        annotator="gsap",
+        annotator="gsap-ere",
     )
     p2 = make_mention(
         id="p2",
@@ -153,7 +153,7 @@ def sample_corpus() -> Corpus:
         end=8,
         begin_token=1,
         end_token=2,
-        annotator="gsap",
+        annotator="gsap-ere",
     )
     p3 = make_mention(
         id="p3",
@@ -163,7 +163,7 @@ def sample_corpus() -> Corpus:
         end=35,
         begin_token=5,
         end_token=7,
-        annotator="gsap",
+        annotator="gsap-ere",
     )
     p4 = make_mention(
         id="p4",
@@ -173,14 +173,14 @@ def sample_corpus() -> Corpus:
         end=33,
         begin_token=8,
         end_token=9,
-        annotator="gsap",
+        annotator="gsap-ere",
     )
 
     gr1 = make_relation(g1, g3, label="Used-for")
     gr2 = make_relation(g1, g4, label="Used-for")
 
-    pr1 = make_relation(p1, p3, label="Used-for", annotator="gsap")
-    pr2 = make_relation(p1, p4, label="Used-for", annotator="gsap")
+    pr1 = make_relation(p1, p3, label="Used-for", annotator="gsap-ere")
+    pr2 = make_relation(p1, p4, label="Used-for", annotator="gsap-ere")
 
     return Corpus(
         sentences=[

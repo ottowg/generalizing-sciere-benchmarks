@@ -13,7 +13,7 @@ import fs from 'fs'
 import path from 'path'
 import { jsonResponse } from '../utils.js'
 
-const DATA_FILE = 'data/cross_dataset_performance.json'
+const DATA_FILE = 'data/webapp/cross_dataset_performance.json'
 const SCRIPT    = 'scripts/ere_performance/cross_dataset_performance.py'
 
 export function createCrossDatasetMiddleware(projectRoot) {

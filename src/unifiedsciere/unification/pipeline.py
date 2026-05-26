@@ -45,7 +45,7 @@ def load_unification_config(config_path: Path | None = None) -> dict:
 
 def apply_unification_pipeline(
     corpus: Corpus,
-    dataset: Literal["scier", "scinlp", "gsap"],
+    dataset: Literal["scier", "scinlp", "gsap-ere", "unified-sciere"],
     config: dict | None = None,
     config_path: Path | None = None,
     apply_to_gold: bool = False,
@@ -62,7 +62,7 @@ def apply_unification_pipeline(
 
     Args:
         corpus: Input corpus
-        dataset: Source dataset name ("scier", "scinlp", "gsap")
+        dataset: Source dataset name ("scier", "scinlp", "gsap-ere")
         config: Configuration dictionary. If None, loads from config_path
         config_path: Path to config file. If None, uses default
         apply_to_gold: If True, apply pipeline to gold annotations
@@ -74,8 +74,8 @@ def apply_unification_pipeline(
         - Dictionary with statistics from each step
 
     Example:
-        >>> corpus = load_corpus("gsap", "dev", data_type="predictions", trained_on="gsap")
-        >>> unified_corpus, stats = apply_unification_pipeline(corpus, "gsap")
+        >>> corpus = load_corpus("gsap-ere", "dev", data_type="predictions", trained_on="gsap-ere")
+        >>> unified_corpus, stats = apply_unification_pipeline(corpus, "gsap-ere")
         >>> print(f"Filtered {stats['gsap_corrections']['predicted_mentions_filtered']} mentions")
     """
     # Load config if not provided
@@ -152,8 +152,8 @@ def apply_unification_pipeline(
     corrections_config = config.get("dataset_corrections", {})
 
     # GSAP-specific corrections
-    if dataset == "gsap":
-        gsap_config = corrections_config.get("gsap", {})
+    if dataset == "gsap-ere":
+        gsap_config = corrections_config.get("gsap-ere", {})
         if gsap_config.get("enabled", False):
             # Get the analysis file path
             analysis_file = gsap_config.get("mlmodelgeneric_analysis_file")
@@ -165,14 +165,16 @@ def apply_unification_pipeline(
 
                 if analysis_path.exists():
                     min_count = gsap_config.get("min_count", 2)
+                    static_blacklist = gsap_config.get("static_blacklist") or []
                     corpus, gsap_stats = filter_gsap_mentions(
                         corpus,
                         analysis_path,
                         min_count=min_count,
+                        static_blacklist=static_blacklist,
                         filter_predicted=apply_to_predicted,
                         filter_gold=apply_to_gold,
                     )
-                    stats["dataset_corrections"]["gsap"] = gsap_stats
+                    stats["dataset_corrections"]["gsap-ere"] = gsap_stats
                 else:
                     print(f"Warning: GSAP analysis file not found: {analysis_path}")
                     print("Skipping GSAP-specific corrections")
@@ -206,6 +208,62 @@ def apply_unification_pipeline(
             normalize_predicted=apply_to_predicted,
         )
         stats["span_normalization"] = span_stats
+
+    # Step 8: Post-normalization blacklist pass (catches terms produced by span stripping,
+    # e.g. "their model" -> "model" after prefix removal).
+    # Applies both static_blacklist (exact match) and pattern_blacklist (regex per label).
+    if dataset == "gsap-ere":
+        gsap_config = corrections_config.get("gsap-ere", {})
+        if gsap_config.get("enabled", False):
+            import re as _re
+
+            static_blacklist = gsap_config.get("static_blacklist") or []
+            blacklist_lower = {t.lower() for t in static_blacklist}
+
+            # Build compiled regex patterns per label
+            pattern_blacklist_cfg = gsap_config.get("pattern_blacklist") or {}
+            label_patterns: dict[str, list] = {}
+            for _lbl, _pats in pattern_blacklist_cfg.items():
+                label_patterns[_lbl] = [_re.compile(p, _re.IGNORECASE) for p in _pats]
+
+            def _should_keep(m) -> bool:
+                if m.text.lower() in blacklist_lower:
+                    return False
+                for pat in label_patterns.get(m.label, []):
+                    if pat.search(m.text):
+                        return False
+                return True
+
+            if apply_to_gold:
+                kept_gold = [m for m in corpus.mentions if _should_keep(m)]
+                kept_gold_ids = {m.id for m in kept_gold}
+                kept_gold_rels = [
+                    r for r in corpus.relation
+                    if r.subject.id in kept_gold_ids and r.object.id in kept_gold_ids
+                ]
+            else:
+                kept_gold = corpus.mentions
+                kept_gold_rels = corpus.relation
+
+            if apply_to_predicted:
+                kept_pred = [m for m in corpus.mentions_predicted if _should_keep(m)]
+                kept_pred_ids = {m.id for m in kept_pred}
+                kept_pred_rels = [
+                    r for r in corpus.relations_predicted
+                    if r.subject.id in kept_pred_ids and r.object.id in kept_pred_ids
+                ]
+            else:
+                kept_pred = corpus.mentions_predicted
+                kept_pred_rels = corpus.relations_predicted
+
+            from ..types import Corpus as _Corpus
+            corpus = _Corpus(
+                sentences=corpus.sentences,
+                mentions=kept_gold,
+                relation=kept_gold_rels,
+                mentions_predicted=kept_pred,
+                relations_predicted=kept_pred_rels,
+            )
 
     return corpus, stats
 
@@ -264,8 +322,8 @@ def generate_pipeline_report(stats: dict, output_path: Path) -> None:
     if stats.get("dataset_corrections"):
         md_content += "### 4. Dataset-Specific Corrections\n\n"
 
-        if "gsap" in stats["dataset_corrections"]:
-            gsap = stats["dataset_corrections"]["gsap"]
+        if "gsap-ere" in stats["dataset_corrections"]:
+            gsap = stats["dataset_corrections"]["gsap-ere"]
             md_content += f"""#### GSAP MLModelGeneric Filtering
 
 - **Predicted mentions filtered**: {gsap.get("predicted_mentions_filtered", 0)}
@@ -325,13 +383,13 @@ if __name__ == "__main__":
     from ..data_loader import load_corpus
 
     # Load corpus
-    corpus = load_corpus("gsap", "dev", data_type="predictions", trained_on="gsap")
+    corpus = load_corpus("gsap-ere", "dev", data_type="predictions", trained_on="gsap-ere")
 
     print(f"Original: {len(corpus.mentions_predicted)} predicted mentions")
 
     # Apply pipeline
     unified_corpus, stats = apply_unification_pipeline(
-        corpus, "gsap", apply_to_predicted=True, apply_to_gold=False
+        corpus, "gsap-ere", apply_to_predicted=True, apply_to_gold=False
     )
 
     print(f"Unified: {len(unified_corpus.mentions_predicted)} predicted mentions")

@@ -14,7 +14,7 @@ import fs from 'fs'
 import path from 'path'
 import { jsonResponse } from '../utils.js'
 
-const DATA_FILE = 'data/label_statistics.json'
+const DATA_FILE = 'data/webapp/label_statistics.json'
 const SCRIPT    = 'scripts/ere_performance/label_statistics.py'
 
 export function createLabelStatsMiddleware(projectRoot) {

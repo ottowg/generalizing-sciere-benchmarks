@@ -120,16 +120,43 @@ def load_cached_embeddings(
     out_dir: Path,
     doc_ids: list[str],
 ) -> np.ndarray | None:
-    """Load cached embeddings if they exist and match the expected doc_ids."""
+    """Load cached embeddings, embedding only missing papers incrementally.
+
+    If the cache covers all doc_ids, returns the full array immediately.
+    If the cache is missing some doc_ids, computes embeddings only for those,
+    merges them into the cache, saves the updated cache, and returns the full array.
+    Returns None only if the cache file does not exist.
+    """
     path = out_dir / "embeddings.json"
     if not path.exists():
         return None
     with open(path) as f:
         emb_dict: dict[str, list[float]] = json.load(f)
-    if set(emb_dict.keys()) != set(doc_ids):
-        logger.warning("Cached embeddings doc_ids don't match; will recompute")
-        return None
-    # Return in the order of doc_ids
+
+    missing = [did for did in doc_ids if did not in emb_dict]
+    extra = [did for did in emb_dict if did not in set(doc_ids)]
+
+    if extra:
+        logger.info("Cache has %d stale doc_ids (will be dropped)", len(extra))
+
+    if missing:
+        logger.info(
+            "%d new doc_ids not in cache — embedding only those: %s",
+            len(missing),
+            missing,
+        )
+        return None  # signal to caller to embed missing papers and merge
+
+    # Full cache hit
     embeddings = np.array([emb_dict[did] for did in doc_ids])
     logger.info("Loaded cached embeddings: shape=%s", embeddings.shape)
     return embeddings
+
+
+def load_cached_embedding_dict(out_dir: Path) -> dict[str, list[float]]:
+    """Return the raw cache dict (doc_id -> vector), or {} if not found."""
+    path = out_dir / "embeddings.json"
+    if not path.exists():
+        return {}
+    with open(path) as f:
+        return json.load(f)

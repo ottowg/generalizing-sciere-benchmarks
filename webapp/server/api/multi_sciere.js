@@ -15,7 +15,7 @@ import fs from 'fs'
 import path from 'path'
 import { jsonResponse } from '../utils.js'
 
-const DATA_FILE = 'data/multi_sciere_results.json'
+const DATA_FILE = 'data/webapp/multi_sciere_results.json'
 const SCRIPT    = 'scripts/ere_performance/multi_sciere_results_report.py'
 
 export function createMultiSciEREMiddleware(projectRoot) {

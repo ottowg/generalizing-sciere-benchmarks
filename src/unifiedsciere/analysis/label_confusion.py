@@ -49,10 +49,10 @@ def _mentions_to_gsaphub_format(
 
 
 def compute_confusion_matrix(
-    dataset: Literal["scier", "scinlp", "gsap"],
+    dataset: Literal["scier", "scinlp", "gsap-ere"],
     split: Literal["train", "dev", "test"],
-    model1: Literal["scier", "scinlp", "gsap"],
-    model2: Literal["scier", "scinlp", "gsap"],
+    model1: Literal["scier", "scinlp", "gsap-ere"],
+    model2: Literal["scier", "scinlp", "gsap-ere"],
     return_details: bool = False,
 ) -> pd.DataFrame | tuple[pd.DataFrame, dict]:
     """Compute confusion matrix between two models' entity labels.
@@ -169,10 +169,10 @@ def compute_confusion_matrix(
 
 
 def generate_confusion_report(
-    datasets: list[Literal["scier", "scinlp", "gsap"]],
+    datasets: list[Literal["scier", "scinlp", "gsap-ere"]],
     split: Literal["train", "dev", "test"],
-    model1: Literal["scier", "scinlp", "gsap"],
-    model2: Literal["scier", "scinlp", "gsap"],
+    model1: Literal["scier", "scinlp", "gsap-ere"],
+    model2: Literal["scier", "scinlp", "gsap-ere"],
     output_dir: Path | None = None,
 ) -> Path:
     """Generate a markdown report with confusion matrices for multiple datasets.
@@ -189,7 +189,7 @@ def generate_confusion_report(
 
     Example:
         >>> path = generate_confusion_report(
-        ...     ["scier", "scinlp", "gsap"],
+        ...     ["scier", "scinlp", "gsap-ere"],
         ...     "dev",
         ...     "scinlp",
         ...     "scier"
@@ -335,10 +335,10 @@ This section shows {model2.upper()} mention texts that were mapped to each {mode
 
 
 def generate_simplified_confusion_report(
-    datasets: list[Literal["scier", "scinlp", "gsap"]],
+    datasets: list[Literal["scier", "scinlp", "gsap-ere"]],
     split: Literal["train", "dev", "test"],
-    model1: Literal["scier", "scinlp", "gsap"],
-    model2: Literal["scier", "scinlp", "gsap"],
+    model1: Literal["scier", "scinlp", "gsap-ere"],
+    model2: Literal["scier", "scinlp", "gsap-ere"],
     output_dir: Path | None = None,
     top_n: int = 15,
     combine_datasets: bool = False,
@@ -359,9 +359,9 @@ def generate_simplified_confusion_report(
 
     Example:
         >>> path = generate_simplified_confusion_report(
-        ...     ["gsap"],
+        ...     ["gsap-ere"],
         ...     "dev",
-        ...     "gsap",
+        ...     "gsap-ere",
         ...     "scier"
         ... )
     """
@@ -688,7 +688,7 @@ Rows: {model1.upper()} labels | Columns: {model2.upper()} labels
 if __name__ == "__main__":
     # Example: Compare SCINLP and SCIER labels on all datasets (dev split)
     report_path = generate_confusion_report(
-        datasets=["scier", "scinlp", "gsap"],
+        datasets=["scier", "scinlp", "gsap-ere"],
         split="dev",
         model1="scinlp",
         model2="scier",

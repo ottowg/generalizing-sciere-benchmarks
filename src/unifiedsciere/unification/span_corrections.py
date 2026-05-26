@@ -16,10 +16,9 @@ from ..types import Corpus, Mention
 
 # fmt: off
 RULES: dict[str, dict[str, list[tuple[str, str]]]] = {
-    "gsap": {
+    "gsap-ere": {
         "Method": [
             ("prefix", r"^(?:the|The|a|A|an|An|our|Our|their|this|This|these|These|its)$"),
-            ("suffix", r"^(?:models?|layers?|classifiers?|embeddings?|modules?|systems?)$"),
         ],
         "_all": [
             ("suffix", r"^'s$"),
@@ -33,7 +32,6 @@ RULES: dict[str, dict[str, list[tuple[str, str]]]] = {
         ],
         "Method": [
             ("prefix", r"^(?:the|The)$"),
-            ("suffix", r"^(?:models?)$"),
         ],
     },
     "scier": {
@@ -131,7 +129,7 @@ def normalize_spans(
 
     Args:
         corpus: Input corpus
-        dataset: Model/dataset name whose rules to apply ("gsap", "scinlp", "scier")
+        dataset: Model/dataset name whose rules to apply ("gsap-ere", "scinlp", "scier")
         normalize_gold: If True, apply to gold mentions
         normalize_predicted: If True, apply to predicted mentions
 

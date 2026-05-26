@@ -14,6 +14,7 @@ def filter_gsap_mentions(
     corpus: Corpus,
     json_analysis_file: Path,
     min_count: int = 2,
+    static_blacklist: list[str] | None = None,
     filter_predicted: bool = True,
     filter_gold: bool = False,
 ) -> tuple[Corpus, dict]:
@@ -45,6 +46,13 @@ def filter_gsap_mentions(
         if data["count"] >= min_count:
             texts_to_filter.add(text)
 
+    # Add static blacklist entries
+    if static_blacklist:
+        texts_to_filter.update(static_blacklist)
+
+    # Build a lowercased set for case-insensitive matching
+    texts_to_filter_lower = {t.lower() for t in texts_to_filter}
+
     stats = {
         "total_texts_to_filter": len(texts_to_filter),
         "min_count_threshold": min_count,
@@ -65,7 +73,7 @@ def filter_gsap_mentions(
 
     # Filter gold mentions
     if filter_gold:
-        kept_mentions = [m for m in corpus.mentions if m.text not in texts_to_filter]
+        kept_mentions = [m for m in corpus.mentions if m.text.lower() not in texts_to_filter_lower]
         kept_mention_ids = {m.id for m in kept_mentions}
 
         # Filter relations that reference filtered mentions
@@ -86,7 +94,7 @@ def filter_gsap_mentions(
     # Filter predicted mentions
     if filter_predicted:
         kept_mentions_pred = [
-            m for m in corpus.mentions_predicted if m.text not in texts_to_filter
+            m for m in corpus.mentions_predicted if m.text.lower() not in texts_to_filter_lower
         ]
         kept_mention_ids_pred = {m.id for m in kept_mentions_pred}
 
@@ -225,7 +233,7 @@ if __name__ == "__main__":
     from ..data_loader import load_corpus
 
     # Load GSAP predictions
-    corpus = load_corpus("gsap", "dev", data_type="predictions", trained_on="gsap")
+    corpus = load_corpus("gsap-ere", "dev", data_type="predictions", trained_on="gsap-ere")
 
     # Filter using analysis results
     json_file = Path(

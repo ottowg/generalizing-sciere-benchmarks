@@ -63,7 +63,7 @@ def test_load_default_mappings():
     """Default label_mappings.yaml should load without error."""
     mappings = load_label_mappings()
     assert "mappings" in mappings
-    assert "gsap" in mappings["mappings"]
+    assert "gsap-ere" in mappings["mappings"]
 
 
 def test_load_custom_mappings(mapping_file):

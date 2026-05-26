@@ -10,9 +10,12 @@ import { createLookupMiddleware } from './server/api/lookup.js'
 import { createSignaturesMiddleware } from './server/api/signatures.js'
 import { createReproduceMiddleware }    from './server/api/reproduce.js'
 import { createCrossDatasetMiddleware } from './server/api/cross_dataset.js'
-import { createExamplePaperMiddleware }  from './server/api/example_paper.js'
-import { createPaperMetadataMiddleware } from './server/api/paper_metadata.js'
-import { createLabelStatsMiddleware }   from './server/api/label_stats.js'
+import { createMultiSciEREMiddleware }  from './server/api/multi_sciere.js'
+import { createExamplePaperMiddleware }      from './server/api/example_paper.js'
+import { createPaperMetadataMiddleware }     from './server/api/paper_metadata.js'
+import { createLabelStatsMiddleware }        from './server/api/label_stats.js'
+import { createConfusionMatricesMiddleware } from './server/api/confusion_matrices.js'
+import { createDomainShiftMiddleware }       from './server/api/domain_shift.js'
 
 const projectRoot = path.resolve(import.meta.dirname, '..')
 
@@ -223,8 +226,11 @@ export default defineConfig(({ mode }) => {
           server.middlewares.use('/api/signatures', createSignaturesMiddleware(projectRoot))
           server.middlewares.use('/api/reproduce',       createReproduceMiddleware(projectRoot))
           server.middlewares.use('/api/cross-dataset',  createCrossDatasetMiddleware(projectRoot))
-          server.middlewares.use('/api/example-paper',    createExamplePaperMiddleware(projectRoot))
-          server.middlewares.use('/api/paper-metadata',  createPaperMetadataMiddleware(projectRoot))
+          server.middlewares.use('/api/multi-sciere',   createMultiSciEREMiddleware(projectRoot))
+          server.middlewares.use('/api/example-paper',      createExamplePaperMiddleware(projectRoot))
+          server.middlewares.use('/api/paper-metadata',    createPaperMetadataMiddleware(projectRoot))
+          server.middlewares.use('/api/confusion-matrices', createConfusionMatricesMiddleware(projectRoot))
+          server.middlewares.use('/api/domain-shift',      createDomainShiftMiddleware(projectRoot))
         },
       },
     ],

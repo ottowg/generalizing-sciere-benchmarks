@@ -16,7 +16,7 @@ import fs from 'fs'
 import path from 'path'
 import { jsonResponse, readBody } from '../utils.js'
 
-const LOOKUP_DIR = 'data/annotation_lookup'
+const LOOKUP_DIR = 'data/webapp/annotation_lookup'
 const SCRIPT = 'scripts/ere_performance/build_annotation_lookup.py'
 
 export function createLookupMiddleware(projectRoot) {

@@ -18,7 +18,7 @@ from unifiedsciere.analysis.model_performance import (
 
 def test_mp_mentions_format_keys():
     m = make_mention(
-        id="m1", document_id="doc1", begin=0, end=4, label="Method", annotator="gsap"
+        id="m1", document_id="doc1", begin=0, end=4, label="Method", annotator="gsap-ere"
     )
     result = mp_mentions_format([m])
     assert len(result) == 1
@@ -28,7 +28,7 @@ def test_mp_mentions_format_keys():
     assert d["begin"] == 0
     assert d["end"] == 4
     assert d["label"] == "Method"
-    assert d["annotator"] == "gsap"
+    assert d["annotator"] == "gsap-ere"
 
 
 def test_mp_mentions_format_empty():

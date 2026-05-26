@@ -403,7 +403,7 @@ if __name__ == "__main__":
     if len(sys.argv) > 3:
         limit = int(sys.argv[3])
 
-    if dataset == "gsap":
+    if dataset == "gsap-ere":
         build_gsap_bib(splits=splits, limit=limit)
     elif dataset == "scinlp":
         build_scinlp_bib(splits=splits, limit=limit)

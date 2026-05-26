@@ -46,9 +46,9 @@ def _relations_to_gsaphub_format(relations):
 
 
 def evaluate_model_performance(
-    dataset: Literal["scier", "scinlp", "gsap"],
+    dataset: Literal["scier", "scinlp", "gsap-ere"],
     split: Literal["train", "dev", "test"],
-    trained_on: Literal["scier", "scinlp", "gsap"],
+    trained_on: Literal["scier", "scinlp", "gsap-ere"],
 ) -> dict[str, float]:
     """Evaluate model performance by comparing predictions to gold standard.
 
@@ -73,7 +73,7 @@ def evaluate_model_performance(
         - relation_f1: F1 score for relations
 
     Example:
-        >>> metrics = evaluate_model_performance("scinlp", "test", "gsap")
+        >>> metrics = evaluate_model_performance("scinlp", "test", "gsap-ere")
         >>> print(f"Mention F1: {metrics['mention_f1']:.2%}")
         >>> print(f"Relation F1: {metrics['relation_f1']:.2%}")
     """
@@ -221,9 +221,9 @@ def evaluate_model_performance(
 
 
 def compare_models(
-    dataset: Literal["scier", "scinlp", "gsap"],
+    dataset: Literal["scier", "scinlp", "gsap-ere"],
     split: Literal["train", "dev", "test"],
-    models: list[Literal["scier", "scinlp", "gsap"]],
+    models: list[Literal["scier", "scinlp", "gsap-ere"]],
 ) -> dict[str, dict[str, float]]:
     """Compare performance of multiple models on the same dataset.
 
@@ -236,7 +236,7 @@ def compare_models(
         Dictionary mapping model names to their performance metrics
 
     Example:
-        >>> results = compare_models("scinlp", "test", ["gsap", "scier", "scinlp"])
+        >>> results = compare_models("scinlp", "test", ["gsap-ere", "scier", "scinlp"])
         >>> for model, metrics in results.items():
         ...     print(f"{model}: F1={metrics['f1']:.2%}")
     """
@@ -251,9 +251,9 @@ def compare_models(
 
 
 def print_performance_summary(
-    dataset: Literal["scier", "scinlp", "gsap"],
+    dataset: Literal["scier", "scinlp", "gsap-ere"],
     split: Literal["train", "dev", "test"],
-    trained_on: Literal["scier", "scinlp", "gsap"],
+    trained_on: Literal["scier", "scinlp", "gsap-ere"],
 ) -> None:
     """Print a formatted summary of model performance.
 
@@ -289,7 +289,7 @@ def print_performance_summary(
 
 
 def analyze_cross_dataset_performance(
-    target_dataset: Literal["scier", "scinlp", "gsap"],
+    target_dataset: Literal["scier", "scinlp", "gsap-ere"],
     split: Literal["train", "dev", "test"] = "test",
 ) -> None:
     """Analyze how models trained on different datasets perform on a target dataset.
@@ -302,10 +302,10 @@ def analyze_cross_dataset_performance(
         >>> # See how different models perform on SciNLP test set
         >>> analyze_cross_dataset_performance("scinlp", "test")
     """
-    source_datasets: list[Literal["scier", "scinlp", "gsap"]] = [
+    source_datasets: list[Literal["scier", "scinlp", "gsap-ere"]] = [
         "scier",
         "scinlp",
-        "gsap",
+        "gsap-ere",
     ]
 
     print(f"\n{'=' * 60}")
@@ -327,7 +327,7 @@ def analyze_cross_dataset_performance(
 
 
 def create_performance_table(
-    target_dataset: Literal["scier", "scinlp", "gsap"],
+    target_dataset: Literal["scier", "scinlp", "gsap-ere"],
     split: Literal["train", "dev", "test"] = "test",
 ) -> GT:
     """Create a formatted table of model performance using great_tables.
@@ -339,10 +339,10 @@ def create_performance_table(
     Returns:
         GT object containing the formatted table
     """
-    source_datasets: list[Literal["scier", "scinlp", "gsap"]] = [
+    source_datasets: list[Literal["scier", "scinlp", "gsap-ere"]] = [
         "scier",
         "scinlp",
-        "gsap",
+        "gsap-ere",
     ]
 
     # Collect data for table
@@ -415,7 +415,7 @@ def create_performance_table(
 
 
 def save_performance_table(
-    target_dataset: Literal["scier", "scinlp", "gsap"],
+    target_dataset: Literal["scier", "scinlp", "gsap-ere"],
     split: Literal["train", "dev", "test"] = "test",
     output_dir: Path | None = None,
 ) -> dict[str, Path]:
@@ -456,7 +456,7 @@ def save_performance_table(
 
 
 def generate_markdown_report(
-    target_dataset: Literal["scier", "scinlp", "gsap"],
+    target_dataset: Literal["scier", "scinlp", "gsap-ere"],
     split: Literal["train", "dev", "test"] = "test",
     output_dir: Path | None = None,
 ) -> Path:
@@ -475,10 +475,10 @@ def generate_markdown_report(
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    source_datasets: list[Literal["scier", "scinlp", "gsap"]] = [
+    source_datasets: list[Literal["scier", "scinlp", "gsap-ere"]] = [
         "scier",
         "scinlp",
-        "gsap",
+        "gsap-ere",
     ]
 
     # Collect metrics
@@ -588,12 +588,12 @@ def generate_comprehensive_report(
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    datasets: list[Literal["scier", "scinlp", "gsap"]] = ["scier", "scinlp", "gsap"]
+    datasets: list[Literal["scier", "scinlp", "gsap-ere"]] = ["scier", "scinlp", "gsap-ere"]
     splits: list[Literal["train", "dev", "test"]] = ["train", "dev", "test"]
-    source_datasets: list[Literal["scier", "scinlp", "gsap"]] = [
+    source_datasets: list[Literal["scier", "scinlp", "gsap-ere"]] = [
         "scier",
         "scinlp",
-        "gsap",
+        "gsap-ere",
     ]
 
     # Collect all metrics
@@ -784,7 +784,7 @@ This report evaluates all models across all datasets and splits.
 
 
 def generate_all_reports(
-    target_dataset: Literal["scier", "scinlp", "gsap"],
+    target_dataset: Literal["scier", "scinlp", "gsap-ere"],
     split: Literal["train", "dev", "test"] = "test",
     output_dir: Path | None = None,
 ) -> dict[str, Path]:

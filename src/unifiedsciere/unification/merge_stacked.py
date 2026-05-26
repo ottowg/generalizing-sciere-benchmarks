@@ -257,9 +257,9 @@ def merge_stacked_mentions(
 
 
 def generate_merge_report(
-    datasets: list[Literal["scier", "scinlp", "gsap"]],
+    datasets: list[Literal["scier", "scinlp", "gsap-ere"]],
     split: Literal["train", "dev", "test"],
-    models: list[Literal["scier", "scinlp", "gsap"]],
+    models: list[Literal["scier", "scinlp", "gsap-ere"]],
     prefer_larger: bool = True,
     output_dir: Path | None = None,
 ) -> Path:
@@ -491,9 +491,9 @@ the others into it. Relations are automatically remapped to merged mention IDs.
 if __name__ == "__main__":
     # Example: Generate merge report for all datasets
     report_path = generate_merge_report(
-        datasets=["scier", "scinlp", "gsap"],
+        datasets=["scier", "scinlp", "gsap-ere"],
         split="dev",
-        models=["scier", "scinlp", "gsap"],
+        models=["scier", "scinlp", "gsap-ere"],
         prefer_larger=True,
     )
     print(f"Generated merge report: {report_path}")

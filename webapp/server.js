@@ -23,8 +23,11 @@ import { createSamplesMiddleware }       from './server/api/samples.js'
 import { createLookupMiddleware }        from './server/api/lookup.js'
 import { createSignaturesMiddleware }    from './server/api/signatures.js'
 import { createReproduceMiddleware }     from './server/api/reproduce.js'
-import { createExamplePaperMiddleware }  from './server/api/example_paper.js'
-import { createPaperMetadataMiddleware } from './server/api/paper_metadata.js'
+import { createMultiSciEREMiddleware }   from './server/api/multi_sciere.js'
+import { createExamplePaperMiddleware }      from './server/api/example_paper.js'
+import { createPaperMetadataMiddleware }     from './server/api/paper_metadata.js'
+import { createConfusionMatricesMiddleware } from './server/api/confusion_matrices.js'
+import { createDomainShiftMiddleware }       from './server/api/domain_shift.js'
 import { jsonResponse }                  from './server/utils.js'
 
 const __dirname   = path.dirname(fileURLToPath(import.meta.url))
@@ -41,8 +44,11 @@ const apiHandlers = [
   ['/api/lookup',         createLookupMiddleware(projectRoot)],
   ['/api/signatures',     createSignaturesMiddleware(projectRoot)],
   ['/api/reproduce',      createReproduceMiddleware(projectRoot)],
-  ['/api/example-paper',  createExamplePaperMiddleware(projectRoot)],
-  ['/api/paper-metadata', createPaperMetadataMiddleware(projectRoot)],
+  ['/api/multi-sciere',   createMultiSciEREMiddleware(projectRoot)],
+  ['/api/example-paper',       createExamplePaperMiddleware(projectRoot)],
+  ['/api/paper-metadata',      createPaperMetadataMiddleware(projectRoot)],
+  ['/api/confusion-matrices',  createConfusionMatricesMiddleware(projectRoot)],
+  ['/api/domain-shift',        createDomainShiftMiddleware(projectRoot)],
 ]
 
 // ── Generic file-serving handlers (mirrored from vite.config.js) ─────────────

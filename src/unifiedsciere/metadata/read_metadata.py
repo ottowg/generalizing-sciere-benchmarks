@@ -125,6 +125,7 @@ def _parse_paper_dict(d: dict[str, Any]) -> PaperMetadata:
         cited_by_count=d.get("cited_by_count"),
         references=d.get("references", []),
         openalex_topics=d.get("openalex_topics", []),
+        s2_fields_of_study=d.get("s2_fields_of_study", []),
     )
 
 

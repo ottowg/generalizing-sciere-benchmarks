@@ -25,7 +25,7 @@ import fs from 'fs'
 import path from 'path'
 import { jsonResponse, shuffle } from '../utils.js'
 
-const LOOKUP_DIR = 'data/annotation_lookup'
+const LOOKUP_DIR = 'data/webapp/annotation_lookup'
 
 function lookupFileName(trained_on, dataset, split, labelSet) {
   const suffix = labelSet === 'unified' ? '_unified' : ''

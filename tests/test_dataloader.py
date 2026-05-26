@@ -169,27 +169,23 @@ def test_doc_key_generation(test_data_path: Path, tmp_path: Path) -> None:
 
 
 def test_load_corpus_with_env() -> None:
-    """Test that load_corpus loads data from environment-configured folders."""
+    """Test that load_corpus loads data from the datasets folder."""
     import os
 
-    # Check if environment variables are set
-    gold_folder = os.getenv("DATA_GOLD_FOLDER")
-    predictions_folder = os.getenv("DATA_PREDICTIONS_FOLDER")
+    datasets_folder = os.getenv("DATA_DATASETS_FOLDER")
+    if not datasets_folder:
+        pytest.skip("DATA_DATASETS_FOLDER environment variable not set")
 
-    if not gold_folder or not predictions_folder:
-        pytest.skip("Environment variables not set")
+    from unifiedsciere.paths import project_root
+    datasets_root = Path(datasets_folder)
+    if not datasets_root.is_absolute():
+        datasets_root = project_root() / datasets_root
+    if not datasets_root.exists():
+        pytest.skip("Datasets folder does not exist")
 
-    # Check if test data exists
-    gold_path = Path(gold_folder)
-    predictions_path = Path(predictions_folder)
-
-    if not gold_path.exists() or not predictions_path.exists():
-        pytest.skip("Data folders do not exist")
-
-    # Test loading predictions from gsap model evaluated on gsap test set
     try:
         corpus = load_corpus(
-            dataset="gsap", split="test", data_type="predictions", trained_on="gsap"
+            dataset="gsap-ere", split="test", data_type="predictions", trained_on="gsap-ere"
         )
         assert isinstance(corpus, Corpus)
         assert len(corpus.sentences) > 0
@@ -201,18 +197,17 @@ def test_load_corpus_gold() -> None:
     """Test that load_corpus loads gold standard data."""
     import os
 
-    # Check if environment variables are set
-    gold_folder = os.getenv("DATA_GOLD_FOLDER")
+    datasets_folder = os.getenv("DATA_DATASETS_FOLDER")
+    if not datasets_folder:
+        pytest.skip("DATA_DATASETS_FOLDER environment variable not set")
 
-    if not gold_folder:
-        pytest.skip("DATA_GOLD_FOLDER environment variable not set")
+    from unifiedsciere.paths import project_root
+    datasets_root = Path(datasets_folder)
+    if not datasets_root.is_absolute():
+        datasets_root = project_root() / datasets_root
+    if not datasets_root.exists():
+        pytest.skip("Datasets folder does not exist")
 
-    # Check if gold data folder exists
-    gold_path = Path(gold_folder)
-    if not gold_path.exists():
-        pytest.skip("Gold data folder does not exist")
-
-    # Test loading gold standard data for scinlp dev set
     try:
         corpus = load_corpus(dataset="scinlp", split="dev", data_type="gold")
         assert isinstance(corpus, Corpus)
@@ -225,10 +220,9 @@ def test_load_corpus_requires_trained_on_for_predictions() -> None:
     """Test that load_corpus raises error when trained_on is not provided for predictions."""
     import os
 
-    predictions_folder = os.getenv("DATA_PREDICTIONS_FOLDER")
-    if not predictions_folder or not Path(predictions_folder).exists():
-        pytest.skip("Predictions folder not available")
+    datasets_folder = os.getenv("DATA_DATASETS_FOLDER")
+    if not datasets_folder:
+        pytest.skip("DATA_DATASETS_FOLDER environment variable not set")
 
-    # Should raise ValueError when trained_on is not provided for predictions
     with pytest.raises(ValueError, match="trained_on parameter is required"):
-        load_corpus(dataset="gsap", split="test", data_type="predictions")
+        load_corpus(dataset="gsap-ere", split="test", data_type="predictions")

@@ -30,25 +30,25 @@ def analysis_file(tmp_path):
 def gsap_corpus():
     """Corpus with some mentions that match the analysis texts."""
     p1 = make_mention(
-        id="p1", text="the model", label="MLModelGeneric", annotator="gsap"
+        id="p1", text="the model", label="MLModelGeneric", annotator="gsap-ere"
     )
     p2 = make_mention(
-        id="p2", text="BERT", label="Method", annotator="gsap", begin=10, end=14
+        id="p2", text="BERT", label="Method", annotator="gsap-ere", begin=10, end=14
     )
     p3 = make_mention(
         id="p3",
         text="models",
         label="MLModelGeneric",
-        annotator="gsap",
+        annotator="gsap-ere",
         begin=20,
         end=26,
     )
     p4 = make_mention(
-        id="p4", text="fine-tuning", label="Method", annotator="gsap", begin=30, end=41
+        id="p4", text="fine-tuning", label="Method", annotator="gsap-ere", begin=30, end=41
     )
 
-    pr1 = make_relation(p1, p2, label="Used-for", annotator="gsap")
-    pr2 = make_relation(p2, p3, label="Used-for", annotator="gsap")
+    pr1 = make_relation(p1, p2, label="Used-for", annotator="gsap-ere")
+    pr2 = make_relation(p2, p3, label="Used-for", annotator="gsap-ere")
 
     g1 = make_mention(id="g1", text="BERT", label="Method", begin=10, end=14)
     gr1 = make_relation(g1, g1, label="Same")  # dummy

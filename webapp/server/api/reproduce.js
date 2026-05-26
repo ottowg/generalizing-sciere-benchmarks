@@ -15,7 +15,7 @@ import fs from 'fs'
 import path from 'path'
 import { jsonResponse } from '../utils.js'
 
-const DATA_FILE = 'data/reproduce_results.json'
+const DATA_FILE = 'data/webapp/reproduce_results.json'
 const SCRIPT    = 'scripts/ere_performance/reproduce_results_report.py'
 
 export function createReproduceMiddleware(projectRoot) {

@@ -36,8 +36,7 @@ Variables:
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `DATA_GOLD_FOLDER` | `data/gold` | Directory containing gold-standard JSONL files |
-| `DATA_PREDICTIONS_FOLDER` | `data/predictions` | Directory containing model prediction JSONL files |
+| `DATA_DATASETS_FOLDER` | — | Absolute path to the HGERE datasets folder (gold + predictions) |
 
 The `.env` file is gitignored. Never commit machine-specific paths.
 

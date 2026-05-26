@@ -15,7 +15,7 @@ import fs   from 'fs'
 import path from 'path'
 import { jsonResponse } from '../utils.js'
 
-const DATA_FILE = 'data/webapp_metadata.json'
+const DATA_FILE = 'data/webapp/static/webapp_metadata.json'
 const SCRIPT    = 'scripts/paper_metadata/build_webapp_metadata.py'
 
 export function createPaperMetadataMiddleware(projectRoot) {

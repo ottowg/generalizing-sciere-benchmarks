@@ -23,7 +23,7 @@ def config_file(tmp_path):
         "drop_unmapped": {"enabled": False},
         "map_labels": {"enabled": False},
         "dataset_corrections": {
-            "gsap": {"enabled": False},
+            "gsap-ere": {"enabled": False},
             "scier": {"enabled": False},
             "scinlp": {"enabled": False},
         },
@@ -42,7 +42,7 @@ def all_enabled_config(tmp_path):
         "drop_unmapped": {"enabled": True},
         "map_labels": {"enabled": True},
         "dataset_corrections": {
-            "gsap": {"enabled": False},
+            "gsap-ere": {"enabled": False},
             "scier": {"enabled": False},
             "scinlp": {"enabled": False},
         },
@@ -155,7 +155,7 @@ def test_pipeline_gsap_corrections_skipped_no_file(tmp_path, sample_corpus):
         "drop_unmapped": {"enabled": False},
         "map_labels": {"enabled": False},
         "dataset_corrections": {
-            "gsap": {
+            "gsap-ere": {
                 "enabled": True,
                 "mlmodelgeneric_analysis_file": str(tmp_path / "nonexistent.json"),
                 "min_count": 2,
@@ -164,8 +164,8 @@ def test_pipeline_gsap_corrections_skipped_no_file(tmp_path, sample_corpus):
         "span_normalization": {"enabled": False},
     }
     # Should not raise, just print a warning and skip
-    result, stats = apply_unification_pipeline(sample_corpus, "gsap", config=config)
-    assert "gsap" not in stats["dataset_corrections"]
+    result, stats = apply_unification_pipeline(sample_corpus, "gsap-ere", config=config)
+    assert "gsap-ere" not in stats["dataset_corrections"]
 
 
 # ---------- generate_pipeline_report ----------

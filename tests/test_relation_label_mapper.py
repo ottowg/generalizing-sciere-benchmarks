@@ -45,7 +45,7 @@ def mapping_file(tmp_path):
 def test_load_default_mappings():
     mappings = load_relation_mappings()
     assert "mappings" in mappings
-    assert "gsap" in mappings["mappings"]
+    assert "gsap-ere" in mappings["mappings"]
 
 
 def test_load_custom_mappings(mapping_file):

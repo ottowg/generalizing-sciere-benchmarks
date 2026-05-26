@@ -17,10 +17,10 @@ from .merge_stacked import merge_stacked_mentions
 
 
 def generate_unified_confusion_report(
-    datasets: list[Literal["scier", "scinlp", "gsap"]],
+    datasets: list[Literal["scier", "scinlp", "gsap-ere"]],
     split: Literal["train", "dev", "test"],
-    model1: Literal["scier", "scinlp", "gsap"],
-    model2: Literal["scier", "scinlp", "gsap"],
+    model1: Literal["scier", "scinlp", "gsap-ere"],
+    model2: Literal["scier", "scinlp", "gsap-ere"],
     prefer_larger: bool = True,
     top_n: int = 15,
     combine_datasets: bool = False,
@@ -511,9 +511,9 @@ Rows: {model1.upper()} labels | Columns: {model2.upper()} labels
 if __name__ == "__main__":
     # Example: Generate unified confusion report
     report_path = generate_unified_confusion_report(
-        datasets=["scier", "scinlp", "gsap"],
+        datasets=["scier", "scinlp", "gsap-ere"],
         split="dev",
-        model1="gsap",
+        model1="gsap-ere",
         model2="scier",
         prefer_larger=True,
         combine_datasets=True,

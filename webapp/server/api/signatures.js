@@ -17,9 +17,9 @@ import path from 'path'
 import yaml from 'js-yaml'
 import { jsonResponse } from '../utils.js'
 
-const DATA_FILE     = 'data/relation_signatures.json'
-const GROUPS_FILE   = 'data/semantic_groups.json'
-const ALLOWED_FILE  = 'data/allowed_signatures.yaml'
+const DATA_FILE     = 'data/webapp/relation_signatures.json'
+const GROUPS_FILE   = 'data/webapp/semantic_groups.json'
+const ALLOWED_FILE  = 'data/webapp/allowed_signatures.yaml'
 const SCRIPT        = 'scripts/ere_quality/relation_signatures.py'
 
 /**

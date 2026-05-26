@@ -19,7 +19,7 @@ from .merge_stacked import merge_stacked_mentions
 
 
 def analyze_gsap_unmatched_mlmodelgeneric(
-    datasets: list[Literal["scier", "scinlp", "gsap"]],
+    datasets: list[Literal["scier", "scinlp", "gsap-ere"]],
     split: Literal["train", "dev", "test"],
     prefer_larger: bool = True,
     output_dir: Path | None = None,
@@ -32,7 +32,7 @@ def analyze_gsap_unmatched_mlmodelgeneric(
     or noise in GSAP's MLModelGeneric category.
 
     Args:
-        datasets: List of datasets to analyze (typically ['scier', 'scinlp', 'gsap'])
+        datasets: List of datasets to analyze (typically ['scier', 'scinlp', 'gsap-ere'])
         split: Data split to use
         prefer_larger: If True, prefer larger spans when merging
         output_dir: Output directory (default: reports/ere_confusion_analysis/unification/gsap_analysis/)
@@ -53,7 +53,7 @@ def analyze_gsap_unmatched_mlmodelgeneric(
     for dataset in datasets:
         # Load GSAP predictions
         corpus_gsap = load_corpus(
-            dataset, split, data_type="predictions", trained_on="gsap"
+            dataset, split, data_type="predictions", trained_on="gsap-ere"
         )
         corpus_gsap = merge_stacked_mentions(
             corpus_gsap,
@@ -62,10 +62,10 @@ def analyze_gsap_unmatched_mlmodelgeneric(
             merge_predicted=True,
         )[0]
         corpus_gsap = drop_unmapped_mentions(
-            corpus_gsap, "gsap", drop_gold=False, drop_predicted=True
+            corpus_gsap, "gsap-ere", drop_gold=False, drop_predicted=True
         )[0]
         corpus_gsap = map_labels_to_unified(
-            corpus_gsap, "gsap", map_gold=False, map_predicted=True
+            corpus_gsap, "gsap-ere", map_gold=False, map_predicted=True
         )[0]
         all_gsap_data.extend(corpus_gsap.mentions_predicted)
 
@@ -297,7 +297,7 @@ systematic filtering or correction rules.
 if __name__ == "__main__":
     # Example usage
     json_path, report_path = analyze_gsap_unmatched_mlmodelgeneric(
-        datasets=["scier", "scinlp", "gsap"],
+        datasets=["scier", "scinlp", "gsap-ere"],
         split="dev",
         prefer_larger=True,
     )

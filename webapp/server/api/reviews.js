@@ -4,7 +4,7 @@ import { randomUUID } from 'crypto'
 import { jsonResponse, readBody } from '../utils.js'
 
 export function createReviewsMiddleware(projectRoot) {
-  const reviewsPath = path.join(projectRoot, 'data', 'reviews.json')
+  const reviewsPath = path.join(projectRoot, 'data', 'webapp', 'reviews.json')
 
   function read() {
     if (!fs.existsSync(reviewsPath)) return []

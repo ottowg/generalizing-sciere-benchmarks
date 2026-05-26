@@ -12,9 +12,9 @@ from ..unification.pipeline import apply_unification_pipeline
 
 
 def generate_unification_report(
-    datasets: list[Literal["scier", "scinlp", "gsap"]],
+    datasets: list[Literal["scier", "scinlp", "gsap-ere"]],
     split: Literal["train", "dev", "test"],
-    models: list[Literal["scier", "scinlp", "gsap"]],
+    models: list[Literal["scier", "scinlp", "gsap-ere"]],
     prefer_larger: bool = True,
     output_dir: Path | None = None,
 ) -> Path:
@@ -317,9 +317,9 @@ def _mentions_to_gsaphub_format(mentions):
 
 
 def evaluate_unified_performance(
-    datasets: list[Literal["scier", "scinlp", "gsap"]],
+    datasets: list[Literal["scier", "scinlp", "gsap-ere"]],
     split: Literal["train", "dev", "test"],
-    models: list[Literal["scier", "scinlp", "gsap"]],
+    models: list[Literal["scier", "scinlp", "gsap-ere"]],
     prefer_larger: bool = True,
     output_dir: Path | None = None,
 ) -> Path:
@@ -738,9 +738,9 @@ Micro-averaged performance comparison: Steps 1--4 only vs. Steps 1--5 (with span
 if __name__ == "__main__":
     # Example: Generate unification report for all datasets
     report_path = generate_unification_report(
-        datasets=["scier", "scinlp", "gsap"],
+        datasets=["scier", "scinlp", "gsap-ere"],
         split="dev",
-        models=["scier", "scinlp", "gsap"],
+        models=["scier", "scinlp", "gsap-ere"],
         prefer_larger=True,
     )
     print(f"Generated unification report: {report_path}")

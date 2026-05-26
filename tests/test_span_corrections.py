@@ -101,11 +101,11 @@ def test_normalize_predicted_by_default():
         end=14,
         begin_token=0,
         end_token=3,
-        annotator="gsap",
+        annotator="gsap-ere",
     )
     corpus = make_corpus(mentions_predicted=[p1])
 
-    result, stats = normalize_spans(corpus, dataset="gsap", normalize_predicted=True)
+    result, stats = normalize_spans(corpus, dataset="gsap-ere", normalize_predicted=True)
     # GSAP Method rules strip "the" prefix and "model" suffix
     assert result.mentions_predicted[0].text == "BERT"
     assert stats["predicted_corrections"] == 1
@@ -123,7 +123,7 @@ def test_normalize_skips_gold_by_default():
     )
     corpus = make_corpus(mentions=[g1])
 
-    result, stats = normalize_spans(corpus, dataset="gsap", normalize_gold=False)
+    result, stats = normalize_spans(corpus, dataset="gsap-ere", normalize_gold=False)
     assert result.mentions[0].text == "the BERT model"
     assert stats["gold_corrections"] == 0
 
@@ -155,11 +155,11 @@ def test_normalize_stats_populated():
         end=14,
         begin_token=0,
         end_token=3,
-        annotator="gsap",
+        annotator="gsap-ere",
     )
     corpus = make_corpus(mentions_predicted=[p1])
 
-    _, stats = normalize_spans(corpus, dataset="gsap")
+    _, stats = normalize_spans(corpus, dataset="gsap-ere")
     assert "corrections_by_rule" in stats
     assert "corrections_by_label" in stats
     assert "examples" in stats
@@ -189,7 +189,7 @@ def test_normalize_relations_remapped():
     pr = make_relation(p1, p2)
     corpus = make_corpus(mentions_predicted=[p1, p2], relations_predicted=[pr])
 
-    result, _ = normalize_spans(corpus, dataset="gsap")
+    result, _ = normalize_spans(corpus, dataset="gsap-ere")
     # p1 should have been normalized; relation's subject should point to the normalized mention
     assert result.relations_predicted[0].subject.text == "BERT"
 
@@ -207,6 +207,6 @@ def test_normalize_possessive_suffix():
     )
     corpus = make_corpus(mentions_predicted=[p1])
 
-    result, stats = normalize_spans(corpus, dataset="gsap")
+    result, stats = normalize_spans(corpus, dataset="gsap-ere")
     assert result.mentions_predicted[0].text == "BERT"
     assert stats["predicted_corrections"] == 1

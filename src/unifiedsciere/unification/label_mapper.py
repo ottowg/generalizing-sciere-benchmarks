@@ -32,7 +32,7 @@ def load_label_mappings(mapping_file: Path | None = None) -> dict:
 
 def drop_unmapped_mentions(
     corpus: Corpus,
-    dataset: Literal["scier", "scinlp", "gsap"],
+    dataset: Literal["scier", "scinlp", "gsap-ere", "unified-sciere"],
     drop_gold: bool = True,
     drop_predicted: bool = True,
     mapping_file: Path | None = None,
@@ -139,7 +139,7 @@ def drop_unmapped_mentions(
 
 def map_labels_to_unified(
     corpus: Corpus,
-    dataset: Literal["scier", "scinlp", "gsap"],
+    dataset: Literal["scier", "scinlp", "gsap-ere", "unified-sciere"],
     map_gold: bool = True,
     map_predicted: bool = True,
     mapping_file: Path | None = None,

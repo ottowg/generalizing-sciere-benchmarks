@@ -57,7 +57,7 @@ def make_scatter(df, x_col, y_col, show_edges=False, edges=None):
     """Build a plotly figure with colored scatter + hover."""
     labels = sorted(df["label"].unique())
     colors = {
-        "gsap": "#636EFA",
+        "gsap-ere": "#636EFA",
         "scier": "#EF553B",
         "scinlp": "#00CC96",
     }
@@ -208,7 +208,7 @@ def main():
         pivot["_total"] = pivot.sum(axis=1)
         pivot = pivot.sort_values("_total", ascending=True).drop(columns="_total")
 
-        dataset_colors = {"gsap": "#636EFA", "scier": "#EF553B", "scinlp": "#00CC96"}
+        dataset_colors = {"gsap-ere": "#636EFA", "scier": "#EF553B", "scinlp": "#00CC96"}
         fig_outlets = go.Figure()
         for ds in list(pivot.columns):
             fig_outlets.add_trace(

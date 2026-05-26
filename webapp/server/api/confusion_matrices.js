@@ -15,7 +15,7 @@ import path from 'path'
 import { jsonResponse } from '../utils.js'
 
 const SCRIPT   = 'scripts/ere_confusion_analysis/build_confusion_matrices.py'
-const DATA_DIR = 'data/confusion_matrices'
+const DATA_DIR = 'data/webapp/confusion_matrices'
 
 const VALID_DATASETS    = new Set(['gsap-ere', 'scier', 'scinlp'])
 const VALID_SPLITS      = new Set(['train', 'dev', 'test'])

@@ -1,6 +1,6 @@
 # Baseline Results Report
 
-**Generated:** 2026-04-17 15:02:07
+**Generated:** 2026-05-18 15:49:39
 
 Replicates baseline results from the original papers. Each model is evaluated on the test split of the dataset it was trained on (in-distribution). No label unification applied. All metrics use exact span matching.
 
@@ -8,23 +8,23 @@ Replicates baseline results from the original papers. Each model is evaluated on
 
 | Dataset   |   NER P |   NER R |   NER F1 |   RE P |   RE R |   RE F1 |   RE+ P |   RE+ R |   RE+ F1 |
 |:----------|--------:|--------:|---------:|-------:|-------:|--------:|--------:|--------:|---------:|
-| GSAP-ERE  |    83.9 |    82.3 |     83.1 |   59.3 |   51.7 |    55.3 |    51.6 |    45   |     48.1 |
-| SCIER     |    89.4 |    87.5 |     88.4 |   70.6 |   62.2 |    66.2 |    69.4 |    61.1 |     65   |
-| SCINLP    |    86.4 |    78.7 |     82.4 |   55.8 |   40.8 |    47.2 |    55.8 |    40.8 |     47.2 |
+| GSAP-ERE  |    83.2 |    82.4 |     82.8 |   58   |   53.6 |    55.7 |    49.8 |    46.1 |     47.9 |
+| SCIER     |    88.1 |    86.2 |     87.2 |   69.7 |   60.8 |    64.9 |    67.1 |    58.6 |     62.6 |
+| SCINLP    |    84.1 |    76.8 |     80.3 |   54.1 |   39.7 |    45.7 |    53.7 |    39.5 |     45.4 |
 
 ## Comparison with Paper-Reported Results
 
 | Dataset   | Metric   |   Reproduced F1 |   Reported F1 |   Δ (repro − paper) |
 |:----------|:---------|----------------:|--------------:|--------------------:|
-| GSAP-ERE  | NER      |            83.1 |         80.6  |                2.5  |
-| GSAP-ERE  | RE       |            55.3 |         54    |                1.3  |
-| GSAP-ERE  | RE+      |            48.1 |         46.9  |                1.2  |
-| SCIER     | NER      |            88.4 |         86.85 |                1.55 |
-| SCIER     | RE       |            66.2 |         62.32 |                3.88 |
-| SCIER     | RE+      |            65   |         61.1  |                3.9  |
-| SCINLP    | NER      |            82.4 |         79.53 |                2.87 |
-| SCINLP    | RE       |            47.2 |         49.28 |               -2.08 |
-| SCINLP    | RE+      |            47.2 |         47.64 |               -0.44 |
+| GSAP-ERE  | NER      |            82.8 |         80.6  |                2.2  |
+| GSAP-ERE  | RE       |            55.7 |         54    |                1.7  |
+| GSAP-ERE  | RE+      |            47.9 |         46.9  |                1    |
+| SCIER     | NER      |            87.2 |         86.85 |                0.35 |
+| SCIER     | RE       |            64.9 |         62.32 |                2.58 |
+| SCIER     | RE+      |            62.6 |         61.1  |                1.5  |
+| SCINLP    | NER      |            80.3 |         79.53 |                0.77 |
+| SCINLP    | RE       |            45.7 |         49.28 |               -3.58 |
+| SCINLP    | RE+      |            45.4 |         47.64 |               -2.24 |
 
 ## GSAP-ERE
 
@@ -32,71 +32,71 @@ Replicates baseline results from the original papers. Each model is evaluated on
 
 | Label             |     P |    R |   F1 |
 |:------------------|------:|-----:|-----:|
-| DataSource        |  62.4 | 77.9 | 69.3 |
-| Dataset           |  85.8 | 93.2 | 89.4 |
-| DatasetGeneric    |  89   | 83.7 | 86.3 |
-| MLModel           |  55.7 | 87.3 | 68   |
-| MLModelGeneric    |  89.7 | 80.3 | 84.8 |
-| Method            |  77.9 | 77.1 | 77.5 |
-| ModelArchitecture |  80.1 | 60.1 | 68.7 |
-| ReferenceLink     |  99.5 | 99.6 | 99.5 |
-| Task              |  88.7 | 79.3 | 83.7 |
+| DataSource        |  65.3 | 72.1 | 68.5 |
+| Dataset           |  87   | 92.9 | 89.9 |
+| DatasetGeneric    |  85.9 | 86.5 | 86.2 |
+| MLModel           |  58.7 | 65.1 | 61.7 |
+| MLModelGeneric    |  86.4 | 81.9 | 84.1 |
+| Method            |  72.3 | 76.3 | 74.3 |
+| ModelArchitecture |  77.2 | 65.8 | 71.1 |
+| ReferenceLink     |  99.4 | 99.6 | 99.5 |
+| Task              |  89.5 | 80.1 | 84.5 |
 | URL               | 100   | 45.5 | 62.5 |
-| micro             |  83.9 | 82.3 | 83.1 |
-| macro             |  82.9 | 78.4 | 79   |
-| weighted          |  84.9 | 82.3 | 83.2 |
+| micro             |  82   | 82.1 | 82.1 |
+| macro             |  82.2 | 76.6 | 78.2 |
+| weighted          |  82.3 | 82.1 | 82.1 |
 
 ### RE (relaxed match)
 
-| Label           |     P |    R |   F1 |
-|:----------------|------:|-----:|-----:|
-| weighted        |  59.1 | 51.7 | 54.7 |
-| micro           |  59.3 | 51.7 | 55.3 |
-| macro           |  56.6 | 46.9 | 50.7 |
-| benchmarkFor    |  49.3 | 59.7 | 54   |
-| appliedTo       |  59.2 | 49   | 53.7 |
-| url             | 100   | 66.7 | 80   |
-| citation        |  71.9 | 66   | 68.8 |
-| isPartOf        |  44.3 | 36.2 | 39.8 |
-| isHyponymOf     |  61.3 | 35.1 | 44.6 |
-| isComparedTo    |  71   | 56.9 | 63.2 |
-| coreference     |  62.2 | 63.9 | 63   |
-| usedFor         |  52.8 | 49.5 | 51.1 |
-| isBasedOn       |  38.4 | 35   | 36.6 |
-| architecture    |  72.5 | 51.4 | 60.1 |
-| trainedOn       |  56   | 51.7 | 53.8 |
-| evaluatedOn     |  59.3 | 63.5 | 61.3 |
-| transformedFrom |  42   | 19.3 | 26.5 |
-| sourcedFrom     |  55.3 | 45.6 | 50   |
-| generatedBy     |  35.7 | 30.9 | 33.1 |
-| size            |  43.8 | 38.9 | 41.2 |
-| hasInstanceType |  43.3 | 25   | 31.7 |
+| Label           |    P |    R |   F1 |
+|:----------------|-----:|-----:|-----:|
+| weighted        | 56.2 | 54.3 | 54.5 |
+| micro           | 56   | 54.3 | 55.1 |
+| macro           | 51.9 | 47.1 | 47.9 |
+| benchmarkFor    | 52.5 | 50   | 51.2 |
+| appliedTo       | 68.8 | 47.8 | 56.4 |
+| url             | 40   | 66.7 | 50   |
+| citation        | 61.2 | 71.6 | 66   |
+| isPartOf        | 52.3 | 34.8 | 41.8 |
+| isHyponymOf     | 52.9 | 38.9 | 44.9 |
+| isComparedTo    | 69.6 | 56.9 | 62.6 |
+| coreference     | 68.6 | 66.7 | 67.6 |
+| usedFor         | 51.3 | 52.9 | 52.1 |
+| isBasedOn       | 41.7 | 31.2 | 35.7 |
+| architecture    | 70.6 | 55.4 | 62.1 |
+| trainedOn       | 51   | 56.8 | 53.7 |
+| evaluatedOn     | 53.5 | 64.8 | 58.6 |
+| transformedFrom | 28.4 | 29.3 | 28.9 |
+| sourcedFrom     | 45.8 | 47.4 | 46.6 |
+| generatedBy     | 32.4 | 29.6 | 31   |
+| size            | 42.9 | 41.7 | 42.3 |
+| hasInstanceType | 50   |  5.8 | 10.3 |
 
 ### RE+ (strict match)
 
-| Label           |     P |    R |   F1 |
-|:----------------|------:|-----:|-----:|
-| weighted        |  51.5 | 45   | 47.6 |
-| micro           |  51.6 | 45   | 48.1 |
-| macro           |  51.3 | 42.4 | 45.9 |
-| benchmarkFor    |  48   | 58.1 | 52.6 |
-| appliedTo       |  48.5 | 40.1 | 43.9 |
-| url             | 100   | 66.7 | 80   |
-| citation        |  61.6 | 56.6 | 59   |
-| isPartOf        |  38.3 | 31.2 | 34.4 |
-| isHyponymOf     |  53.8 | 30.8 | 39.1 |
-| isComparedTo    |  55.9 | 44.8 | 49.7 |
-| coreference     |  50   | 51.4 | 50.7 |
-| usedFor         |  45.7 | 42.8 | 44.2 |
-| isBasedOn       |  38.4 | 35   | 36.6 |
-| architecture    |  65.7 | 46.6 | 54.5 |
-| trainedOn       |  51.4 | 47.4 | 49.3 |
-| evaluatedOn     |  53.1 | 56.8 | 54.9 |
-| transformedFrom |  40.6 | 18.7 | 25.6 |
-| sourcedFrom     |  51.1 | 42.1 | 46.2 |
-| generatedBy     |  34.3 | 29.6 | 31.8 |
-| size            |  43.8 | 38.9 | 41.2 |
-| hasInstanceType |  43.3 | 25   | 31.7 |
+| Label           |    P |    R |   F1 |
+|:----------------|-----:|-----:|-----:|
+| weighted        | 48   | 46.3 | 46.5 |
+| micro           | 47.8 | 46.3 | 47.1 |
+| macro           | 45.7 | 41.6 | 42.1 |
+| benchmarkFor    | 49.2 | 46.8 | 47.9 |
+| appliedTo       | 52.3 | 36.3 | 42.9 |
+| url             | 40   | 66.7 | 50   |
+| citation        | 52.8 | 61.9 | 57   |
+| isPartOf        | 47.7 | 31.7 | 38.1 |
+| isHyponymOf     | 44.4 | 32.7 | 37.7 |
+| isComparedTo    | 43.9 | 35.9 | 39.5 |
+| coreference     | 54.7 | 53.2 | 54   |
+| usedFor         | 42.6 | 43.9 | 43.2 |
+| isBasedOn       | 41.7 | 31.2 | 35.7 |
+| architecture    | 68.5 | 53.8 | 60.3 |
+| trainedOn       | 45.6 | 50.9 | 48.1 |
+| evaluatedOn     | 45.7 | 55.2 | 50   |
+| transformedFrom | 27.7 | 28.7 | 28.2 |
+| sourcedFrom     | 44.1 | 45.6 | 44.8 |
+| generatedBy     | 29.7 | 27.2 | 28.4 |
+| size            | 42.9 | 41.7 | 42.3 |
+| hasInstanceType | 50   |  5.8 | 10.3 |
 
 ## SCIER
 
@@ -104,46 +104,46 @@ Replicates baseline results from the original papers. Each model is evaluated on
 
 | Label    |    P |    R |   F1 |
 |:---------|-----:|-----:|-----:|
-| Dataset  | 87   | 88.6 | 87.8 |
-| Method   | 90.2 | 87.6 | 88.9 |
-| Task     | 88.3 | 86.8 | 87.5 |
-| micro    | 89.4 | 87.5 | 88.4 |
-| macro    | 88.5 | 87.7 | 88.1 |
-| weighted | 89.4 | 87.5 | 88.4 |
+| Dataset  | 83.7 | 88.9 | 86.2 |
+| Method   | 89.4 | 85.2 | 87.2 |
+| Task     | 86.3 | 85.2 | 85.7 |
+| micro    | 87.9 | 85.7 | 86.8 |
+| macro    | 86.5 | 86.4 | 86.4 |
+| weighted | 88   | 85.7 | 86.8 |
 
 ### RE (relaxed match)
 
 | Label          |    P |    R |   F1 |
 |:---------------|-----:|-----:|-----:|
-| weighted       | 70.2 | 62.2 | 65.7 |
-| micro          | 70.6 | 62.2 | 66.2 |
-| macro          | 72.6 | 63.6 | 67.6 |
-| Used-For       | 69.1 | 67   | 68   |
-| Trained-With   | 73.1 | 54.3 | 62.3 |
-| Synonym-Of     | 91.1 | 84.7 | 87.8 |
-| SubTask-Of     | 75   | 73.8 | 74.4 |
-| SubClass-Of    | 61.4 | 59.7 | 60.5 |
-| Part-Of        | 60   | 39.5 | 47.6 |
-| Evaluated-With | 75.7 | 61.8 | 68.1 |
-| Compare-With   | 65.7 | 58.8 | 62   |
-| Benchmark-For  | 82.7 | 72.9 | 77.5 |
+| weighted       | 68.7 | 58.1 | 61.9 |
+| micro          | 68.9 | 58.1 | 63   |
+| macro          | 71.7 | 59.5 | 64.3 |
+| Used-For       | 63.7 | 67   | 65.3 |
+| Trained-With   | 75   | 60   | 66.7 |
+| Synonym-Of     | 83.1 | 84.1 | 83.6 |
+| SubTask-Of     | 78.3 | 72.3 | 75.2 |
+| SubClass-Of    | 69.2 | 51.1 | 58.8 |
+| Part-Of        | 63.8 | 31.9 | 42.5 |
+| Evaluated-With | 74.4 | 51.1 | 60.6 |
+| Compare-With   | 67.5 | 47.4 | 55.7 |
+| Benchmark-For  | 70.6 | 70.6 | 70.6 |
 
 ### RE+ (strict match)
 
 | Label          |    P |    R |   F1 |
 |:---------------|-----:|-----:|-----:|
-| weighted       | 69   | 61.1 | 64.5 |
-| micro          | 69.4 | 61.1 | 65   |
-| macro          | 71.9 | 62.9 | 66.8 |
-| Used-For       | 66.6 | 64.7 | 65.6 |
-| Trained-With   | 73.1 | 54.3 | 62.3 |
-| Synonym-Of     | 89.9 | 83.5 | 86.6 |
-| SubTask-Of     | 75   | 73.8 | 74.4 |
-| SubClass-Of    | 61.4 | 59.7 | 60.5 |
-| Part-Of        | 60   | 39.5 | 47.6 |
-| Evaluated-With | 75.7 | 61.8 | 68.1 |
-| Compare-With   | 63.7 | 57   | 60.2 |
-| Benchmark-For  | 81.3 | 71.8 | 76.2 |
+| weighted       | 66.3 | 55.7 | 59.5 |
+| micro          | 66   | 55.7 | 60.4 |
+| macro          | 70   | 57.9 | 62.7 |
+| Used-For       | 58.6 | 61.7 | 60.1 |
+| Trained-With   | 71.4 | 57.1 | 63.5 |
+| Synonym-Of     | 80.2 | 81.2 | 80.7 |
+| SubTask-Of     | 78.3 | 72.3 | 75.2 |
+| SubClass-Of    | 67.7 | 50   | 57.5 |
+| Part-Of        | 63.8 | 31.9 | 42.5 |
+| Evaluated-With | 74.4 | 51.1 | 60.6 |
+| Compare-With   | 66.2 | 46.5 | 54.6 |
+| Benchmark-For  | 69.4 | 69.4 | 69.4 |
 
 ## SCINLP
 
@@ -151,48 +151,48 @@ Replicates baseline results from the original papers. Each model is evaluated on
 
 | Label    |    P |    R |   F1 |
 |:---------|-----:|-----:|-----:|
-| dataset  | 89.1 | 72.2 | 79.7 |
-| method   | 88.5 | 80.4 | 84.2 |
-| metric   | 82.7 | 87.8 | 85.1 |
-| task     | 80.1 | 73.6 | 76.8 |
-| micro    | 86.4 | 78.7 | 82.4 |
-| macro    | 85.1 | 78.5 | 81.5 |
-| weighted | 86.5 | 78.7 | 82.3 |
+| dataset  | 85.5 | 74.7 | 79.7 |
+| method   | 84.2 | 81.9 | 83   |
+| metric   | 63.9 | 93.9 | 76   |
+| task     | 85   | 73   | 78.5 |
+| micro    | 82.5 | 80.1 | 81.3 |
+| macro    | 79.7 | 80.9 | 79.3 |
+| weighted | 83.2 | 80.1 | 81.3 |
 
 ### RE (relaxed match)
 
 | Label       |    P |    R |   F1 |
 |:------------|-----:|-----:|-----:|
-| weighted    | 63.4 | 40.8 | 46.7 |
-| micro       | 55.8 | 40.8 | 47.2 |
-| macro       | 60.2 | 40.4 | 46.4 |
-| evaluatedOn | 63.6 | 43.8 | 51.9 |
-| trainedWith | 50   | 36.4 | 42.1 |
-| subtaskOf   | 90.9 | 66.7 | 76.9 |
-| subclassOf  | 65   | 41.9 | 51   |
-| similarWith | 20   | 16.7 | 18.2 |
-| partOf      | 13.3 | 25   | 17.4 |
-| evaluatedBy | 66.7 | 50   | 57.1 |
-| enhancedBy  | 88.9 | 18.6 | 30.8 |
-| compareWith | 70.8 | 32.7 | 44.7 |
-| UsedFor     | 50   | 56.8 | 53.2 |
-| MeasuredBy  | 83.3 | 55.6 | 66.7 |
+| weighted    | 57   | 44.9 | 48.2 |
+| micro       | 53   | 44.9 | 48.6 |
+| macro       | 56.7 | 44.6 | 48.4 |
+| evaluatedOn | 70   | 43.8 | 53.8 |
+| trainedWith | 35.7 | 45.5 | 40   |
+| subtaskOf   | 81.8 | 60   | 69.2 |
+| subclassOf  | 60   | 29   | 39.1 |
+| similarWith | 17.6 | 16.7 | 17.1 |
+| partOf      | 15.4 | 25   | 19   |
+| evaluatedBy | 85.7 | 75   | 80   |
+| enhancedBy  | 56.2 | 20.9 | 30.5 |
+| compareWith | 68.6 | 46.2 | 55.2 |
+| UsedFor     | 47.4 | 62.2 | 53.8 |
+| MeasuredBy  | 85.7 | 66.7 | 75   |
 
 ### RE+ (strict match)
 
 | Label       |    P |    R |   F1 |
 |:------------|-----:|-----:|-----:|
-| weighted    | 63.4 | 40.8 | 46.7 |
-| micro       | 55.8 | 40.8 | 47.2 |
-| macro       | 60.2 | 40.4 | 46.4 |
-| evaluatedOn | 63.6 | 43.8 | 51.9 |
-| trainedWith | 50   | 36.4 | 42.1 |
-| subtaskOf   | 90.9 | 66.7 | 76.9 |
-| subclassOf  | 65   | 41.9 | 51   |
-| similarWith | 20   | 16.7 | 18.2 |
-| partOf      | 13.3 | 25   | 17.4 |
-| evaluatedBy | 66.7 | 50   | 57.1 |
-| enhancedBy  | 88.9 | 18.6 | 30.8 |
-| compareWith | 70.8 | 32.7 | 44.7 |
-| UsedFor     | 50   | 56.8 | 53.2 |
-| MeasuredBy  | 83.3 | 55.6 | 66.7 |
+| weighted    | 56.1 | 44.2 | 47.4 |
+| micro       | 52.2 | 44.2 | 47.9 |
+| macro       | 55.3 | 43.5 | 47.2 |
+| evaluatedOn | 70   | 43.8 | 53.8 |
+| trainedWith | 35.7 | 45.5 | 40   |
+| subtaskOf   | 72.7 | 53.3 | 61.5 |
+| subclassOf  | 60   | 29   | 39.1 |
+| similarWith | 17.6 | 16.7 | 17.1 |
+| partOf      | 15.4 | 25   | 19   |
+| evaluatedBy | 85.7 | 75   | 80   |
+| enhancedBy  | 56.2 | 20.9 | 30.5 |
+| compareWith | 68.6 | 46.2 | 55.2 |
+| UsedFor     | 47.4 | 62.2 | 53.8 |
+| MeasuredBy  | 78.6 | 61.1 | 68.8 |

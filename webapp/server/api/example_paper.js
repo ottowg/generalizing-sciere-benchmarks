@@ -15,7 +15,7 @@ import fs   from 'fs'
 import path from 'path'
 import { jsonResponse } from '../utils.js'
 
-const DATA_FILE = 'data/example_papers.json'
+const DATA_FILE = 'data/webapp/example_papers.json'
 const SCRIPT    = 'scripts/ere_quality/build_example_papers.py'
 
 export function createExamplePaperMiddleware(projectRoot) {
